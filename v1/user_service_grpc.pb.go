@@ -27,13 +27,13 @@ type UserServiceClient interface {
 	LogIn(ctx context.Context, in *LoginUserData, opts ...grpc.CallOption) (*LoginUserResponse, error)
 	LogOut(ctx context.Context, in *LogOutData, opts ...grpc.CallOption) (*Ok, error)
 	ForgotPassword(ctx context.Context, in *ForgotPasswordData, opts ...grpc.CallOption) (*ForgotPassswordResponse, error)
-	ResetPassword(ctx context.Context, in *ResetPasswordData, opts ...grpc.CallOption) (*Ok, error)
-	UpdateRole(ctx context.Context, in *UpdateUserRoleData, opts ...grpc.CallOption) (*Ok, error)
-	AddUser(ctx context.Context, in *AddStaffData, opts ...grpc.CallOption) (*Ok, error)
-	UpdateUser(ctx context.Context, in *UserData, opts ...grpc.CallOption) (*Ok, error)
+	ResetPassword(ctx context.Context, in *ResetPasswordData, opts ...grpc.CallOption) (*OkWithData, error)
+	UpdateRole(ctx context.Context, in *UpdateUserRoleData, opts ...grpc.CallOption) (*OkWithData, error)
+	AddUser(ctx context.Context, in *AddStaffData, opts ...grpc.CallOption) (*OkWithData, error)
+	UpdateUser(ctx context.Context, in *UserData, opts ...grpc.CallOption) (*OkWithData, error)
 	GetMe(ctx context.Context, in *MeData, opts ...grpc.CallOption) (*UserData, error)
-	ConfirmEmail(ctx context.Context, in *ConfirmEmailData, opts ...grpc.CallOption) (*Ok, error)
-	Home(ctx context.Context, in *Token, opts ...grpc.CallOption) (*Any, error)
+	ConfirmEmail(ctx context.Context, in *ConfirmEmailData, opts ...grpc.CallOption) (*OkWithData, error)
+	Home(ctx context.Context, in *Token, opts ...grpc.CallOption) (*OkWithData, error)
 }
 
 type userServiceClient struct {
@@ -89,8 +89,8 @@ func (c *userServiceClient) ForgotPassword(ctx context.Context, in *ForgotPasswo
 	return out, nil
 }
 
-func (c *userServiceClient) ResetPassword(ctx context.Context, in *ResetPasswordData, opts ...grpc.CallOption) (*Ok, error) {
-	out := new(Ok)
+func (c *userServiceClient) ResetPassword(ctx context.Context, in *ResetPasswordData, opts ...grpc.CallOption) (*OkWithData, error) {
+	out := new(OkWithData)
 	err := c.cc.Invoke(ctx, "/user.UserService/ResetPassword", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -98,8 +98,8 @@ func (c *userServiceClient) ResetPassword(ctx context.Context, in *ResetPassword
 	return out, nil
 }
 
-func (c *userServiceClient) UpdateRole(ctx context.Context, in *UpdateUserRoleData, opts ...grpc.CallOption) (*Ok, error) {
-	out := new(Ok)
+func (c *userServiceClient) UpdateRole(ctx context.Context, in *UpdateUserRoleData, opts ...grpc.CallOption) (*OkWithData, error) {
+	out := new(OkWithData)
 	err := c.cc.Invoke(ctx, "/user.UserService/UpdateRole", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -107,8 +107,8 @@ func (c *userServiceClient) UpdateRole(ctx context.Context, in *UpdateUserRoleDa
 	return out, nil
 }
 
-func (c *userServiceClient) AddUser(ctx context.Context, in *AddStaffData, opts ...grpc.CallOption) (*Ok, error) {
-	out := new(Ok)
+func (c *userServiceClient) AddUser(ctx context.Context, in *AddStaffData, opts ...grpc.CallOption) (*OkWithData, error) {
+	out := new(OkWithData)
 	err := c.cc.Invoke(ctx, "/user.UserService/AddUser", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -116,8 +116,8 @@ func (c *userServiceClient) AddUser(ctx context.Context, in *AddStaffData, opts 
 	return out, nil
 }
 
-func (c *userServiceClient) UpdateUser(ctx context.Context, in *UserData, opts ...grpc.CallOption) (*Ok, error) {
-	out := new(Ok)
+func (c *userServiceClient) UpdateUser(ctx context.Context, in *UserData, opts ...grpc.CallOption) (*OkWithData, error) {
+	out := new(OkWithData)
 	err := c.cc.Invoke(ctx, "/user.UserService/UpdateUser", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -134,8 +134,8 @@ func (c *userServiceClient) GetMe(ctx context.Context, in *MeData, opts ...grpc.
 	return out, nil
 }
 
-func (c *userServiceClient) ConfirmEmail(ctx context.Context, in *ConfirmEmailData, opts ...grpc.CallOption) (*Ok, error) {
-	out := new(Ok)
+func (c *userServiceClient) ConfirmEmail(ctx context.Context, in *ConfirmEmailData, opts ...grpc.CallOption) (*OkWithData, error) {
+	out := new(OkWithData)
 	err := c.cc.Invoke(ctx, "/user.UserService/ConfirmEmail", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -143,8 +143,8 @@ func (c *userServiceClient) ConfirmEmail(ctx context.Context, in *ConfirmEmailDa
 	return out, nil
 }
 
-func (c *userServiceClient) Home(ctx context.Context, in *Token, opts ...grpc.CallOption) (*Any, error) {
-	out := new(Any)
+func (c *userServiceClient) Home(ctx context.Context, in *Token, opts ...grpc.CallOption) (*OkWithData, error) {
+	out := new(OkWithData)
 	err := c.cc.Invoke(ctx, "/user.UserService/Home", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -161,13 +161,13 @@ type UserServiceServer interface {
 	LogIn(context.Context, *LoginUserData) (*LoginUserResponse, error)
 	LogOut(context.Context, *LogOutData) (*Ok, error)
 	ForgotPassword(context.Context, *ForgotPasswordData) (*ForgotPassswordResponse, error)
-	ResetPassword(context.Context, *ResetPasswordData) (*Ok, error)
-	UpdateRole(context.Context, *UpdateUserRoleData) (*Ok, error)
-	AddUser(context.Context, *AddStaffData) (*Ok, error)
-	UpdateUser(context.Context, *UserData) (*Ok, error)
+	ResetPassword(context.Context, *ResetPasswordData) (*OkWithData, error)
+	UpdateRole(context.Context, *UpdateUserRoleData) (*OkWithData, error)
+	AddUser(context.Context, *AddStaffData) (*OkWithData, error)
+	UpdateUser(context.Context, *UserData) (*OkWithData, error)
 	GetMe(context.Context, *MeData) (*UserData, error)
-	ConfirmEmail(context.Context, *ConfirmEmailData) (*Ok, error)
-	Home(context.Context, *Token) (*Any, error)
+	ConfirmEmail(context.Context, *ConfirmEmailData) (*OkWithData, error)
+	Home(context.Context, *Token) (*OkWithData, error)
 }
 
 // UnimplementedUserServiceServer should be embedded to have forward compatible implementations.
@@ -189,25 +189,25 @@ func (UnimplementedUserServiceServer) LogOut(context.Context, *LogOutData) (*Ok,
 func (UnimplementedUserServiceServer) ForgotPassword(context.Context, *ForgotPasswordData) (*ForgotPassswordResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ForgotPassword not implemented")
 }
-func (UnimplementedUserServiceServer) ResetPassword(context.Context, *ResetPasswordData) (*Ok, error) {
+func (UnimplementedUserServiceServer) ResetPassword(context.Context, *ResetPasswordData) (*OkWithData, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ResetPassword not implemented")
 }
-func (UnimplementedUserServiceServer) UpdateRole(context.Context, *UpdateUserRoleData) (*Ok, error) {
+func (UnimplementedUserServiceServer) UpdateRole(context.Context, *UpdateUserRoleData) (*OkWithData, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateRole not implemented")
 }
-func (UnimplementedUserServiceServer) AddUser(context.Context, *AddStaffData) (*Ok, error) {
+func (UnimplementedUserServiceServer) AddUser(context.Context, *AddStaffData) (*OkWithData, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AddUser not implemented")
 }
-func (UnimplementedUserServiceServer) UpdateUser(context.Context, *UserData) (*Ok, error) {
+func (UnimplementedUserServiceServer) UpdateUser(context.Context, *UserData) (*OkWithData, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateUser not implemented")
 }
 func (UnimplementedUserServiceServer) GetMe(context.Context, *MeData) (*UserData, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetMe not implemented")
 }
-func (UnimplementedUserServiceServer) ConfirmEmail(context.Context, *ConfirmEmailData) (*Ok, error) {
+func (UnimplementedUserServiceServer) ConfirmEmail(context.Context, *ConfirmEmailData) (*OkWithData, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ConfirmEmail not implemented")
 }
-func (UnimplementedUserServiceServer) Home(context.Context, *Token) (*Any, error) {
+func (UnimplementedUserServiceServer) Home(context.Context, *Token) (*OkWithData, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Home not implemented")
 }
 
