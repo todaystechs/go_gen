@@ -50,7 +50,7 @@ func NewCarrierServiceClient(cc grpc.ClientConnInterface) CarrierServiceClient {
 
 func (c *carrierServiceClient) GetLocations(ctx context.Context, in *BusinessId, opts ...grpc.CallOption) (*ListsOfLocation, error) {
 	out := new(ListsOfLocation)
-	err := c.cc.Invoke(ctx, "/carrier.CarrierService/GetLocations", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/user.CarrierService/GetLocations", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -59,7 +59,7 @@ func (c *carrierServiceClient) GetLocations(ctx context.Context, in *BusinessId,
 
 func (c *carrierServiceClient) CreateLocation(ctx context.Context, in *Location, opts ...grpc.CallOption) (*Location, error) {
 	out := new(Location)
-	err := c.cc.Invoke(ctx, "/carrier.CarrierService/CreateLocation", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/user.CarrierService/CreateLocation", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -68,7 +68,7 @@ func (c *carrierServiceClient) CreateLocation(ctx context.Context, in *Location,
 
 func (c *carrierServiceClient) UpdateLocation(ctx context.Context, in *Location, opts ...grpc.CallOption) (*Ok, error) {
 	out := new(Ok)
-	err := c.cc.Invoke(ctx, "/carrier.CarrierService/UpdateLocation", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/user.CarrierService/UpdateLocation", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -77,7 +77,7 @@ func (c *carrierServiceClient) UpdateLocation(ctx context.Context, in *Location,
 
 func (c *carrierServiceClient) DeleteLocation(ctx context.Context, in *Location, opts ...grpc.CallOption) (*Ok, error) {
 	out := new(Ok)
-	err := c.cc.Invoke(ctx, "/carrier.CarrierService/DeleteLocation", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/user.CarrierService/DeleteLocation", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -86,7 +86,7 @@ func (c *carrierServiceClient) DeleteLocation(ctx context.Context, in *Location,
 
 func (c *carrierServiceClient) PingCarrierService(ctx context.Context, in *CarrierServicePing, opts ...grpc.CallOption) (*CarrierServicePing, error) {
 	out := new(CarrierServicePing)
-	err := c.cc.Invoke(ctx, "/carrier.CarrierService/PingCarrierService", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/user.CarrierService/PingCarrierService", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -95,7 +95,7 @@ func (c *carrierServiceClient) PingCarrierService(ctx context.Context, in *Carri
 
 func (c *carrierServiceClient) GetQuotes(ctx context.Context, in *QuoteRequest, opts ...grpc.CallOption) (*ListOfQuoteResponse, error) {
 	out := new(ListOfQuoteResponse)
-	err := c.cc.Invoke(ctx, "/carrier.CarrierService/GetQuotes", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/user.CarrierService/GetQuotes", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -104,7 +104,7 @@ func (c *carrierServiceClient) GetQuotes(ctx context.Context, in *QuoteRequest, 
 
 func (c *carrierServiceClient) UpdateQuote(ctx context.Context, in *QuoteRequest, opts ...grpc.CallOption) (*ListOfQuoteResponse, error) {
 	out := new(ListOfQuoteResponse)
-	err := c.cc.Invoke(ctx, "/carrier.CarrierService/UpdateQuote", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/user.CarrierService/UpdateQuote", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -113,7 +113,7 @@ func (c *carrierServiceClient) UpdateQuote(ctx context.Context, in *QuoteRequest
 
 func (c *carrierServiceClient) DeleteQuote(ctx context.Context, in *QuoteRequest, opts ...grpc.CallOption) (*ListOfQuoteResponse, error) {
 	out := new(ListOfQuoteResponse)
-	err := c.cc.Invoke(ctx, "/carrier.CarrierService/DeleteQuote", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/user.CarrierService/DeleteQuote", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -122,7 +122,7 @@ func (c *carrierServiceClient) DeleteQuote(ctx context.Context, in *QuoteRequest
 
 func (c *carrierServiceClient) GetQuotesById(ctx context.Context, in *FetchQuotesRequest, opts ...grpc.CallOption) (*QuoteResponse, error) {
 	out := new(QuoteResponse)
-	err := c.cc.Invoke(ctx, "/carrier.CarrierService/GetQuotesById", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/user.CarrierService/GetQuotesById", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -131,7 +131,7 @@ func (c *carrierServiceClient) GetQuotesById(ctx context.Context, in *FetchQuote
 
 func (c *carrierServiceClient) BookQuote(ctx context.Context, in *BookingData, opts ...grpc.CallOption) (*BookingResponse, error) {
 	out := new(BookingResponse)
-	err := c.cc.Invoke(ctx, "/carrier.CarrierService/BookQuote", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/user.CarrierService/BookQuote", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -140,7 +140,7 @@ func (c *carrierServiceClient) BookQuote(ctx context.Context, in *BookingData, o
 
 func (c *carrierServiceClient) GetBookingHistory(ctx context.Context, in *FetchBookingsRequest, opts ...grpc.CallOption) (*ListOfBooking, error) {
 	out := new(ListOfBooking)
-	err := c.cc.Invoke(ctx, "/carrier.CarrierService/GetBookingHistory", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/user.CarrierService/GetBookingHistory", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -149,7 +149,7 @@ func (c *carrierServiceClient) GetBookingHistory(ctx context.Context, in *FetchB
 
 func (c *carrierServiceClient) GetBookingById(ctx context.Context, in *FetchBookingsRequest, opts ...grpc.CallOption) (*ListOfBooking, error) {
 	out := new(ListOfBooking)
-	err := c.cc.Invoke(ctx, "/carrier.CarrierService/GetBookingById", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/user.CarrierService/GetBookingById", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -240,7 +240,7 @@ func _CarrierService_GetLocations_Handler(srv interface{}, ctx context.Context, 
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/carrier.CarrierService/GetLocations",
+		FullMethod: "/user.CarrierService/GetLocations",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(CarrierServiceServer).GetLocations(ctx, req.(*BusinessId))
@@ -258,7 +258,7 @@ func _CarrierService_CreateLocation_Handler(srv interface{}, ctx context.Context
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/carrier.CarrierService/CreateLocation",
+		FullMethod: "/user.CarrierService/CreateLocation",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(CarrierServiceServer).CreateLocation(ctx, req.(*Location))
@@ -276,7 +276,7 @@ func _CarrierService_UpdateLocation_Handler(srv interface{}, ctx context.Context
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/carrier.CarrierService/UpdateLocation",
+		FullMethod: "/user.CarrierService/UpdateLocation",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(CarrierServiceServer).UpdateLocation(ctx, req.(*Location))
@@ -294,7 +294,7 @@ func _CarrierService_DeleteLocation_Handler(srv interface{}, ctx context.Context
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/carrier.CarrierService/DeleteLocation",
+		FullMethod: "/user.CarrierService/DeleteLocation",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(CarrierServiceServer).DeleteLocation(ctx, req.(*Location))
@@ -312,7 +312,7 @@ func _CarrierService_PingCarrierService_Handler(srv interface{}, ctx context.Con
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/carrier.CarrierService/PingCarrierService",
+		FullMethod: "/user.CarrierService/PingCarrierService",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(CarrierServiceServer).PingCarrierService(ctx, req.(*CarrierServicePing))
@@ -330,7 +330,7 @@ func _CarrierService_GetQuotes_Handler(srv interface{}, ctx context.Context, dec
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/carrier.CarrierService/GetQuotes",
+		FullMethod: "/user.CarrierService/GetQuotes",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(CarrierServiceServer).GetQuotes(ctx, req.(*QuoteRequest))
@@ -348,7 +348,7 @@ func _CarrierService_UpdateQuote_Handler(srv interface{}, ctx context.Context, d
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/carrier.CarrierService/UpdateQuote",
+		FullMethod: "/user.CarrierService/UpdateQuote",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(CarrierServiceServer).UpdateQuote(ctx, req.(*QuoteRequest))
@@ -366,7 +366,7 @@ func _CarrierService_DeleteQuote_Handler(srv interface{}, ctx context.Context, d
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/carrier.CarrierService/DeleteQuote",
+		FullMethod: "/user.CarrierService/DeleteQuote",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(CarrierServiceServer).DeleteQuote(ctx, req.(*QuoteRequest))
@@ -384,7 +384,7 @@ func _CarrierService_GetQuotesById_Handler(srv interface{}, ctx context.Context,
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/carrier.CarrierService/GetQuotesById",
+		FullMethod: "/user.CarrierService/GetQuotesById",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(CarrierServiceServer).GetQuotesById(ctx, req.(*FetchQuotesRequest))
@@ -402,7 +402,7 @@ func _CarrierService_BookQuote_Handler(srv interface{}, ctx context.Context, dec
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/carrier.CarrierService/BookQuote",
+		FullMethod: "/user.CarrierService/BookQuote",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(CarrierServiceServer).BookQuote(ctx, req.(*BookingData))
@@ -420,7 +420,7 @@ func _CarrierService_GetBookingHistory_Handler(srv interface{}, ctx context.Cont
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/carrier.CarrierService/GetBookingHistory",
+		FullMethod: "/user.CarrierService/GetBookingHistory",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(CarrierServiceServer).GetBookingHistory(ctx, req.(*FetchBookingsRequest))
@@ -438,7 +438,7 @@ func _CarrierService_GetBookingById_Handler(srv interface{}, ctx context.Context
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/carrier.CarrierService/GetBookingById",
+		FullMethod: "/user.CarrierService/GetBookingById",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(CarrierServiceServer).GetBookingById(ctx, req.(*FetchBookingsRequest))
@@ -450,7 +450,7 @@ func _CarrierService_GetBookingById_Handler(srv interface{}, ctx context.Context
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var CarrierService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "carrier.CarrierService",
+	ServiceName: "user.CarrierService",
 	HandlerType: (*CarrierServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
