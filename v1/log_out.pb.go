@@ -27,7 +27,8 @@ type LogOutData struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	UserId *wrapperspb.StringValue `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	// @gotags: dynamodbav:"user_id"
+	UserId *wrapperspb.StringValue `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty" dynamodbav:"user_id"`
 }
 
 func (x *LogOutData) Reset() {

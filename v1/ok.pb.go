@@ -26,9 +26,12 @@ type Ok struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Success    *wrapperspb.BoolValue   `protobuf:"bytes,1,opt,name=success,proto3" json:"success,omitempty"`
-	StatusCode *wrapperspb.StringValue `protobuf:"bytes,2,opt,name=status_code,json=statusCode,proto3" json:"status_code,omitempty"`
-	Message    *wrapperspb.StringValue `protobuf:"bytes,3,opt,name=message,proto3" json:"message,omitempty"`
+	// @gotags: dynamodbav:"success"
+	Success *wrapperspb.BoolValue `protobuf:"bytes,1,opt,name=success,proto3" json:"success,omitempty" dynamodbav:"success"`
+	// @gotags: dynamodbav:"status_code"
+	StatusCode *wrapperspb.StringValue `protobuf:"bytes,2,opt,name=status_code,json=statusCode,proto3" json:"status_code,omitempty" dynamodbav:"status_code"`
+	// @gotags: dynamodbav:"message"
+	Message *wrapperspb.StringValue `protobuf:"bytes,3,opt,name=message,proto3" json:"message,omitempty" dynamodbav:"message"`
 }
 
 func (x *Ok) Reset() {

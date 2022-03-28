@@ -492,7 +492,7 @@ func (m *UserData) validate(all bool) error {
 		}
 	}
 
-	for idx, item := range m.GetPhoneNumbers() {
+	for idx, item := range m.GetPhoneNumber() {
 		_, _ = idx, item
 
 		if all {
@@ -500,7 +500,7 @@ func (m *UserData) validate(all bool) error {
 			case interface{ ValidateAll() error }:
 				if err := v.ValidateAll(); err != nil {
 					errors = append(errors, UserDataValidationError{
-						field:  fmt.Sprintf("PhoneNumbers[%v]", idx),
+						field:  fmt.Sprintf("PhoneNumber[%v]", idx),
 						reason: "embedded message failed validation",
 						cause:  err,
 					})
@@ -508,7 +508,7 @@ func (m *UserData) validate(all bool) error {
 			case interface{ Validate() error }:
 				if err := v.Validate(); err != nil {
 					errors = append(errors, UserDataValidationError{
-						field:  fmt.Sprintf("PhoneNumbers[%v]", idx),
+						field:  fmt.Sprintf("PhoneNumber[%v]", idx),
 						reason: "embedded message failed validation",
 						cause:  err,
 					})
@@ -517,7 +517,7 @@ func (m *UserData) validate(all bool) error {
 		} else if v, ok := interface{}(item).(interface{ Validate() error }); ok {
 			if err := v.Validate(); err != nil {
 				return UserDataValidationError{
-					field:  fmt.Sprintf("PhoneNumbers[%v]", idx),
+					field:  fmt.Sprintf("PhoneNumber[%v]", idx),
 					reason: "embedded message failed validation",
 					cause:  err,
 				}
@@ -527,11 +527,11 @@ func (m *UserData) validate(all bool) error {
 	}
 
 	if all {
-		switch v := interface{}(m.GetEmailVarified()).(type) {
+		switch v := interface{}(m.GetEmailVerified()).(type) {
 		case interface{ ValidateAll() error }:
 			if err := v.ValidateAll(); err != nil {
 				errors = append(errors, UserDataValidationError{
-					field:  "EmailVarified",
+					field:  "EmailVerified",
 					reason: "embedded message failed validation",
 					cause:  err,
 				})
@@ -539,23 +539,23 @@ func (m *UserData) validate(all bool) error {
 		case interface{ Validate() error }:
 			if err := v.Validate(); err != nil {
 				errors = append(errors, UserDataValidationError{
-					field:  "EmailVarified",
+					field:  "EmailVerified",
 					reason: "embedded message failed validation",
 					cause:  err,
 				})
 			}
 		}
-	} else if v, ok := interface{}(m.GetEmailVarified()).(interface{ Validate() error }); ok {
+	} else if v, ok := interface{}(m.GetEmailVerified()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return UserDataValidationError{
-				field:  "EmailVarified",
+				field:  "EmailVerified",
 				reason: "embedded message failed validation",
 				cause:  err,
 			}
 		}
 	}
 
-	for idx, item := range m.GetForgotPasswordTokens() {
+	for idx, item := range m.GetResetPasswordToken() {
 		_, _ = idx, item
 
 		if all {
@@ -563,7 +563,7 @@ func (m *UserData) validate(all bool) error {
 			case interface{ ValidateAll() error }:
 				if err := v.ValidateAll(); err != nil {
 					errors = append(errors, UserDataValidationError{
-						field:  fmt.Sprintf("ForgotPasswordTokens[%v]", idx),
+						field:  fmt.Sprintf("ResetPasswordToken[%v]", idx),
 						reason: "embedded message failed validation",
 						cause:  err,
 					})
@@ -571,7 +571,7 @@ func (m *UserData) validate(all bool) error {
 			case interface{ Validate() error }:
 				if err := v.Validate(); err != nil {
 					errors = append(errors, UserDataValidationError{
-						field:  fmt.Sprintf("ForgotPasswordTokens[%v]", idx),
+						field:  fmt.Sprintf("ResetPasswordToken[%v]", idx),
 						reason: "embedded message failed validation",
 						cause:  err,
 					})
@@ -580,7 +580,7 @@ func (m *UserData) validate(all bool) error {
 		} else if v, ok := interface{}(item).(interface{ Validate() error }); ok {
 			if err := v.Validate(); err != nil {
 				return UserDataValidationError{
-					field:  fmt.Sprintf("ForgotPasswordTokens[%v]", idx),
+					field:  fmt.Sprintf("ResetPasswordToken[%v]", idx),
 					reason: "embedded message failed validation",
 					cause:  err,
 				}
