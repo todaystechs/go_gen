@@ -136,22 +136,22 @@ var _ interface {
 	ErrorName() string
 } = RefreshTokenDataValidationError{}
 
-// Validate checks the field values on RefreshTokenResponse with the rules
-// defined in the proto definition for this message. If any rules are
-// violated, the first error encountered is returned, or nil if there are no violations.
-func (m *RefreshTokenResponse) Validate() error {
+// Validate checks the field values on RefreshToken with the rules defined in
+// the proto definition for this message. If any rules are violated, the first
+// error encountered is returned, or nil if there are no violations.
+func (m *RefreshToken) Validate() error {
 	return m.validate(false)
 }
 
-// ValidateAll checks the field values on RefreshTokenResponse with the rules
-// defined in the proto definition for this message. If any rules are
-// violated, the result is a list of violation errors wrapped in
-// RefreshTokenResponseMultiError, or nil if none found.
-func (m *RefreshTokenResponse) ValidateAll() error {
+// ValidateAll checks the field values on RefreshToken with the rules defined
+// in the proto definition for this message. If any rules are violated, the
+// result is a list of violation errors wrapped in RefreshTokenMultiError, or
+// nil if none found.
+func (m *RefreshToken) ValidateAll() error {
 	return m.validate(true)
 }
 
-func (m *RefreshTokenResponse) validate(all bool) error {
+func (m *RefreshToken) validate(all bool) error {
 	if m == nil {
 		return nil
 	}
@@ -162,19 +162,20 @@ func (m *RefreshTokenResponse) validate(all bool) error {
 
 	// no validation rules for RefreshToken
 
+	// no validation rules for Token
+
 	if len(errors) > 0 {
-		return RefreshTokenResponseMultiError(errors)
+		return RefreshTokenMultiError(errors)
 	}
 	return nil
 }
 
-// RefreshTokenResponseMultiError is an error wrapping multiple validation
-// errors returned by RefreshTokenResponse.ValidateAll() if the designated
-// constraints aren't met.
-type RefreshTokenResponseMultiError []error
+// RefreshTokenMultiError is an error wrapping multiple validation errors
+// returned by RefreshToken.ValidateAll() if the designated constraints aren't met.
+type RefreshTokenMultiError []error
 
 // Error returns a concatenation of all the error messages it wraps.
-func (m RefreshTokenResponseMultiError) Error() string {
+func (m RefreshTokenMultiError) Error() string {
 	var msgs []string
 	for _, err := range m {
 		msgs = append(msgs, err.Error())
@@ -183,11 +184,11 @@ func (m RefreshTokenResponseMultiError) Error() string {
 }
 
 // AllErrors returns a list of validation violation errors.
-func (m RefreshTokenResponseMultiError) AllErrors() []error { return m }
+func (m RefreshTokenMultiError) AllErrors() []error { return m }
 
-// RefreshTokenResponseValidationError is the validation error returned by
-// RefreshTokenResponse.Validate if the designated constraints aren't met.
-type RefreshTokenResponseValidationError struct {
+// RefreshTokenValidationError is the validation error returned by
+// RefreshToken.Validate if the designated constraints aren't met.
+type RefreshTokenValidationError struct {
 	field  string
 	reason string
 	cause  error
@@ -195,24 +196,22 @@ type RefreshTokenResponseValidationError struct {
 }
 
 // Field function returns field value.
-func (e RefreshTokenResponseValidationError) Field() string { return e.field }
+func (e RefreshTokenValidationError) Field() string { return e.field }
 
 // Reason function returns reason value.
-func (e RefreshTokenResponseValidationError) Reason() string { return e.reason }
+func (e RefreshTokenValidationError) Reason() string { return e.reason }
 
 // Cause function returns cause value.
-func (e RefreshTokenResponseValidationError) Cause() error { return e.cause }
+func (e RefreshTokenValidationError) Cause() error { return e.cause }
 
 // Key function returns key value.
-func (e RefreshTokenResponseValidationError) Key() bool { return e.key }
+func (e RefreshTokenValidationError) Key() bool { return e.key }
 
 // ErrorName returns error name.
-func (e RefreshTokenResponseValidationError) ErrorName() string {
-	return "RefreshTokenResponseValidationError"
-}
+func (e RefreshTokenValidationError) ErrorName() string { return "RefreshTokenValidationError" }
 
 // Error satisfies the builtin error interface
-func (e RefreshTokenResponseValidationError) Error() string {
+func (e RefreshTokenValidationError) Error() string {
 	cause := ""
 	if e.cause != nil {
 		cause = fmt.Sprintf(" | caused by: %v", e.cause)
@@ -224,14 +223,14 @@ func (e RefreshTokenResponseValidationError) Error() string {
 	}
 
 	return fmt.Sprintf(
-		"invalid %sRefreshTokenResponse.%s: %s%s",
+		"invalid %sRefreshToken.%s: %s%s",
 		key,
 		e.field,
 		e.reason,
 		cause)
 }
 
-var _ error = RefreshTokenResponseValidationError{}
+var _ error = RefreshTokenValidationError{}
 
 var _ interface {
 	Field() string
@@ -239,4 +238,4 @@ var _ interface {
 	Key() bool
 	Cause() error
 	ErrorName() string
-} = RefreshTokenResponseValidationError{}
+} = RefreshTokenValidationError{}

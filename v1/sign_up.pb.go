@@ -27,13 +27,20 @@ type SignUpData struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	FirstName   string `protobuf:"bytes,1,opt,name=first_name,json=firstName,proto3" json:"first_name,omitempty"`
-	MiddleName  string `protobuf:"bytes,2,opt,name=middle_name,json=middleName,proto3" json:"middle_name,omitempty"`
-	LastName    string `protobuf:"bytes,3,opt,name=last_name,json=lastName,proto3" json:"last_name,omitempty"`
-	Email       string `protobuf:"bytes,4,opt,name=email,proto3" json:"email,omitempty"`
-	Password    string `protobuf:"bytes,5,opt,name=password,proto3" json:"password,omitempty"`
-	PhoneNumber string `protobuf:"bytes,6,opt,name=phone_number,json=phoneNumber,proto3" json:"phone_number,omitempty"`
-	Role        []Role `protobuf:"varint,7,rep,packed,name=role,proto3,enum=user.Role" json:"role,omitempty"`
+	// @gotags: dynamodbav:"first_name"
+	FirstName string `protobuf:"bytes,1,opt,name=first_name,json=firstName,proto3" json:"first_name,omitempty" dynamodbav:"first_name"`
+	// @gotags: dynamodbav:"middle_name"
+	MiddleName string `protobuf:"bytes,2,opt,name=middle_name,json=middleName,proto3" json:"middle_name,omitempty" dynamodbav:"middle_name"`
+	// @gotags: dynamodbav:"last_name"
+	LastName string `protobuf:"bytes,3,opt,name=last_name,json=lastName,proto3" json:"last_name,omitempty" dynamodbav:"last_name"`
+	// @gotags: dynamodbav:"email"
+	Email string `protobuf:"bytes,4,opt,name=email,proto3" json:"email,omitempty" dynamodbav:"email"`
+	// @gotags: dynamodbav:"password"
+	Password string `protobuf:"bytes,5,opt,name=password,proto3" json:"password,omitempty" dynamodbav:"password"`
+	// @gotags: dynamodbav:"phone_number"
+	PhoneNumber string `protobuf:"bytes,6,opt,name=phone_number,json=phoneNumber,proto3" json:"phone_number,omitempty" dynamodbav:"phone_number"`
+	// @gotags: dynamodbav:"role"
+	Role []Role `protobuf:"varint,7,rep,packed,name=role,proto3,enum=user.Role" json:"role,omitempty" dynamodbav:"role"`
 }
 
 func (x *SignUpData) Reset() {

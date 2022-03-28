@@ -35,21 +35,22 @@ var (
 	_ = sort.Sort
 )
 
-// Validate checks the field values on Token with the rules defined in the
-// proto definition for this message. If any rules are violated, the first
+// Validate checks the field values on UserHomeData with the rules defined in
+// the proto definition for this message. If any rules are violated, the first
 // error encountered is returned, or nil if there are no violations.
-func (m *Token) Validate() error {
+func (m *UserHomeData) Validate() error {
 	return m.validate(false)
 }
 
-// ValidateAll checks the field values on Token with the rules defined in the
-// proto definition for this message. If any rules are violated, the result is
-// a list of violation errors wrapped in TokenMultiError, or nil if none found.
-func (m *Token) ValidateAll() error {
+// ValidateAll checks the field values on UserHomeData with the rules defined
+// in the proto definition for this message. If any rules are violated, the
+// result is a list of violation errors wrapped in UserHomeDataMultiError, or
+// nil if none found.
+func (m *UserHomeData) ValidateAll() error {
 	return m.validate(true)
 }
 
-func (m *Token) validate(all bool) error {
+func (m *UserHomeData) validate(all bool) error {
 	if m == nil {
 		return nil
 	}
@@ -59,17 +60,17 @@ func (m *Token) validate(all bool) error {
 	// no validation rules for Token
 
 	if len(errors) > 0 {
-		return TokenMultiError(errors)
+		return UserHomeDataMultiError(errors)
 	}
 	return nil
 }
 
-// TokenMultiError is an error wrapping multiple validation errors returned by
-// Token.ValidateAll() if the designated constraints aren't met.
-type TokenMultiError []error
+// UserHomeDataMultiError is an error wrapping multiple validation errors
+// returned by UserHomeData.ValidateAll() if the designated constraints aren't met.
+type UserHomeDataMultiError []error
 
 // Error returns a concatenation of all the error messages it wraps.
-func (m TokenMultiError) Error() string {
+func (m UserHomeDataMultiError) Error() string {
 	var msgs []string
 	for _, err := range m {
 		msgs = append(msgs, err.Error())
@@ -78,11 +79,11 @@ func (m TokenMultiError) Error() string {
 }
 
 // AllErrors returns a list of validation violation errors.
-func (m TokenMultiError) AllErrors() []error { return m }
+func (m UserHomeDataMultiError) AllErrors() []error { return m }
 
-// TokenValidationError is the validation error returned by Token.Validate if
-// the designated constraints aren't met.
-type TokenValidationError struct {
+// UserHomeDataValidationError is the validation error returned by
+// UserHomeData.Validate if the designated constraints aren't met.
+type UserHomeDataValidationError struct {
 	field  string
 	reason string
 	cause  error
@@ -90,22 +91,22 @@ type TokenValidationError struct {
 }
 
 // Field function returns field value.
-func (e TokenValidationError) Field() string { return e.field }
+func (e UserHomeDataValidationError) Field() string { return e.field }
 
 // Reason function returns reason value.
-func (e TokenValidationError) Reason() string { return e.reason }
+func (e UserHomeDataValidationError) Reason() string { return e.reason }
 
 // Cause function returns cause value.
-func (e TokenValidationError) Cause() error { return e.cause }
+func (e UserHomeDataValidationError) Cause() error { return e.cause }
 
 // Key function returns key value.
-func (e TokenValidationError) Key() bool { return e.key }
+func (e UserHomeDataValidationError) Key() bool { return e.key }
 
 // ErrorName returns error name.
-func (e TokenValidationError) ErrorName() string { return "TokenValidationError" }
+func (e UserHomeDataValidationError) ErrorName() string { return "UserHomeDataValidationError" }
 
 // Error satisfies the builtin error interface
-func (e TokenValidationError) Error() string {
+func (e UserHomeDataValidationError) Error() string {
 	cause := ""
 	if e.cause != nil {
 		cause = fmt.Sprintf(" | caused by: %v", e.cause)
@@ -117,14 +118,14 @@ func (e TokenValidationError) Error() string {
 	}
 
 	return fmt.Sprintf(
-		"invalid %sToken.%s: %s%s",
+		"invalid %sUserHomeData.%s: %s%s",
 		key,
 		e.field,
 		e.reason,
 		cause)
 }
 
-var _ error = TokenValidationError{}
+var _ error = UserHomeDataValidationError{}
 
 var _ interface {
 	Field() string
@@ -132,4 +133,4 @@ var _ interface {
 	Key() bool
 	Cause() error
 	ErrorName() string
-} = TokenValidationError{}
+} = UserHomeDataValidationError{}

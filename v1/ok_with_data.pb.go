@@ -26,10 +26,14 @@ type OkWithData struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Success    bool   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
-	StatusCode string `protobuf:"bytes,2,opt,name=status_code,json=statusCode,proto3" json:"status_code,omitempty"`
-	Message    string `protobuf:"bytes,3,opt,name=message,proto3" json:"message,omitempty"`
-	Data       *Any   `protobuf:"bytes,4,opt,name=data,proto3" json:"data,omitempty"`
+	// @gotags: dynamodbav:"success"
+	Success bool `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty" dynamodbav:"success"`
+	// @gotags: dynamodbav:"status_code"
+	StatusCode int32 `protobuf:"varint,2,opt,name=status_code,json=statusCode,proto3" json:"status_code,omitempty" dynamodbav:"status_code"`
+	// @gotags: dynamodbav:"message"
+	Message string `protobuf:"bytes,3,opt,name=message,proto3" json:"message,omitempty" dynamodbav:"message"`
+	// @gotags: dynamodbav:"data"
+	Data *Any `protobuf:"bytes,4,opt,name=data,proto3" json:"data,omitempty" dynamodbav:"data"`
 }
 
 func (x *OkWithData) Reset() {
@@ -71,11 +75,11 @@ func (x *OkWithData) GetSuccess() bool {
 	return false
 }
 
-func (x *OkWithData) GetStatusCode() string {
+func (x *OkWithData) GetStatusCode() int32 {
 	if x != nil {
 		return x.StatusCode
 	}
-	return ""
+	return 0
 }
 
 func (x *OkWithData) GetMessage() string {
@@ -125,9 +129,11 @@ type Any struct {
 	// Schemes other than `http`, `https` (or the empty scheme) might be
 	// used with implementation specific semantics.
 	//
-	TypeUrl string `protobuf:"bytes,1,opt,name=type_url,json=typeUrl,proto3" json:"type_url,omitempty"`
+	// @gotags: dynamodbav:"type_url"
+	TypeUrl string `protobuf:"bytes,1,opt,name=type_url,json=typeUrl,proto3" json:"type_url,omitempty" dynamodbav:"type_url"`
 	// Must be a valid serialized protocol buffer of the above specified type.
-	Value []byte `protobuf:"bytes,2,opt,name=value,proto3" json:"value,omitempty"`
+	// @gotags: dynamodbav:"value"
+	Value []byte `protobuf:"bytes,2,opt,name=value,proto3" json:"value,omitempty" dynamodbav:"value"`
 }
 
 func (x *Any) Reset() {
@@ -186,7 +192,7 @@ var file_ok_with_data_proto_rawDesc = []byte{
 	0x6b, 0x57, 0x69, 0x74, 0x68, 0x44, 0x61, 0x74, 0x61, 0x12, 0x18, 0x0a, 0x07, 0x73, 0x75, 0x63,
 	0x63, 0x65, 0x73, 0x73, 0x18, 0x01, 0x20, 0x01, 0x28, 0x08, 0x52, 0x07, 0x73, 0x75, 0x63, 0x63,
 	0x65, 0x73, 0x73, 0x12, 0x1f, 0x0a, 0x0b, 0x73, 0x74, 0x61, 0x74, 0x75, 0x73, 0x5f, 0x63, 0x6f,
-	0x64, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0a, 0x73, 0x74, 0x61, 0x74, 0x75, 0x73,
+	0x64, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x05, 0x52, 0x0a, 0x73, 0x74, 0x61, 0x74, 0x75, 0x73,
 	0x43, 0x6f, 0x64, 0x65, 0x12, 0x18, 0x0a, 0x07, 0x6d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x18,
 	0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x6d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x12, 0x1d,
 	0x0a, 0x04, 0x64, 0x61, 0x74, 0x61, 0x18, 0x04, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x09, 0x2e, 0x75,

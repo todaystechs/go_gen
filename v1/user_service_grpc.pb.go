@@ -24,16 +24,16 @@ const _ = grpc.SupportPackageIsVersion7
 type UserServiceClient interface {
 	PingUserService(ctx context.Context, in *UserServicePingData, opts ...grpc.CallOption) (*UserServicePingData, error)
 	SignUp(ctx context.Context, in *SignUpData, opts ...grpc.CallOption) (*Ok, error)
-	LogIn(ctx context.Context, in *LoginUserData, opts ...grpc.CallOption) (*LoginUserResponse, error)
+	LogIn(ctx context.Context, in *LoginUserData, opts ...grpc.CallOption) (*OkWithData, error)
 	LogOut(ctx context.Context, in *LogOutData, opts ...grpc.CallOption) (*Ok, error)
-	ForgotPassword(ctx context.Context, in *ForgotPasswordData, opts ...grpc.CallOption) (*ForgotPassswordResponse, error)
+	ForgotPassword(ctx context.Context, in *ForgotPasswordData, opts ...grpc.CallOption) (*Ok, error)
 	ResetPassword(ctx context.Context, in *ResetPasswordData, opts ...grpc.CallOption) (*OkWithData, error)
 	UpdateRole(ctx context.Context, in *UpdateUserRoleData, opts ...grpc.CallOption) (*OkWithData, error)
 	AddUser(ctx context.Context, in *AddStaffData, opts ...grpc.CallOption) (*OkWithData, error)
 	UpdateUser(ctx context.Context, in *UserData, opts ...grpc.CallOption) (*OkWithData, error)
 	GetMe(ctx context.Context, in *MeData, opts ...grpc.CallOption) (*UserData, error)
 	ConfirmEmail(ctx context.Context, in *ConfirmEmailData, opts ...grpc.CallOption) (*OkWithData, error)
-	Home(ctx context.Context, in *Token, opts ...grpc.CallOption) (*OkWithData, error)
+	Home(ctx context.Context, in *UserHomeData, opts ...grpc.CallOption) (*OkWithData, error)
 }
 
 type userServiceClient struct {
@@ -62,8 +62,8 @@ func (c *userServiceClient) SignUp(ctx context.Context, in *SignUpData, opts ...
 	return out, nil
 }
 
-func (c *userServiceClient) LogIn(ctx context.Context, in *LoginUserData, opts ...grpc.CallOption) (*LoginUserResponse, error) {
-	out := new(LoginUserResponse)
+func (c *userServiceClient) LogIn(ctx context.Context, in *LoginUserData, opts ...grpc.CallOption) (*OkWithData, error) {
+	out := new(OkWithData)
 	err := c.cc.Invoke(ctx, "/user.UserService/LogIn", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -80,8 +80,8 @@ func (c *userServiceClient) LogOut(ctx context.Context, in *LogOutData, opts ...
 	return out, nil
 }
 
-func (c *userServiceClient) ForgotPassword(ctx context.Context, in *ForgotPasswordData, opts ...grpc.CallOption) (*ForgotPassswordResponse, error) {
-	out := new(ForgotPassswordResponse)
+func (c *userServiceClient) ForgotPassword(ctx context.Context, in *ForgotPasswordData, opts ...grpc.CallOption) (*Ok, error) {
+	out := new(Ok)
 	err := c.cc.Invoke(ctx, "/user.UserService/ForgotPassword", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -143,7 +143,7 @@ func (c *userServiceClient) ConfirmEmail(ctx context.Context, in *ConfirmEmailDa
 	return out, nil
 }
 
-func (c *userServiceClient) Home(ctx context.Context, in *Token, opts ...grpc.CallOption) (*OkWithData, error) {
+func (c *userServiceClient) Home(ctx context.Context, in *UserHomeData, opts ...grpc.CallOption) (*OkWithData, error) {
 	out := new(OkWithData)
 	err := c.cc.Invoke(ctx, "/user.UserService/Home", in, out, opts...)
 	if err != nil {
@@ -158,16 +158,16 @@ func (c *userServiceClient) Home(ctx context.Context, in *Token, opts ...grpc.Ca
 type UserServiceServer interface {
 	PingUserService(context.Context, *UserServicePingData) (*UserServicePingData, error)
 	SignUp(context.Context, *SignUpData) (*Ok, error)
-	LogIn(context.Context, *LoginUserData) (*LoginUserResponse, error)
+	LogIn(context.Context, *LoginUserData) (*OkWithData, error)
 	LogOut(context.Context, *LogOutData) (*Ok, error)
-	ForgotPassword(context.Context, *ForgotPasswordData) (*ForgotPassswordResponse, error)
+	ForgotPassword(context.Context, *ForgotPasswordData) (*Ok, error)
 	ResetPassword(context.Context, *ResetPasswordData) (*OkWithData, error)
 	UpdateRole(context.Context, *UpdateUserRoleData) (*OkWithData, error)
 	AddUser(context.Context, *AddStaffData) (*OkWithData, error)
 	UpdateUser(context.Context, *UserData) (*OkWithData, error)
 	GetMe(context.Context, *MeData) (*UserData, error)
 	ConfirmEmail(context.Context, *ConfirmEmailData) (*OkWithData, error)
-	Home(context.Context, *Token) (*OkWithData, error)
+	Home(context.Context, *UserHomeData) (*OkWithData, error)
 }
 
 // UnimplementedUserServiceServer should be embedded to have forward compatible implementations.
@@ -180,13 +180,13 @@ func (UnimplementedUserServiceServer) PingUserService(context.Context, *UserServ
 func (UnimplementedUserServiceServer) SignUp(context.Context, *SignUpData) (*Ok, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SignUp not implemented")
 }
-func (UnimplementedUserServiceServer) LogIn(context.Context, *LoginUserData) (*LoginUserResponse, error) {
+func (UnimplementedUserServiceServer) LogIn(context.Context, *LoginUserData) (*OkWithData, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method LogIn not implemented")
 }
 func (UnimplementedUserServiceServer) LogOut(context.Context, *LogOutData) (*Ok, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method LogOut not implemented")
 }
-func (UnimplementedUserServiceServer) ForgotPassword(context.Context, *ForgotPasswordData) (*ForgotPassswordResponse, error) {
+func (UnimplementedUserServiceServer) ForgotPassword(context.Context, *ForgotPasswordData) (*Ok, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ForgotPassword not implemented")
 }
 func (UnimplementedUserServiceServer) ResetPassword(context.Context, *ResetPasswordData) (*OkWithData, error) {
@@ -207,7 +207,7 @@ func (UnimplementedUserServiceServer) GetMe(context.Context, *MeData) (*UserData
 func (UnimplementedUserServiceServer) ConfirmEmail(context.Context, *ConfirmEmailData) (*OkWithData, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ConfirmEmail not implemented")
 }
-func (UnimplementedUserServiceServer) Home(context.Context, *Token) (*OkWithData, error) {
+func (UnimplementedUserServiceServer) Home(context.Context, *UserHomeData) (*OkWithData, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Home not implemented")
 }
 
@@ -421,7 +421,7 @@ func _UserService_ConfirmEmail_Handler(srv interface{}, ctx context.Context, dec
 }
 
 func _UserService_Home_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(Token)
+	in := new(UserHomeData)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -433,7 +433,7 @@ func _UserService_Home_Handler(srv interface{}, ctx context.Context, dec func(in
 		FullMethod: "/user.UserService/Home",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserServiceServer).Home(ctx, req.(*Token))
+		return srv.(UserServiceServer).Home(ctx, req.(*UserHomeData))
 	}
 	return interceptor(ctx, in, info, handler)
 }

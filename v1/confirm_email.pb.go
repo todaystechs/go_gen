@@ -29,10 +29,14 @@ type ConfirmEmailData struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Email            string `protobuf:"bytes,1,opt,name=email,proto3" json:"email,omitempty"`
-	UserName         string `protobuf:"bytes,2,opt,name=user_name,json=userName,proto3" json:"user_name,omitempty"`
-	ConfirmationCode string `protobuf:"bytes,3,opt,name=confirmation_code,json=confirmationCode,proto3" json:"confirmation_code,omitempty"`
-	Token            string `protobuf:"bytes,4,opt,name=token,proto3" json:"token,omitempty"`
+	// @gotags: dynamodbav:"email"
+	Email string `protobuf:"bytes,1,opt,name=email,proto3" json:"email,omitempty" dynamodbav:"email"`
+	// @gotags: dynamodbav:"user_name"
+	UserName string `protobuf:"bytes,2,opt,name=user_name,json=userName,proto3" json:"user_name,omitempty" dynamodbav:"user_name"`
+	// @gotags: dynamodbav:"confirmation_code"
+	ConfirmationCode string `protobuf:"bytes,3,opt,name=confirmation_code,json=confirmationCode,proto3" json:"confirmation_code,omitempty" dynamodbav:"confirmation_code"`
+	// @gotags: dynamodbav:"token"
+	Token string `protobuf:"bytes,4,opt,name=token,proto3" json:"token,omitempty" dynamodbav:"token"`
 }
 
 func (x *ConfirmEmailData) Reset() {

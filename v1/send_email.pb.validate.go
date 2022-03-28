@@ -35,22 +35,22 @@ var (
 	_ = sort.Sort
 )
 
-// Validate checks the field values on SendEmailRequest with the rules defined
-// in the proto definition for this message. If any rules are violated, the
-// first error encountered is returned, or nil if there are no violations.
-func (m *SendEmailRequest) Validate() error {
+// Validate checks the field values on SendEmailData with the rules defined in
+// the proto definition for this message. If any rules are violated, the first
+// error encountered is returned, or nil if there are no violations.
+func (m *SendEmailData) Validate() error {
 	return m.validate(false)
 }
 
-// ValidateAll checks the field values on SendEmailRequest with the rules
-// defined in the proto definition for this message. If any rules are
-// violated, the result is a list of violation errors wrapped in
-// SendEmailRequestMultiError, or nil if none found.
-func (m *SendEmailRequest) ValidateAll() error {
+// ValidateAll checks the field values on SendEmailData with the rules defined
+// in the proto definition for this message. If any rules are violated, the
+// result is a list of violation errors wrapped in SendEmailDataMultiError, or
+// nil if none found.
+func (m *SendEmailData) ValidateAll() error {
 	return m.validate(true)
 }
 
-func (m *SendEmailRequest) validate(all bool) error {
+func (m *SendEmailData) validate(all bool) error {
 	if m == nil {
 		return nil
 	}
@@ -67,19 +67,21 @@ func (m *SendEmailRequest) validate(all bool) error {
 
 	// no validation rules for Token
 
+	// no validation rules for Success
+
 	if len(errors) > 0 {
-		return SendEmailRequestMultiError(errors)
+		return SendEmailDataMultiError(errors)
 	}
 	return nil
 }
 
-// SendEmailRequestMultiError is an error wrapping multiple validation errors
-// returned by SendEmailRequest.ValidateAll() if the designated constraints
+// SendEmailDataMultiError is an error wrapping multiple validation errors
+// returned by SendEmailData.ValidateAll() if the designated constraints
 // aren't met.
-type SendEmailRequestMultiError []error
+type SendEmailDataMultiError []error
 
 // Error returns a concatenation of all the error messages it wraps.
-func (m SendEmailRequestMultiError) Error() string {
+func (m SendEmailDataMultiError) Error() string {
 	var msgs []string
 	for _, err := range m {
 		msgs = append(msgs, err.Error())
@@ -88,11 +90,11 @@ func (m SendEmailRequestMultiError) Error() string {
 }
 
 // AllErrors returns a list of validation violation errors.
-func (m SendEmailRequestMultiError) AllErrors() []error { return m }
+func (m SendEmailDataMultiError) AllErrors() []error { return m }
 
-// SendEmailRequestValidationError is the validation error returned by
-// SendEmailRequest.Validate if the designated constraints aren't met.
-type SendEmailRequestValidationError struct {
+// SendEmailDataValidationError is the validation error returned by
+// SendEmailData.Validate if the designated constraints aren't met.
+type SendEmailDataValidationError struct {
 	field  string
 	reason string
 	cause  error
@@ -100,22 +102,22 @@ type SendEmailRequestValidationError struct {
 }
 
 // Field function returns field value.
-func (e SendEmailRequestValidationError) Field() string { return e.field }
+func (e SendEmailDataValidationError) Field() string { return e.field }
 
 // Reason function returns reason value.
-func (e SendEmailRequestValidationError) Reason() string { return e.reason }
+func (e SendEmailDataValidationError) Reason() string { return e.reason }
 
 // Cause function returns cause value.
-func (e SendEmailRequestValidationError) Cause() error { return e.cause }
+func (e SendEmailDataValidationError) Cause() error { return e.cause }
 
 // Key function returns key value.
-func (e SendEmailRequestValidationError) Key() bool { return e.key }
+func (e SendEmailDataValidationError) Key() bool { return e.key }
 
 // ErrorName returns error name.
-func (e SendEmailRequestValidationError) ErrorName() string { return "SendEmailRequestValidationError" }
+func (e SendEmailDataValidationError) ErrorName() string { return "SendEmailDataValidationError" }
 
 // Error satisfies the builtin error interface
-func (e SendEmailRequestValidationError) Error() string {
+func (e SendEmailDataValidationError) Error() string {
 	cause := ""
 	if e.cause != nil {
 		cause = fmt.Sprintf(" | caused by: %v", e.cause)
@@ -127,14 +129,14 @@ func (e SendEmailRequestValidationError) Error() string {
 	}
 
 	return fmt.Sprintf(
-		"invalid %sSendEmailRequest.%s: %s%s",
+		"invalid %sSendEmailData.%s: %s%s",
 		key,
 		e.field,
 		e.reason,
 		cause)
 }
 
-var _ error = SendEmailRequestValidationError{}
+var _ error = SendEmailDataValidationError{}
 
 var _ interface {
 	Field() string
@@ -142,4 +144,4 @@ var _ interface {
 	Key() bool
 	Cause() error
 	ErrorName() string
-} = SendEmailRequestValidationError{}
+} = SendEmailDataValidationError{}
