@@ -57,34 +57,7 @@ func (m *ForgotPasswordData) validate(all bool) error {
 
 	var errors []error
 
-	if all {
-		switch v := interface{}(m.GetEmail()).(type) {
-		case interface{ ValidateAll() error }:
-			if err := v.ValidateAll(); err != nil {
-				errors = append(errors, ForgotPasswordDataValidationError{
-					field:  "Email",
-					reason: "embedded message failed validation",
-					cause:  err,
-				})
-			}
-		case interface{ Validate() error }:
-			if err := v.Validate(); err != nil {
-				errors = append(errors, ForgotPasswordDataValidationError{
-					field:  "Email",
-					reason: "embedded message failed validation",
-					cause:  err,
-				})
-			}
-		}
-	} else if v, ok := interface{}(m.GetEmail()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return ForgotPasswordDataValidationError{
-				field:  "Email",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
+	// no validation rules for Email
 
 	if len(errors) > 0 {
 		return ForgotPasswordDataMultiError(errors)
@@ -187,121 +160,13 @@ func (m *ForgotPasswordToken) validate(all bool) error {
 
 	var errors []error
 
-	if all {
-		switch v := interface{}(m.GetIssuedTo()).(type) {
-		case interface{ ValidateAll() error }:
-			if err := v.ValidateAll(); err != nil {
-				errors = append(errors, ForgotPasswordTokenValidationError{
-					field:  "IssuedTo",
-					reason: "embedded message failed validation",
-					cause:  err,
-				})
-			}
-		case interface{ Validate() error }:
-			if err := v.Validate(); err != nil {
-				errors = append(errors, ForgotPasswordTokenValidationError{
-					field:  "IssuedTo",
-					reason: "embedded message failed validation",
-					cause:  err,
-				})
-			}
-		}
-	} else if v, ok := interface{}(m.GetIssuedTo()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return ForgotPasswordTokenValidationError{
-				field:  "IssuedTo",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
+	// no validation rules for IssuedTo
 
-	if all {
-		switch v := interface{}(m.GetIssuedOn()).(type) {
-		case interface{ ValidateAll() error }:
-			if err := v.ValidateAll(); err != nil {
-				errors = append(errors, ForgotPasswordTokenValidationError{
-					field:  "IssuedOn",
-					reason: "embedded message failed validation",
-					cause:  err,
-				})
-			}
-		case interface{ Validate() error }:
-			if err := v.Validate(); err != nil {
-				errors = append(errors, ForgotPasswordTokenValidationError{
-					field:  "IssuedOn",
-					reason: "embedded message failed validation",
-					cause:  err,
-				})
-			}
-		}
-	} else if v, ok := interface{}(m.GetIssuedOn()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return ForgotPasswordTokenValidationError{
-				field:  "IssuedOn",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
+	// no validation rules for IssuedOn
 
-	if all {
-		switch v := interface{}(m.GetExpiresOn()).(type) {
-		case interface{ ValidateAll() error }:
-			if err := v.ValidateAll(); err != nil {
-				errors = append(errors, ForgotPasswordTokenValidationError{
-					field:  "ExpiresOn",
-					reason: "embedded message failed validation",
-					cause:  err,
-				})
-			}
-		case interface{ Validate() error }:
-			if err := v.Validate(); err != nil {
-				errors = append(errors, ForgotPasswordTokenValidationError{
-					field:  "ExpiresOn",
-					reason: "embedded message failed validation",
-					cause:  err,
-				})
-			}
-		}
-	} else if v, ok := interface{}(m.GetExpiresOn()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return ForgotPasswordTokenValidationError{
-				field:  "ExpiresOn",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
+	// no validation rules for ExpiresOn
 
-	if all {
-		switch v := interface{}(m.GetToken()).(type) {
-		case interface{ ValidateAll() error }:
-			if err := v.ValidateAll(); err != nil {
-				errors = append(errors, ForgotPasswordTokenValidationError{
-					field:  "Token",
-					reason: "embedded message failed validation",
-					cause:  err,
-				})
-			}
-		case interface{ Validate() error }:
-			if err := v.Validate(); err != nil {
-				errors = append(errors, ForgotPasswordTokenValidationError{
-					field:  "Token",
-					reason: "embedded message failed validation",
-					cause:  err,
-				})
-			}
-		}
-	} else if v, ok := interface{}(m.GetToken()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return ForgotPasswordTokenValidationError{
-				field:  "Token",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
+	// no validation rules for Token
 
 	if len(errors) > 0 {
 		return ForgotPasswordTokenMultiError(errors)
@@ -404,121 +269,13 @@ func (m *ForgotPassswordResponse) validate(all bool) error {
 
 	var errors []error
 
-	if all {
-		switch v := interface{}(m.GetRedirectLink()).(type) {
-		case interface{ ValidateAll() error }:
-			if err := v.ValidateAll(); err != nil {
-				errors = append(errors, ForgotPassswordResponseValidationError{
-					field:  "RedirectLink",
-					reason: "embedded message failed validation",
-					cause:  err,
-				})
-			}
-		case interface{ Validate() error }:
-			if err := v.Validate(); err != nil {
-				errors = append(errors, ForgotPassswordResponseValidationError{
-					field:  "RedirectLink",
-					reason: "embedded message failed validation",
-					cause:  err,
-				})
-			}
-		}
-	} else if v, ok := interface{}(m.GetRedirectLink()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return ForgotPassswordResponseValidationError{
-				field:  "RedirectLink",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
+	// no validation rules for RedirectLink
 
-	if all {
-		switch v := interface{}(m.GetToken()).(type) {
-		case interface{ ValidateAll() error }:
-			if err := v.ValidateAll(); err != nil {
-				errors = append(errors, ForgotPassswordResponseValidationError{
-					field:  "Token",
-					reason: "embedded message failed validation",
-					cause:  err,
-				})
-			}
-		case interface{ Validate() error }:
-			if err := v.Validate(); err != nil {
-				errors = append(errors, ForgotPassswordResponseValidationError{
-					field:  "Token",
-					reason: "embedded message failed validation",
-					cause:  err,
-				})
-			}
-		}
-	} else if v, ok := interface{}(m.GetToken()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return ForgotPassswordResponseValidationError{
-				field:  "Token",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
+	// no validation rules for Token
 
-	if all {
-		switch v := interface{}(m.GetMessage()).(type) {
-		case interface{ ValidateAll() error }:
-			if err := v.ValidateAll(); err != nil {
-				errors = append(errors, ForgotPassswordResponseValidationError{
-					field:  "Message",
-					reason: "embedded message failed validation",
-					cause:  err,
-				})
-			}
-		case interface{ Validate() error }:
-			if err := v.Validate(); err != nil {
-				errors = append(errors, ForgotPassswordResponseValidationError{
-					field:  "Message",
-					reason: "embedded message failed validation",
-					cause:  err,
-				})
-			}
-		}
-	} else if v, ok := interface{}(m.GetMessage()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return ForgotPassswordResponseValidationError{
-				field:  "Message",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
+	// no validation rules for Message
 
-	if all {
-		switch v := interface{}(m.GetSuccess()).(type) {
-		case interface{ ValidateAll() error }:
-			if err := v.ValidateAll(); err != nil {
-				errors = append(errors, ForgotPassswordResponseValidationError{
-					field:  "Success",
-					reason: "embedded message failed validation",
-					cause:  err,
-				})
-			}
-		case interface{ Validate() error }:
-			if err := v.Validate(); err != nil {
-				errors = append(errors, ForgotPassswordResponseValidationError{
-					field:  "Success",
-					reason: "embedded message failed validation",
-					cause:  err,
-				})
-			}
-		}
-	} else if v, ok := interface{}(m.GetSuccess()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return ForgotPassswordResponseValidationError{
-				field:  "Success",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
+	// no validation rules for Success
 
 	if len(errors) > 0 {
 		return ForgotPassswordResponseMultiError(errors)
@@ -621,121 +378,13 @@ func (m *ResetPasswordData) validate(all bool) error {
 
 	var errors []error
 
-	if all {
-		switch v := interface{}(m.GetToken()).(type) {
-		case interface{ ValidateAll() error }:
-			if err := v.ValidateAll(); err != nil {
-				errors = append(errors, ResetPasswordDataValidationError{
-					field:  "Token",
-					reason: "embedded message failed validation",
-					cause:  err,
-				})
-			}
-		case interface{ Validate() error }:
-			if err := v.Validate(); err != nil {
-				errors = append(errors, ResetPasswordDataValidationError{
-					field:  "Token",
-					reason: "embedded message failed validation",
-					cause:  err,
-				})
-			}
-		}
-	} else if v, ok := interface{}(m.GetToken()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return ResetPasswordDataValidationError{
-				field:  "Token",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
+	// no validation rules for Token
 
-	if all {
-		switch v := interface{}(m.GetNewPassword()).(type) {
-		case interface{ ValidateAll() error }:
-			if err := v.ValidateAll(); err != nil {
-				errors = append(errors, ResetPasswordDataValidationError{
-					field:  "NewPassword",
-					reason: "embedded message failed validation",
-					cause:  err,
-				})
-			}
-		case interface{ Validate() error }:
-			if err := v.Validate(); err != nil {
-				errors = append(errors, ResetPasswordDataValidationError{
-					field:  "NewPassword",
-					reason: "embedded message failed validation",
-					cause:  err,
-				})
-			}
-		}
-	} else if v, ok := interface{}(m.GetNewPassword()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return ResetPasswordDataValidationError{
-				field:  "NewPassword",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
+	// no validation rules for NewPassword
 
-	if all {
-		switch v := interface{}(m.GetConfirmPassword()).(type) {
-		case interface{ ValidateAll() error }:
-			if err := v.ValidateAll(); err != nil {
-				errors = append(errors, ResetPasswordDataValidationError{
-					field:  "ConfirmPassword",
-					reason: "embedded message failed validation",
-					cause:  err,
-				})
-			}
-		case interface{ Validate() error }:
-			if err := v.Validate(); err != nil {
-				errors = append(errors, ResetPasswordDataValidationError{
-					field:  "ConfirmPassword",
-					reason: "embedded message failed validation",
-					cause:  err,
-				})
-			}
-		}
-	} else if v, ok := interface{}(m.GetConfirmPassword()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return ResetPasswordDataValidationError{
-				field:  "ConfirmPassword",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
+	// no validation rules for ConfirmPassword
 
-	if all {
-		switch v := interface{}(m.GetUserId()).(type) {
-		case interface{ ValidateAll() error }:
-			if err := v.ValidateAll(); err != nil {
-				errors = append(errors, ResetPasswordDataValidationError{
-					field:  "UserId",
-					reason: "embedded message failed validation",
-					cause:  err,
-				})
-			}
-		case interface{ Validate() error }:
-			if err := v.Validate(); err != nil {
-				errors = append(errors, ResetPasswordDataValidationError{
-					field:  "UserId",
-					reason: "embedded message failed validation",
-					cause:  err,
-				})
-			}
-		}
-	} else if v, ok := interface{}(m.GetUserId()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return ResetPasswordDataValidationError{
-				field:  "UserId",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
+	// no validation rules for UserId
 
 	if len(errors) > 0 {
 		return ResetPasswordDataMultiError(errors)

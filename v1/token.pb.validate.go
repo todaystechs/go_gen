@@ -57,34 +57,7 @@ func (m *RefreshTokenData) validate(all bool) error {
 
 	var errors []error
 
-	if all {
-		switch v := interface{}(m.GetRefreshToken()).(type) {
-		case interface{ ValidateAll() error }:
-			if err := v.ValidateAll(); err != nil {
-				errors = append(errors, RefreshTokenDataValidationError{
-					field:  "RefreshToken",
-					reason: "embedded message failed validation",
-					cause:  err,
-				})
-			}
-		case interface{ Validate() error }:
-			if err := v.Validate(); err != nil {
-				errors = append(errors, RefreshTokenDataValidationError{
-					field:  "RefreshToken",
-					reason: "embedded message failed validation",
-					cause:  err,
-				})
-			}
-		}
-	} else if v, ok := interface{}(m.GetRefreshToken()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return RefreshTokenDataValidationError{
-				field:  "RefreshToken",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
+	// no validation rules for RefreshToken
 
 	if len(errors) > 0 {
 		return RefreshTokenDataMultiError(errors)
@@ -185,63 +158,9 @@ func (m *RefreshTokenResponse) validate(all bool) error {
 
 	var errors []error
 
-	if all {
-		switch v := interface{}(m.GetAccessToken()).(type) {
-		case interface{ ValidateAll() error }:
-			if err := v.ValidateAll(); err != nil {
-				errors = append(errors, RefreshTokenResponseValidationError{
-					field:  "AccessToken",
-					reason: "embedded message failed validation",
-					cause:  err,
-				})
-			}
-		case interface{ Validate() error }:
-			if err := v.Validate(); err != nil {
-				errors = append(errors, RefreshTokenResponseValidationError{
-					field:  "AccessToken",
-					reason: "embedded message failed validation",
-					cause:  err,
-				})
-			}
-		}
-	} else if v, ok := interface{}(m.GetAccessToken()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return RefreshTokenResponseValidationError{
-				field:  "AccessToken",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
+	// no validation rules for AccessToken
 
-	if all {
-		switch v := interface{}(m.GetRefreshToken()).(type) {
-		case interface{ ValidateAll() error }:
-			if err := v.ValidateAll(); err != nil {
-				errors = append(errors, RefreshTokenResponseValidationError{
-					field:  "RefreshToken",
-					reason: "embedded message failed validation",
-					cause:  err,
-				})
-			}
-		case interface{ Validate() error }:
-			if err := v.Validate(); err != nil {
-				errors = append(errors, RefreshTokenResponseValidationError{
-					field:  "RefreshToken",
-					reason: "embedded message failed validation",
-					cause:  err,
-				})
-			}
-		}
-	} else if v, ok := interface{}(m.GetRefreshToken()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return RefreshTokenResponseValidationError{
-				field:  "RefreshToken",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
+	// no validation rules for RefreshToken
 
 	if len(errors) > 0 {
 		return RefreshTokenResponseMultiError(errors)

@@ -57,34 +57,7 @@ func (m *UserServicePingData) validate(all bool) error {
 
 	var errors []error
 
-	if all {
-		switch v := interface{}(m.GetHi()).(type) {
-		case interface{ ValidateAll() error }:
-			if err := v.ValidateAll(); err != nil {
-				errors = append(errors, UserServicePingDataValidationError{
-					field:  "Hi",
-					reason: "embedded message failed validation",
-					cause:  err,
-				})
-			}
-		case interface{ Validate() error }:
-			if err := v.Validate(); err != nil {
-				errors = append(errors, UserServicePingDataValidationError{
-					field:  "Hi",
-					reason: "embedded message failed validation",
-					cause:  err,
-				})
-			}
-		}
-	} else if v, ok := interface{}(m.GetHi()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return UserServicePingDataValidationError{
-				field:  "Hi",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
+	// no validation rules for Hi
 
 	if len(errors) > 0 {
 		return UserServicePingDataMultiError(errors)

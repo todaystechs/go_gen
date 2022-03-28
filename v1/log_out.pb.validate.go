@@ -57,34 +57,7 @@ func (m *LogOutData) validate(all bool) error {
 
 	var errors []error
 
-	if all {
-		switch v := interface{}(m.GetUserId()).(type) {
-		case interface{ ValidateAll() error }:
-			if err := v.ValidateAll(); err != nil {
-				errors = append(errors, LogOutDataValidationError{
-					field:  "UserId",
-					reason: "embedded message failed validation",
-					cause:  err,
-				})
-			}
-		case interface{ Validate() error }:
-			if err := v.Validate(); err != nil {
-				errors = append(errors, LogOutDataValidationError{
-					field:  "UserId",
-					reason: "embedded message failed validation",
-					cause:  err,
-				})
-			}
-		}
-	} else if v, ok := interface{}(m.GetUserId()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return LogOutDataValidationError{
-				field:  "UserId",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
+	// no validation rules for UserId
 
 	if len(errors) > 0 {
 		return LogOutDataMultiError(errors)

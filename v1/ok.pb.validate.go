@@ -56,92 +56,11 @@ func (m *Ok) validate(all bool) error {
 
 	var errors []error
 
-	if all {
-		switch v := interface{}(m.GetSuccess()).(type) {
-		case interface{ ValidateAll() error }:
-			if err := v.ValidateAll(); err != nil {
-				errors = append(errors, OkValidationError{
-					field:  "Success",
-					reason: "embedded message failed validation",
-					cause:  err,
-				})
-			}
-		case interface{ Validate() error }:
-			if err := v.Validate(); err != nil {
-				errors = append(errors, OkValidationError{
-					field:  "Success",
-					reason: "embedded message failed validation",
-					cause:  err,
-				})
-			}
-		}
-	} else if v, ok := interface{}(m.GetSuccess()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return OkValidationError{
-				field:  "Success",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
+	// no validation rules for Success
 
-	if all {
-		switch v := interface{}(m.GetStatusCode()).(type) {
-		case interface{ ValidateAll() error }:
-			if err := v.ValidateAll(); err != nil {
-				errors = append(errors, OkValidationError{
-					field:  "StatusCode",
-					reason: "embedded message failed validation",
-					cause:  err,
-				})
-			}
-		case interface{ Validate() error }:
-			if err := v.Validate(); err != nil {
-				errors = append(errors, OkValidationError{
-					field:  "StatusCode",
-					reason: "embedded message failed validation",
-					cause:  err,
-				})
-			}
-		}
-	} else if v, ok := interface{}(m.GetStatusCode()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return OkValidationError{
-				field:  "StatusCode",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
+	// no validation rules for StatusCode
 
-	if all {
-		switch v := interface{}(m.GetMessage()).(type) {
-		case interface{ ValidateAll() error }:
-			if err := v.ValidateAll(); err != nil {
-				errors = append(errors, OkValidationError{
-					field:  "Message",
-					reason: "embedded message failed validation",
-					cause:  err,
-				})
-			}
-		case interface{ Validate() error }:
-			if err := v.Validate(); err != nil {
-				errors = append(errors, OkValidationError{
-					field:  "Message",
-					reason: "embedded message failed validation",
-					cause:  err,
-				})
-			}
-		}
-	} else if v, ok := interface{}(m.GetMessage()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return OkValidationError{
-				field:  "Message",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
+	// no validation rules for Message
 
 	if len(errors) > 0 {
 		return OkMultiError(errors)

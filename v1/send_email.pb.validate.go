@@ -57,150 +57,15 @@ func (m *SendEmailRequest) validate(all bool) error {
 
 	var errors []error
 
-	if all {
-		switch v := interface{}(m.GetEmailSubject()).(type) {
-		case interface{ ValidateAll() error }:
-			if err := v.ValidateAll(); err != nil {
-				errors = append(errors, SendEmailRequestValidationError{
-					field:  "EmailSubject",
-					reason: "embedded message failed validation",
-					cause:  err,
-				})
-			}
-		case interface{ Validate() error }:
-			if err := v.Validate(); err != nil {
-				errors = append(errors, SendEmailRequestValidationError{
-					field:  "EmailSubject",
-					reason: "embedded message failed validation",
-					cause:  err,
-				})
-			}
-		}
-	} else if v, ok := interface{}(m.GetEmailSubject()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return SendEmailRequestValidationError{
-				field:  "EmailSubject",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
+	// no validation rules for EmailSubject
 
-	if all {
-		switch v := interface{}(m.GetReceiverEmailAddress()).(type) {
-		case interface{ ValidateAll() error }:
-			if err := v.ValidateAll(); err != nil {
-				errors = append(errors, SendEmailRequestValidationError{
-					field:  "ReceiverEmailAddress",
-					reason: "embedded message failed validation",
-					cause:  err,
-				})
-			}
-		case interface{ Validate() error }:
-			if err := v.Validate(); err != nil {
-				errors = append(errors, SendEmailRequestValidationError{
-					field:  "ReceiverEmailAddress",
-					reason: "embedded message failed validation",
-					cause:  err,
-				})
-			}
-		}
-	} else if v, ok := interface{}(m.GetReceiverEmailAddress()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return SendEmailRequestValidationError{
-				field:  "ReceiverEmailAddress",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
+	// no validation rules for ReceiverEmailAddress
 
-	if all {
-		switch v := interface{}(m.GetReceiverName()).(type) {
-		case interface{ ValidateAll() error }:
-			if err := v.ValidateAll(); err != nil {
-				errors = append(errors, SendEmailRequestValidationError{
-					field:  "ReceiverName",
-					reason: "embedded message failed validation",
-					cause:  err,
-				})
-			}
-		case interface{ Validate() error }:
-			if err := v.Validate(); err != nil {
-				errors = append(errors, SendEmailRequestValidationError{
-					field:  "ReceiverName",
-					reason: "embedded message failed validation",
-					cause:  err,
-				})
-			}
-		}
-	} else if v, ok := interface{}(m.GetReceiverName()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return SendEmailRequestValidationError{
-				field:  "ReceiverName",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
+	// no validation rules for ReceiverName
 
-	if all {
-		switch v := interface{}(m.GetEmailPurpose()).(type) {
-		case interface{ ValidateAll() error }:
-			if err := v.ValidateAll(); err != nil {
-				errors = append(errors, SendEmailRequestValidationError{
-					field:  "EmailPurpose",
-					reason: "embedded message failed validation",
-					cause:  err,
-				})
-			}
-		case interface{ Validate() error }:
-			if err := v.Validate(); err != nil {
-				errors = append(errors, SendEmailRequestValidationError{
-					field:  "EmailPurpose",
-					reason: "embedded message failed validation",
-					cause:  err,
-				})
-			}
-		}
-	} else if v, ok := interface{}(m.GetEmailPurpose()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return SendEmailRequestValidationError{
-				field:  "EmailPurpose",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
+	// no validation rules for EmailPurpose
 
-	if all {
-		switch v := interface{}(m.GetToken()).(type) {
-		case interface{ ValidateAll() error }:
-			if err := v.ValidateAll(); err != nil {
-				errors = append(errors, SendEmailRequestValidationError{
-					field:  "Token",
-					reason: "embedded message failed validation",
-					cause:  err,
-				})
-			}
-		case interface{ Validate() error }:
-			if err := v.Validate(); err != nil {
-				errors = append(errors, SendEmailRequestValidationError{
-					field:  "Token",
-					reason: "embedded message failed validation",
-					cause:  err,
-				})
-			}
-		}
-	} else if v, ok := interface{}(m.GetToken()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return SendEmailRequestValidationError{
-				field:  "Token",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
+	// no validation rules for Token
 
 	if len(errors) > 0 {
 		return SendEmailRequestMultiError(errors)

@@ -57,121 +57,13 @@ func (m *ConfirmEmailData) validate(all bool) error {
 
 	var errors []error
 
-	if all {
-		switch v := interface{}(m.GetEmail()).(type) {
-		case interface{ ValidateAll() error }:
-			if err := v.ValidateAll(); err != nil {
-				errors = append(errors, ConfirmEmailDataValidationError{
-					field:  "Email",
-					reason: "embedded message failed validation",
-					cause:  err,
-				})
-			}
-		case interface{ Validate() error }:
-			if err := v.Validate(); err != nil {
-				errors = append(errors, ConfirmEmailDataValidationError{
-					field:  "Email",
-					reason: "embedded message failed validation",
-					cause:  err,
-				})
-			}
-		}
-	} else if v, ok := interface{}(m.GetEmail()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return ConfirmEmailDataValidationError{
-				field:  "Email",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
+	// no validation rules for Email
 
-	if all {
-		switch v := interface{}(m.GetUserName()).(type) {
-		case interface{ ValidateAll() error }:
-			if err := v.ValidateAll(); err != nil {
-				errors = append(errors, ConfirmEmailDataValidationError{
-					field:  "UserName",
-					reason: "embedded message failed validation",
-					cause:  err,
-				})
-			}
-		case interface{ Validate() error }:
-			if err := v.Validate(); err != nil {
-				errors = append(errors, ConfirmEmailDataValidationError{
-					field:  "UserName",
-					reason: "embedded message failed validation",
-					cause:  err,
-				})
-			}
-		}
-	} else if v, ok := interface{}(m.GetUserName()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return ConfirmEmailDataValidationError{
-				field:  "UserName",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
+	// no validation rules for UserName
 
-	if all {
-		switch v := interface{}(m.GetConfirmationCode()).(type) {
-		case interface{ ValidateAll() error }:
-			if err := v.ValidateAll(); err != nil {
-				errors = append(errors, ConfirmEmailDataValidationError{
-					field:  "ConfirmationCode",
-					reason: "embedded message failed validation",
-					cause:  err,
-				})
-			}
-		case interface{ Validate() error }:
-			if err := v.Validate(); err != nil {
-				errors = append(errors, ConfirmEmailDataValidationError{
-					field:  "ConfirmationCode",
-					reason: "embedded message failed validation",
-					cause:  err,
-				})
-			}
-		}
-	} else if v, ok := interface{}(m.GetConfirmationCode()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return ConfirmEmailDataValidationError{
-				field:  "ConfirmationCode",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
+	// no validation rules for ConfirmationCode
 
-	if all {
-		switch v := interface{}(m.GetToken()).(type) {
-		case interface{ ValidateAll() error }:
-			if err := v.ValidateAll(); err != nil {
-				errors = append(errors, ConfirmEmailDataValidationError{
-					field:  "Token",
-					reason: "embedded message failed validation",
-					cause:  err,
-				})
-			}
-		case interface{ Validate() error }:
-			if err := v.Validate(); err != nil {
-				errors = append(errors, ConfirmEmailDataValidationError{
-					field:  "Token",
-					reason: "embedded message failed validation",
-					cause:  err,
-				})
-			}
-		}
-	} else if v, ok := interface{}(m.GetToken()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return ConfirmEmailDataValidationError{
-				field:  "Token",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
+	// no validation rules for Token
 
 	if len(errors) > 0 {
 		return ConfirmEmailDataMultiError(errors)

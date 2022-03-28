@@ -57,34 +57,7 @@ func (m *PhoneNumberData) validate(all bool) error {
 
 	var errors []error
 
-	if all {
-		switch v := interface{}(m.GetPhoneNumber()).(type) {
-		case interface{ ValidateAll() error }:
-			if err := v.ValidateAll(); err != nil {
-				errors = append(errors, PhoneNumberDataValidationError{
-					field:  "PhoneNumber",
-					reason: "embedded message failed validation",
-					cause:  err,
-				})
-			}
-		case interface{ Validate() error }:
-			if err := v.Validate(); err != nil {
-				errors = append(errors, PhoneNumberDataValidationError{
-					field:  "PhoneNumber",
-					reason: "embedded message failed validation",
-					cause:  err,
-				})
-			}
-		}
-	} else if v, ok := interface{}(m.GetPhoneNumber()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return PhoneNumberDataValidationError{
-				field:  "PhoneNumber",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
+	// no validation rules for PhoneNumber
 
 	// no validation rules for Type
 
