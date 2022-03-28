@@ -20,26 +20,6 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-// const (
-// 	Class50  FreightClass = "50"
-// 	Class55  FreightClass = "55"
-// 	Class60  FreightClass = "60"
-// 	Class65  FreightClass = "65"
-// 	Class70  FreightClass = "70"
-// 	Class775 FreightClass = "77.5"
-// 	Class85  FreightClass = "85"
-// 	Class925 FreightClass = "92.5"
-// 	Class100 FreightClass = "100"
-// 	Class110 FreightClass = "110"
-// 	Class125 FreightClass = "125"
-// 	Class150 FreightClass = "150"
-// 	Class175 FreightClass = "175"
-// 	Class200 FreightClass = "200"
-// 	Class250 FreightClass = "250"
-// 	Class300 FreightClass = "300"
-// 	Class400 FreightClass = "400"
-// 	Class500 FreightClass = "500"
-// )
 type FreightClass int32
 
 const (

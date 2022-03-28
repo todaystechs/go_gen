@@ -28,21 +28,36 @@ type BusinessData struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Type                 string             `protobuf:"bytes,1,opt,name=type,proto3" json:"type,omitempty"`
-	BusinessName         string             `protobuf:"bytes,2,opt,name=business_name,json=businessName,proto3" json:"business_name,omitempty"`
-	BusinessId           string             `protobuf:"bytes,3,opt,name=business_id,json=businessId,proto3" json:"business_id,omitempty"`
-	BusinessEmail        string             `protobuf:"bytes,4,opt,name=business_email,json=businessEmail,proto3" json:"business_email,omitempty"`
-	AccountingEmail      string             `protobuf:"bytes,5,opt,name=accounting_email,json=accountingEmail,proto3" json:"accounting_email,omitempty"`
-	CustomerServiceEmail string             `protobuf:"bytes,6,opt,name=customer_service_email,json=customerServiceEmail,proto3" json:"customer_service_email,omitempty"`
-	HighPriorityEmail    string             `protobuf:"bytes,7,opt,name=high_priority_email,json=highPriorityEmail,proto3" json:"high_priority_email,omitempty"`
-	AvatarUrl            string             `protobuf:"bytes,8,opt,name=avatar_url,json=avatarUrl,proto3" json:"avatar_url,omitempty"`
-	AdminEmail           string             `protobuf:"bytes,9,opt,name=admin_email,json=adminEmail,proto3" json:"admin_email,omitempty"`
-	CreatedOn            string             `protobuf:"bytes,10,opt,name=created_on,json=createdOn,proto3" json:"created_on,omitempty"`
-	UpdatedOn            string             `protobuf:"bytes,11,opt,name=updated_on,json=updatedOn,proto3" json:"updated_on,omitempty"`
-	DeletedOn            string             `protobuf:"bytes,12,opt,name=deleted_on,json=deletedOn,proto3" json:"deleted_on,omitempty"`
-	PhoneNumbers         []*PhoneNumberData `protobuf:"bytes,13,rep,name=phone_numbers,json=phoneNumbers,proto3" json:"phone_numbers,omitempty"`
-	SK                   string             `protobuf:"bytes,14,opt,name=SK,proto3" json:"SK,omitempty"`
-	PK                   string             `protobuf:"bytes,15,opt,name=PK,proto3" json:"PK,omitempty"`
+	// @gotags: dynamodbav:"type"
+	Type string `protobuf:"bytes,1,opt,name=type,proto3" json:"type,omitempty" dynamodbav:"type"`
+	// @gotags: dynamodbav:"business_name"
+	BusinessName string `protobuf:"bytes,2,opt,name=business_name,json=businessName,proto3" json:"business_name,omitempty" dynamodbav:"business_name"`
+	// @gotags: dynamodbav:"business_id"
+	BusinessId string `protobuf:"bytes,3,opt,name=business_id,json=businessId,proto3" json:"business_id,omitempty" dynamodbav:"business_id"`
+	// @gotags: dynamodbav:"business_email"
+	BusinessEmail string `protobuf:"bytes,4,opt,name=business_email,json=businessEmail,proto3" json:"business_email,omitempty" dynamodbav:"business_email"`
+	// @gotags: dynamodbav:"accounting_email"
+	AccountingEmail string `protobuf:"bytes,5,opt,name=accounting_email,json=accountingEmail,proto3" json:"accounting_email,omitempty" dynamodbav:"accounting_email"`
+	// @gotags: dynamodbav:"customer_service_email"
+	CustomerServiceEmail string `protobuf:"bytes,6,opt,name=customer_service_email,json=customerServiceEmail,proto3" json:"customer_service_email,omitempty" dynamodbav:"customer_service_email"`
+	// @gotags: dynamodbav:"high_priority_email"
+	HighPriorityEmail string `protobuf:"bytes,7,opt,name=high_priority_email,json=highPriorityEmail,proto3" json:"high_priority_email,omitempty" dynamodbav:"high_priority_email"`
+	// @gotags: dynamodbav:"avatar_url"
+	AvatarUrl string `protobuf:"bytes,8,opt,name=avatar_url,json=avatarUrl,proto3" json:"avatar_url,omitempty" dynamodbav:"avatar_url"`
+	// @gotags: dynamodbav:"admin_email"
+	AdminEmail string `protobuf:"bytes,9,opt,name=admin_email,json=adminEmail,proto3" json:"admin_email,omitempty" dynamodbav:"admin_email"`
+	// @gotags: dynamodbav:"created_on"
+	CreatedOn string `protobuf:"bytes,10,opt,name=created_on,json=createdOn,proto3" json:"created_on,omitempty" dynamodbav:"created_on"`
+	// @gotags: dynamodbav:"updated_on"
+	UpdatedOn string `protobuf:"bytes,11,opt,name=updated_on,json=updatedOn,proto3" json:"updated_on,omitempty" dynamodbav:"updated_on"`
+	// @gotags: dynamodbav:"deleted_on"
+	DeletedOn string `protobuf:"bytes,12,opt,name=deleted_on,json=deletedOn,proto3" json:"deleted_on,omitempty" dynamodbav:"deleted_on"`
+	// @gotags: dynamodbav:"phone_numbers"
+	PhoneNumbers []*PhoneNumberData `protobuf:"bytes,13,rep,name=phone_numbers,json=phoneNumbers,proto3" json:"phone_numbers,omitempty" dynamodbav:"phone_numbers"`
+	// @gotags: dynamodbav:"sk"
+	Sk string `protobuf:"bytes,14,opt,name=sk,proto3" json:"sk,omitempty" dynamodbav:"sk"`
+	// @gotags: dynamodbav:"pk"
+	Pk string `protobuf:"bytes,15,opt,name=pk,proto3" json:"pk,omitempty" dynamodbav:"pk"`
 }
 
 func (x *BusinessData) Reset() {
@@ -168,16 +183,16 @@ func (x *BusinessData) GetPhoneNumbers() []*PhoneNumberData {
 	return nil
 }
 
-func (x *BusinessData) GetSK() string {
+func (x *BusinessData) GetSk() string {
 	if x != nil {
-		return x.SK
+		return x.Sk
 	}
 	return ""
 }
 
-func (x *BusinessData) GetPK() string {
+func (x *BusinessData) GetPk() string {
 	if x != nil {
-		return x.PK
+		return x.Pk
 	}
 	return ""
 }
@@ -272,9 +287,9 @@ var file_business_proto_rawDesc = []byte{
 	0x65, 0x5f, 0x6e, 0x75, 0x6d, 0x62, 0x65, 0x72, 0x73, 0x18, 0x0d, 0x20, 0x03, 0x28, 0x0b, 0x32,
 	0x19, 0x2e, 0x62, 0x75, 0x73, 0x69, 0x6e, 0x65, 0x73, 0x73, 0x2e, 0x50, 0x68, 0x6f, 0x6e, 0x65,
 	0x4e, 0x75, 0x6d, 0x62, 0x65, 0x72, 0x44, 0x61, 0x74, 0x61, 0x52, 0x0c, 0x70, 0x68, 0x6f, 0x6e,
-	0x65, 0x4e, 0x75, 0x6d, 0x62, 0x65, 0x72, 0x73, 0x12, 0x0e, 0x0a, 0x02, 0x53, 0x4b, 0x18, 0x0e,
-	0x20, 0x01, 0x28, 0x09, 0x52, 0x02, 0x53, 0x4b, 0x12, 0x0e, 0x0a, 0x02, 0x50, 0x4b, 0x18, 0x0f,
-	0x20, 0x01, 0x28, 0x09, 0x52, 0x02, 0x50, 0x4b, 0x22, 0x2b, 0x0a, 0x13, 0x42, 0x75, 0x73, 0x69,
+	0x65, 0x4e, 0x75, 0x6d, 0x62, 0x65, 0x72, 0x73, 0x12, 0x0e, 0x0a, 0x02, 0x73, 0x6b, 0x18, 0x0e,
+	0x20, 0x01, 0x28, 0x09, 0x52, 0x02, 0x73, 0x6b, 0x12, 0x0e, 0x0a, 0x02, 0x70, 0x6b, 0x18, 0x0f,
+	0x20, 0x01, 0x28, 0x09, 0x52, 0x02, 0x70, 0x6b, 0x22, 0x2b, 0x0a, 0x13, 0x42, 0x75, 0x73, 0x69,
 	0x6e, 0x65, 0x73, 0x73, 0x44, 0x61, 0x74, 0x61, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12,
 	0x14, 0x0a, 0x05, 0x74, 0x6f, 0x6b, 0x65, 0x6e, 0x18, 0x01, 0x20, 0x03, 0x28, 0x09, 0x52, 0x05,
 	0x74, 0x6f, 0x6b, 0x65, 0x6e, 0x42, 0x7f, 0x0a, 0x0c, 0x63, 0x6f, 0x6d, 0x2e, 0x62, 0x75, 0x73,

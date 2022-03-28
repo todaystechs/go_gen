@@ -56,29 +56,25 @@ func (m *Address) validate(all bool) error {
 
 	var errors []error
 
+	// no validation rules for AddressLine_1
+
+	// no validation rules for AddressLine_2
+
 	// no validation rules for StreetNumber
 
 	// no validation rules for StreetName
 
-	// no validation rules for Municipality
+	// no validation rules for City
 
-	// no validation rules for CountrySecondarySubdivision
+	// no validation rules for County
 
-	// no validation rules for CountrySubdivision
-
-	// no validation rules for CountrySubdivisionName
-
-	// no validation rules for PostalCode
+	// no validation rules for ZipCode
 
 	// no validation rules for State
 
-	// no validation rules for ExtendedPostalCode
-
-	// no validation rules for CountryCode
+	// no validation rules for ExtendedZipCode
 
 	// no validation rules for Country
-
-	// no validation rules for CountryCodeISO3
 
 	// no validation rules for FreeFormAddress
 
@@ -88,9 +84,9 @@ func (m *Address) validate(all bool) error {
 
 	// no validation rules for Type
 
-	// no validation rules for AddressLine1
+	// no validation rules for Pk
 
-	// no validation rules for AddressLine2
+	// no validation rules for Sk
 
 	if len(errors) > 0 {
 		return AddressMultiError(errors)

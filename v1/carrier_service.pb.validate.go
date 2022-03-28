@@ -165,22 +165,22 @@ var _ interface {
 	ErrorName() string
 } = CarrierServicePingValidationError{}
 
-// Validate checks the field values on ResponseOk with the rules defined in the
+// Validate checks the field values on BusinessId with the rules defined in the
 // proto definition for this message. If any rules are violated, the first
 // error encountered is returned, or nil if there are no violations.
-func (m *ResponseOk) Validate() error {
+func (m *BusinessId) Validate() error {
 	return m.validate(false)
 }
 
-// ValidateAll checks the field values on ResponseOk with the rules defined in
+// ValidateAll checks the field values on BusinessId with the rules defined in
 // the proto definition for this message. If any rules are violated, the
-// result is a list of violation errors wrapped in ResponseOkMultiError, or
+// result is a list of violation errors wrapped in BusinessIdMultiError, or
 // nil if none found.
-func (m *ResponseOk) ValidateAll() error {
+func (m *BusinessId) ValidateAll() error {
 	return m.validate(true)
 }
 
-func (m *ResponseOk) validate(all bool) error {
+func (m *BusinessId) validate(all bool) error {
 	if m == nil {
 		return nil
 	}
@@ -188,28 +188,28 @@ func (m *ResponseOk) validate(all bool) error {
 	var errors []error
 
 	if all {
-		switch v := interface{}(m.GetOk()).(type) {
+		switch v := interface{}(m.GetBusinessId()).(type) {
 		case interface{ ValidateAll() error }:
 			if err := v.ValidateAll(); err != nil {
-				errors = append(errors, ResponseOkValidationError{
-					field:  "Ok",
+				errors = append(errors, BusinessIdValidationError{
+					field:  "BusinessId",
 					reason: "embedded message failed validation",
 					cause:  err,
 				})
 			}
 		case interface{ Validate() error }:
 			if err := v.Validate(); err != nil {
-				errors = append(errors, ResponseOkValidationError{
-					field:  "Ok",
+				errors = append(errors, BusinessIdValidationError{
+					field:  "BusinessId",
 					reason: "embedded message failed validation",
 					cause:  err,
 				})
 			}
 		}
-	} else if v, ok := interface{}(m.GetOk()).(interface{ Validate() error }); ok {
+	} else if v, ok := interface{}(m.GetBusinessId()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
-			return ResponseOkValidationError{
-				field:  "Ok",
+			return BusinessIdValidationError{
+				field:  "BusinessId",
 				reason: "embedded message failed validation",
 				cause:  err,
 			}
@@ -217,17 +217,17 @@ func (m *ResponseOk) validate(all bool) error {
 	}
 
 	if len(errors) > 0 {
-		return ResponseOkMultiError(errors)
+		return BusinessIdMultiError(errors)
 	}
 	return nil
 }
 
-// ResponseOkMultiError is an error wrapping multiple validation errors
-// returned by ResponseOk.ValidateAll() if the designated constraints aren't met.
-type ResponseOkMultiError []error
+// BusinessIdMultiError is an error wrapping multiple validation errors
+// returned by BusinessId.ValidateAll() if the designated constraints aren't met.
+type BusinessIdMultiError []error
 
 // Error returns a concatenation of all the error messages it wraps.
-func (m ResponseOkMultiError) Error() string {
+func (m BusinessIdMultiError) Error() string {
 	var msgs []string
 	for _, err := range m {
 		msgs = append(msgs, err.Error())
@@ -236,11 +236,11 @@ func (m ResponseOkMultiError) Error() string {
 }
 
 // AllErrors returns a list of validation violation errors.
-func (m ResponseOkMultiError) AllErrors() []error { return m }
+func (m BusinessIdMultiError) AllErrors() []error { return m }
 
-// ResponseOkValidationError is the validation error returned by
-// ResponseOk.Validate if the designated constraints aren't met.
-type ResponseOkValidationError struct {
+// BusinessIdValidationError is the validation error returned by
+// BusinessId.Validate if the designated constraints aren't met.
+type BusinessIdValidationError struct {
 	field  string
 	reason string
 	cause  error
@@ -248,22 +248,22 @@ type ResponseOkValidationError struct {
 }
 
 // Field function returns field value.
-func (e ResponseOkValidationError) Field() string { return e.field }
+func (e BusinessIdValidationError) Field() string { return e.field }
 
 // Reason function returns reason value.
-func (e ResponseOkValidationError) Reason() string { return e.reason }
+func (e BusinessIdValidationError) Reason() string { return e.reason }
 
 // Cause function returns cause value.
-func (e ResponseOkValidationError) Cause() error { return e.cause }
+func (e BusinessIdValidationError) Cause() error { return e.cause }
 
 // Key function returns key value.
-func (e ResponseOkValidationError) Key() bool { return e.key }
+func (e BusinessIdValidationError) Key() bool { return e.key }
 
 // ErrorName returns error name.
-func (e ResponseOkValidationError) ErrorName() string { return "ResponseOkValidationError" }
+func (e BusinessIdValidationError) ErrorName() string { return "BusinessIdValidationError" }
 
 // Error satisfies the builtin error interface
-func (e ResponseOkValidationError) Error() string {
+func (e BusinessIdValidationError) Error() string {
 	cause := ""
 	if e.cause != nil {
 		cause = fmt.Sprintf(" | caused by: %v", e.cause)
@@ -275,14 +275,14 @@ func (e ResponseOkValidationError) Error() string {
 	}
 
 	return fmt.Sprintf(
-		"invalid %sResponseOk.%s: %s%s",
+		"invalid %sBusinessId.%s: %s%s",
 		key,
 		e.field,
 		e.reason,
 		cause)
 }
 
-var _ error = ResponseOkValidationError{}
+var _ error = BusinessIdValidationError{}
 
 var _ interface {
 	Field() string
@@ -290,130 +290,4 @@ var _ interface {
 	Key() bool
 	Cause() error
 	ErrorName() string
-} = ResponseOkValidationError{}
-
-// Validate checks the field values on OrgId with the rules defined in the
-// proto definition for this message. If any rules are violated, the first
-// error encountered is returned, or nil if there are no violations.
-func (m *OrgId) Validate() error {
-	return m.validate(false)
-}
-
-// ValidateAll checks the field values on OrgId with the rules defined in the
-// proto definition for this message. If any rules are violated, the result is
-// a list of violation errors wrapped in OrgIdMultiError, or nil if none found.
-func (m *OrgId) ValidateAll() error {
-	return m.validate(true)
-}
-
-func (m *OrgId) validate(all bool) error {
-	if m == nil {
-		return nil
-	}
-
-	var errors []error
-
-	if all {
-		switch v := interface{}(m.GetId()).(type) {
-		case interface{ ValidateAll() error }:
-			if err := v.ValidateAll(); err != nil {
-				errors = append(errors, OrgIdValidationError{
-					field:  "Id",
-					reason: "embedded message failed validation",
-					cause:  err,
-				})
-			}
-		case interface{ Validate() error }:
-			if err := v.Validate(); err != nil {
-				errors = append(errors, OrgIdValidationError{
-					field:  "Id",
-					reason: "embedded message failed validation",
-					cause:  err,
-				})
-			}
-		}
-	} else if v, ok := interface{}(m.GetId()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return OrgIdValidationError{
-				field:  "Id",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
-
-	if len(errors) > 0 {
-		return OrgIdMultiError(errors)
-	}
-	return nil
-}
-
-// OrgIdMultiError is an error wrapping multiple validation errors returned by
-// OrgId.ValidateAll() if the designated constraints aren't met.
-type OrgIdMultiError []error
-
-// Error returns a concatenation of all the error messages it wraps.
-func (m OrgIdMultiError) Error() string {
-	var msgs []string
-	for _, err := range m {
-		msgs = append(msgs, err.Error())
-	}
-	return strings.Join(msgs, "; ")
-}
-
-// AllErrors returns a list of validation violation errors.
-func (m OrgIdMultiError) AllErrors() []error { return m }
-
-// OrgIdValidationError is the validation error returned by OrgId.Validate if
-// the designated constraints aren't met.
-type OrgIdValidationError struct {
-	field  string
-	reason string
-	cause  error
-	key    bool
-}
-
-// Field function returns field value.
-func (e OrgIdValidationError) Field() string { return e.field }
-
-// Reason function returns reason value.
-func (e OrgIdValidationError) Reason() string { return e.reason }
-
-// Cause function returns cause value.
-func (e OrgIdValidationError) Cause() error { return e.cause }
-
-// Key function returns key value.
-func (e OrgIdValidationError) Key() bool { return e.key }
-
-// ErrorName returns error name.
-func (e OrgIdValidationError) ErrorName() string { return "OrgIdValidationError" }
-
-// Error satisfies the builtin error interface
-func (e OrgIdValidationError) Error() string {
-	cause := ""
-	if e.cause != nil {
-		cause = fmt.Sprintf(" | caused by: %v", e.cause)
-	}
-
-	key := ""
-	if e.key {
-		key = "key for "
-	}
-
-	return fmt.Sprintf(
-		"invalid %sOrgId.%s: %s%s",
-		key,
-		e.field,
-		e.reason,
-		cause)
-}
-
-var _ error = OrgIdValidationError{}
-
-var _ interface {
-	Field() string
-	Reason() string
-	Key() bool
-	Cause() error
-	ErrorName() string
-} = OrgIdValidationError{}
+} = BusinessIdValidationError{}

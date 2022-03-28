@@ -67,9 +67,9 @@ func (m *Commodity) validate(all bool) error {
 
 	// no validation rules for Weight
 
-	// no validation rules for DimensionUOM
+	// no validation rules for Dimension_UOM
 
-	// no validation rules for WeightUOM
+	// no validation rules for Weight_UOM
 
 	// no validation rules for DimensionDisplay
 

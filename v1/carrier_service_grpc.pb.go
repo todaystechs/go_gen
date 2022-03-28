@@ -23,10 +23,10 @@ const _ = grpc.SupportPackageIsVersion7
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type CarrierServiceClient interface {
 	// location
-	GetLocations(ctx context.Context, in *OrgId, opts ...grpc.CallOption) (*ListsOfLocation, error)
+	GetLocations(ctx context.Context, in *BusinessId, opts ...grpc.CallOption) (*ListsOfLocation, error)
 	CreateLocation(ctx context.Context, in *Location, opts ...grpc.CallOption) (*Location, error)
-	UpdateLocation(ctx context.Context, in *Location, opts ...grpc.CallOption) (*Location, error)
-	DeleteLocation(ctx context.Context, in *Location, opts ...grpc.CallOption) (*ResponseOk, error)
+	UpdateLocation(ctx context.Context, in *Location, opts ...grpc.CallOption) (*Ok, error)
+	DeleteLocation(ctx context.Context, in *Location, opts ...grpc.CallOption) (*Ok, error)
 	// health
 	PingCarrierService(ctx context.Context, in *CarrierServicePing, opts ...grpc.CallOption) (*CarrierServicePing, error)
 	// quote
@@ -35,7 +35,7 @@ type CarrierServiceClient interface {
 	DeleteQuote(ctx context.Context, in *QuoteRequest, opts ...grpc.CallOption) (*ListOfQuoteResponse, error)
 	GetQuotesById(ctx context.Context, in *FetchQuotesRequest, opts ...grpc.CallOption) (*QuoteResponse, error)
 	// booking
-	BookQuote(ctx context.Context, in *BookingRequest, opts ...grpc.CallOption) (*BookingResponse, error)
+	BookQuote(ctx context.Context, in *BookingData, opts ...grpc.CallOption) (*BookingResponse, error)
 	GetBookingHistory(ctx context.Context, in *FetchBookingsRequest, opts ...grpc.CallOption) (*ListOfBooking, error)
 	GetBookingById(ctx context.Context, in *FetchBookingsRequest, opts ...grpc.CallOption) (*ListOfBooking, error)
 }
@@ -48,7 +48,7 @@ func NewCarrierServiceClient(cc grpc.ClientConnInterface) CarrierServiceClient {
 	return &carrierServiceClient{cc}
 }
 
-func (c *carrierServiceClient) GetLocations(ctx context.Context, in *OrgId, opts ...grpc.CallOption) (*ListsOfLocation, error) {
+func (c *carrierServiceClient) GetLocations(ctx context.Context, in *BusinessId, opts ...grpc.CallOption) (*ListsOfLocation, error) {
 	out := new(ListsOfLocation)
 	err := c.cc.Invoke(ctx, "/carrier.CarrierService/GetLocations", in, out, opts...)
 	if err != nil {
@@ -66,8 +66,8 @@ func (c *carrierServiceClient) CreateLocation(ctx context.Context, in *Location,
 	return out, nil
 }
 
-func (c *carrierServiceClient) UpdateLocation(ctx context.Context, in *Location, opts ...grpc.CallOption) (*Location, error) {
-	out := new(Location)
+func (c *carrierServiceClient) UpdateLocation(ctx context.Context, in *Location, opts ...grpc.CallOption) (*Ok, error) {
+	out := new(Ok)
 	err := c.cc.Invoke(ctx, "/carrier.CarrierService/UpdateLocation", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -75,8 +75,8 @@ func (c *carrierServiceClient) UpdateLocation(ctx context.Context, in *Location,
 	return out, nil
 }
 
-func (c *carrierServiceClient) DeleteLocation(ctx context.Context, in *Location, opts ...grpc.CallOption) (*ResponseOk, error) {
-	out := new(ResponseOk)
+func (c *carrierServiceClient) DeleteLocation(ctx context.Context, in *Location, opts ...grpc.CallOption) (*Ok, error) {
+	out := new(Ok)
 	err := c.cc.Invoke(ctx, "/carrier.CarrierService/DeleteLocation", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -129,7 +129,7 @@ func (c *carrierServiceClient) GetQuotesById(ctx context.Context, in *FetchQuote
 	return out, nil
 }
 
-func (c *carrierServiceClient) BookQuote(ctx context.Context, in *BookingRequest, opts ...grpc.CallOption) (*BookingResponse, error) {
+func (c *carrierServiceClient) BookQuote(ctx context.Context, in *BookingData, opts ...grpc.CallOption) (*BookingResponse, error) {
 	out := new(BookingResponse)
 	err := c.cc.Invoke(ctx, "/carrier.CarrierService/BookQuote", in, out, opts...)
 	if err != nil {
@@ -161,10 +161,10 @@ func (c *carrierServiceClient) GetBookingById(ctx context.Context, in *FetchBook
 // for forward compatibility
 type CarrierServiceServer interface {
 	// location
-	GetLocations(context.Context, *OrgId) (*ListsOfLocation, error)
+	GetLocations(context.Context, *BusinessId) (*ListsOfLocation, error)
 	CreateLocation(context.Context, *Location) (*Location, error)
-	UpdateLocation(context.Context, *Location) (*Location, error)
-	DeleteLocation(context.Context, *Location) (*ResponseOk, error)
+	UpdateLocation(context.Context, *Location) (*Ok, error)
+	DeleteLocation(context.Context, *Location) (*Ok, error)
 	// health
 	PingCarrierService(context.Context, *CarrierServicePing) (*CarrierServicePing, error)
 	// quote
@@ -173,7 +173,7 @@ type CarrierServiceServer interface {
 	DeleteQuote(context.Context, *QuoteRequest) (*ListOfQuoteResponse, error)
 	GetQuotesById(context.Context, *FetchQuotesRequest) (*QuoteResponse, error)
 	// booking
-	BookQuote(context.Context, *BookingRequest) (*BookingResponse, error)
+	BookQuote(context.Context, *BookingData) (*BookingResponse, error)
 	GetBookingHistory(context.Context, *FetchBookingsRequest) (*ListOfBooking, error)
 	GetBookingById(context.Context, *FetchBookingsRequest) (*ListOfBooking, error)
 }
@@ -182,16 +182,16 @@ type CarrierServiceServer interface {
 type UnimplementedCarrierServiceServer struct {
 }
 
-func (UnimplementedCarrierServiceServer) GetLocations(context.Context, *OrgId) (*ListsOfLocation, error) {
+func (UnimplementedCarrierServiceServer) GetLocations(context.Context, *BusinessId) (*ListsOfLocation, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetLocations not implemented")
 }
 func (UnimplementedCarrierServiceServer) CreateLocation(context.Context, *Location) (*Location, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateLocation not implemented")
 }
-func (UnimplementedCarrierServiceServer) UpdateLocation(context.Context, *Location) (*Location, error) {
+func (UnimplementedCarrierServiceServer) UpdateLocation(context.Context, *Location) (*Ok, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateLocation not implemented")
 }
-func (UnimplementedCarrierServiceServer) DeleteLocation(context.Context, *Location) (*ResponseOk, error) {
+func (UnimplementedCarrierServiceServer) DeleteLocation(context.Context, *Location) (*Ok, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteLocation not implemented")
 }
 func (UnimplementedCarrierServiceServer) PingCarrierService(context.Context, *CarrierServicePing) (*CarrierServicePing, error) {
@@ -209,7 +209,7 @@ func (UnimplementedCarrierServiceServer) DeleteQuote(context.Context, *QuoteRequ
 func (UnimplementedCarrierServiceServer) GetQuotesById(context.Context, *FetchQuotesRequest) (*QuoteResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetQuotesById not implemented")
 }
-func (UnimplementedCarrierServiceServer) BookQuote(context.Context, *BookingRequest) (*BookingResponse, error) {
+func (UnimplementedCarrierServiceServer) BookQuote(context.Context, *BookingData) (*BookingResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method BookQuote not implemented")
 }
 func (UnimplementedCarrierServiceServer) GetBookingHistory(context.Context, *FetchBookingsRequest) (*ListOfBooking, error) {
@@ -231,7 +231,7 @@ func RegisterCarrierServiceServer(s grpc.ServiceRegistrar, srv CarrierServiceSer
 }
 
 func _CarrierService_GetLocations_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(OrgId)
+	in := new(BusinessId)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -243,7 +243,7 @@ func _CarrierService_GetLocations_Handler(srv interface{}, ctx context.Context, 
 		FullMethod: "/carrier.CarrierService/GetLocations",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CarrierServiceServer).GetLocations(ctx, req.(*OrgId))
+		return srv.(CarrierServiceServer).GetLocations(ctx, req.(*BusinessId))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -393,7 +393,7 @@ func _CarrierService_GetQuotesById_Handler(srv interface{}, ctx context.Context,
 }
 
 func _CarrierService_BookQuote_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(BookingRequest)
+	in := new(BookingData)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -405,7 +405,7 @@ func _CarrierService_BookQuote_Handler(srv interface{}, ctx context.Context, dec
 		FullMethod: "/carrier.CarrierService/BookQuote",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CarrierServiceServer).BookQuote(ctx, req.(*BookingRequest))
+		return srv.(CarrierServiceServer).BookQuote(ctx, req.(*BookingData))
 	}
 	return interceptor(ctx, in, info, handler)
 }

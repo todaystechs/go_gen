@@ -115,9 +115,9 @@ func (m *BusinessData) validate(all bool) error {
 
 	}
 
-	// no validation rules for SK
+	// no validation rules for Sk
 
-	// no validation rules for PK
+	// no validation rules for Pk
 
 	if len(errors) > 0 {
 		return BusinessDataMultiError(errors)

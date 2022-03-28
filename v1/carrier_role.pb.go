@@ -106,8 +106,10 @@ type UpdateCarrierRoleData struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Token   *wrapperspb.StringValue `protobuf:"bytes,1,opt,name=token,proto3" json:"token,omitempty"`
-	NewRole []CarrierRole           `protobuf:"varint,2,rep,packed,name=new_role,json=newRole,proto3,enum=carrier.CarrierRole" json:"new_role,omitempty"`
+	// @gotags: dynamodbav:"token"
+	Token *wrapperspb.StringValue `protobuf:"bytes,1,opt,name=token,proto3" json:"token,omitempty" dynamodbav:"token"`
+	// @gotags: dynamodbav:"new_role"
+	NewRole []CarrierRole `protobuf:"varint,2,rep,packed,name=new_role,json=newRole,proto3,enum=carrier.CarrierRole" json:"new_role,omitempty" dynamodbav:"new_role"`
 }
 
 func (x *UpdateCarrierRoleData) Reset() {

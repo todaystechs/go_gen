@@ -61,7 +61,7 @@ func (m *QuoteRequest) validate(all bool) error {
 
 	// no validation rules for Mode
 
-	// no validation rules for LiablePartyID
+	// no validation rules for LiablePartyId
 
 	if all {
 		switch v := interface{}(m.GetShippingDetail()).(type) {
@@ -226,7 +226,7 @@ func (m *QuoteResponse) validate(all bool) error {
 
 	// no validation rules for QuoteId
 
-	// no validation rules for SortId
+	// no validation rules for Sk
 
 	if all {
 		switch v := interface{}(m.GetCarrier()).(type) {
@@ -557,7 +557,7 @@ func (m *FetchQuotesRequest) validate(all bool) error {
 
 	// no validation rules for EndOn
 
-	// no validation rules for OrgId
+	// no validation rules for Pk
 
 	if len(errors) > 0 {
 		return FetchQuotesRequestMultiError(errors)
