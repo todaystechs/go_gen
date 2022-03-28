@@ -138,22 +138,22 @@ var _ interface {
 	ErrorName() string
 } = ForgotPasswordDataValidationError{}
 
-// Validate checks the field values on RestPasswordToken with the rules defined
-// in the proto definition for this message. If any rules are violated, the
-// first error encountered is returned, or nil if there are no violations.
-func (m *RestPasswordToken) Validate() error {
+// Validate checks the field values on ResetPasswordToken with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the first error encountered is returned, or nil if there are no violations.
+func (m *ResetPasswordToken) Validate() error {
 	return m.validate(false)
 }
 
-// ValidateAll checks the field values on RestPasswordToken with the rules
+// ValidateAll checks the field values on ResetPasswordToken with the rules
 // defined in the proto definition for this message. If any rules are
 // violated, the result is a list of violation errors wrapped in
-// RestPasswordTokenMultiError, or nil if none found.
-func (m *RestPasswordToken) ValidateAll() error {
+// ResetPasswordTokenMultiError, or nil if none found.
+func (m *ResetPasswordToken) ValidateAll() error {
 	return m.validate(true)
 }
 
-func (m *RestPasswordToken) validate(all bool) error {
+func (m *ResetPasswordToken) validate(all bool) error {
 	if m == nil {
 		return nil
 	}
@@ -169,18 +169,18 @@ func (m *RestPasswordToken) validate(all bool) error {
 	// no validation rules for Token
 
 	if len(errors) > 0 {
-		return RestPasswordTokenMultiError(errors)
+		return ResetPasswordTokenMultiError(errors)
 	}
 	return nil
 }
 
-// RestPasswordTokenMultiError is an error wrapping multiple validation errors
-// returned by RestPasswordToken.ValidateAll() if the designated constraints
+// ResetPasswordTokenMultiError is an error wrapping multiple validation errors
+// returned by ResetPasswordToken.ValidateAll() if the designated constraints
 // aren't met.
-type RestPasswordTokenMultiError []error
+type ResetPasswordTokenMultiError []error
 
 // Error returns a concatenation of all the error messages it wraps.
-func (m RestPasswordTokenMultiError) Error() string {
+func (m ResetPasswordTokenMultiError) Error() string {
 	var msgs []string
 	for _, err := range m {
 		msgs = append(msgs, err.Error())
@@ -189,11 +189,11 @@ func (m RestPasswordTokenMultiError) Error() string {
 }
 
 // AllErrors returns a list of validation violation errors.
-func (m RestPasswordTokenMultiError) AllErrors() []error { return m }
+func (m ResetPasswordTokenMultiError) AllErrors() []error { return m }
 
-// RestPasswordTokenValidationError is the validation error returned by
-// RestPasswordToken.Validate if the designated constraints aren't met.
-type RestPasswordTokenValidationError struct {
+// ResetPasswordTokenValidationError is the validation error returned by
+// ResetPasswordToken.Validate if the designated constraints aren't met.
+type ResetPasswordTokenValidationError struct {
 	field  string
 	reason string
 	cause  error
@@ -201,24 +201,24 @@ type RestPasswordTokenValidationError struct {
 }
 
 // Field function returns field value.
-func (e RestPasswordTokenValidationError) Field() string { return e.field }
+func (e ResetPasswordTokenValidationError) Field() string { return e.field }
 
 // Reason function returns reason value.
-func (e RestPasswordTokenValidationError) Reason() string { return e.reason }
+func (e ResetPasswordTokenValidationError) Reason() string { return e.reason }
 
 // Cause function returns cause value.
-func (e RestPasswordTokenValidationError) Cause() error { return e.cause }
+func (e ResetPasswordTokenValidationError) Cause() error { return e.cause }
 
 // Key function returns key value.
-func (e RestPasswordTokenValidationError) Key() bool { return e.key }
+func (e ResetPasswordTokenValidationError) Key() bool { return e.key }
 
 // ErrorName returns error name.
-func (e RestPasswordTokenValidationError) ErrorName() string {
-	return "RestPasswordTokenValidationError"
+func (e ResetPasswordTokenValidationError) ErrorName() string {
+	return "ResetPasswordTokenValidationError"
 }
 
 // Error satisfies the builtin error interface
-func (e RestPasswordTokenValidationError) Error() string {
+func (e ResetPasswordTokenValidationError) Error() string {
 	cause := ""
 	if e.cause != nil {
 		cause = fmt.Sprintf(" | caused by: %v", e.cause)
@@ -230,14 +230,14 @@ func (e RestPasswordTokenValidationError) Error() string {
 	}
 
 	return fmt.Sprintf(
-		"invalid %sRestPasswordToken.%s: %s%s",
+		"invalid %sResetPasswordToken.%s: %s%s",
 		key,
 		e.field,
 		e.reason,
 		cause)
 }
 
-var _ error = RestPasswordTokenValidationError{}
+var _ error = ResetPasswordTokenValidationError{}
 
 var _ interface {
 	Field() string
@@ -245,7 +245,7 @@ var _ interface {
 	Key() bool
 	Cause() error
 	ErrorName() string
-} = RestPasswordTokenValidationError{}
+} = ResetPasswordTokenValidationError{}
 
 // Validate checks the field values on ResetPasswordData with the rules defined
 // in the proto definition for this message. If any rules are violated, the
