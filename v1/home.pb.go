@@ -26,8 +26,8 @@ type UserHomeData struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// @gotags: dynamodbav:"token"
-	UserId string `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty" dynamodbav:"token"`
+	// @gotags: dynamodbav:"user_id"
+	UserId string `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty" dynamodbav:"user_id"`
 }
 
 func (x *UserHomeData) Reset() {
