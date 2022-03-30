@@ -57,7 +57,7 @@ func (m *UserHomeData) validate(all bool) error {
 
 	var errors []error
 
-	// no validation rules for Token
+	// no validation rules for UserId
 
 	if len(errors) > 0 {
 		return UserHomeDataMultiError(errors)
