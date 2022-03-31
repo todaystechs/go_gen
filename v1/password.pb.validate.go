@@ -275,7 +275,7 @@ func (m *ResetPasswordData) validate(all bool) error {
 
 	// no validation rules for ConfirmPassword
 
-	// no validation rules for UserId
+	// no validation rules for Email
 
 	if len(errors) > 0 {
 		return ResetPasswordDataMultiError(errors)
