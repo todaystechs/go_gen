@@ -157,8 +157,8 @@ type ResetPasswordData struct {
 	NewPassword string `protobuf:"bytes,2,opt,name=new_password,json=newPassword,proto3" json:"new_password,omitempty" dynamodbav:"new_password"`
 	// @gotags: dynamodbav:"confirm_password"
 	ConfirmPassword string `protobuf:"bytes,3,opt,name=confirm_password,json=confirmPassword,proto3" json:"confirm_password,omitempty" dynamodbav:"confirm_password"`
-	// @gotags: dynamodbav:"user_id"
-	Email string `protobuf:"bytes,4,opt,name=email,proto3" json:"email,omitempty" dynamodbav:"user_id"`
+	// @gotags: dynamodbav:"email"
+	Email string `protobuf:"bytes,4,opt,name=email,proto3" json:"email,omitempty" dynamodbav:"email"`
 }
 
 func (x *ResetPasswordData) Reset() {
