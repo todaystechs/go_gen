@@ -28,7 +28,7 @@ type UserServiceClient interface {
 	LogOut(ctx context.Context, in *LogOutData, opts ...grpc.CallOption) (*Ok, error)
 	ForgotPassword(ctx context.Context, in *ForgotPasswordData, opts ...grpc.CallOption) (*Ok, error)
 	ResetPassword(ctx context.Context, in *ResetPasswordData, opts ...grpc.CallOption) (*OkWithData, error)
-	UpdateRole(ctx context.Context, in *UpdateUserRoleData, opts ...grpc.CallOption) (*OkWithData, error)
+	UpdateStaffRole(ctx context.Context, in *UpdateUserRoleData, opts ...grpc.CallOption) (*OkWithData, error)
 	AddUser(ctx context.Context, in *AddStaffData, opts ...grpc.CallOption) (*OkWithData, error)
 	UpdateUser(ctx context.Context, in *UserData, opts ...grpc.CallOption) (*OkWithData, error)
 	GetMe(ctx context.Context, in *MeData, opts ...grpc.CallOption) (*UserData, error)
@@ -98,9 +98,9 @@ func (c *userServiceClient) ResetPassword(ctx context.Context, in *ResetPassword
 	return out, nil
 }
 
-func (c *userServiceClient) UpdateRole(ctx context.Context, in *UpdateUserRoleData, opts ...grpc.CallOption) (*OkWithData, error) {
+func (c *userServiceClient) UpdateStaffRole(ctx context.Context, in *UpdateUserRoleData, opts ...grpc.CallOption) (*OkWithData, error) {
 	out := new(OkWithData)
-	err := c.cc.Invoke(ctx, "/user.UserService/UpdateRole", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/user.UserService/UpdateStaffRole", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -162,7 +162,7 @@ type UserServiceServer interface {
 	LogOut(context.Context, *LogOutData) (*Ok, error)
 	ForgotPassword(context.Context, *ForgotPasswordData) (*Ok, error)
 	ResetPassword(context.Context, *ResetPasswordData) (*OkWithData, error)
-	UpdateRole(context.Context, *UpdateUserRoleData) (*OkWithData, error)
+	UpdateStaffRole(context.Context, *UpdateUserRoleData) (*OkWithData, error)
 	AddUser(context.Context, *AddStaffData) (*OkWithData, error)
 	UpdateUser(context.Context, *UserData) (*OkWithData, error)
 	GetMe(context.Context, *MeData) (*UserData, error)
@@ -192,8 +192,8 @@ func (UnimplementedUserServiceServer) ForgotPassword(context.Context, *ForgotPas
 func (UnimplementedUserServiceServer) ResetPassword(context.Context, *ResetPasswordData) (*OkWithData, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ResetPassword not implemented")
 }
-func (UnimplementedUserServiceServer) UpdateRole(context.Context, *UpdateUserRoleData) (*OkWithData, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UpdateRole not implemented")
+func (UnimplementedUserServiceServer) UpdateStaffRole(context.Context, *UpdateUserRoleData) (*OkWithData, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateStaffRole not implemented")
 }
 func (UnimplementedUserServiceServer) AddUser(context.Context, *AddStaffData) (*OkWithData, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AddUser not implemented")
@@ -330,20 +330,20 @@ func _UserService_ResetPassword_Handler(srv interface{}, ctx context.Context, de
 	return interceptor(ctx, in, info, handler)
 }
 
-func _UserService_UpdateRole_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _UserService_UpdateStaffRole_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(UpdateUserRoleData)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(UserServiceServer).UpdateRole(ctx, in)
+		return srv.(UserServiceServer).UpdateStaffRole(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/user.UserService/UpdateRole",
+		FullMethod: "/user.UserService/UpdateStaffRole",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserServiceServer).UpdateRole(ctx, req.(*UpdateUserRoleData))
+		return srv.(UserServiceServer).UpdateStaffRole(ctx, req.(*UpdateUserRoleData))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -470,8 +470,8 @@ var UserService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _UserService_ResetPassword_Handler,
 		},
 		{
-			MethodName: "UpdateRole",
-			Handler:    _UserService_UpdateRole_Handler,
+			MethodName: "UpdateStaffRole",
+			Handler:    _UserService_UpdateStaffRole_Handler,
 		},
 		{
 			MethodName: "AddUser",
