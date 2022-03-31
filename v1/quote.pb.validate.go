@@ -59,6 +59,8 @@ func (m *QuoteRequest) validate(all bool) error {
 
 	// no validation rules for QuoteId
 
+	// no validation rules for BuisnessId
+
 	// no validation rules for Mode
 
 	// no validation rules for LiablePartyId
