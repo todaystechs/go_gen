@@ -59,6 +59,8 @@ func (m *AddStaffData) validate(all bool) error {
 
 	// no validation rules for Token
 
+	// no validation rules for NewStaffEmail
+
 	if len(errors) > 0 {
 		return AddStaffDataMultiError(errors)
 	}
