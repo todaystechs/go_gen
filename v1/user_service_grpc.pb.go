@@ -29,7 +29,7 @@ type UserServiceClient interface {
 	ForgotPassword(ctx context.Context, in *ForgotPasswordData, opts ...grpc.CallOption) (*Ok, error)
 	ResetPassword(ctx context.Context, in *ResetPasswordData, opts ...grpc.CallOption) (*OkWithData, error)
 	UpdateStaffRole(ctx context.Context, in *UpdateUserRoleData, opts ...grpc.CallOption) (*OkWithData, error)
-	AddUser(ctx context.Context, in *AddStaffData, opts ...grpc.CallOption) (*OkWithData, error)
+	AddStaff(ctx context.Context, in *AddStaffData, opts ...grpc.CallOption) (*OkWithData, error)
 	UpdateUser(ctx context.Context, in *UserData, opts ...grpc.CallOption) (*OkWithData, error)
 	GetMe(ctx context.Context, in *MeData, opts ...grpc.CallOption) (*UserData, error)
 	ConfirmEmail(ctx context.Context, in *ConfirmEmailData, opts ...grpc.CallOption) (*OkWithData, error)
@@ -107,9 +107,9 @@ func (c *userServiceClient) UpdateStaffRole(ctx context.Context, in *UpdateUserR
 	return out, nil
 }
 
-func (c *userServiceClient) AddUser(ctx context.Context, in *AddStaffData, opts ...grpc.CallOption) (*OkWithData, error) {
+func (c *userServiceClient) AddStaff(ctx context.Context, in *AddStaffData, opts ...grpc.CallOption) (*OkWithData, error) {
 	out := new(OkWithData)
-	err := c.cc.Invoke(ctx, "/user.UserService/AddUser", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/user.UserService/AddStaff", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -163,7 +163,7 @@ type UserServiceServer interface {
 	ForgotPassword(context.Context, *ForgotPasswordData) (*Ok, error)
 	ResetPassword(context.Context, *ResetPasswordData) (*OkWithData, error)
 	UpdateStaffRole(context.Context, *UpdateUserRoleData) (*OkWithData, error)
-	AddUser(context.Context, *AddStaffData) (*OkWithData, error)
+	AddStaff(context.Context, *AddStaffData) (*OkWithData, error)
 	UpdateUser(context.Context, *UserData) (*OkWithData, error)
 	GetMe(context.Context, *MeData) (*UserData, error)
 	ConfirmEmail(context.Context, *ConfirmEmailData) (*OkWithData, error)
@@ -195,8 +195,8 @@ func (UnimplementedUserServiceServer) ResetPassword(context.Context, *ResetPassw
 func (UnimplementedUserServiceServer) UpdateStaffRole(context.Context, *UpdateUserRoleData) (*OkWithData, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateStaffRole not implemented")
 }
-func (UnimplementedUserServiceServer) AddUser(context.Context, *AddStaffData) (*OkWithData, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method AddUser not implemented")
+func (UnimplementedUserServiceServer) AddStaff(context.Context, *AddStaffData) (*OkWithData, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddStaff not implemented")
 }
 func (UnimplementedUserServiceServer) UpdateUser(context.Context, *UserData) (*OkWithData, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateUser not implemented")
@@ -348,20 +348,20 @@ func _UserService_UpdateStaffRole_Handler(srv interface{}, ctx context.Context, 
 	return interceptor(ctx, in, info, handler)
 }
 
-func _UserService_AddUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _UserService_AddStaff_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(AddStaffData)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(UserServiceServer).AddUser(ctx, in)
+		return srv.(UserServiceServer).AddStaff(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/user.UserService/AddUser",
+		FullMethod: "/user.UserService/AddStaff",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserServiceServer).AddUser(ctx, req.(*AddStaffData))
+		return srv.(UserServiceServer).AddStaff(ctx, req.(*AddStaffData))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -474,8 +474,8 @@ var UserService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _UserService_UpdateStaffRole_Handler,
 		},
 		{
-			MethodName: "AddUser",
-			Handler:    _UserService_AddUser_Handler,
+			MethodName: "AddStaff",
+			Handler:    _UserService_AddStaff_Handler,
 		},
 		{
 			MethodName: "UpdateUser",
