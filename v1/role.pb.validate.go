@@ -59,6 +59,8 @@ func (m *UpdateUserRoleData) validate(all bool) error {
 
 	// no validation rules for Token
 
+	// no validation rules for StaffEmail
+
 	if len(errors) > 0 {
 		return UpdateUserRoleDataMultiError(errors)
 	}
