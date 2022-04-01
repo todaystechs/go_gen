@@ -28,54 +28,54 @@ type UserData struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// @gotags: dynamodbav:"type"
-	Type string `protobuf:"bytes,1,opt,name=Type,proto3" json:"Type,omitempty" dynamodbav:"type"`
-	// @gotags: dynamodbav:"cognito_id"
-	CognitoId string `protobuf:"bytes,2,opt,name=cognito_id,json=cognitoId,proto3" json:"cognito_id,omitempty" dynamodbav:"cognito_id"`
-	// @gotags: dynamodbav:"user_name"
-	UserName string `protobuf:"bytes,3,opt,name=user_name,json=userName,proto3" json:"user_name,omitempty" dynamodbav:"user_name"`
-	// @gotags: dynamodbav:"user_id"
-	UserId string `protobuf:"bytes,4,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty" dynamodbav:"user_id"`
-	// @gotags: dynamodbav:"first_name"
-	FirstName string `protobuf:"bytes,5,opt,name=first_name,json=firstName,proto3" json:"first_name,omitempty" dynamodbav:"first_name"`
-	// @gotags: dynamodbav:"middle_name"
-	MiddleName string `protobuf:"bytes,6,opt,name=middle_name,json=middleName,proto3" json:"middle_name,omitempty" dynamodbav:"middle_name"`
-	// @gotags: dynamodbav:"last_name"
-	LastName string `protobuf:"bytes,7,opt,name=last_name,json=lastName,proto3" json:"last_name,omitempty" dynamodbav:"last_name"`
-	// @gotags: dynamodbav:"email"
-	Email string `protobuf:"bytes,8,opt,name=email,proto3" json:"email,omitempty" dynamodbav:"email"`
-	// @gotags: dynamodbav:"hashed_password"
-	HashedPassword string `protobuf:"bytes,9,opt,name=hashed_password,json=hashedPassword,proto3" json:"hashed_password,omitempty" dynamodbav:"hashed_password"`
-	// @gotags: dynamodbav:"avatar_url"
-	AvatarUrl string `protobuf:"bytes,10,opt,name=avatar_url,json=avatarUrl,proto3" json:"avatar_url,omitempty" dynamodbav:"avatar_url"`
-	// @gotags: dynamodbav:"roles"
-	Roles []Role `protobuf:"varint,11,rep,packed,name=roles,proto3,enum=user.Role" json:"roles,omitempty" dynamodbav:"roles"`
-	// @gotags: dynamodbav:"new_password_required"
-	NewPasswordRequired bool `protobuf:"varint,12,opt,name=new_password_required,json=newPasswordRequired,proto3" json:"new_password_required,omitempty" dynamodbav:"new_password_required"`
-	// @gotags: dynamodbav:"password_changed_at"
-	PasswordChangedAt string `protobuf:"bytes,13,opt,name=password_changed_at,json=passwordChangedAt,proto3" json:"password_changed_at,omitempty" dynamodbav:"password_changed_at"`
-	// @gotags: dynamodbav:"created_on"
-	CreatedOn string `protobuf:"bytes,14,opt,name=created_on,json=createdOn,proto3" json:"created_on,omitempty" dynamodbav:"created_on"`
-	// @gotags: dynamodbav:"updated_on"
-	UpdatedOn string `protobuf:"bytes,15,opt,name=updated_on,json=updatedOn,proto3" json:"updated_on,omitempty" dynamodbav:"updated_on"`
-	// @gotags: dynamodbav:"deleted_on"
-	DeletedOn string `protobuf:"bytes,16,opt,name=deleted_on,json=deletedOn,proto3" json:"deleted_on,omitempty" dynamodbav:"deleted_on"`
-	// @gotags: dynamodbav:"phone_numbers"
-	PhoneNumbers []*PhoneNumberData `protobuf:"bytes,17,rep,name=phone_numbers,json=phoneNumbers,proto3" json:"phone_numbers,omitempty" dynamodbav:"phone_numbers"`
-	// @gotags: dynamodbav:"email_verified"
-	EmailVerified bool `protobuf:"varint,18,opt,name=email_verified,json=emailVerified,proto3" json:"email_verified,omitempty" dynamodbav:"email_verified"`
-	// @gotags: dynamodbav:"reset_password_token"
-	ResetPasswordToken []string `protobuf:"bytes,19,rep,name=reset_password_token,json=resetPasswordToken,proto3" json:"reset_password_token,omitempty" dynamodbav:"reset_password_token"`
-	// @gotags: dynamodbav:"sessions"
-	Sessions []string `protobuf:"bytes,20,rep,name=sessions,proto3" json:"sessions,omitempty" dynamodbav:"sessions"`
-	// @gotags: dynamodbav:"sk"
-	Pk string `protobuf:"bytes,21,opt,name=pk,proto3" json:"pk,omitempty" dynamodbav:"sk"`
-	// @gotags: dynamodbav:"pk"
-	Sk string `protobuf:"bytes,22,opt,name=sk,proto3" json:"sk,omitempty" dynamodbav:"pk"`
-	// @gotags: dynamodbav:"business_ids"
-	BusinessIds []string `protobuf:"bytes,23,rep,name=Business_ids,json=BusinessIds,proto3" json:"Business_ids,omitempty" dynamodbav:"business_ids"`
-	// @gotags: dynamodbav:"unsuscribed_to_marketing_email"
-	UnsuscribedToMarketingEmail bool `protobuf:"varint,24,opt,name=unsuscribed_to_marketing_email,json=unsuscribedToMarketingEmail,proto3" json:"unsuscribed_to_marketing_email,omitempty" dynamodbav:"unsuscribed_to_marketing_email"`
+	// @gotags: dynamodbav:"type,omitempty"
+	Type string `protobuf:"bytes,1,opt,name=Type,proto3" json:"Type,omitempty" dynamodbav:"type,omitempty"`
+	// @gotags: dynamodbav:"cognito_id,omitempty"
+	CognitoId string `protobuf:"bytes,2,opt,name=cognito_id,json=cognitoId,proto3" json:"cognito_id,omitempty" dynamodbav:"cognito_id,omitempty"`
+	// @gotags: dynamodbav:"user_name,omitempty"
+	UserName string `protobuf:"bytes,3,opt,name=user_name,json=userName,proto3" json:"user_name,omitempty" dynamodbav:"user_name,omitempty"`
+	// @gotags: dynamodbav:"user_id,omitempty"
+	UserId string `protobuf:"bytes,4,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty" dynamodbav:"user_id,omitempty"`
+	// @gotags: dynamodbav:"first_name,omitempty"
+	FirstName string `protobuf:"bytes,5,opt,name=first_name,json=firstName,proto3" json:"first_name,omitempty" dynamodbav:"first_name,omitempty"`
+	// @gotags: dynamodbav:"middle_name,omitempty"
+	MiddleName string `protobuf:"bytes,6,opt,name=middle_name,json=middleName,proto3" json:"middle_name,omitempty" dynamodbav:"middle_name,omitempty"`
+	// @gotags: dynamodbav:"last_name,omitempty"
+	LastName string `protobuf:"bytes,7,opt,name=last_name,json=lastName,proto3" json:"last_name,omitempty" dynamodbav:"last_name,omitempty"`
+	// @gotags: dynamodbav:"email,omitempty"
+	Email string `protobuf:"bytes,8,opt,name=email,proto3" json:"email,omitempty" dynamodbav:"email,omitempty"`
+	// @gotags: dynamodbav:"hashed_password,omitempty"
+	HashedPassword string `protobuf:"bytes,9,opt,name=hashed_password,json=hashedPassword,proto3" json:"hashed_password,omitempty" dynamodbav:"hashed_password,omitempty"`
+	// @gotags: dynamodbav:"avatar_url,omitempty"
+	AvatarUrl string `protobuf:"bytes,10,opt,name=avatar_url,json=avatarUrl,proto3" json:"avatar_url,omitempty" dynamodbav:"avatar_url,omitempty"`
+	// @gotags: dynamodbav:"roles,omitempty"
+	Roles []Role `protobuf:"varint,11,rep,packed,name=roles,proto3,enum=user.Role" json:"roles,omitempty" dynamodbav:"roles,omitempty"`
+	// @gotags: dynamodbav:"new_password_required,omitempty"
+	NewPasswordRequired bool `protobuf:"varint,12,opt,name=new_password_required,json=newPasswordRequired,proto3" json:"new_password_required,omitempty" dynamodbav:"new_password_required,omitempty"`
+	// @gotags: dynamodbav:"password_changed_at,omitempty"
+	PasswordChangedAt string `protobuf:"bytes,13,opt,name=password_changed_at,json=passwordChangedAt,proto3" json:"password_changed_at,omitempty" dynamodbav:"password_changed_at,omitempty"`
+	// @gotags: dynamodbav:"created_on,omitempty"
+	CreatedOn string `protobuf:"bytes,14,opt,name=created_on,json=createdOn,proto3" json:"created_on,omitempty" dynamodbav:"created_on,omitempty"`
+	// @gotags: dynamodbav:"updated_on,omitempty"
+	UpdatedOn string `protobuf:"bytes,15,opt,name=updated_on,json=updatedOn,proto3" json:"updated_on,omitempty" dynamodbav:"updated_on,omitempty"`
+	// @gotags: dynamodbav:"deleted_on,omitempty"
+	DeletedOn string `protobuf:"bytes,16,opt,name=deleted_on,json=deletedOn,proto3" json:"deleted_on,omitempty" dynamodbav:"deleted_on,omitempty"`
+	// @gotags: dynamodbav:"phone_numbers,omitempty"
+	PhoneNumbers []*PhoneNumberData `protobuf:"bytes,17,rep,name=phone_numbers,json=phoneNumbers,proto3" json:"phone_numbers,omitempty" dynamodbav:"phone_numbers,omitempty"`
+	// @gotags: dynamodbav:"email_verified,omitempty"
+	EmailVerified bool `protobuf:"varint,18,opt,name=email_verified,json=emailVerified,proto3" json:"email_verified,omitempty" dynamodbav:"email_verified,omitempty"`
+	// @gotags: dynamodbav:"reset_password_token,omitempty"
+	ResetPasswordToken []string `protobuf:"bytes,19,rep,name=reset_password_token,json=resetPasswordToken,proto3" json:"reset_password_token,omitempty" dynamodbav:"reset_password_token,omitempty"`
+	// @gotags: dynamodbav:"sessions,omitempty"
+	Sessions []string `protobuf:"bytes,20,rep,name=sessions,proto3" json:"sessions,omitempty" dynamodbav:"sessions,omitempty"`
+	// @gotags: dynamodbav:"sk,omitempty"
+	Pk string `protobuf:"bytes,21,opt,name=pk,proto3" json:"pk,omitempty" dynamodbav:"sk,omitempty"`
+	// @gotags: dynamodbav:"pk,omitempty"
+	Sk string `protobuf:"bytes,22,opt,name=sk,proto3" json:"sk,omitempty" dynamodbav:"pk,omitempty"`
+	// @gotags: dynamodbav:"business_ids,omitempty"
+	BusinessIds []string `protobuf:"bytes,23,rep,name=Business_ids,json=BusinessIds,proto3" json:"Business_ids,omitempty" dynamodbav:"business_ids,omitempty"`
+	// @gotags: dynamodbav:"unsuscribed_to_marketing_email,omitempty"
+	UnsuscribedToMarketingEmail bool `protobuf:"varint,24,opt,name=unsuscribed_to_marketing_email,json=unsuscribedToMarketingEmail,proto3" json:"unsuscribed_to_marketing_email,omitempty" dynamodbav:"unsuscribed_to_marketing_email,omitempty"`
 }
 
 func (x *UserData) Reset() {
@@ -283,8 +283,8 @@ type MeData struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// @gotags: dynamodbav:"token"
-	Token []string `protobuf:"bytes,1,rep,name=token,proto3" json:"token,omitempty" dynamodbav:"token"`
+	// @gotags: dynamodbav:"token,omitempty"
+	Token []string `protobuf:"bytes,1,rep,name=token,proto3" json:"token,omitempty" dynamodbav:"token,omitempty"`
 }
 
 func (x *MeData) Reset() {
