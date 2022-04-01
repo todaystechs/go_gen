@@ -25,10 +25,10 @@ type ShippingDetail struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// @gotags: dynamodbav:"pick_up"
-	PickUp *Pickup `protobuf:"bytes,1,opt,name=pick_up,json=pickUp,proto3" json:"pick_up,omitempty" dynamodbav:"pick_up"`
-	// @gotags: dynamodbav:"delivery"
-	Delivery *Delivery `protobuf:"bytes,2,opt,name=delivery,proto3" json:"delivery,omitempty" dynamodbav:"delivery"`
+	// @gotags: dynamodbav:"pick_up,omitempty"
+	PickUp *Pickup `protobuf:"bytes,1,opt,name=pick_up,json=pickUp,proto3" json:"pick_up,omitempty" dynamodbav:"pick_up,omitempty"`
+	// @gotags: dynamodbav:"delivery,omitempty"
+	Delivery *Delivery `protobuf:"bytes,2,opt,name=delivery,proto3" json:"delivery,omitempty" dynamodbav:"delivery,omitempty"`
 }
 
 func (x *ShippingDetail) Reset() {

@@ -25,12 +25,12 @@ type Amount struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// @gotags: dynamodbav:"full_amount"
-	FullAmount float64 `protobuf:"fixed64,1,opt,name=full_amount,json=fullAmount,proto3" json:"full_amount,omitempty" dynamodbav:"full_amount"`
-	// @gotags: dynamodbav:"discount_applied"
-	DiscountApplied float64 `protobuf:"fixed64,2,opt,name=discount_applied,json=discountApplied,proto3" json:"discount_applied,omitempty" dynamodbav:"discount_applied"`
-	// @gotags: dynamodbav:"net_amount"
-	NetAmount float64 `protobuf:"fixed64,3,opt,name=net_amount,json=netAmount,proto3" json:"net_amount,omitempty" dynamodbav:"net_amount"`
+	// @gotags: dynamodbav:"full_amount,omitempty"
+	FullAmount float64 `protobuf:"fixed64,1,opt,name=full_amount,json=fullAmount,proto3" json:"full_amount,omitempty" dynamodbav:"full_amount,omitempty"`
+	// @gotags: dynamodbav:"discount_applied,omitempty"
+	DiscountApplied float64 `protobuf:"fixed64,2,opt,name=discount_applied,json=discountApplied,proto3" json:"discount_applied,omitempty" dynamodbav:"discount_applied,omitempty"`
+	// @gotags: dynamodbav:"net_amount,omitempty"
+	NetAmount float64 `protobuf:"fixed64,3,opt,name=net_amount,json=netAmount,proto3" json:"net_amount,omitempty" dynamodbav:"net_amount,omitempty"`
 }
 
 func (x *Amount) Reset() {

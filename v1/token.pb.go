@@ -28,8 +28,8 @@ type RefreshTokenData struct {
 	unknownFields protoimpl.UnknownFields
 
 	// format: JWT
-	// @gotags: dynamodbav:"refresh_token"
-	RefreshToken string `protobuf:"bytes,1,opt,name=refresh_token,json=refreshToken,proto3" json:"refresh_token,omitempty" dynamodbav:"refresh_token"`
+	// @gotags: dynamodbav:"refresh_token,omitempty"
+	RefreshToken string `protobuf:"bytes,1,opt,name=refresh_token,json=refreshToken,proto3" json:"refresh_token,omitempty" dynamodbav:"refresh_token,omitempty"`
 }
 
 func (x *RefreshTokenData) Reset() {
@@ -77,13 +77,13 @@ type RefreshToken struct {
 	unknownFields protoimpl.UnknownFields
 
 	// format: JWT
-	// @gotags: dynamodbav:"access_token"
-	AccessToken string `protobuf:"bytes,1,opt,name=access_token,json=accessToken,proto3" json:"access_token,omitempty" dynamodbav:"access_token"`
+	// @gotags: dynamodbav:"access_token,omitempty"
+	AccessToken string `protobuf:"bytes,1,opt,name=access_token,json=accessToken,proto3" json:"access_token,omitempty" dynamodbav:"access_token,omitempty"`
 	// format: JWT
-	// @gotags: dynamodbav:"refresh_token"
-	RefreshToken string `protobuf:"bytes,2,opt,name=refresh_token,json=refreshToken,proto3" json:"refresh_token,omitempty" dynamodbav:"refresh_token"`
-	// @gotags: dynamodbav:"token"
-	Token string `protobuf:"bytes,3,opt,name=token,proto3" json:"token,omitempty" dynamodbav:"token"`
+	// @gotags: dynamodbav:"refresh_token,omitempty"
+	RefreshToken string `protobuf:"bytes,2,opt,name=refresh_token,json=refreshToken,proto3" json:"refresh_token,omitempty" dynamodbav:"refresh_token,omitempty"`
+	// @gotags: dynamodbav:"token,omitempty"
+	Token string `protobuf:"bytes,3,opt,name=token,proto3" json:"token,omitempty" dynamodbav:"token,omitempty"`
 }
 
 func (x *RefreshToken) Reset() {

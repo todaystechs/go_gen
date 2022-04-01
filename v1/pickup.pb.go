@@ -25,14 +25,14 @@ type Pickup struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// @gotags: dynamodbav:"location"
-	Location *Location `protobuf:"bytes,1,opt,name=location,proto3" json:"location,omitempty" dynamodbav:"location"`
-	// @gotags: dynamodbav:"location_type"
-	LocationType LocationType `protobuf:"varint,2,opt,name=location_type,json=locationType,proto3,enum=user.LocationType" json:"location_type,omitempty" dynamodbav:"location_type"`
-	// @gotags: dynamodbav:"additional_Sevices"
-	Additional_Sevices []AdditionalService `protobuf:"varint,3,rep,packed,name=additional_Sevices,json=additionalSevices,proto3,enum=user.AdditionalService" json:"additional_Sevices,omitempty" dynamodbav:"additional_Sevices"`
-	// @gotags: dynamodbav:"date"
-	Date string `protobuf:"bytes,4,opt,name=date,proto3" json:"date,omitempty" dynamodbav:"date"`
+	// @gotags: dynamodbav:"location,omitempty"
+	Location *Location `protobuf:"bytes,1,opt,name=location,proto3" json:"location,omitempty" dynamodbav:"location,omitempty"`
+	// @gotags: dynamodbav:"location_type,omitempty"
+	LocationType LocationType `protobuf:"varint,2,opt,name=location_type,json=locationType,proto3,enum=user.LocationType" json:"location_type,omitempty" dynamodbav:"location_type,omitempty"`
+	// @gotags: dynamodbav:"additional_Sevices,omitempty"
+	Additional_Sevices []AdditionalService `protobuf:"varint,3,rep,packed,name=additional_Sevices,json=additionalSevices,proto3,enum=user.AdditionalService" json:"additional_Sevices,omitempty" dynamodbav:"additional_Sevices,omitempty"`
+	// @gotags: dynamodbav:"date,omitempty"
+	Date string `protobuf:"bytes,4,opt,name=date,proto3" json:"date,omitempty" dynamodbav:"date,omitempty"`
 }
 
 func (x *Pickup) Reset() {

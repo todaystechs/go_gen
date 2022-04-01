@@ -27,10 +27,10 @@ type LoginUserData struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// @gotags: dynamodbav:"email"
-	Email string `protobuf:"bytes,1,opt,name=email,proto3" json:"email,omitempty" dynamodbav:"email"`
-	// @gotags: dynamodbav:"password"
-	Password string `protobuf:"bytes,2,opt,name=password,proto3" json:"password,omitempty" dynamodbav:"password"`
+	// @gotags: dynamodbav:"email,omitempty"
+	Email string `protobuf:"bytes,1,opt,name=email,proto3" json:"email,omitempty" dynamodbav:"email,omitempty"`
+	// @gotags: dynamodbav:"password,omitempty"
+	Password string `protobuf:"bytes,2,opt,name=password,proto3" json:"password,omitempty" dynamodbav:"password,omitempty"`
 }
 
 func (x *LoginUserData) Reset() {

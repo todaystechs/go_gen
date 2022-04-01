@@ -25,10 +25,10 @@ type BookingData struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// @gotags: dynamodbav:"quote_id"
-	QuoteId string `protobuf:"bytes,1,opt,name=quote_id,json=quoteId,proto3" json:"quote_id,omitempty" dynamodbav:"quote_id"`
-	// @gotags: dynamodbav:"token"
-	Token string `protobuf:"bytes,2,opt,name=token,proto3" json:"token,omitempty" dynamodbav:"token"`
+	// @gotags: dynamodbav:"quote_id,omitempty"
+	QuoteId string `protobuf:"bytes,1,opt,name=quote_id,json=quoteId,proto3" json:"quote_id,omitempty" dynamodbav:"quote_id,omitempty"`
+	// @gotags: dynamodbav:"token,omitempty"
+	Token string `protobuf:"bytes,2,opt,name=token,proto3" json:"token,omitempty" dynamodbav:"token,omitempty"`
 }
 
 func (x *BookingData) Reset() {
@@ -82,20 +82,20 @@ type BookingResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// @gotags: dynamodbav:"booking_id"
-	BookingId string `protobuf:"bytes,1,opt,name=booking_id,json=bookingId,proto3" json:"booking_id,omitempty" dynamodbav:"booking_id"`
-	// @gotags: dynamodbav:"bol_url"
-	BolUrl string `protobuf:"bytes,2,opt,name=bol_url,json=bolUrl,proto3" json:"bol_url,omitempty" dynamodbav:"bol_url"`
-	// @gotags: dynamodbav:"invoice_url"
-	InvoiceUrl string `protobuf:"bytes,3,opt,name=invoice_url,json=invoiceUrl,proto3" json:"invoice_url,omitempty" dynamodbav:"invoice_url"`
-	// @gotags: dynamodbav:"invoice_due_date"
-	InvoiceDueDate string `protobuf:"bytes,4,opt,name=invoice_due_date,json=invoiceDueDate,proto3" json:"invoice_due_date,omitempty" dynamodbav:"invoice_due_date"`
-	// @gotags: dynamodbav:"pick_up_start"
-	PickUpStart string `protobuf:"bytes,5,opt,name=pick_up_start,json=pickUpStart,proto3" json:"pick_up_start,omitempty" dynamodbav:"pick_up_start"`
-	// @gotags: dynamodbav:"pick_up_end"
-	PickUpEnd string `protobuf:"bytes,6,opt,name=pick_up_end,json=pickUpEnd,proto3" json:"pick_up_end,omitempty" dynamodbav:"pick_up_end"`
-	// @gotags: dynamodbav:"booked_quote"
-	BookedQuote *QuoteRequest `protobuf:"bytes,7,opt,name=booked_quote,json=bookedQuote,proto3" json:"booked_quote,omitempty" dynamodbav:"booked_quote"`
+	// @gotags: dynamodbav:"booking_id,omitempty"
+	BookingId string `protobuf:"bytes,1,opt,name=booking_id,json=bookingId,proto3" json:"booking_id,omitempty" dynamodbav:"booking_id,omitempty"`
+	// @gotags: dynamodbav:"bol_url,omitempty"
+	BolUrl string `protobuf:"bytes,2,opt,name=bol_url,json=bolUrl,proto3" json:"bol_url,omitempty" dynamodbav:"bol_url,omitempty"`
+	// @gotags: dynamodbav:"invoice_url,omitempty"
+	InvoiceUrl string `protobuf:"bytes,3,opt,name=invoice_url,json=invoiceUrl,proto3" json:"invoice_url,omitempty" dynamodbav:"invoice_url,omitempty"`
+	// @gotags: dynamodbav:"invoice_due_date,omitempty"
+	InvoiceDueDate string `protobuf:"bytes,4,opt,name=invoice_due_date,json=invoiceDueDate,proto3" json:"invoice_due_date,omitempty" dynamodbav:"invoice_due_date,omitempty"`
+	// @gotags: dynamodbav:"pick_up_start,omitempty"
+	PickUpStart string `protobuf:"bytes,5,opt,name=pick_up_start,json=pickUpStart,proto3" json:"pick_up_start,omitempty" dynamodbav:"pick_up_start,omitempty"`
+	// @gotags: dynamodbav:"pick_up_end,omitempty"
+	PickUpEnd string `protobuf:"bytes,6,opt,name=pick_up_end,json=pickUpEnd,proto3" json:"pick_up_end,omitempty" dynamodbav:"pick_up_end,omitempty"`
+	// @gotags: dynamodbav:"booked_quote,omitempty"
+	BookedQuote *QuoteRequest `protobuf:"bytes,7,opt,name=booked_quote,json=bookedQuote,proto3" json:"booked_quote,omitempty" dynamodbav:"booked_quote,omitempty"`
 }
 
 func (x *BookingResponse) Reset() {
@@ -184,8 +184,8 @@ type ListOfBooking struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// @gotags: dynamodbav:"booking_response"
-	BookingHistory []*BookingResponse `protobuf:"bytes,1,rep,name=booking_history,json=bookingHistory,proto3" json:"booking_history,omitempty" dynamodbav:"booking_response"`
+	// @gotags: dynamodbav:"booking_response,omitempty"
+	BookingHistory []*BookingResponse `protobuf:"bytes,1,rep,name=booking_history,json=bookingHistory,proto3" json:"booking_history,omitempty" dynamodbav:"booking_response,omitempty"`
 }
 
 func (x *ListOfBooking) Reset() {
@@ -232,14 +232,14 @@ type FetchBookingsRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// @gotags: dynamodbav:"booking_id"
-	BookingId []string `protobuf:"bytes,1,rep,name=booking_id,json=bookingId,proto3" json:"booking_id,omitempty" dynamodbav:"booking_id"`
-	// @gotags: dynamodbav:"pk"
-	Pk string `protobuf:"bytes,2,opt,name=pk,proto3" json:"pk,omitempty" dynamodbav:"pk"`
-	// @gotags: dynamodbav:"start_from"
-	StartFrom string `protobuf:"bytes,3,opt,name=start_from,json=startFrom,proto3" json:"start_from,omitempty" dynamodbav:"start_from"`
-	// @gotags: dynamodbav:"end_on"
-	EndOn string `protobuf:"bytes,4,opt,name=end_on,json=endOn,proto3" json:"end_on,omitempty" dynamodbav:"end_on"`
+	// @gotags: dynamodbav:"booking_id,omitempty"
+	BookingId []string `protobuf:"bytes,1,rep,name=booking_id,json=bookingId,proto3" json:"booking_id,omitempty" dynamodbav:"booking_id,omitempty"`
+	// @gotags: dynamodbav:"pk,omitempty"
+	Pk string `protobuf:"bytes,2,opt,name=pk,proto3" json:"pk,omitempty" dynamodbav:"pk,omitempty"`
+	// @gotags: dynamodbav:"start_from,omitempty"
+	StartFrom string `protobuf:"bytes,3,opt,name=start_from,json=startFrom,proto3" json:"start_from,omitempty" dynamodbav:"start_from,omitempty"`
+	// @gotags: dynamodbav:"end_on,omitempty"
+	EndOn string `protobuf:"bytes,4,opt,name=end_on,json=endOn,proto3" json:"end_on,omitempty" dynamodbav:"end_on,omitempty"`
 }
 
 func (x *FetchBookingsRequest) Reset() {

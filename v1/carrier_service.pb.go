@@ -26,8 +26,8 @@ type CarrierServicePing struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// @gotags: dynamodbav:"hi"
-	Hi *wrapperspb.StringValue `protobuf:"bytes,1,opt,name=hi,proto3" json:"hi,omitempty" dynamodbav:"hi"`
+	// @gotags: dynamodbav:"hi,omitempty"
+	Hi *wrapperspb.StringValue `protobuf:"bytes,1,opt,name=hi,proto3" json:"hi,omitempty" dynamodbav:"hi,omitempty"`
 }
 
 func (x *CarrierServicePing) Reset() {
@@ -74,8 +74,8 @@ type BusinessId struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// @gotags: dynamodbav:"business_id"
-	BusinessId *wrapperspb.StringValue `protobuf:"bytes,1,opt,name=business_id,json=businessId,proto3" json:"business_id,omitempty" dynamodbav:"business_id"`
+	// @gotags: dynamodbav:"business_id,omitempty"
+	BusinessId *wrapperspb.StringValue `protobuf:"bytes,1,opt,name=business_id,json=businessId,proto3" json:"business_id,omitempty" dynamodbav:"business_id,omitempty"`
 }
 
 func (x *BusinessId) Reset() {

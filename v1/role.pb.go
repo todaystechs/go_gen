@@ -106,10 +106,10 @@ type UpdateUserRoleData struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// @gotags: dynamodbav:"token"
-	Token string `protobuf:"bytes,1,opt,name=token,proto3" json:"token,omitempty" dynamodbav:"token"`
-	// @gotags: dynamodbav:"new_role"
-	NewRole []Role `protobuf:"varint,2,rep,packed,name=new_role,json=newRole,proto3,enum=user.Role" json:"new_role,omitempty" dynamodbav:"new_role"`
+	// @gotags: dynamodbav:"token,omitempty"
+	Token string `protobuf:"bytes,1,opt,name=token,proto3" json:"token,omitempty" dynamodbav:"token,omitempty"`
+	// @gotags: dynamodbav:"new_role,omitempty"
+	NewRole []Role `protobuf:"varint,2,rep,packed,name=new_role,json=newRole,proto3,enum=user.Role" json:"new_role,omitempty" dynamodbav:"new_role,omitempty"`
 }
 
 func (x *UpdateUserRoleData) Reset() {

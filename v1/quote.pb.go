@@ -25,22 +25,22 @@ type QuoteRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// @gotags: dynamodbav:"quote_id"
-	QuoteId string `protobuf:"bytes,1,opt,name=quote_id,json=quoteId,proto3" json:"quote_id,omitempty" dynamodbav:"quote_id"`
-	// @gotags: dynamodbav:"user_email"
-	UserEmail string `protobuf:"bytes,2,opt,name=user_email,json=userEmail,proto3" json:"user_email,omitempty" dynamodbav:"user_email"`
-	// @gotags: dynamodbav:"business_id"
-	BuisnessId string `protobuf:"bytes,3,opt,name=buisness_id,json=buisnessId,proto3" json:"buisness_id,omitempty" dynamodbav:"business_id"`
-	// @gotags: dynamodbav:"mode"
-	Mode string `protobuf:"bytes,4,opt,name=mode,proto3" json:"mode,omitempty" dynamodbav:"mode"`
-	// @gotags: dynamodbav:"liable_party_id"
-	LiablePartyId string `protobuf:"bytes,5,opt,name=liable_party_id,json=liablePartyId,proto3" json:"liable_party_id,omitempty" dynamodbav:"liable_party_id"`
-	// @gotags: dynamodbav:"shipping_detail"
-	ShippingDetail *ShippingDetail `protobuf:"bytes,6,opt,name=shipping_detail,json=shippingDetail,proto3" json:"shipping_detail,omitempty" dynamodbav:"shipping_detail"`
-	// @gotags: dynamodbav:"additional_services"
-	AdditionalServices []AdditionalService `protobuf:"varint,7,rep,packed,name=additional_services,json=additionalServices,proto3,enum=user.AdditionalService" json:"additional_services,omitempty" dynamodbav:"additional_services"`
-	// @gotags: dynamodbav:"commodities"
-	Commodities []*Commodity `protobuf:"bytes,8,rep,name=commodities,proto3" json:"commodities,omitempty" dynamodbav:"commodities"`
+	// @gotags: dynamodbav:"quote_id,omitempty"
+	QuoteId string `protobuf:"bytes,1,opt,name=quote_id,json=quoteId,proto3" json:"quote_id,omitempty" dynamodbav:"quote_id,omitempty"`
+	// @gotags: dynamodbav:"user_email,omitempty"
+	UserEmail string `protobuf:"bytes,2,opt,name=user_email,json=userEmail,proto3" json:"user_email,omitempty" dynamodbav:"user_email,omitempty"`
+	// @gotags: dynamodbav:"business_id,omitempty"
+	BuisnessId string `protobuf:"bytes,3,opt,name=buisness_id,json=buisnessId,proto3" json:"buisness_id,omitempty" dynamodbav:"business_id,omitempty"`
+	// @gotags: dynamodbav:"mode,omitempty"
+	Mode string `protobuf:"bytes,4,opt,name=mode,proto3" json:"mode,omitempty" dynamodbav:"mode,omitempty"`
+	// @gotags: dynamodbav:"liable_party_id,omitempty"
+	LiablePartyId string `protobuf:"bytes,5,opt,name=liable_party_id,json=liablePartyId,proto3" json:"liable_party_id,omitempty" dynamodbav:"liable_party_id,omitempty"`
+	// @gotags: dynamodbav:"shipping_detail,omitempty"
+	ShippingDetail *ShippingDetail `protobuf:"bytes,6,opt,name=shipping_detail,json=shippingDetail,proto3" json:"shipping_detail,omitempty" dynamodbav:"shipping_detail,omitempty"`
+	// @gotags: dynamodbav:"additional_services,omitempty"
+	AdditionalServices []AdditionalService `protobuf:"varint,7,rep,packed,name=additional_services,json=additionalServices,proto3,enum=user.AdditionalService" json:"additional_services,omitempty" dynamodbav:"additional_services,omitempty"`
+	// @gotags: dynamodbav:"commodities,omitempty"
+	Commodities []*Commodity `protobuf:"bytes,8,rep,name=commodities,proto3" json:"commodities,omitempty" dynamodbav:"commodities,omitempty"`
 }
 
 func (x *QuoteRequest) Reset() {
@@ -136,18 +136,18 @@ type QuoteResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// @gotags: dynamodbav:"quote_id"
-	QuoteId string `protobuf:"bytes,1,opt,name=quoteId,proto3" json:"quoteId,omitempty" dynamodbav:"quote_id"`
-	// @gotags: dynamodbav:"sort_id"
-	Sk string `protobuf:"bytes,2,opt,name=sk,proto3" json:"sk,omitempty" dynamodbav:"sort_id"`
-	// @gotags: dynamodbav:"carrier"
-	Carrier *Carrier `protobuf:"bytes,3,opt,name=carrier,proto3" json:"carrier,omitempty" dynamodbav:"carrier"`
-	// @gotags: dynamodbav:"amount"
-	Amount *Amount `protobuf:"bytes,4,opt,name=amount,proto3" json:"amount,omitempty" dynamodbav:"amount"`
-	// @gotags: dynamodbav:"transit_time"
-	TransitTime string `protobuf:"bytes,5,opt,name=transit_time,json=transitTime,proto3" json:"transit_time,omitempty" dynamodbav:"transit_time"`
-	// @gotags: dynamodbav:"guranteed"
-	Guranteed bool `protobuf:"varint,6,opt,name=guranteed,proto3" json:"guranteed,omitempty" dynamodbav:"guranteed"`
+	// @gotags: dynamodbav:"quote_id,omitempty"
+	QuoteId string `protobuf:"bytes,1,opt,name=quoteId,proto3" json:"quoteId,omitempty" dynamodbav:"quote_id,omitempty"`
+	// @gotags: dynamodbav:"sort_id,omitempty"
+	Sk string `protobuf:"bytes,2,opt,name=sk,proto3" json:"sk,omitempty" dynamodbav:"sort_id,omitempty"`
+	// @gotags: dynamodbav:"carrier,omitempty"
+	Carrier *Carrier `protobuf:"bytes,3,opt,name=carrier,proto3" json:"carrier,omitempty" dynamodbav:"carrier,omitempty"`
+	// @gotags: dynamodbav:"amount,omitempty"
+	Amount *Amount `protobuf:"bytes,4,opt,name=amount,proto3" json:"amount,omitempty" dynamodbav:"amount,omitempty"`
+	// @gotags: dynamodbav:"transit_time,omitempty"
+	TransitTime string `protobuf:"bytes,5,opt,name=transit_time,json=transitTime,proto3" json:"transit_time,omitempty" dynamodbav:"transit_time,omitempty"`
+	// @gotags: dynamodbav:"guranteed,omitempty"
+	Guranteed bool `protobuf:"varint,6,opt,name=guranteed,proto3" json:"guranteed,omitempty" dynamodbav:"guranteed,omitempty"`
 }
 
 func (x *QuoteResponse) Reset() {
@@ -229,10 +229,10 @@ type ListOfQuoteResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// @gotags: dynamodbav:"quote"
-	Quote *QuoteRequest `protobuf:"bytes,1,opt,name=quote,proto3" json:"quote,omitempty" dynamodbav:"quote"`
-	// @gotags: dynamodbav:"quotes"
-	Quotes []*QuoteResponse `protobuf:"bytes,2,rep,name=quotes,proto3" json:"quotes,omitempty" dynamodbav:"quotes"`
+	// @gotags: dynamodbav:"quote,omitempty"
+	Quote *QuoteRequest `protobuf:"bytes,1,opt,name=quote,proto3" json:"quote,omitempty" dynamodbav:"quote,omitempty"`
+	// @gotags: dynamodbav:"quotes,omitempty"
+	Quotes []*QuoteResponse `protobuf:"bytes,2,rep,name=quotes,proto3" json:"quotes,omitempty" dynamodbav:"quotes,omitempty"`
 }
 
 func (x *ListOfQuoteResponse) Reset() {
@@ -286,12 +286,12 @@ type FetchQuotesRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// @gotags: dynamodbav:"start_from"
-	StartFrom string `protobuf:"bytes,1,opt,name=start_from,json=startFrom,proto3" json:"start_from,omitempty" dynamodbav:"start_from"`
-	// @gotags: dynamodbav:"end_on"
-	EndOn string `protobuf:"bytes,2,opt,name=end_on,json=endOn,proto3" json:"end_on,omitempty" dynamodbav:"end_on"`
-	// @gotags: dynamodbav:"pk"
-	Pk string `protobuf:"bytes,3,opt,name=pk,proto3" json:"pk,omitempty" dynamodbav:"pk"`
+	// @gotags: dynamodbav:"start_from,omitempty"
+	StartFrom string `protobuf:"bytes,1,opt,name=start_from,json=startFrom,proto3" json:"start_from,omitempty" dynamodbav:"start_from,omitempty"`
+	// @gotags: dynamodbav:"end_on,omitempty"
+	EndOn string `protobuf:"bytes,2,opt,name=end_on,json=endOn,proto3" json:"end_on,omitempty" dynamodbav:"end_on,omitempty"`
+	// @gotags: dynamodbav:"pk,omitempty"
+	Pk string `protobuf:"bytes,3,opt,name=pk,proto3" json:"pk,omitempty" dynamodbav:"pk,omitempty"`
 }
 
 func (x *FetchQuotesRequest) Reset() {
@@ -352,10 +352,10 @@ type QuotesByBusinessIdRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// @gotags: dynamodbav:"business_id"
-	BusinessId string `protobuf:"bytes,1,opt,name=business_id,json=businessId,proto3" json:"business_id,omitempty" dynamodbav:"business_id"`
-	// @gotags: dynamodbav:"token
-	Token string `protobuf:"bytes,2,opt,name=token,proto3" json:"token,omitempty"`
+	// @gotags: dynamodbav:"business_id,omitempty"
+	BusinessId string `protobuf:"bytes,1,opt,name=business_id,json=businessId,proto3" json:"business_id,omitempty" dynamodbav:"business_id,omitempty"`
+	// @gotags: dynamodbav:"token,omitempty"
+	Token string `protobuf:"bytes,2,opt,name=token,proto3" json:"token,omitempty" dynamodbav:"token,omitempty"`
 }
 
 func (x *QuotesByBusinessIdRequest) Reset() {
@@ -409,8 +409,8 @@ type Quotes struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// @gotags: dynamodbav:"business_id"
-	Quotes []*QuoteRequest `protobuf:"bytes,1,rep,name=quotes,proto3" json:"quotes,omitempty" dynamodbav:"business_id"`
+	// @gotags: dynamodbav:"business_id,omitempty"
+	Quotes []*QuoteRequest `protobuf:"bytes,1,rep,name=quotes,proto3" json:"quotes,omitempty" dynamodbav:"business_id,omitempty"`
 }
 
 func (x *Quotes) Reset() {

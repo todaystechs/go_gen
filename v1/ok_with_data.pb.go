@@ -26,14 +26,14 @@ type OkWithData struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// @gotags: dynamodbav:"success"
-	Success bool `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty" dynamodbav:"success"`
-	// @gotags: dynamodbav:"status_code"
-	StatusCode int32 `protobuf:"varint,2,opt,name=status_code,json=statusCode,proto3" json:"status_code,omitempty" dynamodbav:"status_code"`
-	// @gotags: dynamodbav:"message"
-	Message string `protobuf:"bytes,3,opt,name=message,proto3" json:"message,omitempty" dynamodbav:"message"`
-	// @gotags: dynamodbav:"data"
-	Data *Any `protobuf:"bytes,4,opt,name=data,proto3" json:"data,omitempty" dynamodbav:"data"`
+	// @gotags: dynamodbav:"success,omitempty"
+	Success bool `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty" dynamodbav:"success,omitempty"`
+	// @gotags: dynamodbav:"status_code,omitempty"
+	StatusCode int32 `protobuf:"varint,2,opt,name=status_code,json=statusCode,proto3" json:"status_code,omitempty" dynamodbav:"status_code,omitempty"`
+	// @gotags: dynamodbav:"message,omitempty"
+	Message string `protobuf:"bytes,3,opt,name=message,proto3" json:"message,omitempty" dynamodbav:"message,omitempty"`
+	// @gotags: dynamodbav:"data,omitempty"
+	Data *Any `protobuf:"bytes,4,opt,name=data,proto3" json:"data,omitempty" dynamodbav:"data,omitempty"`
 }
 
 func (x *OkWithData) Reset() {
@@ -129,11 +129,11 @@ type Any struct {
 	// Schemes other than `http`, `https` (or the empty scheme) might be
 	// used with implementation specific semantics.
 	//
-	// @gotags: dynamodbav:"type_url"
-	TypeUrl string `protobuf:"bytes,1,opt,name=type_url,json=typeUrl,proto3" json:"type_url,omitempty" dynamodbav:"type_url"`
+	// @gotags: dynamodbav:"type_url,omitempty"
+	TypeUrl string `protobuf:"bytes,1,opt,name=type_url,json=typeUrl,proto3" json:"type_url,omitempty" dynamodbav:"type_url,omitempty"`
 	// Must be a valid serialized protocol buffer of the above specified type.
-	// @gotags: dynamodbav:"value"
-	Value []byte `protobuf:"bytes,2,opt,name=value,proto3" json:"value,omitempty" dynamodbav:"value"`
+	// @gotags: dynamodbav:"value,omitempty"
+	Value []byte `protobuf:"bytes,2,opt,name=value,proto3" json:"value,omitempty" dynamodbav:"value,omitempty"`
 }
 
 func (x *Any) Reset() {

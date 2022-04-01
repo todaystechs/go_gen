@@ -26,8 +26,8 @@ type UserServicePingData struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// @gotags: dynamodbav:"hi"
-	Hi string `protobuf:"bytes,1,opt,name=hi,proto3" json:"hi,omitempty" dynamodbav:"hi"`
+	// @gotags: dynamodbav:"hi,omitempty"
+	Hi string `protobuf:"bytes,1,opt,name=hi,proto3" json:"hi,omitempty" dynamodbav:"hi,omitempty"`
 }
 
 func (x *UserServicePingData) Reset() {
