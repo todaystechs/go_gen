@@ -61,6 +61,8 @@ func (m *AddStaffData) validate(all bool) error {
 
 	// no validation rules for NewStaffEmail
 
+	// no validation rules for Password
+
 	if len(errors) > 0 {
 		return AddStaffDataMultiError(errors)
 	}
