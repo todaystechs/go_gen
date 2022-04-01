@@ -347,6 +347,111 @@ func (x *FetchQuotesRequest) GetPk() string {
 	return ""
 }
 
+type QuotesByBusinessIdRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// @gotags: dynamodbav:"business_id"
+	BusinessId string `protobuf:"bytes,1,opt,name=business_id,json=businessId,proto3" json:"business_id,omitempty" dynamodbav:"business_id"`
+	// @gotags: dynamodbav:"token
+	Token string `protobuf:"bytes,2,opt,name=token,proto3" json:"token,omitempty"`
+}
+
+func (x *QuotesByBusinessIdRequest) Reset() {
+	*x = QuotesByBusinessIdRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_quote_proto_msgTypes[4]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *QuotesByBusinessIdRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*QuotesByBusinessIdRequest) ProtoMessage() {}
+
+func (x *QuotesByBusinessIdRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_quote_proto_msgTypes[4]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use QuotesByBusinessIdRequest.ProtoReflect.Descriptor instead.
+func (*QuotesByBusinessIdRequest) Descriptor() ([]byte, []int) {
+	return file_quote_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *QuotesByBusinessIdRequest) GetBusinessId() string {
+	if x != nil {
+		return x.BusinessId
+	}
+	return ""
+}
+
+func (x *QuotesByBusinessIdRequest) GetToken() string {
+	if x != nil {
+		return x.Token
+	}
+	return ""
+}
+
+type Quotes struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// @gotags: dynamodbav:"business_id"
+	Quotes []*QuoteRequest `protobuf:"bytes,1,rep,name=quotes,proto3" json:"quotes,omitempty" dynamodbav:"business_id"`
+}
+
+func (x *Quotes) Reset() {
+	*x = Quotes{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_quote_proto_msgTypes[5]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *Quotes) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Quotes) ProtoMessage() {}
+
+func (x *Quotes) ProtoReflect() protoreflect.Message {
+	mi := &file_quote_proto_msgTypes[5]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Quotes.ProtoReflect.Descriptor instead.
+func (*Quotes) Descriptor() ([]byte, []int) {
+	return file_quote_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *Quotes) GetQuotes() []*QuoteRequest {
+	if x != nil {
+		return x.Quotes
+	}
+	return nil
+}
+
 var File_quote_proto protoreflect.FileDescriptor
 
 var file_quote_proto_rawDesc = []byte{
@@ -404,14 +509,23 @@ var file_quote_proto_rawDesc = []byte{
 	0x66, 0x72, 0x6f, 0x6d, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x09, 0x73, 0x74, 0x61, 0x72,
 	0x74, 0x46, 0x72, 0x6f, 0x6d, 0x12, 0x15, 0x0a, 0x06, 0x65, 0x6e, 0x64, 0x5f, 0x6f, 0x6e, 0x18,
 	0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x65, 0x6e, 0x64, 0x4f, 0x6e, 0x12, 0x0e, 0x0a, 0x02,
-	0x70, 0x6b, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x02, 0x70, 0x6b, 0x42, 0x68, 0x0a, 0x08,
-	0x63, 0x6f, 0x6d, 0x2e, 0x75, 0x73, 0x65, 0x72, 0x42, 0x0a, 0x51, 0x75, 0x6f, 0x74, 0x65, 0x50,
-	0x72, 0x6f, 0x74, 0x6f, 0x50, 0x01, 0x5a, 0x20, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x63,
-	0x6f, 0x6d, 0x2f, 0x74, 0x6f, 0x64, 0x61, 0x79, 0x73, 0x74, 0x65, 0x63, 0x68, 0x73, 0x2f, 0x67,
-	0x6f, 0x5f, 0x67, 0x65, 0x6e, 0x2f, 0x76, 0x31, 0xa2, 0x02, 0x03, 0x55, 0x58, 0x58, 0xaa, 0x02,
-	0x04, 0x55, 0x73, 0x65, 0x72, 0xca, 0x02, 0x04, 0x55, 0x73, 0x65, 0x72, 0xe2, 0x02, 0x10, 0x55,
-	0x73, 0x65, 0x72, 0x5c, 0x47, 0x50, 0x42, 0x4d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0xea,
-	0x02, 0x04, 0x55, 0x73, 0x65, 0x72, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x70, 0x6b, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x02, 0x70, 0x6b, 0x22, 0x52, 0x0a, 0x19,
+	0x51, 0x75, 0x6f, 0x74, 0x65, 0x73, 0x42, 0x79, 0x42, 0x75, 0x73, 0x69, 0x6e, 0x65, 0x73, 0x73,
+	0x49, 0x64, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x1f, 0x0a, 0x0b, 0x62, 0x75, 0x73,
+	0x69, 0x6e, 0x65, 0x73, 0x73, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0a,
+	0x62, 0x75, 0x73, 0x69, 0x6e, 0x65, 0x73, 0x73, 0x49, 0x64, 0x12, 0x14, 0x0a, 0x05, 0x74, 0x6f,
+	0x6b, 0x65, 0x6e, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x74, 0x6f, 0x6b, 0x65, 0x6e,
+	0x22, 0x34, 0x0a, 0x06, 0x51, 0x75, 0x6f, 0x74, 0x65, 0x73, 0x12, 0x2a, 0x0a, 0x06, 0x71, 0x75,
+	0x6f, 0x74, 0x65, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x12, 0x2e, 0x75, 0x73, 0x65,
+	0x72, 0x2e, 0x51, 0x75, 0x6f, 0x74, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x52, 0x06,
+	0x71, 0x75, 0x6f, 0x74, 0x65, 0x73, 0x42, 0x68, 0x0a, 0x08, 0x63, 0x6f, 0x6d, 0x2e, 0x75, 0x73,
+	0x65, 0x72, 0x42, 0x0a, 0x51, 0x75, 0x6f, 0x74, 0x65, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x50, 0x01,
+	0x5a, 0x20, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x74, 0x6f, 0x64,
+	0x61, 0x79, 0x73, 0x74, 0x65, 0x63, 0x68, 0x73, 0x2f, 0x67, 0x6f, 0x5f, 0x67, 0x65, 0x6e, 0x2f,
+	0x76, 0x31, 0xa2, 0x02, 0x03, 0x55, 0x58, 0x58, 0xaa, 0x02, 0x04, 0x55, 0x73, 0x65, 0x72, 0xca,
+	0x02, 0x04, 0x55, 0x73, 0x65, 0x72, 0xe2, 0x02, 0x10, 0x55, 0x73, 0x65, 0x72, 0x5c, 0x47, 0x50,
+	0x42, 0x4d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0xea, 0x02, 0x04, 0x55, 0x73, 0x65, 0x72,
+	0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -426,31 +540,34 @@ func file_quote_proto_rawDescGZIP() []byte {
 	return file_quote_proto_rawDescData
 }
 
-var file_quote_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
+var file_quote_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
 var file_quote_proto_goTypes = []interface{}{
-	(*QuoteRequest)(nil),        // 0: user.QuoteRequest
-	(*QuoteResponse)(nil),       // 1: user.QuoteResponse
-	(*ListOfQuoteResponse)(nil), // 2: user.ListOfQuoteResponse
-	(*FetchQuotesRequest)(nil),  // 3: user.FetchQuotesRequest
-	(*ShippingDetail)(nil),      // 4: user.ShippingDetail
-	(AdditionalService)(0),      // 5: user.AdditionalService
-	(*Commodity)(nil),           // 6: user.Commodity
-	(*Carrier)(nil),             // 7: user.Carrier
-	(*Amount)(nil),              // 8: user.Amount
+	(*QuoteRequest)(nil),              // 0: user.QuoteRequest
+	(*QuoteResponse)(nil),             // 1: user.QuoteResponse
+	(*ListOfQuoteResponse)(nil),       // 2: user.ListOfQuoteResponse
+	(*FetchQuotesRequest)(nil),        // 3: user.FetchQuotesRequest
+	(*QuotesByBusinessIdRequest)(nil), // 4: user.QuotesByBusinessIdRequest
+	(*Quotes)(nil),                    // 5: user.Quotes
+	(*ShippingDetail)(nil),            // 6: user.ShippingDetail
+	(AdditionalService)(0),            // 7: user.AdditionalService
+	(*Commodity)(nil),                 // 8: user.Commodity
+	(*Carrier)(nil),                   // 9: user.Carrier
+	(*Amount)(nil),                    // 10: user.Amount
 }
 var file_quote_proto_depIdxs = []int32{
-	4, // 0: user.QuoteRequest.shipping_detail:type_name -> user.ShippingDetail
-	5, // 1: user.QuoteRequest.additional_services:type_name -> user.AdditionalService
-	6, // 2: user.QuoteRequest.commodities:type_name -> user.Commodity
-	7, // 3: user.QuoteResponse.carrier:type_name -> user.Carrier
-	8, // 4: user.QuoteResponse.amount:type_name -> user.Amount
-	0, // 5: user.ListOfQuoteResponse.quote:type_name -> user.QuoteRequest
-	1, // 6: user.ListOfQuoteResponse.quotes:type_name -> user.QuoteResponse
-	7, // [7:7] is the sub-list for method output_type
-	7, // [7:7] is the sub-list for method input_type
-	7, // [7:7] is the sub-list for extension type_name
-	7, // [7:7] is the sub-list for extension extendee
-	0, // [0:7] is the sub-list for field type_name
+	6,  // 0: user.QuoteRequest.shipping_detail:type_name -> user.ShippingDetail
+	7,  // 1: user.QuoteRequest.additional_services:type_name -> user.AdditionalService
+	8,  // 2: user.QuoteRequest.commodities:type_name -> user.Commodity
+	9,  // 3: user.QuoteResponse.carrier:type_name -> user.Carrier
+	10, // 4: user.QuoteResponse.amount:type_name -> user.Amount
+	0,  // 5: user.ListOfQuoteResponse.quote:type_name -> user.QuoteRequest
+	1,  // 6: user.ListOfQuoteResponse.quotes:type_name -> user.QuoteResponse
+	0,  // 7: user.Quotes.quotes:type_name -> user.QuoteRequest
+	8,  // [8:8] is the sub-list for method output_type
+	8,  // [8:8] is the sub-list for method input_type
+	8,  // [8:8] is the sub-list for extension type_name
+	8,  // [8:8] is the sub-list for extension extendee
+	0,  // [0:8] is the sub-list for field type_name
 }
 
 func init() { file_quote_proto_init() }
@@ -512,6 +629,30 @@ func file_quote_proto_init() {
 				return nil
 			}
 		}
+		file_quote_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*QuotesByBusinessIdRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_quote_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*Quotes); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
@@ -519,7 +660,7 @@ func file_quote_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_quote_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   4,
+			NumMessages:   6,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

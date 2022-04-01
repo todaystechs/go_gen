@@ -22,6 +22,9 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type CarrierServiceClient interface {
+	// get business
+	GetBusinessById(ctx context.Context, in *BusinessRequest, opts ...grpc.CallOption) (*DynamoBusiness, error)
+	GetAllBusinesses(ctx context.Context, in *AllBusinessRequest, opts ...grpc.CallOption) (*OkWithData, error)
 	// location
 	GetLocations(ctx context.Context, in *BusinessId, opts ...grpc.CallOption) (*ListsOfLocation, error)
 	CreateLocation(ctx context.Context, in *Location, opts ...grpc.CallOption) (*Location, error)
@@ -46,6 +49,24 @@ type carrierServiceClient struct {
 
 func NewCarrierServiceClient(cc grpc.ClientConnInterface) CarrierServiceClient {
 	return &carrierServiceClient{cc}
+}
+
+func (c *carrierServiceClient) GetBusinessById(ctx context.Context, in *BusinessRequest, opts ...grpc.CallOption) (*DynamoBusiness, error) {
+	out := new(DynamoBusiness)
+	err := c.cc.Invoke(ctx, "/user.CarrierService/GetBusinessById", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *carrierServiceClient) GetAllBusinesses(ctx context.Context, in *AllBusinessRequest, opts ...grpc.CallOption) (*OkWithData, error) {
+	out := new(OkWithData)
+	err := c.cc.Invoke(ctx, "/user.CarrierService/GetAllBusinesses", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
 }
 
 func (c *carrierServiceClient) GetLocations(ctx context.Context, in *BusinessId, opts ...grpc.CallOption) (*ListsOfLocation, error) {
@@ -160,6 +181,9 @@ func (c *carrierServiceClient) GetBookingById(ctx context.Context, in *FetchBook
 // All implementations should embed UnimplementedCarrierServiceServer
 // for forward compatibility
 type CarrierServiceServer interface {
+	// get business
+	GetBusinessById(context.Context, *BusinessRequest) (*DynamoBusiness, error)
+	GetAllBusinesses(context.Context, *AllBusinessRequest) (*OkWithData, error)
 	// location
 	GetLocations(context.Context, *BusinessId) (*ListsOfLocation, error)
 	CreateLocation(context.Context, *Location) (*Location, error)
@@ -182,6 +206,12 @@ type CarrierServiceServer interface {
 type UnimplementedCarrierServiceServer struct {
 }
 
+func (UnimplementedCarrierServiceServer) GetBusinessById(context.Context, *BusinessRequest) (*DynamoBusiness, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetBusinessById not implemented")
+}
+func (UnimplementedCarrierServiceServer) GetAllBusinesses(context.Context, *AllBusinessRequest) (*OkWithData, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetAllBusinesses not implemented")
+}
 func (UnimplementedCarrierServiceServer) GetLocations(context.Context, *BusinessId) (*ListsOfLocation, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetLocations not implemented")
 }
@@ -228,6 +258,42 @@ type UnsafeCarrierServiceServer interface {
 
 func RegisterCarrierServiceServer(s grpc.ServiceRegistrar, srv CarrierServiceServer) {
 	s.RegisterService(&CarrierService_ServiceDesc, srv)
+}
+
+func _CarrierService_GetBusinessById_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(BusinessRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CarrierServiceServer).GetBusinessById(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/user.CarrierService/GetBusinessById",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CarrierServiceServer).GetBusinessById(ctx, req.(*BusinessRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _CarrierService_GetAllBusinesses_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AllBusinessRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CarrierServiceServer).GetAllBusinesses(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/user.CarrierService/GetAllBusinesses",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CarrierServiceServer).GetAllBusinesses(ctx, req.(*AllBusinessRequest))
+	}
+	return interceptor(ctx, in, info, handler)
 }
 
 func _CarrierService_GetLocations_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -453,6 +519,14 @@ var CarrierService_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "user.CarrierService",
 	HandlerType: (*CarrierServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "GetBusinessById",
+			Handler:    _CarrierService_GetBusinessById_Handler,
+		},
+		{
+			MethodName: "GetAllBusinesses",
+			Handler:    _CarrierService_GetAllBusinesses_Handler,
+		},
 		{
 			MethodName: "GetLocations",
 			Handler:    _CarrierService_GetLocations_Handler,

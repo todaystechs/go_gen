@@ -641,3 +641,239 @@ var _ interface {
 	Cause() error
 	ErrorName() string
 } = FetchQuotesRequestValidationError{}
+
+// Validate checks the field values on QuotesByBusinessIdRequest with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the first error encountered is returned, or nil if there are no violations.
+func (m *QuotesByBusinessIdRequest) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on QuotesByBusinessIdRequest with the
+// rules defined in the proto definition for this message. If any rules are
+// violated, the result is a list of violation errors wrapped in
+// QuotesByBusinessIdRequestMultiError, or nil if none found.
+func (m *QuotesByBusinessIdRequest) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *QuotesByBusinessIdRequest) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	// no validation rules for BusinessId
+
+	// no validation rules for Token
+
+	if len(errors) > 0 {
+		return QuotesByBusinessIdRequestMultiError(errors)
+	}
+	return nil
+}
+
+// QuotesByBusinessIdRequestMultiError is an error wrapping multiple validation
+// errors returned by QuotesByBusinessIdRequest.ValidateAll() if the
+// designated constraints aren't met.
+type QuotesByBusinessIdRequestMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m QuotesByBusinessIdRequestMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m QuotesByBusinessIdRequestMultiError) AllErrors() []error { return m }
+
+// QuotesByBusinessIdRequestValidationError is the validation error returned by
+// QuotesByBusinessIdRequest.Validate if the designated constraints aren't met.
+type QuotesByBusinessIdRequestValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e QuotesByBusinessIdRequestValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e QuotesByBusinessIdRequestValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e QuotesByBusinessIdRequestValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e QuotesByBusinessIdRequestValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e QuotesByBusinessIdRequestValidationError) ErrorName() string {
+	return "QuotesByBusinessIdRequestValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e QuotesByBusinessIdRequestValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sQuotesByBusinessIdRequest.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = QuotesByBusinessIdRequestValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = QuotesByBusinessIdRequestValidationError{}
+
+// Validate checks the field values on Quotes with the rules defined in the
+// proto definition for this message. If any rules are violated, the first
+// error encountered is returned, or nil if there are no violations.
+func (m *Quotes) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on Quotes with the rules defined in the
+// proto definition for this message. If any rules are violated, the result is
+// a list of violation errors wrapped in QuotesMultiError, or nil if none found.
+func (m *Quotes) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *Quotes) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	for idx, item := range m.GetQuotes() {
+		_, _ = idx, item
+
+		if all {
+			switch v := interface{}(item).(type) {
+			case interface{ ValidateAll() error }:
+				if err := v.ValidateAll(); err != nil {
+					errors = append(errors, QuotesValidationError{
+						field:  fmt.Sprintf("Quotes[%v]", idx),
+						reason: "embedded message failed validation",
+						cause:  err,
+					})
+				}
+			case interface{ Validate() error }:
+				if err := v.Validate(); err != nil {
+					errors = append(errors, QuotesValidationError{
+						field:  fmt.Sprintf("Quotes[%v]", idx),
+						reason: "embedded message failed validation",
+						cause:  err,
+					})
+				}
+			}
+		} else if v, ok := interface{}(item).(interface{ Validate() error }); ok {
+			if err := v.Validate(); err != nil {
+				return QuotesValidationError{
+					field:  fmt.Sprintf("Quotes[%v]", idx),
+					reason: "embedded message failed validation",
+					cause:  err,
+				}
+			}
+		}
+
+	}
+
+	if len(errors) > 0 {
+		return QuotesMultiError(errors)
+	}
+	return nil
+}
+
+// QuotesMultiError is an error wrapping multiple validation errors returned by
+// Quotes.ValidateAll() if the designated constraints aren't met.
+type QuotesMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m QuotesMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m QuotesMultiError) AllErrors() []error { return m }
+
+// QuotesValidationError is the validation error returned by Quotes.Validate if
+// the designated constraints aren't met.
+type QuotesValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e QuotesValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e QuotesValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e QuotesValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e QuotesValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e QuotesValidationError) ErrorName() string { return "QuotesValidationError" }
+
+// Error satisfies the builtin error interface
+func (e QuotesValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sQuotes.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = QuotesValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = QuotesValidationError{}
