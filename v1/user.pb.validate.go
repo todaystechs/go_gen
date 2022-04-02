@@ -123,6 +123,8 @@ func (m *UserData) validate(all bool) error {
 
 	// no validation rules for EmailVerified
 
+	// no validation rules for ResetPasswordToken
+
 	// no validation rules for Pk
 
 	// no validation rules for Sk
