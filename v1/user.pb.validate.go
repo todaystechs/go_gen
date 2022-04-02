@@ -330,9 +330,9 @@ func (m *DynamoUserEntity) validate(all bool) error {
 
 	// no validation rules for Sk
 
-	// no validation rules for UserIndexPk
+	// no validation rules for UserPk
 
-	// no validation rules for UserIndexSk
+	// no validation rules for UserSk
 
 	{
 		sorted_keys := make([]string, len(m.GetUserEntity()))
