@@ -23,6 +23,7 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+// @gotags: dynamodbav:"user_entity,omitempty"
 type UserData struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
