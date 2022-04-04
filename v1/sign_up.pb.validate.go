@@ -69,6 +69,8 @@ func (m *SignUpData) validate(all bool) error {
 
 	// no validation rules for PhoneNumber
 
+	// no validation rules for CompanyName
+
 	if len(errors) > 0 {
 		return SignUpDataMultiError(errors)
 	}
