@@ -33,7 +33,7 @@ type CarrierServiceClient interface {
 	// health
 	PingCarrierService(ctx context.Context, in *CarrierServicePing, opts ...grpc.CallOption) (*CarrierServicePing, error)
 	// quote
-	GetAllQuotes(ctx context.Context, in *FetchQuotes, opts ...grpc.CallOption) (*QuoteBids, error)
+	GetAllQuotes(ctx context.Context, in *FetchQuotes, opts ...grpc.CallOption) (*QuoteEntities, error)
 	GetNewQuotes(ctx context.Context, in *QuoteEntity, opts ...grpc.CallOption) (*QuoteBids, error)
 	UpdateQuote(ctx context.Context, in *QuoteEntity, opts ...grpc.CallOption) (*QuoteBids, error)
 	DeleteQuote(ctx context.Context, in *DeleteQuoteData, opts ...grpc.CallOption) (*Ok, error)
@@ -114,8 +114,8 @@ func (c *carrierServiceClient) PingCarrierService(ctx context.Context, in *Carri
 	return out, nil
 }
 
-func (c *carrierServiceClient) GetAllQuotes(ctx context.Context, in *FetchQuotes, opts ...grpc.CallOption) (*QuoteBids, error) {
-	out := new(QuoteBids)
+func (c *carrierServiceClient) GetAllQuotes(ctx context.Context, in *FetchQuotes, opts ...grpc.CallOption) (*QuoteEntities, error) {
+	out := new(QuoteEntities)
 	err := c.cc.Invoke(ctx, "/user.CarrierService/GetAllQuotes", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -192,7 +192,7 @@ type CarrierServiceServer interface {
 	// health
 	PingCarrierService(context.Context, *CarrierServicePing) (*CarrierServicePing, error)
 	// quote
-	GetAllQuotes(context.Context, *FetchQuotes) (*QuoteBids, error)
+	GetAllQuotes(context.Context, *FetchQuotes) (*QuoteEntities, error)
 	GetNewQuotes(context.Context, *QuoteEntity) (*QuoteBids, error)
 	UpdateQuote(context.Context, *QuoteEntity) (*QuoteBids, error)
 	DeleteQuote(context.Context, *DeleteQuoteData) (*Ok, error)
@@ -227,7 +227,7 @@ func (UnimplementedCarrierServiceServer) DeleteLocation(context.Context, *Locati
 func (UnimplementedCarrierServiceServer) PingCarrierService(context.Context, *CarrierServicePing) (*CarrierServicePing, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PingCarrierService not implemented")
 }
-func (UnimplementedCarrierServiceServer) GetAllQuotes(context.Context, *FetchQuotes) (*QuoteBids, error) {
+func (UnimplementedCarrierServiceServer) GetAllQuotes(context.Context, *FetchQuotes) (*QuoteEntities, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetAllQuotes not implemented")
 }
 func (UnimplementedCarrierServiceServer) GetNewQuotes(context.Context, *QuoteEntity) (*QuoteBids, error) {
