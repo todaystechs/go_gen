@@ -33,9 +33,9 @@ type CarrierServiceClient interface {
 	// health
 	PingCarrierService(ctx context.Context, in *CarrierServicePing, opts ...grpc.CallOption) (*CarrierServicePing, error)
 	// quote
-	GetAllQuotes(ctx context.Context, in *FetchQuotes, opts ...grpc.CallOption) (*Quotes, error)
-	GetNewQuotes(ctx context.Context, in *QuoteRequest, opts ...grpc.CallOption) (*QuoteBids, error)
-	UpdateQuote(ctx context.Context, in *QuoteRequest, opts ...grpc.CallOption) (*QuoteBids, error)
+	GetAllQuotes(ctx context.Context, in *FetchQuotes, opts ...grpc.CallOption) (*QuoteBids, error)
+	GetNewQuotes(ctx context.Context, in *QuoteEntity, opts ...grpc.CallOption) (*QuoteBids, error)
+	UpdateQuote(ctx context.Context, in *QuoteEntity, opts ...grpc.CallOption) (*QuoteBids, error)
 	DeleteQuote(ctx context.Context, in *DeleteQuoteData, opts ...grpc.CallOption) (*Ok, error)
 	// booking
 	BookQuote(ctx context.Context, in *BookingData, opts ...grpc.CallOption) (*BookingResponse, error)
@@ -114,8 +114,8 @@ func (c *carrierServiceClient) PingCarrierService(ctx context.Context, in *Carri
 	return out, nil
 }
 
-func (c *carrierServiceClient) GetAllQuotes(ctx context.Context, in *FetchQuotes, opts ...grpc.CallOption) (*Quotes, error) {
-	out := new(Quotes)
+func (c *carrierServiceClient) GetAllQuotes(ctx context.Context, in *FetchQuotes, opts ...grpc.CallOption) (*QuoteBids, error) {
+	out := new(QuoteBids)
 	err := c.cc.Invoke(ctx, "/user.CarrierService/GetAllQuotes", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -123,7 +123,7 @@ func (c *carrierServiceClient) GetAllQuotes(ctx context.Context, in *FetchQuotes
 	return out, nil
 }
 
-func (c *carrierServiceClient) GetNewQuotes(ctx context.Context, in *QuoteRequest, opts ...grpc.CallOption) (*QuoteBids, error) {
+func (c *carrierServiceClient) GetNewQuotes(ctx context.Context, in *QuoteEntity, opts ...grpc.CallOption) (*QuoteBids, error) {
 	out := new(QuoteBids)
 	err := c.cc.Invoke(ctx, "/user.CarrierService/GetNewQuotes", in, out, opts...)
 	if err != nil {
@@ -132,7 +132,7 @@ func (c *carrierServiceClient) GetNewQuotes(ctx context.Context, in *QuoteReques
 	return out, nil
 }
 
-func (c *carrierServiceClient) UpdateQuote(ctx context.Context, in *QuoteRequest, opts ...grpc.CallOption) (*QuoteBids, error) {
+func (c *carrierServiceClient) UpdateQuote(ctx context.Context, in *QuoteEntity, opts ...grpc.CallOption) (*QuoteBids, error) {
 	out := new(QuoteBids)
 	err := c.cc.Invoke(ctx, "/user.CarrierService/UpdateQuote", in, out, opts...)
 	if err != nil {
@@ -192,9 +192,9 @@ type CarrierServiceServer interface {
 	// health
 	PingCarrierService(context.Context, *CarrierServicePing) (*CarrierServicePing, error)
 	// quote
-	GetAllQuotes(context.Context, *FetchQuotes) (*Quotes, error)
-	GetNewQuotes(context.Context, *QuoteRequest) (*QuoteBids, error)
-	UpdateQuote(context.Context, *QuoteRequest) (*QuoteBids, error)
+	GetAllQuotes(context.Context, *FetchQuotes) (*QuoteBids, error)
+	GetNewQuotes(context.Context, *QuoteEntity) (*QuoteBids, error)
+	UpdateQuote(context.Context, *QuoteEntity) (*QuoteBids, error)
 	DeleteQuote(context.Context, *DeleteQuoteData) (*Ok, error)
 	// booking
 	BookQuote(context.Context, *BookingData) (*BookingResponse, error)
@@ -227,13 +227,13 @@ func (UnimplementedCarrierServiceServer) DeleteLocation(context.Context, *Locati
 func (UnimplementedCarrierServiceServer) PingCarrierService(context.Context, *CarrierServicePing) (*CarrierServicePing, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PingCarrierService not implemented")
 }
-func (UnimplementedCarrierServiceServer) GetAllQuotes(context.Context, *FetchQuotes) (*Quotes, error) {
+func (UnimplementedCarrierServiceServer) GetAllQuotes(context.Context, *FetchQuotes) (*QuoteBids, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetAllQuotes not implemented")
 }
-func (UnimplementedCarrierServiceServer) GetNewQuotes(context.Context, *QuoteRequest) (*QuoteBids, error) {
+func (UnimplementedCarrierServiceServer) GetNewQuotes(context.Context, *QuoteEntity) (*QuoteBids, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetNewQuotes not implemented")
 }
-func (UnimplementedCarrierServiceServer) UpdateQuote(context.Context, *QuoteRequest) (*QuoteBids, error) {
+func (UnimplementedCarrierServiceServer) UpdateQuote(context.Context, *QuoteEntity) (*QuoteBids, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateQuote not implemented")
 }
 func (UnimplementedCarrierServiceServer) DeleteQuote(context.Context, *DeleteQuoteData) (*Ok, error) {
@@ -405,7 +405,7 @@ func _CarrierService_GetAllQuotes_Handler(srv interface{}, ctx context.Context, 
 }
 
 func _CarrierService_GetNewQuotes_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(QuoteRequest)
+	in := new(QuoteEntity)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -417,13 +417,13 @@ func _CarrierService_GetNewQuotes_Handler(srv interface{}, ctx context.Context, 
 		FullMethod: "/user.CarrierService/GetNewQuotes",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CarrierServiceServer).GetNewQuotes(ctx, req.(*QuoteRequest))
+		return srv.(CarrierServiceServer).GetNewQuotes(ctx, req.(*QuoteEntity))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _CarrierService_UpdateQuote_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(QuoteRequest)
+	in := new(QuoteEntity)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -435,7 +435,7 @@ func _CarrierService_UpdateQuote_Handler(srv interface{}, ctx context.Context, d
 		FullMethod: "/user.CarrierService/UpdateQuote",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CarrierServiceServer).UpdateQuote(ctx, req.(*QuoteRequest))
+		return srv.(CarrierServiceServer).UpdateQuote(ctx, req.(*QuoteEntity))
 	}
 	return interceptor(ctx, in, info, handler)
 }
