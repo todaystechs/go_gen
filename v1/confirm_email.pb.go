@@ -21,9 +21,6 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-// ClientId:         &data.ClientId,
-// Username:         &data.UserName,
-// ConfirmationCode: &data.ConfirmationCode,
 type ConfirmEmailData struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache

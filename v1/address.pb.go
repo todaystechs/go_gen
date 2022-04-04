@@ -20,26 +20,6 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-// type Address struct {
-// 	StreetNumber                string `dynamodbav:"street_number" json:"street_number"`
-// 	StreetName                  string `dynamodbav:"street_name" json:"street_name"`
-// 	Municipality                string `dynamodbav:"municipality" json:"municipality"`
-// 	CountrySecondarySubdivision string `dynamodbav:"country_secondary_subdivision"  json:"country_secondary_subdivision"`
-// 	CountrySubdivision          string `dynamodbav:"country_subdivision" json:"country_subdivision"`
-// 	CountrySubdivisionName      string `dynamodbav:"country_subdivision_name" json:"country_subdivision_name"`
-// 	PostalCode                  string `dynamodbav:"postal_code" json:"postal_code"`
-// 	State                       string `dynamodbav:"state" json:"state"`
-// 	ExtendedPostalCode          string `dynamodbav:"extended_postal_code" json:"extended_postal_code"`
-// 	CountryCode                 string `dynamodbav:"country_code" json:"country_code"`
-// 	Country                     string `dynamodbav:"country" json:"country"`
-// 	CountryCodeISO3             string `dynamodbav:"country_codeISO3" json:"country_codeISO3"`
-// 	FreeformAddress             string `dynamodbav:"freeform_address" json:"freeform_address"`
-// 	LocalName                   string `dynamodbav:"local_name" json:"local_name"`
-// 	ID                          string `dynamodbav:"id" json:"id"`
-// 	Type                        string `dynamodbav:"type" json:"type"`
-// 	AddressLine2                string `dynamodbav:"address_line2" json:"address_line2"`
-// 	AddressLine1                string `dynamodbav:"address_line1" json:"address_line1"`
-// }
 type Address struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache

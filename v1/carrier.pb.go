@@ -20,14 +20,6 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-// type BaseCarrier struct {
-// 	Name            string `json:"name,omitempty"`
-// 	AuthUrl         string `json:"auth_url,omitempty"`
-// 	RateUrl         string `json:"rate_url,omitempty"`
-// 	AddAddressUrl   string `json:"add_address_url,omitempty"`
-// 	GetAddressesUrl string `json:"get_addresses_url,omitempty"`
-// 	QuoteHistoryUrl string `json:"quote_history_url,omitempty"`
-// }
 type Carrier struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache

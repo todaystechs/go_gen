@@ -35,22 +35,22 @@ var (
 	_ = sort.Sort
 )
 
-// Validate checks the field values on QuoteRequestData with the rules defined
-// in the proto definition for this message. If any rules are violated, the
-// first error encountered is returned, or nil if there are no violations.
-func (m *QuoteRequestData) Validate() error {
+// Validate checks the field values on QuoteRequest with the rules defined in
+// the proto definition for this message. If any rules are violated, the first
+// error encountered is returned, or nil if there are no violations.
+func (m *QuoteRequest) Validate() error {
 	return m.validate(false)
 }
 
-// ValidateAll checks the field values on QuoteRequestData with the rules
-// defined in the proto definition for this message. If any rules are
-// violated, the result is a list of violation errors wrapped in
-// QuoteRequestDataMultiError, or nil if none found.
-func (m *QuoteRequestData) ValidateAll() error {
+// ValidateAll checks the field values on QuoteRequest with the rules defined
+// in the proto definition for this message. If any rules are violated, the
+// result is a list of violation errors wrapped in QuoteRequestMultiError, or
+// nil if none found.
+func (m *QuoteRequest) ValidateAll() error {
 	return m.validate(true)
 }
 
-func (m *QuoteRequestData) validate(all bool) error {
+func (m *QuoteRequest) validate(all bool) error {
 	if m == nil {
 		return nil
 	}
@@ -59,9 +59,9 @@ func (m *QuoteRequestData) validate(all bool) error {
 
 	// no validation rules for QuoteId
 
-	// no validation rules for UserEmail
+	// no validation rules for RequesterId
 
-	// no validation rules for BuisnessId
+	// no validation rules for BusinessId
 
 	// no validation rules for Mode
 
@@ -71,7 +71,7 @@ func (m *QuoteRequestData) validate(all bool) error {
 		switch v := interface{}(m.GetShippingDetail()).(type) {
 		case interface{ ValidateAll() error }:
 			if err := v.ValidateAll(); err != nil {
-				errors = append(errors, QuoteRequestDataValidationError{
+				errors = append(errors, QuoteRequestValidationError{
 					field:  "ShippingDetail",
 					reason: "embedded message failed validation",
 					cause:  err,
@@ -79,7 +79,7 @@ func (m *QuoteRequestData) validate(all bool) error {
 			}
 		case interface{ Validate() error }:
 			if err := v.Validate(); err != nil {
-				errors = append(errors, QuoteRequestDataValidationError{
+				errors = append(errors, QuoteRequestValidationError{
 					field:  "ShippingDetail",
 					reason: "embedded message failed validation",
 					cause:  err,
@@ -88,7 +88,7 @@ func (m *QuoteRequestData) validate(all bool) error {
 		}
 	} else if v, ok := interface{}(m.GetShippingDetail()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
-			return QuoteRequestDataValidationError{
+			return QuoteRequestValidationError{
 				field:  "ShippingDetail",
 				reason: "embedded message failed validation",
 				cause:  err,
@@ -103,7 +103,7 @@ func (m *QuoteRequestData) validate(all bool) error {
 			switch v := interface{}(item).(type) {
 			case interface{ ValidateAll() error }:
 				if err := v.ValidateAll(); err != nil {
-					errors = append(errors, QuoteRequestDataValidationError{
+					errors = append(errors, QuoteRequestValidationError{
 						field:  fmt.Sprintf("Commodities[%v]", idx),
 						reason: "embedded message failed validation",
 						cause:  err,
@@ -111,7 +111,7 @@ func (m *QuoteRequestData) validate(all bool) error {
 				}
 			case interface{ Validate() error }:
 				if err := v.Validate(); err != nil {
-					errors = append(errors, QuoteRequestDataValidationError{
+					errors = append(errors, QuoteRequestValidationError{
 						field:  fmt.Sprintf("Commodities[%v]", idx),
 						reason: "embedded message failed validation",
 						cause:  err,
@@ -120,7 +120,7 @@ func (m *QuoteRequestData) validate(all bool) error {
 			}
 		} else if v, ok := interface{}(item).(interface{ Validate() error }); ok {
 			if err := v.Validate(); err != nil {
-				return QuoteRequestDataValidationError{
+				return QuoteRequestValidationError{
 					field:  fmt.Sprintf("Commodities[%v]", idx),
 					reason: "embedded message failed validation",
 					cause:  err,
@@ -131,18 +131,17 @@ func (m *QuoteRequestData) validate(all bool) error {
 	}
 
 	if len(errors) > 0 {
-		return QuoteRequestDataMultiError(errors)
+		return QuoteRequestMultiError(errors)
 	}
 	return nil
 }
 
-// QuoteRequestDataMultiError is an error wrapping multiple validation errors
-// returned by QuoteRequestData.ValidateAll() if the designated constraints
-// aren't met.
-type QuoteRequestDataMultiError []error
+// QuoteRequestMultiError is an error wrapping multiple validation errors
+// returned by QuoteRequest.ValidateAll() if the designated constraints aren't met.
+type QuoteRequestMultiError []error
 
 // Error returns a concatenation of all the error messages it wraps.
-func (m QuoteRequestDataMultiError) Error() string {
+func (m QuoteRequestMultiError) Error() string {
 	var msgs []string
 	for _, err := range m {
 		msgs = append(msgs, err.Error())
@@ -151,11 +150,11 @@ func (m QuoteRequestDataMultiError) Error() string {
 }
 
 // AllErrors returns a list of validation violation errors.
-func (m QuoteRequestDataMultiError) AllErrors() []error { return m }
+func (m QuoteRequestMultiError) AllErrors() []error { return m }
 
-// QuoteRequestDataValidationError is the validation error returned by
-// QuoteRequestData.Validate if the designated constraints aren't met.
-type QuoteRequestDataValidationError struct {
+// QuoteRequestValidationError is the validation error returned by
+// QuoteRequest.Validate if the designated constraints aren't met.
+type QuoteRequestValidationError struct {
 	field  string
 	reason string
 	cause  error
@@ -163,22 +162,22 @@ type QuoteRequestDataValidationError struct {
 }
 
 // Field function returns field value.
-func (e QuoteRequestDataValidationError) Field() string { return e.field }
+func (e QuoteRequestValidationError) Field() string { return e.field }
 
 // Reason function returns reason value.
-func (e QuoteRequestDataValidationError) Reason() string { return e.reason }
+func (e QuoteRequestValidationError) Reason() string { return e.reason }
 
 // Cause function returns cause value.
-func (e QuoteRequestDataValidationError) Cause() error { return e.cause }
+func (e QuoteRequestValidationError) Cause() error { return e.cause }
 
 // Key function returns key value.
-func (e QuoteRequestDataValidationError) Key() bool { return e.key }
+func (e QuoteRequestValidationError) Key() bool { return e.key }
 
 // ErrorName returns error name.
-func (e QuoteRequestDataValidationError) ErrorName() string { return "QuoteRequestDataValidationError" }
+func (e QuoteRequestValidationError) ErrorName() string { return "QuoteRequestValidationError" }
 
 // Error satisfies the builtin error interface
-func (e QuoteRequestDataValidationError) Error() string {
+func (e QuoteRequestValidationError) Error() string {
 	cause := ""
 	if e.cause != nil {
 		cause = fmt.Sprintf(" | caused by: %v", e.cause)
@@ -190,14 +189,14 @@ func (e QuoteRequestDataValidationError) Error() string {
 	}
 
 	return fmt.Sprintf(
-		"invalid %sQuoteRequestData.%s: %s%s",
+		"invalid %sQuoteRequest.%s: %s%s",
 		key,
 		e.field,
 		e.reason,
 		cause)
 }
 
-var _ error = QuoteRequestDataValidationError{}
+var _ error = QuoteRequestValidationError{}
 
 var _ interface {
 	Field() string
@@ -205,24 +204,24 @@ var _ interface {
 	Key() bool
 	Cause() error
 	ErrorName() string
-} = QuoteRequestDataValidationError{}
+} = QuoteRequestValidationError{}
 
-// Validate checks the field values on QuoteResponse with the rules defined in
+// Validate checks the field values on QuoteBidData with the rules defined in
 // the proto definition for this message. If any rules are violated, the first
 // error encountered is returned, or nil if there are no violations.
-func (m *QuoteResponse) Validate() error {
+func (m *QuoteBidData) Validate() error {
 	return m.validate(false)
 }
 
-// ValidateAll checks the field values on QuoteResponse with the rules defined
+// ValidateAll checks the field values on QuoteBidData with the rules defined
 // in the proto definition for this message. If any rules are violated, the
-// result is a list of violation errors wrapped in QuoteResponseMultiError, or
+// result is a list of violation errors wrapped in QuoteBidDataMultiError, or
 // nil if none found.
-func (m *QuoteResponse) ValidateAll() error {
+func (m *QuoteBidData) ValidateAll() error {
 	return m.validate(true)
 }
 
-func (m *QuoteResponse) validate(all bool) error {
+func (m *QuoteBidData) validate(all bool) error {
 	if m == nil {
 		return nil
 	}
@@ -237,7 +236,7 @@ func (m *QuoteResponse) validate(all bool) error {
 		switch v := interface{}(m.GetCarrier()).(type) {
 		case interface{ ValidateAll() error }:
 			if err := v.ValidateAll(); err != nil {
-				errors = append(errors, QuoteResponseValidationError{
+				errors = append(errors, QuoteBidDataValidationError{
 					field:  "Carrier",
 					reason: "embedded message failed validation",
 					cause:  err,
@@ -245,7 +244,7 @@ func (m *QuoteResponse) validate(all bool) error {
 			}
 		case interface{ Validate() error }:
 			if err := v.Validate(); err != nil {
-				errors = append(errors, QuoteResponseValidationError{
+				errors = append(errors, QuoteBidDataValidationError{
 					field:  "Carrier",
 					reason: "embedded message failed validation",
 					cause:  err,
@@ -254,7 +253,7 @@ func (m *QuoteResponse) validate(all bool) error {
 		}
 	} else if v, ok := interface{}(m.GetCarrier()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
-			return QuoteResponseValidationError{
+			return QuoteBidDataValidationError{
 				field:  "Carrier",
 				reason: "embedded message failed validation",
 				cause:  err,
@@ -266,7 +265,7 @@ func (m *QuoteResponse) validate(all bool) error {
 		switch v := interface{}(m.GetAmount()).(type) {
 		case interface{ ValidateAll() error }:
 			if err := v.ValidateAll(); err != nil {
-				errors = append(errors, QuoteResponseValidationError{
+				errors = append(errors, QuoteBidDataValidationError{
 					field:  "Amount",
 					reason: "embedded message failed validation",
 					cause:  err,
@@ -274,7 +273,7 @@ func (m *QuoteResponse) validate(all bool) error {
 			}
 		case interface{ Validate() error }:
 			if err := v.Validate(); err != nil {
-				errors = append(errors, QuoteResponseValidationError{
+				errors = append(errors, QuoteBidDataValidationError{
 					field:  "Amount",
 					reason: "embedded message failed validation",
 					cause:  err,
@@ -283,7 +282,7 @@ func (m *QuoteResponse) validate(all bool) error {
 		}
 	} else if v, ok := interface{}(m.GetAmount()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
-			return QuoteResponseValidationError{
+			return QuoteBidDataValidationError{
 				field:  "Amount",
 				reason: "embedded message failed validation",
 				cause:  err,
@@ -296,18 +295,17 @@ func (m *QuoteResponse) validate(all bool) error {
 	// no validation rules for Guranteed
 
 	if len(errors) > 0 {
-		return QuoteResponseMultiError(errors)
+		return QuoteBidDataMultiError(errors)
 	}
 	return nil
 }
 
-// QuoteResponseMultiError is an error wrapping multiple validation errors
-// returned by QuoteResponse.ValidateAll() if the designated constraints
-// aren't met.
-type QuoteResponseMultiError []error
+// QuoteBidDataMultiError is an error wrapping multiple validation errors
+// returned by QuoteBidData.ValidateAll() if the designated constraints aren't met.
+type QuoteBidDataMultiError []error
 
 // Error returns a concatenation of all the error messages it wraps.
-func (m QuoteResponseMultiError) Error() string {
+func (m QuoteBidDataMultiError) Error() string {
 	var msgs []string
 	for _, err := range m {
 		msgs = append(msgs, err.Error())
@@ -316,11 +314,11 @@ func (m QuoteResponseMultiError) Error() string {
 }
 
 // AllErrors returns a list of validation violation errors.
-func (m QuoteResponseMultiError) AllErrors() []error { return m }
+func (m QuoteBidDataMultiError) AllErrors() []error { return m }
 
-// QuoteResponseValidationError is the validation error returned by
-// QuoteResponse.Validate if the designated constraints aren't met.
-type QuoteResponseValidationError struct {
+// QuoteBidDataValidationError is the validation error returned by
+// QuoteBidData.Validate if the designated constraints aren't met.
+type QuoteBidDataValidationError struct {
 	field  string
 	reason string
 	cause  error
@@ -328,22 +326,22 @@ type QuoteResponseValidationError struct {
 }
 
 // Field function returns field value.
-func (e QuoteResponseValidationError) Field() string { return e.field }
+func (e QuoteBidDataValidationError) Field() string { return e.field }
 
 // Reason function returns reason value.
-func (e QuoteResponseValidationError) Reason() string { return e.reason }
+func (e QuoteBidDataValidationError) Reason() string { return e.reason }
 
 // Cause function returns cause value.
-func (e QuoteResponseValidationError) Cause() error { return e.cause }
+func (e QuoteBidDataValidationError) Cause() error { return e.cause }
 
 // Key function returns key value.
-func (e QuoteResponseValidationError) Key() bool { return e.key }
+func (e QuoteBidDataValidationError) Key() bool { return e.key }
 
 // ErrorName returns error name.
-func (e QuoteResponseValidationError) ErrorName() string { return "QuoteResponseValidationError" }
+func (e QuoteBidDataValidationError) ErrorName() string { return "QuoteBidDataValidationError" }
 
 // Error satisfies the builtin error interface
-func (e QuoteResponseValidationError) Error() string {
+func (e QuoteBidDataValidationError) Error() string {
 	cause := ""
 	if e.cause != nil {
 		cause = fmt.Sprintf(" | caused by: %v", e.cause)
@@ -355,14 +353,14 @@ func (e QuoteResponseValidationError) Error() string {
 	}
 
 	return fmt.Sprintf(
-		"invalid %sQuoteResponse.%s: %s%s",
+		"invalid %sQuoteBidData.%s: %s%s",
 		key,
 		e.field,
 		e.reason,
 		cause)
 }
 
-var _ error = QuoteResponseValidationError{}
+var _ error = QuoteBidDataValidationError{}
 
 var _ interface {
 	Field() string
@@ -370,24 +368,24 @@ var _ interface {
 	Key() bool
 	Cause() error
 	ErrorName() string
-} = QuoteResponseValidationError{}
+} = QuoteBidDataValidationError{}
 
-// Validate checks the field values on ListOfQuoteResponse with the rules
-// defined in the proto definition for this message. If any rules are
-// violated, the first error encountered is returned, or nil if there are no violations.
-func (m *ListOfQuoteResponse) Validate() error {
+// Validate checks the field values on QuoteBids with the rules defined in the
+// proto definition for this message. If any rules are violated, the first
+// error encountered is returned, or nil if there are no violations.
+func (m *QuoteBids) Validate() error {
 	return m.validate(false)
 }
 
-// ValidateAll checks the field values on ListOfQuoteResponse with the rules
-// defined in the proto definition for this message. If any rules are
-// violated, the result is a list of violation errors wrapped in
-// ListOfQuoteResponseMultiError, or nil if none found.
-func (m *ListOfQuoteResponse) ValidateAll() error {
+// ValidateAll checks the field values on QuoteBids with the rules defined in
+// the proto definition for this message. If any rules are violated, the
+// result is a list of violation errors wrapped in QuoteBidsMultiError, or nil
+// if none found.
+func (m *QuoteBids) ValidateAll() error {
 	return m.validate(true)
 }
 
-func (m *ListOfQuoteResponse) validate(all bool) error {
+func (m *QuoteBids) validate(all bool) error {
 	if m == nil {
 		return nil
 	}
@@ -395,51 +393,51 @@ func (m *ListOfQuoteResponse) validate(all bool) error {
 	var errors []error
 
 	if all {
-		switch v := interface{}(m.GetQuote()).(type) {
+		switch v := interface{}(m.GetQuoteRequest()).(type) {
 		case interface{ ValidateAll() error }:
 			if err := v.ValidateAll(); err != nil {
-				errors = append(errors, ListOfQuoteResponseValidationError{
-					field:  "Quote",
+				errors = append(errors, QuoteBidsValidationError{
+					field:  "QuoteRequest",
 					reason: "embedded message failed validation",
 					cause:  err,
 				})
 			}
 		case interface{ Validate() error }:
 			if err := v.Validate(); err != nil {
-				errors = append(errors, ListOfQuoteResponseValidationError{
-					field:  "Quote",
+				errors = append(errors, QuoteBidsValidationError{
+					field:  "QuoteRequest",
 					reason: "embedded message failed validation",
 					cause:  err,
 				})
 			}
 		}
-	} else if v, ok := interface{}(m.GetQuote()).(interface{ Validate() error }); ok {
+	} else if v, ok := interface{}(m.GetQuoteRequest()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
-			return ListOfQuoteResponseValidationError{
-				field:  "Quote",
+			return QuoteBidsValidationError{
+				field:  "QuoteRequest",
 				reason: "embedded message failed validation",
 				cause:  err,
 			}
 		}
 	}
 
-	for idx, item := range m.GetQuotes() {
+	for idx, item := range m.GetQuoteBids() {
 		_, _ = idx, item
 
 		if all {
 			switch v := interface{}(item).(type) {
 			case interface{ ValidateAll() error }:
 				if err := v.ValidateAll(); err != nil {
-					errors = append(errors, ListOfQuoteResponseValidationError{
-						field:  fmt.Sprintf("Quotes[%v]", idx),
+					errors = append(errors, QuoteBidsValidationError{
+						field:  fmt.Sprintf("QuoteBids[%v]", idx),
 						reason: "embedded message failed validation",
 						cause:  err,
 					})
 				}
 			case interface{ Validate() error }:
 				if err := v.Validate(); err != nil {
-					errors = append(errors, ListOfQuoteResponseValidationError{
-						field:  fmt.Sprintf("Quotes[%v]", idx),
+					errors = append(errors, QuoteBidsValidationError{
+						field:  fmt.Sprintf("QuoteBids[%v]", idx),
 						reason: "embedded message failed validation",
 						cause:  err,
 					})
@@ -447,8 +445,8 @@ func (m *ListOfQuoteResponse) validate(all bool) error {
 			}
 		} else if v, ok := interface{}(item).(interface{ Validate() error }); ok {
 			if err := v.Validate(); err != nil {
-				return ListOfQuoteResponseValidationError{
-					field:  fmt.Sprintf("Quotes[%v]", idx),
+				return QuoteBidsValidationError{
+					field:  fmt.Sprintf("QuoteBids[%v]", idx),
 					reason: "embedded message failed validation",
 					cause:  err,
 				}
@@ -458,18 +456,17 @@ func (m *ListOfQuoteResponse) validate(all bool) error {
 	}
 
 	if len(errors) > 0 {
-		return ListOfQuoteResponseMultiError(errors)
+		return QuoteBidsMultiError(errors)
 	}
 	return nil
 }
 
-// ListOfQuoteResponseMultiError is an error wrapping multiple validation
-// errors returned by ListOfQuoteResponse.ValidateAll() if the designated
-// constraints aren't met.
-type ListOfQuoteResponseMultiError []error
+// QuoteBidsMultiError is an error wrapping multiple validation errors returned
+// by QuoteBids.ValidateAll() if the designated constraints aren't met.
+type QuoteBidsMultiError []error
 
 // Error returns a concatenation of all the error messages it wraps.
-func (m ListOfQuoteResponseMultiError) Error() string {
+func (m QuoteBidsMultiError) Error() string {
 	var msgs []string
 	for _, err := range m {
 		msgs = append(msgs, err.Error())
@@ -478,11 +475,11 @@ func (m ListOfQuoteResponseMultiError) Error() string {
 }
 
 // AllErrors returns a list of validation violation errors.
-func (m ListOfQuoteResponseMultiError) AllErrors() []error { return m }
+func (m QuoteBidsMultiError) AllErrors() []error { return m }
 
-// ListOfQuoteResponseValidationError is the validation error returned by
-// ListOfQuoteResponse.Validate if the designated constraints aren't met.
-type ListOfQuoteResponseValidationError struct {
+// QuoteBidsValidationError is the validation error returned by
+// QuoteBids.Validate if the designated constraints aren't met.
+type QuoteBidsValidationError struct {
 	field  string
 	reason string
 	cause  error
@@ -490,24 +487,22 @@ type ListOfQuoteResponseValidationError struct {
 }
 
 // Field function returns field value.
-func (e ListOfQuoteResponseValidationError) Field() string { return e.field }
+func (e QuoteBidsValidationError) Field() string { return e.field }
 
 // Reason function returns reason value.
-func (e ListOfQuoteResponseValidationError) Reason() string { return e.reason }
+func (e QuoteBidsValidationError) Reason() string { return e.reason }
 
 // Cause function returns cause value.
-func (e ListOfQuoteResponseValidationError) Cause() error { return e.cause }
+func (e QuoteBidsValidationError) Cause() error { return e.cause }
 
 // Key function returns key value.
-func (e ListOfQuoteResponseValidationError) Key() bool { return e.key }
+func (e QuoteBidsValidationError) Key() bool { return e.key }
 
 // ErrorName returns error name.
-func (e ListOfQuoteResponseValidationError) ErrorName() string {
-	return "ListOfQuoteResponseValidationError"
-}
+func (e QuoteBidsValidationError) ErrorName() string { return "QuoteBidsValidationError" }
 
 // Error satisfies the builtin error interface
-func (e ListOfQuoteResponseValidationError) Error() string {
+func (e QuoteBidsValidationError) Error() string {
 	cause := ""
 	if e.cause != nil {
 		cause = fmt.Sprintf(" | caused by: %v", e.cause)
@@ -519,14 +514,14 @@ func (e ListOfQuoteResponseValidationError) Error() string {
 	}
 
 	return fmt.Sprintf(
-		"invalid %sListOfQuoteResponse.%s: %s%s",
+		"invalid %sQuoteBids.%s: %s%s",
 		key,
 		e.field,
 		e.reason,
 		cause)
 }
 
-var _ error = ListOfQuoteResponseValidationError{}
+var _ error = QuoteBidsValidationError{}
 
 var _ interface {
 	Field() string
@@ -534,24 +529,24 @@ var _ interface {
 	Key() bool
 	Cause() error
 	ErrorName() string
-} = ListOfQuoteResponseValidationError{}
+} = QuoteBidsValidationError{}
 
-// Validate checks the field values on FetchQuotesRequest with the rules
-// defined in the proto definition for this message. If any rules are
-// violated, the first error encountered is returned, or nil if there are no violations.
-func (m *FetchQuotesRequest) Validate() error {
+// Validate checks the field values on FetchQuotes with the rules defined in
+// the proto definition for this message. If any rules are violated, the first
+// error encountered is returned, or nil if there are no violations.
+func (m *FetchQuotes) Validate() error {
 	return m.validate(false)
 }
 
-// ValidateAll checks the field values on FetchQuotesRequest with the rules
-// defined in the proto definition for this message. If any rules are
-// violated, the result is a list of violation errors wrapped in
-// FetchQuotesRequestMultiError, or nil if none found.
-func (m *FetchQuotesRequest) ValidateAll() error {
+// ValidateAll checks the field values on FetchQuotes with the rules defined in
+// the proto definition for this message. If any rules are violated, the
+// result is a list of violation errors wrapped in FetchQuotesMultiError, or
+// nil if none found.
+func (m *FetchQuotes) ValidateAll() error {
 	return m.validate(true)
 }
 
-func (m *FetchQuotesRequest) validate(all bool) error {
+func (m *FetchQuotes) validate(all bool) error {
 	if m == nil {
 		return nil
 	}
@@ -562,126 +557,20 @@ func (m *FetchQuotesRequest) validate(all bool) error {
 
 	// no validation rules for EndOn
 
-	// no validation rules for Pk
-
-	if len(errors) > 0 {
-		return FetchQuotesRequestMultiError(errors)
-	}
-	return nil
-}
-
-// FetchQuotesRequestMultiError is an error wrapping multiple validation errors
-// returned by FetchQuotesRequest.ValidateAll() if the designated constraints
-// aren't met.
-type FetchQuotesRequestMultiError []error
-
-// Error returns a concatenation of all the error messages it wraps.
-func (m FetchQuotesRequestMultiError) Error() string {
-	var msgs []string
-	for _, err := range m {
-		msgs = append(msgs, err.Error())
-	}
-	return strings.Join(msgs, "; ")
-}
-
-// AllErrors returns a list of validation violation errors.
-func (m FetchQuotesRequestMultiError) AllErrors() []error { return m }
-
-// FetchQuotesRequestValidationError is the validation error returned by
-// FetchQuotesRequest.Validate if the designated constraints aren't met.
-type FetchQuotesRequestValidationError struct {
-	field  string
-	reason string
-	cause  error
-	key    bool
-}
-
-// Field function returns field value.
-func (e FetchQuotesRequestValidationError) Field() string { return e.field }
-
-// Reason function returns reason value.
-func (e FetchQuotesRequestValidationError) Reason() string { return e.reason }
-
-// Cause function returns cause value.
-func (e FetchQuotesRequestValidationError) Cause() error { return e.cause }
-
-// Key function returns key value.
-func (e FetchQuotesRequestValidationError) Key() bool { return e.key }
-
-// ErrorName returns error name.
-func (e FetchQuotesRequestValidationError) ErrorName() string {
-	return "FetchQuotesRequestValidationError"
-}
-
-// Error satisfies the builtin error interface
-func (e FetchQuotesRequestValidationError) Error() string {
-	cause := ""
-	if e.cause != nil {
-		cause = fmt.Sprintf(" | caused by: %v", e.cause)
-	}
-
-	key := ""
-	if e.key {
-		key = "key for "
-	}
-
-	return fmt.Sprintf(
-		"invalid %sFetchQuotesRequest.%s: %s%s",
-		key,
-		e.field,
-		e.reason,
-		cause)
-}
-
-var _ error = FetchQuotesRequestValidationError{}
-
-var _ interface {
-	Field() string
-	Reason() string
-	Key() bool
-	Cause() error
-	ErrorName() string
-} = FetchQuotesRequestValidationError{}
-
-// Validate checks the field values on QuotesByBusinessIdRequest with the rules
-// defined in the proto definition for this message. If any rules are
-// violated, the first error encountered is returned, or nil if there are no violations.
-func (m *QuotesByBusinessIdRequest) Validate() error {
-	return m.validate(false)
-}
-
-// ValidateAll checks the field values on QuotesByBusinessIdRequest with the
-// rules defined in the proto definition for this message. If any rules are
-// violated, the result is a list of violation errors wrapped in
-// QuotesByBusinessIdRequestMultiError, or nil if none found.
-func (m *QuotesByBusinessIdRequest) ValidateAll() error {
-	return m.validate(true)
-}
-
-func (m *QuotesByBusinessIdRequest) validate(all bool) error {
-	if m == nil {
-		return nil
-	}
-
-	var errors []error
-
 	// no validation rules for BusinessId
 
-	// no validation rules for Token
-
 	if len(errors) > 0 {
-		return QuotesByBusinessIdRequestMultiError(errors)
+		return FetchQuotesMultiError(errors)
 	}
 	return nil
 }
 
-// QuotesByBusinessIdRequestMultiError is an error wrapping multiple validation
-// errors returned by QuotesByBusinessIdRequest.ValidateAll() if the
-// designated constraints aren't met.
-type QuotesByBusinessIdRequestMultiError []error
+// FetchQuotesMultiError is an error wrapping multiple validation errors
+// returned by FetchQuotes.ValidateAll() if the designated constraints aren't met.
+type FetchQuotesMultiError []error
 
 // Error returns a concatenation of all the error messages it wraps.
-func (m QuotesByBusinessIdRequestMultiError) Error() string {
+func (m FetchQuotesMultiError) Error() string {
 	var msgs []string
 	for _, err := range m {
 		msgs = append(msgs, err.Error())
@@ -690,11 +579,11 @@ func (m QuotesByBusinessIdRequestMultiError) Error() string {
 }
 
 // AllErrors returns a list of validation violation errors.
-func (m QuotesByBusinessIdRequestMultiError) AllErrors() []error { return m }
+func (m FetchQuotesMultiError) AllErrors() []error { return m }
 
-// QuotesByBusinessIdRequestValidationError is the validation error returned by
-// QuotesByBusinessIdRequest.Validate if the designated constraints aren't met.
-type QuotesByBusinessIdRequestValidationError struct {
+// FetchQuotesValidationError is the validation error returned by
+// FetchQuotes.Validate if the designated constraints aren't met.
+type FetchQuotesValidationError struct {
 	field  string
 	reason string
 	cause  error
@@ -702,24 +591,22 @@ type QuotesByBusinessIdRequestValidationError struct {
 }
 
 // Field function returns field value.
-func (e QuotesByBusinessIdRequestValidationError) Field() string { return e.field }
+func (e FetchQuotesValidationError) Field() string { return e.field }
 
 // Reason function returns reason value.
-func (e QuotesByBusinessIdRequestValidationError) Reason() string { return e.reason }
+func (e FetchQuotesValidationError) Reason() string { return e.reason }
 
 // Cause function returns cause value.
-func (e QuotesByBusinessIdRequestValidationError) Cause() error { return e.cause }
+func (e FetchQuotesValidationError) Cause() error { return e.cause }
 
 // Key function returns key value.
-func (e QuotesByBusinessIdRequestValidationError) Key() bool { return e.key }
+func (e FetchQuotesValidationError) Key() bool { return e.key }
 
 // ErrorName returns error name.
-func (e QuotesByBusinessIdRequestValidationError) ErrorName() string {
-	return "QuotesByBusinessIdRequestValidationError"
-}
+func (e FetchQuotesValidationError) ErrorName() string { return "FetchQuotesValidationError" }
 
 // Error satisfies the builtin error interface
-func (e QuotesByBusinessIdRequestValidationError) Error() string {
+func (e FetchQuotesValidationError) Error() string {
 	cause := ""
 	if e.cause != nil {
 		cause = fmt.Sprintf(" | caused by: %v", e.cause)
@@ -731,14 +618,14 @@ func (e QuotesByBusinessIdRequestValidationError) Error() string {
 	}
 
 	return fmt.Sprintf(
-		"invalid %sQuotesByBusinessIdRequest.%s: %s%s",
+		"invalid %sFetchQuotes.%s: %s%s",
 		key,
 		e.field,
 		e.reason,
 		cause)
 }
 
-var _ error = QuotesByBusinessIdRequestValidationError{}
+var _ error = FetchQuotesValidationError{}
 
 var _ interface {
 	Field() string
@@ -746,110 +633,7 @@ var _ interface {
 	Key() bool
 	Cause() error
 	ErrorName() string
-} = QuotesByBusinessIdRequestValidationError{}
-
-// Validate checks the field values on DeleteQuoteData with the rules defined
-// in the proto definition for this message. If any rules are violated, the
-// first error encountered is returned, or nil if there are no violations.
-func (m *DeleteQuoteData) Validate() error {
-	return m.validate(false)
-}
-
-// ValidateAll checks the field values on DeleteQuoteData with the rules
-// defined in the proto definition for this message. If any rules are
-// violated, the result is a list of violation errors wrapped in
-// DeleteQuoteDataMultiError, or nil if none found.
-func (m *DeleteQuoteData) ValidateAll() error {
-	return m.validate(true)
-}
-
-func (m *DeleteQuoteData) validate(all bool) error {
-	if m == nil {
-		return nil
-	}
-
-	var errors []error
-
-	// no validation rules for QuoteId
-
-	// no validation rules for Token
-
-	if len(errors) > 0 {
-		return DeleteQuoteDataMultiError(errors)
-	}
-	return nil
-}
-
-// DeleteQuoteDataMultiError is an error wrapping multiple validation errors
-// returned by DeleteQuoteData.ValidateAll() if the designated constraints
-// aren't met.
-type DeleteQuoteDataMultiError []error
-
-// Error returns a concatenation of all the error messages it wraps.
-func (m DeleteQuoteDataMultiError) Error() string {
-	var msgs []string
-	for _, err := range m {
-		msgs = append(msgs, err.Error())
-	}
-	return strings.Join(msgs, "; ")
-}
-
-// AllErrors returns a list of validation violation errors.
-func (m DeleteQuoteDataMultiError) AllErrors() []error { return m }
-
-// DeleteQuoteDataValidationError is the validation error returned by
-// DeleteQuoteData.Validate if the designated constraints aren't met.
-type DeleteQuoteDataValidationError struct {
-	field  string
-	reason string
-	cause  error
-	key    bool
-}
-
-// Field function returns field value.
-func (e DeleteQuoteDataValidationError) Field() string { return e.field }
-
-// Reason function returns reason value.
-func (e DeleteQuoteDataValidationError) Reason() string { return e.reason }
-
-// Cause function returns cause value.
-func (e DeleteQuoteDataValidationError) Cause() error { return e.cause }
-
-// Key function returns key value.
-func (e DeleteQuoteDataValidationError) Key() bool { return e.key }
-
-// ErrorName returns error name.
-func (e DeleteQuoteDataValidationError) ErrorName() string { return "DeleteQuoteDataValidationError" }
-
-// Error satisfies the builtin error interface
-func (e DeleteQuoteDataValidationError) Error() string {
-	cause := ""
-	if e.cause != nil {
-		cause = fmt.Sprintf(" | caused by: %v", e.cause)
-	}
-
-	key := ""
-	if e.key {
-		key = "key for "
-	}
-
-	return fmt.Sprintf(
-		"invalid %sDeleteQuoteData.%s: %s%s",
-		key,
-		e.field,
-		e.reason,
-		cause)
-}
-
-var _ error = DeleteQuoteDataValidationError{}
-
-var _ interface {
-	Field() string
-	Reason() string
-	Key() bool
-	Cause() error
-	ErrorName() string
-} = DeleteQuoteDataValidationError{}
+} = FetchQuotesValidationError{}
 
 // Validate checks the field values on Quotes with the rules defined in the
 // proto definition for this message. If any rules are violated, the first
@@ -872,7 +656,7 @@ func (m *Quotes) validate(all bool) error {
 
 	var errors []error
 
-	for idx, item := range m.GetQuotes() {
+	for idx, item := range m.GetQuoteRequets() {
 		_, _ = idx, item
 
 		if all {
@@ -880,7 +664,7 @@ func (m *Quotes) validate(all bool) error {
 			case interface{ ValidateAll() error }:
 				if err := v.ValidateAll(); err != nil {
 					errors = append(errors, QuotesValidationError{
-						field:  fmt.Sprintf("Quotes[%v]", idx),
+						field:  fmt.Sprintf("QuoteRequets[%v]", idx),
 						reason: "embedded message failed validation",
 						cause:  err,
 					})
@@ -888,7 +672,7 @@ func (m *Quotes) validate(all bool) error {
 			case interface{ Validate() error }:
 				if err := v.Validate(); err != nil {
 					errors = append(errors, QuotesValidationError{
-						field:  fmt.Sprintf("Quotes[%v]", idx),
+						field:  fmt.Sprintf("QuoteRequets[%v]", idx),
 						reason: "embedded message failed validation",
 						cause:  err,
 					})
@@ -897,7 +681,7 @@ func (m *Quotes) validate(all bool) error {
 		} else if v, ok := interface{}(item).(interface{ Validate() error }); ok {
 			if err := v.Validate(); err != nil {
 				return QuotesValidationError{
-					field:  fmt.Sprintf("Quotes[%v]", idx),
+					field:  fmt.Sprintf("QuoteRequets[%v]", idx),
 					reason: "embedded message failed validation",
 					cause:  err,
 				}
@@ -981,3 +765,104 @@ var _ interface {
 	Cause() error
 	ErrorName() string
 } = QuotesValidationError{}
+
+// Validate checks the field values on DeleteQuoteData with the rules defined
+// in the proto definition for this message. If any rules are violated, the
+// first error encountered is returned, or nil if there are no violations.
+func (m *DeleteQuoteData) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on DeleteQuoteData with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the result is a list of violation errors wrapped in
+// DeleteQuoteDataMultiError, or nil if none found.
+func (m *DeleteQuoteData) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *DeleteQuoteData) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	// no validation rules for QuoteId
+
+	if len(errors) > 0 {
+		return DeleteQuoteDataMultiError(errors)
+	}
+	return nil
+}
+
+// DeleteQuoteDataMultiError is an error wrapping multiple validation errors
+// returned by DeleteQuoteData.ValidateAll() if the designated constraints
+// aren't met.
+type DeleteQuoteDataMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m DeleteQuoteDataMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m DeleteQuoteDataMultiError) AllErrors() []error { return m }
+
+// DeleteQuoteDataValidationError is the validation error returned by
+// DeleteQuoteData.Validate if the designated constraints aren't met.
+type DeleteQuoteDataValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e DeleteQuoteDataValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e DeleteQuoteDataValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e DeleteQuoteDataValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e DeleteQuoteDataValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e DeleteQuoteDataValidationError) ErrorName() string { return "DeleteQuoteDataValidationError" }
+
+// Error satisfies the builtin error interface
+func (e DeleteQuoteDataValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sDeleteQuoteData.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = DeleteQuoteDataValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = DeleteQuoteDataValidationError{}
