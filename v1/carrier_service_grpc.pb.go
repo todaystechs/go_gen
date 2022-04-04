@@ -34,6 +34,7 @@ type CarrierServiceClient interface {
 	PingCarrierService(ctx context.Context, in *CarrierServicePing, opts ...grpc.CallOption) (*CarrierServicePing, error)
 	// quote
 	GetQuotes(ctx context.Context, in *QuoteRequest, opts ...grpc.CallOption) (*ListOfQuoteResponse, error)
+	GetNewQuotes(ctx context.Context, in *QuotesByBusinessIdRequest, opts ...grpc.CallOption) (*ListOfQuoteResponse, error)
 	UpdateQuote(ctx context.Context, in *QuoteRequest, opts ...grpc.CallOption) (*ListOfQuoteResponse, error)
 	DeleteQuote(ctx context.Context, in *QuoteRequest, opts ...grpc.CallOption) (*ListOfQuoteResponse, error)
 	GetQuotesById(ctx context.Context, in *FetchQuotesRequest, opts ...grpc.CallOption) (*QuoteResponse, error)
@@ -123,6 +124,15 @@ func (c *carrierServiceClient) GetQuotes(ctx context.Context, in *QuoteRequest, 
 	return out, nil
 }
 
+func (c *carrierServiceClient) GetNewQuotes(ctx context.Context, in *QuotesByBusinessIdRequest, opts ...grpc.CallOption) (*ListOfQuoteResponse, error) {
+	out := new(ListOfQuoteResponse)
+	err := c.cc.Invoke(ctx, "/user.CarrierService/GetNewQuotes", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *carrierServiceClient) UpdateQuote(ctx context.Context, in *QuoteRequest, opts ...grpc.CallOption) (*ListOfQuoteResponse, error) {
 	out := new(ListOfQuoteResponse)
 	err := c.cc.Invoke(ctx, "/user.CarrierService/UpdateQuote", in, out, opts...)
@@ -193,6 +203,7 @@ type CarrierServiceServer interface {
 	PingCarrierService(context.Context, *CarrierServicePing) (*CarrierServicePing, error)
 	// quote
 	GetQuotes(context.Context, *QuoteRequest) (*ListOfQuoteResponse, error)
+	GetNewQuotes(context.Context, *QuotesByBusinessIdRequest) (*ListOfQuoteResponse, error)
 	UpdateQuote(context.Context, *QuoteRequest) (*ListOfQuoteResponse, error)
 	DeleteQuote(context.Context, *QuoteRequest) (*ListOfQuoteResponse, error)
 	GetQuotesById(context.Context, *FetchQuotesRequest) (*QuoteResponse, error)
@@ -229,6 +240,9 @@ func (UnimplementedCarrierServiceServer) PingCarrierService(context.Context, *Ca
 }
 func (UnimplementedCarrierServiceServer) GetQuotes(context.Context, *QuoteRequest) (*ListOfQuoteResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetQuotes not implemented")
+}
+func (UnimplementedCarrierServiceServer) GetNewQuotes(context.Context, *QuotesByBusinessIdRequest) (*ListOfQuoteResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetNewQuotes not implemented")
 }
 func (UnimplementedCarrierServiceServer) UpdateQuote(context.Context, *QuoteRequest) (*ListOfQuoteResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateQuote not implemented")
@@ -404,6 +418,24 @@ func _CarrierService_GetQuotes_Handler(srv interface{}, ctx context.Context, dec
 	return interceptor(ctx, in, info, handler)
 }
 
+func _CarrierService_GetNewQuotes_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QuotesByBusinessIdRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CarrierServiceServer).GetNewQuotes(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/user.CarrierService/GetNewQuotes",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CarrierServiceServer).GetNewQuotes(ctx, req.(*QuotesByBusinessIdRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _CarrierService_UpdateQuote_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(QuoteRequest)
 	if err := dec(in); err != nil {
@@ -550,6 +582,10 @@ var CarrierService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetQuotes",
 			Handler:    _CarrierService_GetQuotes_Handler,
+		},
+		{
+			MethodName: "GetNewQuotes",
+			Handler:    _CarrierService_GetNewQuotes_Handler,
 		},
 		{
 			MethodName: "UpdateQuote",
