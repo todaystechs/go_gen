@@ -36,7 +36,7 @@ type CarrierServiceClient interface {
 	GetAllQuotes(ctx context.Context, in *FetchQuotes, opts ...grpc.CallOption) (*QuoteEntities, error)
 	GetNewQuotes(ctx context.Context, in *QuoteEntity, opts ...grpc.CallOption) (*QuoteBids, error)
 	UpdateQuote(ctx context.Context, in *QuoteEntity, opts ...grpc.CallOption) (*QuoteBids, error)
-	DeleteQuote(ctx context.Context, in *DeleteQuoteData, opts ...grpc.CallOption) (*Ok, error)
+	DeleteQuote(ctx context.Context, in *DeleteQuote, opts ...grpc.CallOption) (*Ok, error)
 	// booking
 	BookQuote(ctx context.Context, in *BookingData, opts ...grpc.CallOption) (*BookingResponse, error)
 	GetBookingHistory(ctx context.Context, in *FetchBookingsRequest, opts ...grpc.CallOption) (*ListOfBooking, error)
@@ -141,7 +141,7 @@ func (c *carrierServiceClient) UpdateQuote(ctx context.Context, in *QuoteEntity,
 	return out, nil
 }
 
-func (c *carrierServiceClient) DeleteQuote(ctx context.Context, in *DeleteQuoteData, opts ...grpc.CallOption) (*Ok, error) {
+func (c *carrierServiceClient) DeleteQuote(ctx context.Context, in *DeleteQuote, opts ...grpc.CallOption) (*Ok, error) {
 	out := new(Ok)
 	err := c.cc.Invoke(ctx, "/user.CarrierService/DeleteQuote", in, out, opts...)
 	if err != nil {
@@ -195,7 +195,7 @@ type CarrierServiceServer interface {
 	GetAllQuotes(context.Context, *FetchQuotes) (*QuoteEntities, error)
 	GetNewQuotes(context.Context, *QuoteEntity) (*QuoteBids, error)
 	UpdateQuote(context.Context, *QuoteEntity) (*QuoteBids, error)
-	DeleteQuote(context.Context, *DeleteQuoteData) (*Ok, error)
+	DeleteQuote(context.Context, *DeleteQuote) (*Ok, error)
 	// booking
 	BookQuote(context.Context, *BookingData) (*BookingResponse, error)
 	GetBookingHistory(context.Context, *FetchBookingsRequest) (*ListOfBooking, error)
@@ -236,7 +236,7 @@ func (UnimplementedCarrierServiceServer) GetNewQuotes(context.Context, *QuoteEnt
 func (UnimplementedCarrierServiceServer) UpdateQuote(context.Context, *QuoteEntity) (*QuoteBids, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateQuote not implemented")
 }
-func (UnimplementedCarrierServiceServer) DeleteQuote(context.Context, *DeleteQuoteData) (*Ok, error) {
+func (UnimplementedCarrierServiceServer) DeleteQuote(context.Context, *DeleteQuote) (*Ok, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteQuote not implemented")
 }
 func (UnimplementedCarrierServiceServer) BookQuote(context.Context, *BookingData) (*BookingResponse, error) {
@@ -441,7 +441,7 @@ func _CarrierService_UpdateQuote_Handler(srv interface{}, ctx context.Context, d
 }
 
 func _CarrierService_DeleteQuote_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DeleteQuoteData)
+	in := new(DeleteQuote)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -453,7 +453,7 @@ func _CarrierService_DeleteQuote_Handler(srv interface{}, ctx context.Context, d
 		FullMethod: "/user.CarrierService/DeleteQuote",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CarrierServiceServer).DeleteQuote(ctx, req.(*DeleteQuoteData))
+		return srv.(CarrierServiceServer).DeleteQuote(ctx, req.(*DeleteQuote))
 	}
 	return interceptor(ctx, in, info, handler)
 }
