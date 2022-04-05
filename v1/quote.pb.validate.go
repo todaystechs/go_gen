@@ -206,6 +206,144 @@ var _ interface {
 	ErrorName() string
 } = QuoteEntityValidationError{}
 
+// Validate checks the field values on DynamoQuoteEntity with the rules defined
+// in the proto definition for this message. If any rules are violated, the
+// first error encountered is returned, or nil if there are no violations.
+func (m *DynamoQuoteEntity) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on DynamoQuoteEntity with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the result is a list of violation errors wrapped in
+// DynamoQuoteEntityMultiError, or nil if none found.
+func (m *DynamoQuoteEntity) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *DynamoQuoteEntity) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	// no validation rules for Pk
+
+	// no validation rules for Sk
+
+	// no validation rules for QuotePk
+
+	// no validation rules for QuoteSk
+
+	if all {
+		switch v := interface{}(m.GetQuoteEntity()).(type) {
+		case interface{ ValidateAll() error }:
+			if err := v.ValidateAll(); err != nil {
+				errors = append(errors, DynamoQuoteEntityValidationError{
+					field:  "QuoteEntity",
+					reason: "embedded message failed validation",
+					cause:  err,
+				})
+			}
+		case interface{ Validate() error }:
+			if err := v.Validate(); err != nil {
+				errors = append(errors, DynamoQuoteEntityValidationError{
+					field:  "QuoteEntity",
+					reason: "embedded message failed validation",
+					cause:  err,
+				})
+			}
+		}
+	} else if v, ok := interface{}(m.GetQuoteEntity()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return DynamoQuoteEntityValidationError{
+				field:  "QuoteEntity",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	if len(errors) > 0 {
+		return DynamoQuoteEntityMultiError(errors)
+	}
+	return nil
+}
+
+// DynamoQuoteEntityMultiError is an error wrapping multiple validation errors
+// returned by DynamoQuoteEntity.ValidateAll() if the designated constraints
+// aren't met.
+type DynamoQuoteEntityMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m DynamoQuoteEntityMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m DynamoQuoteEntityMultiError) AllErrors() []error { return m }
+
+// DynamoQuoteEntityValidationError is the validation error returned by
+// DynamoQuoteEntity.Validate if the designated constraints aren't met.
+type DynamoQuoteEntityValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e DynamoQuoteEntityValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e DynamoQuoteEntityValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e DynamoQuoteEntityValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e DynamoQuoteEntityValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e DynamoQuoteEntityValidationError) ErrorName() string {
+	return "DynamoQuoteEntityValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e DynamoQuoteEntityValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sDynamoQuoteEntity.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = DynamoQuoteEntityValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = DynamoQuoteEntityValidationError{}
+
 // Validate checks the field values on QuoteBidEntity with the rules defined in
 // the proto definition for this message. If any rules are violated, the first
 // error encountered is returned, or nil if there are no violations.
@@ -370,6 +508,144 @@ var _ interface {
 	Cause() error
 	ErrorName() string
 } = QuoteBidEntityValidationError{}
+
+// Validate checks the field values on DynamoQuoteBidEntity with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the first error encountered is returned, or nil if there are no violations.
+func (m *DynamoQuoteBidEntity) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on DynamoQuoteBidEntity with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the result is a list of violation errors wrapped in
+// DynamoQuoteBidEntityMultiError, or nil if none found.
+func (m *DynamoQuoteBidEntity) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *DynamoQuoteBidEntity) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	// no validation rules for Pk
+
+	// no validation rules for Sk
+
+	// no validation rules for BidPk
+
+	// no validation rules for BidSk
+
+	if all {
+		switch v := interface{}(m.GetBidEntity()).(type) {
+		case interface{ ValidateAll() error }:
+			if err := v.ValidateAll(); err != nil {
+				errors = append(errors, DynamoQuoteBidEntityValidationError{
+					field:  "BidEntity",
+					reason: "embedded message failed validation",
+					cause:  err,
+				})
+			}
+		case interface{ Validate() error }:
+			if err := v.Validate(); err != nil {
+				errors = append(errors, DynamoQuoteBidEntityValidationError{
+					field:  "BidEntity",
+					reason: "embedded message failed validation",
+					cause:  err,
+				})
+			}
+		}
+	} else if v, ok := interface{}(m.GetBidEntity()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return DynamoQuoteBidEntityValidationError{
+				field:  "BidEntity",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	if len(errors) > 0 {
+		return DynamoQuoteBidEntityMultiError(errors)
+	}
+	return nil
+}
+
+// DynamoQuoteBidEntityMultiError is an error wrapping multiple validation
+// errors returned by DynamoQuoteBidEntity.ValidateAll() if the designated
+// constraints aren't met.
+type DynamoQuoteBidEntityMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m DynamoQuoteBidEntityMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m DynamoQuoteBidEntityMultiError) AllErrors() []error { return m }
+
+// DynamoQuoteBidEntityValidationError is the validation error returned by
+// DynamoQuoteBidEntity.Validate if the designated constraints aren't met.
+type DynamoQuoteBidEntityValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e DynamoQuoteBidEntityValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e DynamoQuoteBidEntityValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e DynamoQuoteBidEntityValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e DynamoQuoteBidEntityValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e DynamoQuoteBidEntityValidationError) ErrorName() string {
+	return "DynamoQuoteBidEntityValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e DynamoQuoteBidEntityValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sDynamoQuoteBidEntity.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = DynamoQuoteBidEntityValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = DynamoQuoteBidEntityValidationError{}
 
 // Validate checks the field values on QuoteBids with the rules defined in the
 // proto definition for this message. If any rules are violated, the first
