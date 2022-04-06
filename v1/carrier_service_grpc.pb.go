@@ -24,7 +24,7 @@ const _ = grpc.SupportPackageIsVersion7
 type CarrierServiceClient interface {
 	// get business
 	GetBusinessById(ctx context.Context, in *BusinessRequest, opts ...grpc.CallOption) (*DynamoBusiness, error)
-	GetAllBusinesses(ctx context.Context, in *AllBusinessRequest, opts ...grpc.CallOption) (*OkWithData, error)
+	GetAllBusinesses(ctx context.Context, in *AllBusinessRequest, opts ...grpc.CallOption) (*Ok, error)
 	// location
 	GetLocations(ctx context.Context, in *BusinessId, opts ...grpc.CallOption) (*ListsOfLocation, error)
 	CreateLocation(ctx context.Context, in *Location, opts ...grpc.CallOption) (*Location, error)
@@ -60,8 +60,8 @@ func (c *carrierServiceClient) GetBusinessById(ctx context.Context, in *Business
 	return out, nil
 }
 
-func (c *carrierServiceClient) GetAllBusinesses(ctx context.Context, in *AllBusinessRequest, opts ...grpc.CallOption) (*OkWithData, error) {
-	out := new(OkWithData)
+func (c *carrierServiceClient) GetAllBusinesses(ctx context.Context, in *AllBusinessRequest, opts ...grpc.CallOption) (*Ok, error) {
+	out := new(Ok)
 	err := c.cc.Invoke(ctx, "/user.CarrierService/GetAllBusinesses", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -183,7 +183,7 @@ func (c *carrierServiceClient) GetBookingById(ctx context.Context, in *FetchBook
 type CarrierServiceServer interface {
 	// get business
 	GetBusinessById(context.Context, *BusinessRequest) (*DynamoBusiness, error)
-	GetAllBusinesses(context.Context, *AllBusinessRequest) (*OkWithData, error)
+	GetAllBusinesses(context.Context, *AllBusinessRequest) (*Ok, error)
 	// location
 	GetLocations(context.Context, *BusinessId) (*ListsOfLocation, error)
 	CreateLocation(context.Context, *Location) (*Location, error)
@@ -209,7 +209,7 @@ type UnimplementedCarrierServiceServer struct {
 func (UnimplementedCarrierServiceServer) GetBusinessById(context.Context, *BusinessRequest) (*DynamoBusiness, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetBusinessById not implemented")
 }
-func (UnimplementedCarrierServiceServer) GetAllBusinesses(context.Context, *AllBusinessRequest) (*OkWithData, error) {
+func (UnimplementedCarrierServiceServer) GetAllBusinesses(context.Context, *AllBusinessRequest) (*Ok, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetAllBusinesses not implemented")
 }
 func (UnimplementedCarrierServiceServer) GetLocations(context.Context, *BusinessId) (*ListsOfLocation, error) {
