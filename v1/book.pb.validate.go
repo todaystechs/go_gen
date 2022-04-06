@@ -516,3 +516,295 @@ var _ interface {
 	Cause() error
 	ErrorName() string
 } = FetchBookingsRequestValidationError{}
+
+// Validate checks the field values on BookEntity with the rules defined in the
+// proto definition for this message. If any rules are violated, the first
+// error encountered is returned, or nil if there are no violations.
+func (m *BookEntity) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on BookEntity with the rules defined in
+// the proto definition for this message. If any rules are violated, the
+// result is a list of violation errors wrapped in BookEntityMultiError, or
+// nil if none found.
+func (m *BookEntity) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *BookEntity) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	if all {
+		switch v := interface{}(m.GetQuoteEntity()).(type) {
+		case interface{ ValidateAll() error }:
+			if err := v.ValidateAll(); err != nil {
+				errors = append(errors, BookEntityValidationError{
+					field:  "QuoteEntity",
+					reason: "embedded message failed validation",
+					cause:  err,
+				})
+			}
+		case interface{ Validate() error }:
+			if err := v.Validate(); err != nil {
+				errors = append(errors, BookEntityValidationError{
+					field:  "QuoteEntity",
+					reason: "embedded message failed validation",
+					cause:  err,
+				})
+			}
+		}
+	} else if v, ok := interface{}(m.GetQuoteEntity()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return BookEntityValidationError{
+				field:  "QuoteEntity",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	if all {
+		switch v := interface{}(m.GetRef()).(type) {
+		case interface{ ValidateAll() error }:
+			if err := v.ValidateAll(); err != nil {
+				errors = append(errors, BookEntityValidationError{
+					field:  "Ref",
+					reason: "embedded message failed validation",
+					cause:  err,
+				})
+			}
+		case interface{ Validate() error }:
+			if err := v.Validate(); err != nil {
+				errors = append(errors, BookEntityValidationError{
+					field:  "Ref",
+					reason: "embedded message failed validation",
+					cause:  err,
+				})
+			}
+		}
+	} else if v, ok := interface{}(m.GetRef()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return BookEntityValidationError{
+				field:  "Ref",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	if len(errors) > 0 {
+		return BookEntityMultiError(errors)
+	}
+	return nil
+}
+
+// BookEntityMultiError is an error wrapping multiple validation errors
+// returned by BookEntity.ValidateAll() if the designated constraints aren't met.
+type BookEntityMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m BookEntityMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m BookEntityMultiError) AllErrors() []error { return m }
+
+// BookEntityValidationError is the validation error returned by
+// BookEntity.Validate if the designated constraints aren't met.
+type BookEntityValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e BookEntityValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e BookEntityValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e BookEntityValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e BookEntityValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e BookEntityValidationError) ErrorName() string { return "BookEntityValidationError" }
+
+// Error satisfies the builtin error interface
+func (e BookEntityValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sBookEntity.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = BookEntityValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = BookEntityValidationError{}
+
+// Validate checks the field values on DynamoBookEntity with the rules defined
+// in the proto definition for this message. If any rules are violated, the
+// first error encountered is returned, or nil if there are no violations.
+func (m *DynamoBookEntity) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on DynamoBookEntity with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the result is a list of violation errors wrapped in
+// DynamoBookEntityMultiError, or nil if none found.
+func (m *DynamoBookEntity) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *DynamoBookEntity) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	// no validation rules for Pk
+
+	// no validation rules for Sk
+
+	// no validation rules for BookPk
+
+	// no validation rules for BookSk
+
+	if all {
+		switch v := interface{}(m.GetBookEntity()).(type) {
+		case interface{ ValidateAll() error }:
+			if err := v.ValidateAll(); err != nil {
+				errors = append(errors, DynamoBookEntityValidationError{
+					field:  "BookEntity",
+					reason: "embedded message failed validation",
+					cause:  err,
+				})
+			}
+		case interface{ Validate() error }:
+			if err := v.Validate(); err != nil {
+				errors = append(errors, DynamoBookEntityValidationError{
+					field:  "BookEntity",
+					reason: "embedded message failed validation",
+					cause:  err,
+				})
+			}
+		}
+	} else if v, ok := interface{}(m.GetBookEntity()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return DynamoBookEntityValidationError{
+				field:  "BookEntity",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	if len(errors) > 0 {
+		return DynamoBookEntityMultiError(errors)
+	}
+	return nil
+}
+
+// DynamoBookEntityMultiError is an error wrapping multiple validation errors
+// returned by DynamoBookEntity.ValidateAll() if the designated constraints
+// aren't met.
+type DynamoBookEntityMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m DynamoBookEntityMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m DynamoBookEntityMultiError) AllErrors() []error { return m }
+
+// DynamoBookEntityValidationError is the validation error returned by
+// DynamoBookEntity.Validate if the designated constraints aren't met.
+type DynamoBookEntityValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e DynamoBookEntityValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e DynamoBookEntityValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e DynamoBookEntityValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e DynamoBookEntityValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e DynamoBookEntityValidationError) ErrorName() string { return "DynamoBookEntityValidationError" }
+
+// Error satisfies the builtin error interface
+func (e DynamoBookEntityValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sDynamoBookEntity.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = DynamoBookEntityValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = DynamoBookEntityValidationError{}
