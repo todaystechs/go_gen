@@ -37,10 +37,10 @@ type CarrierServiceClient interface {
 	// health
 	PingCarrierService(ctx context.Context, in *CarrierServicePing, opts ...grpc.CallOption) (*CarrierServicePing, error)
 	// booking
-	BookAQuote(ctx context.Context, in *BookingData, opts ...grpc.CallOption) (*BookingResponse, error)
-	BookQuotes(ctx context.Context, in *BookingData, opts ...grpc.CallOption) (*BookingsResponse, error)
-	GetBookingHistory(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*ListOfBooking, error)
-	GetBookingById(ctx context.Context, in *Id, opts ...grpc.CallOption) (*ListOfBooking, error)
+	BookAQuote(ctx context.Context, in *BookBids, opts ...grpc.CallOption) (*BookingResponseData, error)
+	BookQuotes(ctx context.Context, in *BookBids, opts ...grpc.CallOption) (*ListOfBookingResponse, error)
+	GetBookingHistory(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*ListOfBookingResponse, error)
+	GetBookingById(ctx context.Context, in *Id, opts ...grpc.CallOption) (*ListOfBookingResponse, error)
 	// quote
 	GetAllQuotes(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*QuoteDatas, error)
 	GetNewQuotes(ctx context.Context, in *QuoteData, opts ...grpc.CallOption) (*BidDatas, error)
@@ -156,8 +156,8 @@ func (c *carrierServiceClient) PingCarrierService(ctx context.Context, in *Carri
 	return out, nil
 }
 
-func (c *carrierServiceClient) BookAQuote(ctx context.Context, in *BookingData, opts ...grpc.CallOption) (*BookingResponse, error) {
-	out := new(BookingResponse)
+func (c *carrierServiceClient) BookAQuote(ctx context.Context, in *BookBids, opts ...grpc.CallOption) (*BookingResponseData, error) {
+	out := new(BookingResponseData)
 	err := c.cc.Invoke(ctx, "/user.CarrierService/BookAQuote", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -165,8 +165,8 @@ func (c *carrierServiceClient) BookAQuote(ctx context.Context, in *BookingData, 
 	return out, nil
 }
 
-func (c *carrierServiceClient) BookQuotes(ctx context.Context, in *BookingData, opts ...grpc.CallOption) (*BookingsResponse, error) {
-	out := new(BookingsResponse)
+func (c *carrierServiceClient) BookQuotes(ctx context.Context, in *BookBids, opts ...grpc.CallOption) (*ListOfBookingResponse, error) {
+	out := new(ListOfBookingResponse)
 	err := c.cc.Invoke(ctx, "/user.CarrierService/BookQuotes", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -174,8 +174,8 @@ func (c *carrierServiceClient) BookQuotes(ctx context.Context, in *BookingData, 
 	return out, nil
 }
 
-func (c *carrierServiceClient) GetBookingHistory(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*ListOfBooking, error) {
-	out := new(ListOfBooking)
+func (c *carrierServiceClient) GetBookingHistory(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*ListOfBookingResponse, error) {
+	out := new(ListOfBookingResponse)
 	err := c.cc.Invoke(ctx, "/user.CarrierService/GetBookingHistory", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -183,8 +183,8 @@ func (c *carrierServiceClient) GetBookingHistory(ctx context.Context, in *Empty,
 	return out, nil
 }
 
-func (c *carrierServiceClient) GetBookingById(ctx context.Context, in *Id, opts ...grpc.CallOption) (*ListOfBooking, error) {
-	out := new(ListOfBooking)
+func (c *carrierServiceClient) GetBookingById(ctx context.Context, in *Id, opts ...grpc.CallOption) (*ListOfBookingResponse, error) {
+	out := new(ListOfBookingResponse)
 	err := c.cc.Invoke(ctx, "/user.CarrierService/GetBookingById", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -256,10 +256,10 @@ type CarrierServiceServer interface {
 	// health
 	PingCarrierService(context.Context, *CarrierServicePing) (*CarrierServicePing, error)
 	// booking
-	BookAQuote(context.Context, *BookingData) (*BookingResponse, error)
-	BookQuotes(context.Context, *BookingData) (*BookingsResponse, error)
-	GetBookingHistory(context.Context, *Empty) (*ListOfBooking, error)
-	GetBookingById(context.Context, *Id) (*ListOfBooking, error)
+	BookAQuote(context.Context, *BookBids) (*BookingResponseData, error)
+	BookQuotes(context.Context, *BookBids) (*ListOfBookingResponse, error)
+	GetBookingHistory(context.Context, *Empty) (*ListOfBookingResponse, error)
+	GetBookingById(context.Context, *Id) (*ListOfBookingResponse, error)
 	// quote
 	GetAllQuotes(context.Context, *Empty) (*QuoteDatas, error)
 	GetNewQuotes(context.Context, *QuoteData) (*BidDatas, error)
@@ -305,16 +305,16 @@ func (UnimplementedCarrierServiceServer) DeleteLocations(context.Context, *Ids) 
 func (UnimplementedCarrierServiceServer) PingCarrierService(context.Context, *CarrierServicePing) (*CarrierServicePing, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PingCarrierService not implemented")
 }
-func (UnimplementedCarrierServiceServer) BookAQuote(context.Context, *BookingData) (*BookingResponse, error) {
+func (UnimplementedCarrierServiceServer) BookAQuote(context.Context, *BookBids) (*BookingResponseData, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method BookAQuote not implemented")
 }
-func (UnimplementedCarrierServiceServer) BookQuotes(context.Context, *BookingData) (*BookingsResponse, error) {
+func (UnimplementedCarrierServiceServer) BookQuotes(context.Context, *BookBids) (*ListOfBookingResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method BookQuotes not implemented")
 }
-func (UnimplementedCarrierServiceServer) GetBookingHistory(context.Context, *Empty) (*ListOfBooking, error) {
+func (UnimplementedCarrierServiceServer) GetBookingHistory(context.Context, *Empty) (*ListOfBookingResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetBookingHistory not implemented")
 }
-func (UnimplementedCarrierServiceServer) GetBookingById(context.Context, *Id) (*ListOfBooking, error) {
+func (UnimplementedCarrierServiceServer) GetBookingById(context.Context, *Id) (*ListOfBookingResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetBookingById not implemented")
 }
 func (UnimplementedCarrierServiceServer) GetAllQuotes(context.Context, *Empty) (*QuoteDatas, error) {
@@ -543,7 +543,7 @@ func _CarrierService_PingCarrierService_Handler(srv interface{}, ctx context.Con
 }
 
 func _CarrierService_BookAQuote_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(BookingData)
+	in := new(BookBids)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -555,13 +555,13 @@ func _CarrierService_BookAQuote_Handler(srv interface{}, ctx context.Context, de
 		FullMethod: "/user.CarrierService/BookAQuote",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CarrierServiceServer).BookAQuote(ctx, req.(*BookingData))
+		return srv.(CarrierServiceServer).BookAQuote(ctx, req.(*BookBids))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _CarrierService_BookQuotes_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(BookingData)
+	in := new(BookBids)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -573,7 +573,7 @@ func _CarrierService_BookQuotes_Handler(srv interface{}, ctx context.Context, de
 		FullMethod: "/user.CarrierService/BookQuotes",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CarrierServiceServer).BookQuotes(ctx, req.(*BookingData))
+		return srv.(CarrierServiceServer).BookQuotes(ctx, req.(*BookBids))
 	}
 	return interceptor(ctx, in, info, handler)
 }
