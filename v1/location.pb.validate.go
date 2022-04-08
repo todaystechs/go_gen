@@ -262,33 +262,38 @@ func (m *ListsOfLocation) validate(all bool) error {
 
 	var errors []error
 
-	if all {
-		switch v := interface{}(m.GetListsOfLocation()).(type) {
-		case interface{ ValidateAll() error }:
-			if err := v.ValidateAll(); err != nil {
-				errors = append(errors, ListsOfLocationValidationError{
-					field:  "ListsOfLocation",
-					reason: "embedded message failed validation",
-					cause:  err,
-				})
+	for idx, item := range m.GetListsOfLocation() {
+		_, _ = idx, item
+
+		if all {
+			switch v := interface{}(item).(type) {
+			case interface{ ValidateAll() error }:
+				if err := v.ValidateAll(); err != nil {
+					errors = append(errors, ListsOfLocationValidationError{
+						field:  fmt.Sprintf("ListsOfLocation[%v]", idx),
+						reason: "embedded message failed validation",
+						cause:  err,
+					})
+				}
+			case interface{ Validate() error }:
+				if err := v.Validate(); err != nil {
+					errors = append(errors, ListsOfLocationValidationError{
+						field:  fmt.Sprintf("ListsOfLocation[%v]", idx),
+						reason: "embedded message failed validation",
+						cause:  err,
+					})
+				}
 			}
-		case interface{ Validate() error }:
+		} else if v, ok := interface{}(item).(interface{ Validate() error }); ok {
 			if err := v.Validate(); err != nil {
-				errors = append(errors, ListsOfLocationValidationError{
-					field:  "ListsOfLocation",
+				return ListsOfLocationValidationError{
+					field:  fmt.Sprintf("ListsOfLocation[%v]", idx),
 					reason: "embedded message failed validation",
 					cause:  err,
-				})
+				}
 			}
 		}
-	} else if v, ok := interface{}(m.GetListsOfLocation()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return ListsOfLocationValidationError{
-				field:  "ListsOfLocation",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
+
 	}
 
 	if len(errors) > 0 {
