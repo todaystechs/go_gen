@@ -804,22 +804,22 @@ var _ interface {
 	ErrorName() string
 } = BookEntityValidationError{}
 
-// Validate checks the field values on DynamoBookEntity with the rules defined
-// in the proto definition for this message. If any rules are violated, the
-// first error encountered is returned, or nil if there are no violations.
-func (m *DynamoBookEntity) Validate() error {
+// Validate checks the field values on DynamoBookingEntity with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the first error encountered is returned, or nil if there are no violations.
+func (m *DynamoBookingEntity) Validate() error {
 	return m.validate(false)
 }
 
-// ValidateAll checks the field values on DynamoBookEntity with the rules
+// ValidateAll checks the field values on DynamoBookingEntity with the rules
 // defined in the proto definition for this message. If any rules are
 // violated, the result is a list of violation errors wrapped in
-// DynamoBookEntityMultiError, or nil if none found.
-func (m *DynamoBookEntity) ValidateAll() error {
+// DynamoBookingEntityMultiError, or nil if none found.
+func (m *DynamoBookingEntity) ValidateAll() error {
 	return m.validate(true)
 }
 
-func (m *DynamoBookEntity) validate(all bool) error {
+func (m *DynamoBookingEntity) validate(all bool) error {
 	if m == nil {
 		return nil
 	}
@@ -838,7 +838,7 @@ func (m *DynamoBookEntity) validate(all bool) error {
 		switch v := interface{}(m.GetBookEntity()).(type) {
 		case interface{ ValidateAll() error }:
 			if err := v.ValidateAll(); err != nil {
-				errors = append(errors, DynamoBookEntityValidationError{
+				errors = append(errors, DynamoBookingEntityValidationError{
 					field:  "BookEntity",
 					reason: "embedded message failed validation",
 					cause:  err,
@@ -846,7 +846,7 @@ func (m *DynamoBookEntity) validate(all bool) error {
 			}
 		case interface{ Validate() error }:
 			if err := v.Validate(); err != nil {
-				errors = append(errors, DynamoBookEntityValidationError{
+				errors = append(errors, DynamoBookingEntityValidationError{
 					field:  "BookEntity",
 					reason: "embedded message failed validation",
 					cause:  err,
@@ -855,7 +855,7 @@ func (m *DynamoBookEntity) validate(all bool) error {
 		}
 	} else if v, ok := interface{}(m.GetBookEntity()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
-			return DynamoBookEntityValidationError{
+			return DynamoBookingEntityValidationError{
 				field:  "BookEntity",
 				reason: "embedded message failed validation",
 				cause:  err,
@@ -864,18 +864,18 @@ func (m *DynamoBookEntity) validate(all bool) error {
 	}
 
 	if len(errors) > 0 {
-		return DynamoBookEntityMultiError(errors)
+		return DynamoBookingEntityMultiError(errors)
 	}
 	return nil
 }
 
-// DynamoBookEntityMultiError is an error wrapping multiple validation errors
-// returned by DynamoBookEntity.ValidateAll() if the designated constraints
-// aren't met.
-type DynamoBookEntityMultiError []error
+// DynamoBookingEntityMultiError is an error wrapping multiple validation
+// errors returned by DynamoBookingEntity.ValidateAll() if the designated
+// constraints aren't met.
+type DynamoBookingEntityMultiError []error
 
 // Error returns a concatenation of all the error messages it wraps.
-func (m DynamoBookEntityMultiError) Error() string {
+func (m DynamoBookingEntityMultiError) Error() string {
 	var msgs []string
 	for _, err := range m {
 		msgs = append(msgs, err.Error())
@@ -884,11 +884,11 @@ func (m DynamoBookEntityMultiError) Error() string {
 }
 
 // AllErrors returns a list of validation violation errors.
-func (m DynamoBookEntityMultiError) AllErrors() []error { return m }
+func (m DynamoBookingEntityMultiError) AllErrors() []error { return m }
 
-// DynamoBookEntityValidationError is the validation error returned by
-// DynamoBookEntity.Validate if the designated constraints aren't met.
-type DynamoBookEntityValidationError struct {
+// DynamoBookingEntityValidationError is the validation error returned by
+// DynamoBookingEntity.Validate if the designated constraints aren't met.
+type DynamoBookingEntityValidationError struct {
 	field  string
 	reason string
 	cause  error
@@ -896,22 +896,24 @@ type DynamoBookEntityValidationError struct {
 }
 
 // Field function returns field value.
-func (e DynamoBookEntityValidationError) Field() string { return e.field }
+func (e DynamoBookingEntityValidationError) Field() string { return e.field }
 
 // Reason function returns reason value.
-func (e DynamoBookEntityValidationError) Reason() string { return e.reason }
+func (e DynamoBookingEntityValidationError) Reason() string { return e.reason }
 
 // Cause function returns cause value.
-func (e DynamoBookEntityValidationError) Cause() error { return e.cause }
+func (e DynamoBookingEntityValidationError) Cause() error { return e.cause }
 
 // Key function returns key value.
-func (e DynamoBookEntityValidationError) Key() bool { return e.key }
+func (e DynamoBookingEntityValidationError) Key() bool { return e.key }
 
 // ErrorName returns error name.
-func (e DynamoBookEntityValidationError) ErrorName() string { return "DynamoBookEntityValidationError" }
+func (e DynamoBookingEntityValidationError) ErrorName() string {
+	return "DynamoBookingEntityValidationError"
+}
 
 // Error satisfies the builtin error interface
-func (e DynamoBookEntityValidationError) Error() string {
+func (e DynamoBookingEntityValidationError) Error() string {
 	cause := ""
 	if e.cause != nil {
 		cause = fmt.Sprintf(" | caused by: %v", e.cause)
@@ -923,14 +925,14 @@ func (e DynamoBookEntityValidationError) Error() string {
 	}
 
 	return fmt.Sprintf(
-		"invalid %sDynamoBookEntity.%s: %s%s",
+		"invalid %sDynamoBookingEntity.%s: %s%s",
 		key,
 		e.field,
 		e.reason,
 		cause)
 }
 
-var _ error = DynamoBookEntityValidationError{}
+var _ error = DynamoBookingEntityValidationError{}
 
 var _ interface {
 	Field() string
@@ -938,4 +940,4 @@ var _ interface {
 	Key() bool
 	Cause() error
 	ErrorName() string
-} = DynamoBookEntityValidationError{}
+} = DynamoBookingEntityValidationError{}

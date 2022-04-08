@@ -35,6 +35,177 @@ var (
 	_ = sort.Sort
 )
 
+// Validate checks the field values on QuoteData with the rules defined in the
+// proto definition for this message. If any rules are violated, the first
+// error encountered is returned, or nil if there are no violations.
+func (m *QuoteData) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on QuoteData with the rules defined in
+// the proto definition for this message. If any rules are violated, the
+// result is a list of violation errors wrapped in QuoteDataMultiError, or nil
+// if none found.
+func (m *QuoteData) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *QuoteData) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	// no validation rules for QuoteId
+
+	// no validation rules for RequesterId
+
+	// no validation rules for BusinessId
+
+	// no validation rules for Mode
+
+	// no validation rules for LiablePartyId
+
+	if all {
+		switch v := interface{}(m.GetShippingDetail()).(type) {
+		case interface{ ValidateAll() error }:
+			if err := v.ValidateAll(); err != nil {
+				errors = append(errors, QuoteDataValidationError{
+					field:  "ShippingDetail",
+					reason: "embedded message failed validation",
+					cause:  err,
+				})
+			}
+		case interface{ Validate() error }:
+			if err := v.Validate(); err != nil {
+				errors = append(errors, QuoteDataValidationError{
+					field:  "ShippingDetail",
+					reason: "embedded message failed validation",
+					cause:  err,
+				})
+			}
+		}
+	} else if v, ok := interface{}(m.GetShippingDetail()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return QuoteDataValidationError{
+				field:  "ShippingDetail",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	for idx, item := range m.GetCommodities() {
+		_, _ = idx, item
+
+		if all {
+			switch v := interface{}(item).(type) {
+			case interface{ ValidateAll() error }:
+				if err := v.ValidateAll(); err != nil {
+					errors = append(errors, QuoteDataValidationError{
+						field:  fmt.Sprintf("Commodities[%v]", idx),
+						reason: "embedded message failed validation",
+						cause:  err,
+					})
+				}
+			case interface{ Validate() error }:
+				if err := v.Validate(); err != nil {
+					errors = append(errors, QuoteDataValidationError{
+						field:  fmt.Sprintf("Commodities[%v]", idx),
+						reason: "embedded message failed validation",
+						cause:  err,
+					})
+				}
+			}
+		} else if v, ok := interface{}(item).(interface{ Validate() error }); ok {
+			if err := v.Validate(); err != nil {
+				return QuoteDataValidationError{
+					field:  fmt.Sprintf("Commodities[%v]", idx),
+					reason: "embedded message failed validation",
+					cause:  err,
+				}
+			}
+		}
+
+	}
+
+	if len(errors) > 0 {
+		return QuoteDataMultiError(errors)
+	}
+	return nil
+}
+
+// QuoteDataMultiError is an error wrapping multiple validation errors returned
+// by QuoteData.ValidateAll() if the designated constraints aren't met.
+type QuoteDataMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m QuoteDataMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m QuoteDataMultiError) AllErrors() []error { return m }
+
+// QuoteDataValidationError is the validation error returned by
+// QuoteData.Validate if the designated constraints aren't met.
+type QuoteDataValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e QuoteDataValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e QuoteDataValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e QuoteDataValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e QuoteDataValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e QuoteDataValidationError) ErrorName() string { return "QuoteDataValidationError" }
+
+// Error satisfies the builtin error interface
+func (e QuoteDataValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sQuoteData.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = QuoteDataValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = QuoteDataValidationError{}
+
 // Validate checks the field values on QuoteEntity with the rules defined in
 // the proto definition for this message. If any rules are violated, the first
 // error encountered is returned, or nil if there are no violations.
@@ -57,22 +228,20 @@ func (m *QuoteEntity) validate(all bool) error {
 
 	var errors []error
 
-	// no validation rules for QuoteId
+	// no validation rules for Pk
 
-	// no validation rules for RequesterId
+	// no validation rules for Sk
 
-	// no validation rules for BusinessId
+	// no validation rules for QuotePk
 
-	// no validation rules for Mode
-
-	// no validation rules for LiablePartyId
+	// no validation rules for QuoteSk
 
 	if all {
-		switch v := interface{}(m.GetShippingDetail()).(type) {
+		switch v := interface{}(m.GetQuoteEntity()).(type) {
 		case interface{ ValidateAll() error }:
 			if err := v.ValidateAll(); err != nil {
 				errors = append(errors, QuoteEntityValidationError{
-					field:  "ShippingDetail",
+					field:  "QuoteEntity",
 					reason: "embedded message failed validation",
 					cause:  err,
 				})
@@ -80,54 +249,20 @@ func (m *QuoteEntity) validate(all bool) error {
 		case interface{ Validate() error }:
 			if err := v.Validate(); err != nil {
 				errors = append(errors, QuoteEntityValidationError{
-					field:  "ShippingDetail",
+					field:  "QuoteEntity",
 					reason: "embedded message failed validation",
 					cause:  err,
 				})
 			}
 		}
-	} else if v, ok := interface{}(m.GetShippingDetail()).(interface{ Validate() error }); ok {
+	} else if v, ok := interface{}(m.GetQuoteEntity()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return QuoteEntityValidationError{
-				field:  "ShippingDetail",
+				field:  "QuoteEntity",
 				reason: "embedded message failed validation",
 				cause:  err,
 			}
 		}
-	}
-
-	for idx, item := range m.GetCommodities() {
-		_, _ = idx, item
-
-		if all {
-			switch v := interface{}(item).(type) {
-			case interface{ ValidateAll() error }:
-				if err := v.ValidateAll(); err != nil {
-					errors = append(errors, QuoteEntityValidationError{
-						field:  fmt.Sprintf("Commodities[%v]", idx),
-						reason: "embedded message failed validation",
-						cause:  err,
-					})
-				}
-			case interface{ Validate() error }:
-				if err := v.Validate(); err != nil {
-					errors = append(errors, QuoteEntityValidationError{
-						field:  fmt.Sprintf("Commodities[%v]", idx),
-						reason: "embedded message failed validation",
-						cause:  err,
-					})
-				}
-			}
-		} else if v, ok := interface{}(item).(interface{ Validate() error }); ok {
-			if err := v.Validate(); err != nil {
-				return QuoteEntityValidationError{
-					field:  fmt.Sprintf("Commodities[%v]", idx),
-					reason: "embedded message failed validation",
-					cause:  err,
-				}
-			}
-		}
-
 	}
 
 	if len(errors) > 0 {
@@ -206,78 +341,105 @@ var _ interface {
 	ErrorName() string
 } = QuoteEntityValidationError{}
 
-// Validate checks the field values on DynamoQuoteEntity with the rules defined
-// in the proto definition for this message. If any rules are violated, the
-// first error encountered is returned, or nil if there are no violations.
-func (m *DynamoQuoteEntity) Validate() error {
+// Validate checks the field values on BidData with the rules defined in the
+// proto definition for this message. If any rules are violated, the first
+// error encountered is returned, or nil if there are no violations.
+func (m *BidData) Validate() error {
 	return m.validate(false)
 }
 
-// ValidateAll checks the field values on DynamoQuoteEntity with the rules
-// defined in the proto definition for this message. If any rules are
-// violated, the result is a list of violation errors wrapped in
-// DynamoQuoteEntityMultiError, or nil if none found.
-func (m *DynamoQuoteEntity) ValidateAll() error {
+// ValidateAll checks the field values on BidData with the rules defined in the
+// proto definition for this message. If any rules are violated, the result is
+// a list of violation errors wrapped in BidDataMultiError, or nil if none found.
+func (m *BidData) ValidateAll() error {
 	return m.validate(true)
 }
 
-func (m *DynamoQuoteEntity) validate(all bool) error {
+func (m *BidData) validate(all bool) error {
 	if m == nil {
 		return nil
 	}
 
 	var errors []error
 
-	// no validation rules for Pk
+	// no validation rules for QuoteId
 
-	// no validation rules for Sk
-
-	// no validation rules for QuotePk
-
-	// no validation rules for QuoteSk
+	// no validation rules for BidId
 
 	if all {
-		switch v := interface{}(m.GetQuoteEntity()).(type) {
+		switch v := interface{}(m.GetCarrier()).(type) {
 		case interface{ ValidateAll() error }:
 			if err := v.ValidateAll(); err != nil {
-				errors = append(errors, DynamoQuoteEntityValidationError{
-					field:  "QuoteEntity",
+				errors = append(errors, BidDataValidationError{
+					field:  "Carrier",
 					reason: "embedded message failed validation",
 					cause:  err,
 				})
 			}
 		case interface{ Validate() error }:
 			if err := v.Validate(); err != nil {
-				errors = append(errors, DynamoQuoteEntityValidationError{
-					field:  "QuoteEntity",
+				errors = append(errors, BidDataValidationError{
+					field:  "Carrier",
 					reason: "embedded message failed validation",
 					cause:  err,
 				})
 			}
 		}
-	} else if v, ok := interface{}(m.GetQuoteEntity()).(interface{ Validate() error }); ok {
+	} else if v, ok := interface{}(m.GetCarrier()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
-			return DynamoQuoteEntityValidationError{
-				field:  "QuoteEntity",
+			return BidDataValidationError{
+				field:  "Carrier",
 				reason: "embedded message failed validation",
 				cause:  err,
 			}
 		}
 	}
 
+	if all {
+		switch v := interface{}(m.GetAmount()).(type) {
+		case interface{ ValidateAll() error }:
+			if err := v.ValidateAll(); err != nil {
+				errors = append(errors, BidDataValidationError{
+					field:  "Amount",
+					reason: "embedded message failed validation",
+					cause:  err,
+				})
+			}
+		case interface{ Validate() error }:
+			if err := v.Validate(); err != nil {
+				errors = append(errors, BidDataValidationError{
+					field:  "Amount",
+					reason: "embedded message failed validation",
+					cause:  err,
+				})
+			}
+		}
+	} else if v, ok := interface{}(m.GetAmount()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return BidDataValidationError{
+				field:  "Amount",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	// no validation rules for TransitTime
+
+	// no validation rules for Guranteed
+
 	if len(errors) > 0 {
-		return DynamoQuoteEntityMultiError(errors)
+		return BidDataMultiError(errors)
 	}
 	return nil
 }
 
-// DynamoQuoteEntityMultiError is an error wrapping multiple validation errors
-// returned by DynamoQuoteEntity.ValidateAll() if the designated constraints
-// aren't met.
-type DynamoQuoteEntityMultiError []error
+// BidDataMultiError is an error wrapping multiple validation errors returned
+// by BidData.ValidateAll() if the designated constraints aren't met.
+type BidDataMultiError []error
 
 // Error returns a concatenation of all the error messages it wraps.
-func (m DynamoQuoteEntityMultiError) Error() string {
+func (m BidDataMultiError) Error() string {
 	var msgs []string
 	for _, err := range m {
 		msgs = append(msgs, err.Error())
@@ -286,11 +448,11 @@ func (m DynamoQuoteEntityMultiError) Error() string {
 }
 
 // AllErrors returns a list of validation violation errors.
-func (m DynamoQuoteEntityMultiError) AllErrors() []error { return m }
+func (m BidDataMultiError) AllErrors() []error { return m }
 
-// DynamoQuoteEntityValidationError is the validation error returned by
-// DynamoQuoteEntity.Validate if the designated constraints aren't met.
-type DynamoQuoteEntityValidationError struct {
+// BidDataValidationError is the validation error returned by BidData.Validate
+// if the designated constraints aren't met.
+type BidDataValidationError struct {
 	field  string
 	reason string
 	cause  error
@@ -298,24 +460,22 @@ type DynamoQuoteEntityValidationError struct {
 }
 
 // Field function returns field value.
-func (e DynamoQuoteEntityValidationError) Field() string { return e.field }
+func (e BidDataValidationError) Field() string { return e.field }
 
 // Reason function returns reason value.
-func (e DynamoQuoteEntityValidationError) Reason() string { return e.reason }
+func (e BidDataValidationError) Reason() string { return e.reason }
 
 // Cause function returns cause value.
-func (e DynamoQuoteEntityValidationError) Cause() error { return e.cause }
+func (e BidDataValidationError) Cause() error { return e.cause }
 
 // Key function returns key value.
-func (e DynamoQuoteEntityValidationError) Key() bool { return e.key }
+func (e BidDataValidationError) Key() bool { return e.key }
 
 // ErrorName returns error name.
-func (e DynamoQuoteEntityValidationError) ErrorName() string {
-	return "DynamoQuoteEntityValidationError"
-}
+func (e BidDataValidationError) ErrorName() string { return "BidDataValidationError" }
 
 // Error satisfies the builtin error interface
-func (e DynamoQuoteEntityValidationError) Error() string {
+func (e BidDataValidationError) Error() string {
 	cause := ""
 	if e.cause != nil {
 		cause = fmt.Sprintf(" | caused by: %v", e.cause)
@@ -327,14 +487,14 @@ func (e DynamoQuoteEntityValidationError) Error() string {
 	}
 
 	return fmt.Sprintf(
-		"invalid %sDynamoQuoteEntity.%s: %s%s",
+		"invalid %sBidData.%s: %s%s",
 		key,
 		e.field,
 		e.reason,
 		cause)
 }
 
-var _ error = DynamoQuoteEntityValidationError{}
+var _ error = BidDataValidationError{}
 
 var _ interface {
 	Field() string
@@ -342,7 +502,7 @@ var _ interface {
 	Key() bool
 	Cause() error
 	ErrorName() string
-} = DynamoQuoteEntityValidationError{}
+} = BidDataValidationError{}
 
 // Validate checks the field values on BidEntity with the rules defined in the
 // proto definition for this message. If any rules are violated, the first
@@ -366,16 +526,20 @@ func (m *BidEntity) validate(all bool) error {
 
 	var errors []error
 
-	// no validation rules for QuoteId
+	// no validation rules for Pk
 
 	// no validation rules for Sk
 
+	// no validation rules for BidPk
+
+	// no validation rules for BidSk
+
 	if all {
-		switch v := interface{}(m.GetCarrier()).(type) {
+		switch v := interface{}(m.GetBidEntity()).(type) {
 		case interface{ ValidateAll() error }:
 			if err := v.ValidateAll(); err != nil {
 				errors = append(errors, BidEntityValidationError{
-					field:  "Carrier",
+					field:  "BidEntity",
 					reason: "embedded message failed validation",
 					cause:  err,
 				})
@@ -383,54 +547,21 @@ func (m *BidEntity) validate(all bool) error {
 		case interface{ Validate() error }:
 			if err := v.Validate(); err != nil {
 				errors = append(errors, BidEntityValidationError{
-					field:  "Carrier",
+					field:  "BidEntity",
 					reason: "embedded message failed validation",
 					cause:  err,
 				})
 			}
 		}
-	} else if v, ok := interface{}(m.GetCarrier()).(interface{ Validate() error }); ok {
+	} else if v, ok := interface{}(m.GetBidEntity()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return BidEntityValidationError{
-				field:  "Carrier",
+				field:  "BidEntity",
 				reason: "embedded message failed validation",
 				cause:  err,
 			}
 		}
 	}
-
-	if all {
-		switch v := interface{}(m.GetAmount()).(type) {
-		case interface{ ValidateAll() error }:
-			if err := v.ValidateAll(); err != nil {
-				errors = append(errors, BidEntityValidationError{
-					field:  "Amount",
-					reason: "embedded message failed validation",
-					cause:  err,
-				})
-			}
-		case interface{ Validate() error }:
-			if err := v.Validate(); err != nil {
-				errors = append(errors, BidEntityValidationError{
-					field:  "Amount",
-					reason: "embedded message failed validation",
-					cause:  err,
-				})
-			}
-		}
-	} else if v, ok := interface{}(m.GetAmount()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return BidEntityValidationError{
-				field:  "Amount",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
-
-	// no validation rules for TransitTime
-
-	// no validation rules for Guranteed
 
 	if len(errors) > 0 {
 		return BidEntityMultiError(errors)
@@ -508,160 +639,22 @@ var _ interface {
 	ErrorName() string
 } = BidEntityValidationError{}
 
-// Validate checks the field values on DynamoQuoteBidEntity with the rules
-// defined in the proto definition for this message. If any rules are
-// violated, the first error encountered is returned, or nil if there are no violations.
-func (m *DynamoQuoteBidEntity) Validate() error {
-	return m.validate(false)
-}
-
-// ValidateAll checks the field values on DynamoQuoteBidEntity with the rules
-// defined in the proto definition for this message. If any rules are
-// violated, the result is a list of violation errors wrapped in
-// DynamoQuoteBidEntityMultiError, or nil if none found.
-func (m *DynamoQuoteBidEntity) ValidateAll() error {
-	return m.validate(true)
-}
-
-func (m *DynamoQuoteBidEntity) validate(all bool) error {
-	if m == nil {
-		return nil
-	}
-
-	var errors []error
-
-	// no validation rules for Pk
-
-	// no validation rules for Sk
-
-	// no validation rules for BidPk
-
-	// no validation rules for BidSk
-
-	if all {
-		switch v := interface{}(m.GetBidEntity()).(type) {
-		case interface{ ValidateAll() error }:
-			if err := v.ValidateAll(); err != nil {
-				errors = append(errors, DynamoQuoteBidEntityValidationError{
-					field:  "BidEntity",
-					reason: "embedded message failed validation",
-					cause:  err,
-				})
-			}
-		case interface{ Validate() error }:
-			if err := v.Validate(); err != nil {
-				errors = append(errors, DynamoQuoteBidEntityValidationError{
-					field:  "BidEntity",
-					reason: "embedded message failed validation",
-					cause:  err,
-				})
-			}
-		}
-	} else if v, ok := interface{}(m.GetBidEntity()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return DynamoQuoteBidEntityValidationError{
-				field:  "BidEntity",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
-
-	if len(errors) > 0 {
-		return DynamoQuoteBidEntityMultiError(errors)
-	}
-	return nil
-}
-
-// DynamoQuoteBidEntityMultiError is an error wrapping multiple validation
-// errors returned by DynamoQuoteBidEntity.ValidateAll() if the designated
-// constraints aren't met.
-type DynamoQuoteBidEntityMultiError []error
-
-// Error returns a concatenation of all the error messages it wraps.
-func (m DynamoQuoteBidEntityMultiError) Error() string {
-	var msgs []string
-	for _, err := range m {
-		msgs = append(msgs, err.Error())
-	}
-	return strings.Join(msgs, "; ")
-}
-
-// AllErrors returns a list of validation violation errors.
-func (m DynamoQuoteBidEntityMultiError) AllErrors() []error { return m }
-
-// DynamoQuoteBidEntityValidationError is the validation error returned by
-// DynamoQuoteBidEntity.Validate if the designated constraints aren't met.
-type DynamoQuoteBidEntityValidationError struct {
-	field  string
-	reason string
-	cause  error
-	key    bool
-}
-
-// Field function returns field value.
-func (e DynamoQuoteBidEntityValidationError) Field() string { return e.field }
-
-// Reason function returns reason value.
-func (e DynamoQuoteBidEntityValidationError) Reason() string { return e.reason }
-
-// Cause function returns cause value.
-func (e DynamoQuoteBidEntityValidationError) Cause() error { return e.cause }
-
-// Key function returns key value.
-func (e DynamoQuoteBidEntityValidationError) Key() bool { return e.key }
-
-// ErrorName returns error name.
-func (e DynamoQuoteBidEntityValidationError) ErrorName() string {
-	return "DynamoQuoteBidEntityValidationError"
-}
-
-// Error satisfies the builtin error interface
-func (e DynamoQuoteBidEntityValidationError) Error() string {
-	cause := ""
-	if e.cause != nil {
-		cause = fmt.Sprintf(" | caused by: %v", e.cause)
-	}
-
-	key := ""
-	if e.key {
-		key = "key for "
-	}
-
-	return fmt.Sprintf(
-		"invalid %sDynamoQuoteBidEntity.%s: %s%s",
-		key,
-		e.field,
-		e.reason,
-		cause)
-}
-
-var _ error = DynamoQuoteBidEntityValidationError{}
-
-var _ interface {
-	Field() string
-	Reason() string
-	Key() bool
-	Cause() error
-	ErrorName() string
-} = DynamoQuoteBidEntityValidationError{}
-
-// Validate checks the field values on QuoteBids with the rules defined in the
+// Validate checks the field values on BidDatas with the rules defined in the
 // proto definition for this message. If any rules are violated, the first
 // error encountered is returned, or nil if there are no violations.
-func (m *QuoteBids) Validate() error {
+func (m *BidDatas) Validate() error {
 	return m.validate(false)
 }
 
-// ValidateAll checks the field values on QuoteBids with the rules defined in
+// ValidateAll checks the field values on BidDatas with the rules defined in
 // the proto definition for this message. If any rules are violated, the
-// result is a list of violation errors wrapped in QuoteBidsMultiError, or nil
+// result is a list of violation errors wrapped in BidDatasMultiError, or nil
 // if none found.
-func (m *QuoteBids) ValidateAll() error {
+func (m *BidDatas) ValidateAll() error {
 	return m.validate(true)
 }
 
-func (m *QuoteBids) validate(all bool) error {
+func (m *BidDatas) validate(all bool) error {
 	if m == nil {
 		return nil
 	}
@@ -669,28 +662,28 @@ func (m *QuoteBids) validate(all bool) error {
 	var errors []error
 
 	if all {
-		switch v := interface{}(m.GetQuoteEntity()).(type) {
+		switch v := interface{}(m.GetQuoteData()).(type) {
 		case interface{ ValidateAll() error }:
 			if err := v.ValidateAll(); err != nil {
-				errors = append(errors, QuoteBidsValidationError{
-					field:  "QuoteEntity",
+				errors = append(errors, BidDatasValidationError{
+					field:  "QuoteData",
 					reason: "embedded message failed validation",
 					cause:  err,
 				})
 			}
 		case interface{ Validate() error }:
 			if err := v.Validate(); err != nil {
-				errors = append(errors, QuoteBidsValidationError{
-					field:  "QuoteEntity",
+				errors = append(errors, BidDatasValidationError{
+					field:  "QuoteData",
 					reason: "embedded message failed validation",
 					cause:  err,
 				})
 			}
 		}
-	} else if v, ok := interface{}(m.GetQuoteEntity()).(interface{ Validate() error }); ok {
+	} else if v, ok := interface{}(m.GetQuoteData()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
-			return QuoteBidsValidationError{
-				field:  "QuoteEntity",
+			return BidDatasValidationError{
+				field:  "QuoteData",
 				reason: "embedded message failed validation",
 				cause:  err,
 			}
@@ -704,7 +697,7 @@ func (m *QuoteBids) validate(all bool) error {
 			switch v := interface{}(item).(type) {
 			case interface{ ValidateAll() error }:
 				if err := v.ValidateAll(); err != nil {
-					errors = append(errors, QuoteBidsValidationError{
+					errors = append(errors, BidDatasValidationError{
 						field:  fmt.Sprintf("QuoteBids[%v]", idx),
 						reason: "embedded message failed validation",
 						cause:  err,
@@ -712,7 +705,7 @@ func (m *QuoteBids) validate(all bool) error {
 				}
 			case interface{ Validate() error }:
 				if err := v.Validate(); err != nil {
-					errors = append(errors, QuoteBidsValidationError{
+					errors = append(errors, BidDatasValidationError{
 						field:  fmt.Sprintf("QuoteBids[%v]", idx),
 						reason: "embedded message failed validation",
 						cause:  err,
@@ -721,7 +714,7 @@ func (m *QuoteBids) validate(all bool) error {
 			}
 		} else if v, ok := interface{}(item).(interface{ Validate() error }); ok {
 			if err := v.Validate(); err != nil {
-				return QuoteBidsValidationError{
+				return BidDatasValidationError{
 					field:  fmt.Sprintf("QuoteBids[%v]", idx),
 					reason: "embedded message failed validation",
 					cause:  err,
@@ -732,17 +725,17 @@ func (m *QuoteBids) validate(all bool) error {
 	}
 
 	if len(errors) > 0 {
-		return QuoteBidsMultiError(errors)
+		return BidDatasMultiError(errors)
 	}
 	return nil
 }
 
-// QuoteBidsMultiError is an error wrapping multiple validation errors returned
-// by QuoteBids.ValidateAll() if the designated constraints aren't met.
-type QuoteBidsMultiError []error
+// BidDatasMultiError is an error wrapping multiple validation errors returned
+// by BidDatas.ValidateAll() if the designated constraints aren't met.
+type BidDatasMultiError []error
 
 // Error returns a concatenation of all the error messages it wraps.
-func (m QuoteBidsMultiError) Error() string {
+func (m BidDatasMultiError) Error() string {
 	var msgs []string
 	for _, err := range m {
 		msgs = append(msgs, err.Error())
@@ -751,11 +744,11 @@ func (m QuoteBidsMultiError) Error() string {
 }
 
 // AllErrors returns a list of validation violation errors.
-func (m QuoteBidsMultiError) AllErrors() []error { return m }
+func (m BidDatasMultiError) AllErrors() []error { return m }
 
-// QuoteBidsValidationError is the validation error returned by
-// QuoteBids.Validate if the designated constraints aren't met.
-type QuoteBidsValidationError struct {
+// BidDatasValidationError is the validation error returned by
+// BidDatas.Validate if the designated constraints aren't met.
+type BidDatasValidationError struct {
 	field  string
 	reason string
 	cause  error
@@ -763,22 +756,22 @@ type QuoteBidsValidationError struct {
 }
 
 // Field function returns field value.
-func (e QuoteBidsValidationError) Field() string { return e.field }
+func (e BidDatasValidationError) Field() string { return e.field }
 
 // Reason function returns reason value.
-func (e QuoteBidsValidationError) Reason() string { return e.reason }
+func (e BidDatasValidationError) Reason() string { return e.reason }
 
 // Cause function returns cause value.
-func (e QuoteBidsValidationError) Cause() error { return e.cause }
+func (e BidDatasValidationError) Cause() error { return e.cause }
 
 // Key function returns key value.
-func (e QuoteBidsValidationError) Key() bool { return e.key }
+func (e BidDatasValidationError) Key() bool { return e.key }
 
 // ErrorName returns error name.
-func (e QuoteBidsValidationError) ErrorName() string { return "QuoteBidsValidationError" }
+func (e BidDatasValidationError) ErrorName() string { return "BidDatasValidationError" }
 
 // Error satisfies the builtin error interface
-func (e QuoteBidsValidationError) Error() string {
+func (e BidDatasValidationError) Error() string {
 	cause := ""
 	if e.cause != nil {
 		cause = fmt.Sprintf(" | caused by: %v", e.cause)
@@ -790,14 +783,14 @@ func (e QuoteBidsValidationError) Error() string {
 	}
 
 	return fmt.Sprintf(
-		"invalid %sQuoteBids.%s: %s%s",
+		"invalid %sBidDatas.%s: %s%s",
 		key,
 		e.field,
 		e.reason,
 		cause)
 }
 
-var _ error = QuoteBidsValidationError{}
+var _ error = BidDatasValidationError{}
 
 var _ interface {
 	Field() string
@@ -805,7 +798,7 @@ var _ interface {
 	Key() bool
 	Cause() error
 	ErrorName() string
-} = QuoteBidsValidationError{}
+} = BidDatasValidationError{}
 
 // Validate checks the field values on FetchQuotes with the rules defined in
 // the proto definition for this message. If any rules are violated, the first
@@ -911,45 +904,45 @@ var _ interface {
 	ErrorName() string
 } = FetchQuotesValidationError{}
 
-// Validate checks the field values on QuoteEntities with the rules defined in
-// the proto definition for this message. If any rules are violated, the first
+// Validate checks the field values on QuoteDatas with the rules defined in the
+// proto definition for this message. If any rules are violated, the first
 // error encountered is returned, or nil if there are no violations.
-func (m *QuoteEntities) Validate() error {
+func (m *QuoteDatas) Validate() error {
 	return m.validate(false)
 }
 
-// ValidateAll checks the field values on QuoteEntities with the rules defined
-// in the proto definition for this message. If any rules are violated, the
-// result is a list of violation errors wrapped in QuoteEntitiesMultiError, or
+// ValidateAll checks the field values on QuoteDatas with the rules defined in
+// the proto definition for this message. If any rules are violated, the
+// result is a list of violation errors wrapped in QuoteDatasMultiError, or
 // nil if none found.
-func (m *QuoteEntities) ValidateAll() error {
+func (m *QuoteDatas) ValidateAll() error {
 	return m.validate(true)
 }
 
-func (m *QuoteEntities) validate(all bool) error {
+func (m *QuoteDatas) validate(all bool) error {
 	if m == nil {
 		return nil
 	}
 
 	var errors []error
 
-	for idx, item := range m.GetQuoteEntities() {
+	for idx, item := range m.GetQuoteDatas() {
 		_, _ = idx, item
 
 		if all {
 			switch v := interface{}(item).(type) {
 			case interface{ ValidateAll() error }:
 				if err := v.ValidateAll(); err != nil {
-					errors = append(errors, QuoteEntitiesValidationError{
-						field:  fmt.Sprintf("QuoteEntities[%v]", idx),
+					errors = append(errors, QuoteDatasValidationError{
+						field:  fmt.Sprintf("QuoteDatas[%v]", idx),
 						reason: "embedded message failed validation",
 						cause:  err,
 					})
 				}
 			case interface{ Validate() error }:
 				if err := v.Validate(); err != nil {
-					errors = append(errors, QuoteEntitiesValidationError{
-						field:  fmt.Sprintf("QuoteEntities[%v]", idx),
+					errors = append(errors, QuoteDatasValidationError{
+						field:  fmt.Sprintf("QuoteDatas[%v]", idx),
 						reason: "embedded message failed validation",
 						cause:  err,
 					})
@@ -957,8 +950,8 @@ func (m *QuoteEntities) validate(all bool) error {
 			}
 		} else if v, ok := interface{}(item).(interface{ Validate() error }); ok {
 			if err := v.Validate(); err != nil {
-				return QuoteEntitiesValidationError{
-					field:  fmt.Sprintf("QuoteEntities[%v]", idx),
+				return QuoteDatasValidationError{
+					field:  fmt.Sprintf("QuoteDatas[%v]", idx),
 					reason: "embedded message failed validation",
 					cause:  err,
 				}
@@ -968,18 +961,17 @@ func (m *QuoteEntities) validate(all bool) error {
 	}
 
 	if len(errors) > 0 {
-		return QuoteEntitiesMultiError(errors)
+		return QuoteDatasMultiError(errors)
 	}
 	return nil
 }
 
-// QuoteEntitiesMultiError is an error wrapping multiple validation errors
-// returned by QuoteEntities.ValidateAll() if the designated constraints
-// aren't met.
-type QuoteEntitiesMultiError []error
+// QuoteDatasMultiError is an error wrapping multiple validation errors
+// returned by QuoteDatas.ValidateAll() if the designated constraints aren't met.
+type QuoteDatasMultiError []error
 
 // Error returns a concatenation of all the error messages it wraps.
-func (m QuoteEntitiesMultiError) Error() string {
+func (m QuoteDatasMultiError) Error() string {
 	var msgs []string
 	for _, err := range m {
 		msgs = append(msgs, err.Error())
@@ -988,11 +980,11 @@ func (m QuoteEntitiesMultiError) Error() string {
 }
 
 // AllErrors returns a list of validation violation errors.
-func (m QuoteEntitiesMultiError) AllErrors() []error { return m }
+func (m QuoteDatasMultiError) AllErrors() []error { return m }
 
-// QuoteEntitiesValidationError is the validation error returned by
-// QuoteEntities.Validate if the designated constraints aren't met.
-type QuoteEntitiesValidationError struct {
+// QuoteDatasValidationError is the validation error returned by
+// QuoteDatas.Validate if the designated constraints aren't met.
+type QuoteDatasValidationError struct {
 	field  string
 	reason string
 	cause  error
@@ -1000,22 +992,22 @@ type QuoteEntitiesValidationError struct {
 }
 
 // Field function returns field value.
-func (e QuoteEntitiesValidationError) Field() string { return e.field }
+func (e QuoteDatasValidationError) Field() string { return e.field }
 
 // Reason function returns reason value.
-func (e QuoteEntitiesValidationError) Reason() string { return e.reason }
+func (e QuoteDatasValidationError) Reason() string { return e.reason }
 
 // Cause function returns cause value.
-func (e QuoteEntitiesValidationError) Cause() error { return e.cause }
+func (e QuoteDatasValidationError) Cause() error { return e.cause }
 
 // Key function returns key value.
-func (e QuoteEntitiesValidationError) Key() bool { return e.key }
+func (e QuoteDatasValidationError) Key() bool { return e.key }
 
 // ErrorName returns error name.
-func (e QuoteEntitiesValidationError) ErrorName() string { return "QuoteEntitiesValidationError" }
+func (e QuoteDatasValidationError) ErrorName() string { return "QuoteDatasValidationError" }
 
 // Error satisfies the builtin error interface
-func (e QuoteEntitiesValidationError) Error() string {
+func (e QuoteDatasValidationError) Error() string {
 	cause := ""
 	if e.cause != nil {
 		cause = fmt.Sprintf(" | caused by: %v", e.cause)
@@ -1027,14 +1019,14 @@ func (e QuoteEntitiesValidationError) Error() string {
 	}
 
 	return fmt.Sprintf(
-		"invalid %sQuoteEntities.%s: %s%s",
+		"invalid %sQuoteDatas.%s: %s%s",
 		key,
 		e.field,
 		e.reason,
 		cause)
 }
 
-var _ error = QuoteEntitiesValidationError{}
+var _ error = QuoteDatasValidationError{}
 
 var _ interface {
 	Field() string
@@ -1042,7 +1034,7 @@ var _ interface {
 	Key() bool
 	Cause() error
 	ErrorName() string
-} = QuoteEntitiesValidationError{}
+} = QuoteDatasValidationError{}
 
 // Validate checks the field values on DeleteQuote with the rules defined in
 // the proto definition for this message. If any rules are violated, the first

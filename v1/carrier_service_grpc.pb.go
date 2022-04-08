@@ -36,17 +36,17 @@ type CarrierServiceClient interface {
 	DeleteLocations(ctx context.Context, in *Ids, opts ...grpc.CallOption) (*Ok, error)
 	// health
 	PingCarrierService(ctx context.Context, in *CarrierServicePing, opts ...grpc.CallOption) (*CarrierServicePing, error)
-	// quote
-	GetAllQuotes(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*QuoteEntities, error)
-	GetNewQuotes(ctx context.Context, in *QuoteEntity, opts ...grpc.CallOption) (*QuoteBids, error)
-	UpdateQuote(ctx context.Context, in *QuoteEntity, opts ...grpc.CallOption) (*QuoteBids, error)
-	DeleteQuote(ctx context.Context, in *Id, opts ...grpc.CallOption) (*Ok, error)
-	DeleteQuotes(ctx context.Context, in *Ids, opts ...grpc.CallOption) (*Ok, error)
 	// booking
 	BookAQuote(ctx context.Context, in *BookingData, opts ...grpc.CallOption) (*BookingResponse, error)
 	BookQuotes(ctx context.Context, in *BookingData, opts ...grpc.CallOption) (*BookingsResponse, error)
 	GetBookingHistory(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*ListOfBooking, error)
 	GetBookingById(ctx context.Context, in *Id, opts ...grpc.CallOption) (*ListOfBooking, error)
+	// quote
+	GetAllQuotes(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*QuoteDatas, error)
+	GetNewQuotes(ctx context.Context, in *QuoteEntity, opts ...grpc.CallOption) (*BidDatas, error)
+	UpdateQuote(ctx context.Context, in *QuoteEntity, opts ...grpc.CallOption) (*BidDatas, error)
+	DeleteQuote(ctx context.Context, in *Id, opts ...grpc.CallOption) (*Ok, error)
+	DeleteQuotes(ctx context.Context, in *Ids, opts ...grpc.CallOption) (*Ok, error)
 }
 
 type carrierServiceClient struct {
@@ -156,51 +156,6 @@ func (c *carrierServiceClient) PingCarrierService(ctx context.Context, in *Carri
 	return out, nil
 }
 
-func (c *carrierServiceClient) GetAllQuotes(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*QuoteEntities, error) {
-	out := new(QuoteEntities)
-	err := c.cc.Invoke(ctx, "/user.CarrierService/GetAllQuotes", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *carrierServiceClient) GetNewQuotes(ctx context.Context, in *QuoteEntity, opts ...grpc.CallOption) (*QuoteBids, error) {
-	out := new(QuoteBids)
-	err := c.cc.Invoke(ctx, "/user.CarrierService/GetNewQuotes", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *carrierServiceClient) UpdateQuote(ctx context.Context, in *QuoteEntity, opts ...grpc.CallOption) (*QuoteBids, error) {
-	out := new(QuoteBids)
-	err := c.cc.Invoke(ctx, "/user.CarrierService/UpdateQuote", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *carrierServiceClient) DeleteQuote(ctx context.Context, in *Id, opts ...grpc.CallOption) (*Ok, error) {
-	out := new(Ok)
-	err := c.cc.Invoke(ctx, "/user.CarrierService/DeleteQuote", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *carrierServiceClient) DeleteQuotes(ctx context.Context, in *Ids, opts ...grpc.CallOption) (*Ok, error) {
-	out := new(Ok)
-	err := c.cc.Invoke(ctx, "/user.CarrierService/DeleteQuotes", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *carrierServiceClient) BookAQuote(ctx context.Context, in *BookingData, opts ...grpc.CallOption) (*BookingResponse, error) {
 	out := new(BookingResponse)
 	err := c.cc.Invoke(ctx, "/user.CarrierService/BookAQuote", in, out, opts...)
@@ -237,6 +192,51 @@ func (c *carrierServiceClient) GetBookingById(ctx context.Context, in *Id, opts 
 	return out, nil
 }
 
+func (c *carrierServiceClient) GetAllQuotes(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*QuoteDatas, error) {
+	out := new(QuoteDatas)
+	err := c.cc.Invoke(ctx, "/user.CarrierService/GetAllQuotes", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *carrierServiceClient) GetNewQuotes(ctx context.Context, in *QuoteEntity, opts ...grpc.CallOption) (*BidDatas, error) {
+	out := new(BidDatas)
+	err := c.cc.Invoke(ctx, "/user.CarrierService/GetNewQuotes", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *carrierServiceClient) UpdateQuote(ctx context.Context, in *QuoteEntity, opts ...grpc.CallOption) (*BidDatas, error) {
+	out := new(BidDatas)
+	err := c.cc.Invoke(ctx, "/user.CarrierService/UpdateQuote", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *carrierServiceClient) DeleteQuote(ctx context.Context, in *Id, opts ...grpc.CallOption) (*Ok, error) {
+	out := new(Ok)
+	err := c.cc.Invoke(ctx, "/user.CarrierService/DeleteQuote", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *carrierServiceClient) DeleteQuotes(ctx context.Context, in *Ids, opts ...grpc.CallOption) (*Ok, error) {
+	out := new(Ok)
+	err := c.cc.Invoke(ctx, "/user.CarrierService/DeleteQuotes", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // CarrierServiceServer is the server API for CarrierService service.
 // All implementations should embed UnimplementedCarrierServiceServer
 // for forward compatibility
@@ -255,17 +255,17 @@ type CarrierServiceServer interface {
 	DeleteLocations(context.Context, *Ids) (*Ok, error)
 	// health
 	PingCarrierService(context.Context, *CarrierServicePing) (*CarrierServicePing, error)
-	// quote
-	GetAllQuotes(context.Context, *Empty) (*QuoteEntities, error)
-	GetNewQuotes(context.Context, *QuoteEntity) (*QuoteBids, error)
-	UpdateQuote(context.Context, *QuoteEntity) (*QuoteBids, error)
-	DeleteQuote(context.Context, *Id) (*Ok, error)
-	DeleteQuotes(context.Context, *Ids) (*Ok, error)
 	// booking
 	BookAQuote(context.Context, *BookingData) (*BookingResponse, error)
 	BookQuotes(context.Context, *BookingData) (*BookingsResponse, error)
 	GetBookingHistory(context.Context, *Empty) (*ListOfBooking, error)
 	GetBookingById(context.Context, *Id) (*ListOfBooking, error)
+	// quote
+	GetAllQuotes(context.Context, *Empty) (*QuoteDatas, error)
+	GetNewQuotes(context.Context, *QuoteEntity) (*BidDatas, error)
+	UpdateQuote(context.Context, *QuoteEntity) (*BidDatas, error)
+	DeleteQuote(context.Context, *Id) (*Ok, error)
+	DeleteQuotes(context.Context, *Ids) (*Ok, error)
 }
 
 // UnimplementedCarrierServiceServer should be embedded to have forward compatible implementations.
@@ -305,21 +305,6 @@ func (UnimplementedCarrierServiceServer) DeleteLocations(context.Context, *Ids) 
 func (UnimplementedCarrierServiceServer) PingCarrierService(context.Context, *CarrierServicePing) (*CarrierServicePing, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PingCarrierService not implemented")
 }
-func (UnimplementedCarrierServiceServer) GetAllQuotes(context.Context, *Empty) (*QuoteEntities, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetAllQuotes not implemented")
-}
-func (UnimplementedCarrierServiceServer) GetNewQuotes(context.Context, *QuoteEntity) (*QuoteBids, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetNewQuotes not implemented")
-}
-func (UnimplementedCarrierServiceServer) UpdateQuote(context.Context, *QuoteEntity) (*QuoteBids, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UpdateQuote not implemented")
-}
-func (UnimplementedCarrierServiceServer) DeleteQuote(context.Context, *Id) (*Ok, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method DeleteQuote not implemented")
-}
-func (UnimplementedCarrierServiceServer) DeleteQuotes(context.Context, *Ids) (*Ok, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method DeleteQuotes not implemented")
-}
 func (UnimplementedCarrierServiceServer) BookAQuote(context.Context, *BookingData) (*BookingResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method BookAQuote not implemented")
 }
@@ -331,6 +316,21 @@ func (UnimplementedCarrierServiceServer) GetBookingHistory(context.Context, *Emp
 }
 func (UnimplementedCarrierServiceServer) GetBookingById(context.Context, *Id) (*ListOfBooking, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetBookingById not implemented")
+}
+func (UnimplementedCarrierServiceServer) GetAllQuotes(context.Context, *Empty) (*QuoteDatas, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetAllQuotes not implemented")
+}
+func (UnimplementedCarrierServiceServer) GetNewQuotes(context.Context, *QuoteEntity) (*BidDatas, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetNewQuotes not implemented")
+}
+func (UnimplementedCarrierServiceServer) UpdateQuote(context.Context, *QuoteEntity) (*BidDatas, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateQuote not implemented")
+}
+func (UnimplementedCarrierServiceServer) DeleteQuote(context.Context, *Id) (*Ok, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteQuote not implemented")
+}
+func (UnimplementedCarrierServiceServer) DeleteQuotes(context.Context, *Ids) (*Ok, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteQuotes not implemented")
 }
 
 // UnsafeCarrierServiceServer may be embedded to opt out of forward compatibility for this service.
@@ -542,6 +542,78 @@ func _CarrierService_PingCarrierService_Handler(srv interface{}, ctx context.Con
 	return interceptor(ctx, in, info, handler)
 }
 
+func _CarrierService_BookAQuote_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(BookingData)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CarrierServiceServer).BookAQuote(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/user.CarrierService/BookAQuote",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CarrierServiceServer).BookAQuote(ctx, req.(*BookingData))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _CarrierService_BookQuotes_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(BookingData)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CarrierServiceServer).BookQuotes(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/user.CarrierService/BookQuotes",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CarrierServiceServer).BookQuotes(ctx, req.(*BookingData))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _CarrierService_GetBookingHistory_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CarrierServiceServer).GetBookingHistory(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/user.CarrierService/GetBookingHistory",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CarrierServiceServer).GetBookingHistory(ctx, req.(*Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _CarrierService_GetBookingById_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Id)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CarrierServiceServer).GetBookingById(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/user.CarrierService/GetBookingById",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CarrierServiceServer).GetBookingById(ctx, req.(*Id))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _CarrierService_GetAllQuotes_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(Empty)
 	if err := dec(in); err != nil {
@@ -632,78 +704,6 @@ func _CarrierService_DeleteQuotes_Handler(srv interface{}, ctx context.Context, 
 	return interceptor(ctx, in, info, handler)
 }
 
-func _CarrierService_BookAQuote_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(BookingData)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(CarrierServiceServer).BookAQuote(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/user.CarrierService/BookAQuote",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CarrierServiceServer).BookAQuote(ctx, req.(*BookingData))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _CarrierService_BookQuotes_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(BookingData)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(CarrierServiceServer).BookQuotes(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/user.CarrierService/BookQuotes",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CarrierServiceServer).BookQuotes(ctx, req.(*BookingData))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _CarrierService_GetBookingHistory_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(Empty)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(CarrierServiceServer).GetBookingHistory(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/user.CarrierService/GetBookingHistory",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CarrierServiceServer).GetBookingHistory(ctx, req.(*Empty))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _CarrierService_GetBookingById_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(Id)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(CarrierServiceServer).GetBookingById(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/user.CarrierService/GetBookingById",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CarrierServiceServer).GetBookingById(ctx, req.(*Id))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 // CarrierService_ServiceDesc is the grpc.ServiceDesc for CarrierService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -756,6 +756,22 @@ var CarrierService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _CarrierService_PingCarrierService_Handler,
 		},
 		{
+			MethodName: "BookAQuote",
+			Handler:    _CarrierService_BookAQuote_Handler,
+		},
+		{
+			MethodName: "BookQuotes",
+			Handler:    _CarrierService_BookQuotes_Handler,
+		},
+		{
+			MethodName: "GetBookingHistory",
+			Handler:    _CarrierService_GetBookingHistory_Handler,
+		},
+		{
+			MethodName: "GetBookingById",
+			Handler:    _CarrierService_GetBookingById_Handler,
+		},
+		{
 			MethodName: "GetAllQuotes",
 			Handler:    _CarrierService_GetAllQuotes_Handler,
 		},
@@ -774,22 +790,6 @@ var CarrierService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "DeleteQuotes",
 			Handler:    _CarrierService_DeleteQuotes_Handler,
-		},
-		{
-			MethodName: "BookAQuote",
-			Handler:    _CarrierService_BookAQuote_Handler,
-		},
-		{
-			MethodName: "BookQuotes",
-			Handler:    _CarrierService_BookQuotes_Handler,
-		},
-		{
-			MethodName: "GetBookingHistory",
-			Handler:    _CarrierService_GetBookingHistory_Handler,
-		},
-		{
-			MethodName: "GetBookingById",
-			Handler:    _CarrierService_GetBookingById_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
