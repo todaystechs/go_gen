@@ -43,8 +43,8 @@ type CarrierServiceClient interface {
 	GetBookingById(ctx context.Context, in *Id, opts ...grpc.CallOption) (*ListOfBooking, error)
 	// quote
 	GetAllQuotes(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*QuoteDatas, error)
-	GetNewQuotes(ctx context.Context, in *QuoteEntity, opts ...grpc.CallOption) (*BidDatas, error)
-	UpdateQuote(ctx context.Context, in *QuoteEntity, opts ...grpc.CallOption) (*BidDatas, error)
+	GetNewQuotes(ctx context.Context, in *QuoteData, opts ...grpc.CallOption) (*BidDatas, error)
+	UpdateQuote(ctx context.Context, in *QuoteData, opts ...grpc.CallOption) (*BidDatas, error)
 	DeleteQuote(ctx context.Context, in *Id, opts ...grpc.CallOption) (*Ok, error)
 	DeleteQuotes(ctx context.Context, in *Ids, opts ...grpc.CallOption) (*Ok, error)
 }
@@ -201,7 +201,7 @@ func (c *carrierServiceClient) GetAllQuotes(ctx context.Context, in *Empty, opts
 	return out, nil
 }
 
-func (c *carrierServiceClient) GetNewQuotes(ctx context.Context, in *QuoteEntity, opts ...grpc.CallOption) (*BidDatas, error) {
+func (c *carrierServiceClient) GetNewQuotes(ctx context.Context, in *QuoteData, opts ...grpc.CallOption) (*BidDatas, error) {
 	out := new(BidDatas)
 	err := c.cc.Invoke(ctx, "/user.CarrierService/GetNewQuotes", in, out, opts...)
 	if err != nil {
@@ -210,7 +210,7 @@ func (c *carrierServiceClient) GetNewQuotes(ctx context.Context, in *QuoteEntity
 	return out, nil
 }
 
-func (c *carrierServiceClient) UpdateQuote(ctx context.Context, in *QuoteEntity, opts ...grpc.CallOption) (*BidDatas, error) {
+func (c *carrierServiceClient) UpdateQuote(ctx context.Context, in *QuoteData, opts ...grpc.CallOption) (*BidDatas, error) {
 	out := new(BidDatas)
 	err := c.cc.Invoke(ctx, "/user.CarrierService/UpdateQuote", in, out, opts...)
 	if err != nil {
@@ -262,8 +262,8 @@ type CarrierServiceServer interface {
 	GetBookingById(context.Context, *Id) (*ListOfBooking, error)
 	// quote
 	GetAllQuotes(context.Context, *Empty) (*QuoteDatas, error)
-	GetNewQuotes(context.Context, *QuoteEntity) (*BidDatas, error)
-	UpdateQuote(context.Context, *QuoteEntity) (*BidDatas, error)
+	GetNewQuotes(context.Context, *QuoteData) (*BidDatas, error)
+	UpdateQuote(context.Context, *QuoteData) (*BidDatas, error)
 	DeleteQuote(context.Context, *Id) (*Ok, error)
 	DeleteQuotes(context.Context, *Ids) (*Ok, error)
 }
@@ -320,10 +320,10 @@ func (UnimplementedCarrierServiceServer) GetBookingById(context.Context, *Id) (*
 func (UnimplementedCarrierServiceServer) GetAllQuotes(context.Context, *Empty) (*QuoteDatas, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetAllQuotes not implemented")
 }
-func (UnimplementedCarrierServiceServer) GetNewQuotes(context.Context, *QuoteEntity) (*BidDatas, error) {
+func (UnimplementedCarrierServiceServer) GetNewQuotes(context.Context, *QuoteData) (*BidDatas, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetNewQuotes not implemented")
 }
-func (UnimplementedCarrierServiceServer) UpdateQuote(context.Context, *QuoteEntity) (*BidDatas, error) {
+func (UnimplementedCarrierServiceServer) UpdateQuote(context.Context, *QuoteData) (*BidDatas, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateQuote not implemented")
 }
 func (UnimplementedCarrierServiceServer) DeleteQuote(context.Context, *Id) (*Ok, error) {
@@ -633,7 +633,7 @@ func _CarrierService_GetAllQuotes_Handler(srv interface{}, ctx context.Context, 
 }
 
 func _CarrierService_GetNewQuotes_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(QuoteEntity)
+	in := new(QuoteData)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -645,13 +645,13 @@ func _CarrierService_GetNewQuotes_Handler(srv interface{}, ctx context.Context, 
 		FullMethod: "/user.CarrierService/GetNewQuotes",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CarrierServiceServer).GetNewQuotes(ctx, req.(*QuoteEntity))
+		return srv.(CarrierServiceServer).GetNewQuotes(ctx, req.(*QuoteData))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _CarrierService_UpdateQuote_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(QuoteEntity)
+	in := new(QuoteData)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -663,7 +663,7 @@ func _CarrierService_UpdateQuote_Handler(srv interface{}, ctx context.Context, d
 		FullMethod: "/user.CarrierService/UpdateQuote",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CarrierServiceServer).UpdateQuote(ctx, req.(*QuoteEntity))
+		return srv.(CarrierServiceServer).UpdateQuote(ctx, req.(*QuoteData))
 	}
 	return interceptor(ctx, in, info, handler)
 }
