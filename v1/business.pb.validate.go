@@ -432,22 +432,22 @@ var _ interface {
 	ErrorName() string
 } = DynamoBusinessValidationError{}
 
-// Validate checks the field values on BusinessRequest with the rules defined
-// in the proto definition for this message. If any rules are violated, the
-// first error encountered is returned, or nil if there are no violations.
-func (m *BusinessRequest) Validate() error {
+// Validate checks the field values on GetBusinessRequest with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the first error encountered is returned, or nil if there are no violations.
+func (m *GetBusinessRequest) Validate() error {
 	return m.validate(false)
 }
 
-// ValidateAll checks the field values on BusinessRequest with the rules
+// ValidateAll checks the field values on GetBusinessRequest with the rules
 // defined in the proto definition for this message. If any rules are
 // violated, the result is a list of violation errors wrapped in
-// BusinessRequestMultiError, or nil if none found.
-func (m *BusinessRequest) ValidateAll() error {
+// GetBusinessRequestMultiError, or nil if none found.
+func (m *GetBusinessRequest) ValidateAll() error {
 	return m.validate(true)
 }
 
-func (m *BusinessRequest) validate(all bool) error {
+func (m *GetBusinessRequest) validate(all bool) error {
 	if m == nil {
 		return nil
 	}
@@ -456,21 +456,19 @@ func (m *BusinessRequest) validate(all bool) error {
 
 	// no validation rules for BusinessId
 
-	// no validation rules for Token
-
 	if len(errors) > 0 {
-		return BusinessRequestMultiError(errors)
+		return GetBusinessRequestMultiError(errors)
 	}
 	return nil
 }
 
-// BusinessRequestMultiError is an error wrapping multiple validation errors
-// returned by BusinessRequest.ValidateAll() if the designated constraints
+// GetBusinessRequestMultiError is an error wrapping multiple validation errors
+// returned by GetBusinessRequest.ValidateAll() if the designated constraints
 // aren't met.
-type BusinessRequestMultiError []error
+type GetBusinessRequestMultiError []error
 
 // Error returns a concatenation of all the error messages it wraps.
-func (m BusinessRequestMultiError) Error() string {
+func (m GetBusinessRequestMultiError) Error() string {
 	var msgs []string
 	for _, err := range m {
 		msgs = append(msgs, err.Error())
@@ -479,11 +477,11 @@ func (m BusinessRequestMultiError) Error() string {
 }
 
 // AllErrors returns a list of validation violation errors.
-func (m BusinessRequestMultiError) AllErrors() []error { return m }
+func (m GetBusinessRequestMultiError) AllErrors() []error { return m }
 
-// BusinessRequestValidationError is the validation error returned by
-// BusinessRequest.Validate if the designated constraints aren't met.
-type BusinessRequestValidationError struct {
+// GetBusinessRequestValidationError is the validation error returned by
+// GetBusinessRequest.Validate if the designated constraints aren't met.
+type GetBusinessRequestValidationError struct {
 	field  string
 	reason string
 	cause  error
@@ -491,22 +489,24 @@ type BusinessRequestValidationError struct {
 }
 
 // Field function returns field value.
-func (e BusinessRequestValidationError) Field() string { return e.field }
+func (e GetBusinessRequestValidationError) Field() string { return e.field }
 
 // Reason function returns reason value.
-func (e BusinessRequestValidationError) Reason() string { return e.reason }
+func (e GetBusinessRequestValidationError) Reason() string { return e.reason }
 
 // Cause function returns cause value.
-func (e BusinessRequestValidationError) Cause() error { return e.cause }
+func (e GetBusinessRequestValidationError) Cause() error { return e.cause }
 
 // Key function returns key value.
-func (e BusinessRequestValidationError) Key() bool { return e.key }
+func (e GetBusinessRequestValidationError) Key() bool { return e.key }
 
 // ErrorName returns error name.
-func (e BusinessRequestValidationError) ErrorName() string { return "BusinessRequestValidationError" }
+func (e GetBusinessRequestValidationError) ErrorName() string {
+	return "GetBusinessRequestValidationError"
+}
 
 // Error satisfies the builtin error interface
-func (e BusinessRequestValidationError) Error() string {
+func (e GetBusinessRequestValidationError) Error() string {
 	cause := ""
 	if e.cause != nil {
 		cause = fmt.Sprintf(" | caused by: %v", e.cause)
@@ -518,14 +518,14 @@ func (e BusinessRequestValidationError) Error() string {
 	}
 
 	return fmt.Sprintf(
-		"invalid %sBusinessRequest.%s: %s%s",
+		"invalid %sGetBusinessRequest.%s: %s%s",
 		key,
 		e.field,
 		e.reason,
 		cause)
 }
 
-var _ error = BusinessRequestValidationError{}
+var _ error = GetBusinessRequestValidationError{}
 
 var _ interface {
 	Field() string
@@ -533,24 +533,24 @@ var _ interface {
 	Key() bool
 	Cause() error
 	ErrorName() string
-} = BusinessRequestValidationError{}
+} = GetBusinessRequestValidationError{}
 
-// Validate checks the field values on AllBusinessRequest with the rules
+// Validate checks the field values on GetBusinessesRequest with the rules
 // defined in the proto definition for this message. If any rules are
 // violated, the first error encountered is returned, or nil if there are no violations.
-func (m *AllBusinessRequest) Validate() error {
+func (m *GetBusinessesRequest) Validate() error {
 	return m.validate(false)
 }
 
-// ValidateAll checks the field values on AllBusinessRequest with the rules
+// ValidateAll checks the field values on GetBusinessesRequest with the rules
 // defined in the proto definition for this message. If any rules are
 // violated, the result is a list of violation errors wrapped in
-// AllBusinessRequestMultiError, or nil if none found.
-func (m *AllBusinessRequest) ValidateAll() error {
+// GetBusinessesRequestMultiError, or nil if none found.
+func (m *GetBusinessesRequest) ValidateAll() error {
 	return m.validate(true)
 }
 
-func (m *AllBusinessRequest) validate(all bool) error {
+func (m *GetBusinessesRequest) validate(all bool) error {
 	if m == nil {
 		return nil
 	}
@@ -560,18 +560,18 @@ func (m *AllBusinessRequest) validate(all bool) error {
 	// no validation rules for Token
 
 	if len(errors) > 0 {
-		return AllBusinessRequestMultiError(errors)
+		return GetBusinessesRequestMultiError(errors)
 	}
 	return nil
 }
 
-// AllBusinessRequestMultiError is an error wrapping multiple validation errors
-// returned by AllBusinessRequest.ValidateAll() if the designated constraints
-// aren't met.
-type AllBusinessRequestMultiError []error
+// GetBusinessesRequestMultiError is an error wrapping multiple validation
+// errors returned by GetBusinessesRequest.ValidateAll() if the designated
+// constraints aren't met.
+type GetBusinessesRequestMultiError []error
 
 // Error returns a concatenation of all the error messages it wraps.
-func (m AllBusinessRequestMultiError) Error() string {
+func (m GetBusinessesRequestMultiError) Error() string {
 	var msgs []string
 	for _, err := range m {
 		msgs = append(msgs, err.Error())
@@ -580,11 +580,11 @@ func (m AllBusinessRequestMultiError) Error() string {
 }
 
 // AllErrors returns a list of validation violation errors.
-func (m AllBusinessRequestMultiError) AllErrors() []error { return m }
+func (m GetBusinessesRequestMultiError) AllErrors() []error { return m }
 
-// AllBusinessRequestValidationError is the validation error returned by
-// AllBusinessRequest.Validate if the designated constraints aren't met.
-type AllBusinessRequestValidationError struct {
+// GetBusinessesRequestValidationError is the validation error returned by
+// GetBusinessesRequest.Validate if the designated constraints aren't met.
+type GetBusinessesRequestValidationError struct {
 	field  string
 	reason string
 	cause  error
@@ -592,24 +592,24 @@ type AllBusinessRequestValidationError struct {
 }
 
 // Field function returns field value.
-func (e AllBusinessRequestValidationError) Field() string { return e.field }
+func (e GetBusinessesRequestValidationError) Field() string { return e.field }
 
 // Reason function returns reason value.
-func (e AllBusinessRequestValidationError) Reason() string { return e.reason }
+func (e GetBusinessesRequestValidationError) Reason() string { return e.reason }
 
 // Cause function returns cause value.
-func (e AllBusinessRequestValidationError) Cause() error { return e.cause }
+func (e GetBusinessesRequestValidationError) Cause() error { return e.cause }
 
 // Key function returns key value.
-func (e AllBusinessRequestValidationError) Key() bool { return e.key }
+func (e GetBusinessesRequestValidationError) Key() bool { return e.key }
 
 // ErrorName returns error name.
-func (e AllBusinessRequestValidationError) ErrorName() string {
-	return "AllBusinessRequestValidationError"
+func (e GetBusinessesRequestValidationError) ErrorName() string {
+	return "GetBusinessesRequestValidationError"
 }
 
 // Error satisfies the builtin error interface
-func (e AllBusinessRequestValidationError) Error() string {
+func (e GetBusinessesRequestValidationError) Error() string {
 	cause := ""
 	if e.cause != nil {
 		cause = fmt.Sprintf(" | caused by: %v", e.cause)
@@ -621,14 +621,14 @@ func (e AllBusinessRequestValidationError) Error() string {
 	}
 
 	return fmt.Sprintf(
-		"invalid %sAllBusinessRequest.%s: %s%s",
+		"invalid %sGetBusinessesRequest.%s: %s%s",
 		key,
 		e.field,
 		e.reason,
 		cause)
 }
 
-var _ error = AllBusinessRequestValidationError{}
+var _ error = GetBusinessesRequestValidationError{}
 
 var _ interface {
 	Field() string
@@ -636,4 +636,4 @@ var _ interface {
 	Key() bool
 	Cause() error
 	ErrorName() string
-} = AllBusinessRequestValidationError{}
+} = GetBusinessesRequestValidationError{}
