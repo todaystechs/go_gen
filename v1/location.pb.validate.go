@@ -240,45 +240,45 @@ var _ interface {
 	ErrorName() string
 } = LocationValidationError{}
 
-// Validate checks the field values on ListsOfLocation with the rules defined
-// in the proto definition for this message. If any rules are violated, the
-// first error encountered is returned, or nil if there are no violations.
-func (m *ListsOfLocation) Validate() error {
+// Validate checks the field values on Locations with the rules defined in the
+// proto definition for this message. If any rules are violated, the first
+// error encountered is returned, or nil if there are no violations.
+func (m *Locations) Validate() error {
 	return m.validate(false)
 }
 
-// ValidateAll checks the field values on ListsOfLocation with the rules
-// defined in the proto definition for this message. If any rules are
-// violated, the result is a list of violation errors wrapped in
-// ListsOfLocationMultiError, or nil if none found.
-func (m *ListsOfLocation) ValidateAll() error {
+// ValidateAll checks the field values on Locations with the rules defined in
+// the proto definition for this message. If any rules are violated, the
+// result is a list of violation errors wrapped in LocationsMultiError, or nil
+// if none found.
+func (m *Locations) ValidateAll() error {
 	return m.validate(true)
 }
 
-func (m *ListsOfLocation) validate(all bool) error {
+func (m *Locations) validate(all bool) error {
 	if m == nil {
 		return nil
 	}
 
 	var errors []error
 
-	for idx, item := range m.GetListsOfLocation() {
+	for idx, item := range m.GetLocations() {
 		_, _ = idx, item
 
 		if all {
 			switch v := interface{}(item).(type) {
 			case interface{ ValidateAll() error }:
 				if err := v.ValidateAll(); err != nil {
-					errors = append(errors, ListsOfLocationValidationError{
-						field:  fmt.Sprintf("ListsOfLocation[%v]", idx),
+					errors = append(errors, LocationsValidationError{
+						field:  fmt.Sprintf("Locations[%v]", idx),
 						reason: "embedded message failed validation",
 						cause:  err,
 					})
 				}
 			case interface{ Validate() error }:
 				if err := v.Validate(); err != nil {
-					errors = append(errors, ListsOfLocationValidationError{
-						field:  fmt.Sprintf("ListsOfLocation[%v]", idx),
+					errors = append(errors, LocationsValidationError{
+						field:  fmt.Sprintf("Locations[%v]", idx),
 						reason: "embedded message failed validation",
 						cause:  err,
 					})
@@ -286,8 +286,8 @@ func (m *ListsOfLocation) validate(all bool) error {
 			}
 		} else if v, ok := interface{}(item).(interface{ Validate() error }); ok {
 			if err := v.Validate(); err != nil {
-				return ListsOfLocationValidationError{
-					field:  fmt.Sprintf("ListsOfLocation[%v]", idx),
+				return LocationsValidationError{
+					field:  fmt.Sprintf("Locations[%v]", idx),
 					reason: "embedded message failed validation",
 					cause:  err,
 				}
@@ -297,18 +297,17 @@ func (m *ListsOfLocation) validate(all bool) error {
 	}
 
 	if len(errors) > 0 {
-		return ListsOfLocationMultiError(errors)
+		return LocationsMultiError(errors)
 	}
 	return nil
 }
 
-// ListsOfLocationMultiError is an error wrapping multiple validation errors
-// returned by ListsOfLocation.ValidateAll() if the designated constraints
-// aren't met.
-type ListsOfLocationMultiError []error
+// LocationsMultiError is an error wrapping multiple validation errors returned
+// by Locations.ValidateAll() if the designated constraints aren't met.
+type LocationsMultiError []error
 
 // Error returns a concatenation of all the error messages it wraps.
-func (m ListsOfLocationMultiError) Error() string {
+func (m LocationsMultiError) Error() string {
 	var msgs []string
 	for _, err := range m {
 		msgs = append(msgs, err.Error())
@@ -317,11 +316,11 @@ func (m ListsOfLocationMultiError) Error() string {
 }
 
 // AllErrors returns a list of validation violation errors.
-func (m ListsOfLocationMultiError) AllErrors() []error { return m }
+func (m LocationsMultiError) AllErrors() []error { return m }
 
-// ListsOfLocationValidationError is the validation error returned by
-// ListsOfLocation.Validate if the designated constraints aren't met.
-type ListsOfLocationValidationError struct {
+// LocationsValidationError is the validation error returned by
+// Locations.Validate if the designated constraints aren't met.
+type LocationsValidationError struct {
 	field  string
 	reason string
 	cause  error
@@ -329,22 +328,22 @@ type ListsOfLocationValidationError struct {
 }
 
 // Field function returns field value.
-func (e ListsOfLocationValidationError) Field() string { return e.field }
+func (e LocationsValidationError) Field() string { return e.field }
 
 // Reason function returns reason value.
-func (e ListsOfLocationValidationError) Reason() string { return e.reason }
+func (e LocationsValidationError) Reason() string { return e.reason }
 
 // Cause function returns cause value.
-func (e ListsOfLocationValidationError) Cause() error { return e.cause }
+func (e LocationsValidationError) Cause() error { return e.cause }
 
 // Key function returns key value.
-func (e ListsOfLocationValidationError) Key() bool { return e.key }
+func (e LocationsValidationError) Key() bool { return e.key }
 
 // ErrorName returns error name.
-func (e ListsOfLocationValidationError) ErrorName() string { return "ListsOfLocationValidationError" }
+func (e LocationsValidationError) ErrorName() string { return "LocationsValidationError" }
 
 // Error satisfies the builtin error interface
-func (e ListsOfLocationValidationError) Error() string {
+func (e LocationsValidationError) Error() string {
 	cause := ""
 	if e.cause != nil {
 		cause = fmt.Sprintf(" | caused by: %v", e.cause)
@@ -356,14 +355,14 @@ func (e ListsOfLocationValidationError) Error() string {
 	}
 
 	return fmt.Sprintf(
-		"invalid %sListsOfLocation.%s: %s%s",
+		"invalid %sLocations.%s: %s%s",
 		key,
 		e.field,
 		e.reason,
 		cause)
 }
 
-var _ error = ListsOfLocationValidationError{}
+var _ error = LocationsValidationError{}
 
 var _ interface {
 	Field() string
@@ -371,4 +370,4 @@ var _ interface {
 	Key() bool
 	Cause() error
 	ErrorName() string
-} = ListsOfLocationValidationError{}
+} = LocationsValidationError{}

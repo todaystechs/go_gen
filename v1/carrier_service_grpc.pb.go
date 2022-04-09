@@ -28,7 +28,7 @@ type CarrierServiceClient interface {
 	GetBusinesses(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*GetBusinessesResponse, error)
 	CloseBusiness(ctx context.Context, in *Id, opts ...grpc.CallOption) (*Ok, error)
 	// location
-	GetLocations(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*ListsOfLocation, error)
+	GetLocations(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*Locations, error)
 	GetLocation(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*Location, error)
 	CreateLocation(ctx context.Context, in *Location, opts ...grpc.CallOption) (*Ok, error)
 	UpdateLocation(ctx context.Context, in *Location, opts ...grpc.CallOption) (*Ok, error)
@@ -93,8 +93,8 @@ func (c *carrierServiceClient) CloseBusiness(ctx context.Context, in *Id, opts .
 	return out, nil
 }
 
-func (c *carrierServiceClient) GetLocations(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*ListsOfLocation, error) {
-	out := new(ListsOfLocation)
+func (c *carrierServiceClient) GetLocations(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*Locations, error) {
+	out := new(Locations)
 	err := c.cc.Invoke(ctx, "/user.CarrierService/GetLocations", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -247,7 +247,7 @@ type CarrierServiceServer interface {
 	GetBusinesses(context.Context, *Empty) (*GetBusinessesResponse, error)
 	CloseBusiness(context.Context, *Id) (*Ok, error)
 	// location
-	GetLocations(context.Context, *Empty) (*ListsOfLocation, error)
+	GetLocations(context.Context, *Empty) (*Locations, error)
 	GetLocation(context.Context, *Empty) (*Location, error)
 	CreateLocation(context.Context, *Location) (*Ok, error)
 	UpdateLocation(context.Context, *Location) (*Ok, error)
@@ -284,7 +284,7 @@ func (UnimplementedCarrierServiceServer) GetBusinesses(context.Context, *Empty) 
 func (UnimplementedCarrierServiceServer) CloseBusiness(context.Context, *Id) (*Ok, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CloseBusiness not implemented")
 }
-func (UnimplementedCarrierServiceServer) GetLocations(context.Context, *Empty) (*ListsOfLocation, error) {
+func (UnimplementedCarrierServiceServer) GetLocations(context.Context, *Empty) (*Locations, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetLocations not implemented")
 }
 func (UnimplementedCarrierServiceServer) GetLocation(context.Context, *Empty) (*Location, error) {
