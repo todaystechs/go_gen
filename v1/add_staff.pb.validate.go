@@ -96,6 +96,8 @@ func (m *AddStaff) validate(all bool) error {
 		}
 	}
 
+	// no validation rules for BusinessId
+
 	if len(errors) > 0 {
 		return AddStaffMultiError(errors)
 	}
