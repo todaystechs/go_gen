@@ -24,7 +24,7 @@ const _ = grpc.SupportPackageIsVersion7
 type CarrierServiceClient interface {
 	// get business
 	CreateBusiness(ctx context.Context, in *BusinessData, opts ...grpc.CallOption) (*Ok, error)
-	GetBusinessById(ctx context.Context, in *GetBusinessRequest, opts ...grpc.CallOption) (*DynamoBusiness, error)
+	GetBusinessById(ctx context.Context, in *GetBusinessRequest, opts ...grpc.CallOption) (*BusinessData, error)
 	GetBusinesses(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*GetBusinessesResponse, error)
 	CloseBusiness(ctx context.Context, in *Id, opts ...grpc.CallOption) (*Ok, error)
 	// location
@@ -66,8 +66,8 @@ func (c *carrierServiceClient) CreateBusiness(ctx context.Context, in *BusinessD
 	return out, nil
 }
 
-func (c *carrierServiceClient) GetBusinessById(ctx context.Context, in *GetBusinessRequest, opts ...grpc.CallOption) (*DynamoBusiness, error) {
-	out := new(DynamoBusiness)
+func (c *carrierServiceClient) GetBusinessById(ctx context.Context, in *GetBusinessRequest, opts ...grpc.CallOption) (*BusinessData, error) {
+	out := new(BusinessData)
 	err := c.cc.Invoke(ctx, "/user.CarrierService/GetBusinessById", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -243,7 +243,7 @@ func (c *carrierServiceClient) DeleteQuotes(ctx context.Context, in *Ids, opts .
 type CarrierServiceServer interface {
 	// get business
 	CreateBusiness(context.Context, *BusinessData) (*Ok, error)
-	GetBusinessById(context.Context, *GetBusinessRequest) (*DynamoBusiness, error)
+	GetBusinessById(context.Context, *GetBusinessRequest) (*BusinessData, error)
 	GetBusinesses(context.Context, *Empty) (*GetBusinessesResponse, error)
 	CloseBusiness(context.Context, *Id) (*Ok, error)
 	// location
@@ -275,7 +275,7 @@ type UnimplementedCarrierServiceServer struct {
 func (UnimplementedCarrierServiceServer) CreateBusiness(context.Context, *BusinessData) (*Ok, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateBusiness not implemented")
 }
-func (UnimplementedCarrierServiceServer) GetBusinessById(context.Context, *GetBusinessRequest) (*DynamoBusiness, error) {
+func (UnimplementedCarrierServiceServer) GetBusinessById(context.Context, *GetBusinessRequest) (*BusinessData, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetBusinessById not implemented")
 }
 func (UnimplementedCarrierServiceServer) GetBusinesses(context.Context, *Empty) (*GetBusinessesResponse, error) {
