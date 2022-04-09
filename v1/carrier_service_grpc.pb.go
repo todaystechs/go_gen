@@ -28,8 +28,8 @@ type CarrierServiceClient interface {
 	GetBusinesses(ctx context.Context, in *Ids, opts ...grpc.CallOption) (*Businesses, error)
 	CloseBusiness(ctx context.Context, in *Id, opts ...grpc.CallOption) (*Ok, error)
 	// location
-	GetLocations(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*Location, error)
-	GetLocation(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*Locations, error)
+	GetLocations(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*Locations, error)
+	GetLocation(ctx context.Context, in *Id, opts ...grpc.CallOption) (*Location, error)
 	CreateLocation(ctx context.Context, in *Location, opts ...grpc.CallOption) (*Ok, error)
 	UpdateLocation(ctx context.Context, in *Location, opts ...grpc.CallOption) (*Ok, error)
 	DeleteLocation(ctx context.Context, in *Id, opts ...grpc.CallOption) (*Ok, error)
@@ -93,8 +93,8 @@ func (c *carrierServiceClient) CloseBusiness(ctx context.Context, in *Id, opts .
 	return out, nil
 }
 
-func (c *carrierServiceClient) GetLocations(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*Location, error) {
-	out := new(Location)
+func (c *carrierServiceClient) GetLocations(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*Locations, error) {
+	out := new(Locations)
 	err := c.cc.Invoke(ctx, "/user.CarrierService/GetLocations", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -102,8 +102,8 @@ func (c *carrierServiceClient) GetLocations(ctx context.Context, in *Empty, opts
 	return out, nil
 }
 
-func (c *carrierServiceClient) GetLocation(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*Locations, error) {
-	out := new(Locations)
+func (c *carrierServiceClient) GetLocation(ctx context.Context, in *Id, opts ...grpc.CallOption) (*Location, error) {
+	out := new(Location)
 	err := c.cc.Invoke(ctx, "/user.CarrierService/GetLocation", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -247,8 +247,8 @@ type CarrierServiceServer interface {
 	GetBusinesses(context.Context, *Ids) (*Businesses, error)
 	CloseBusiness(context.Context, *Id) (*Ok, error)
 	// location
-	GetLocations(context.Context, *Empty) (*Location, error)
-	GetLocation(context.Context, *Empty) (*Locations, error)
+	GetLocations(context.Context, *Empty) (*Locations, error)
+	GetLocation(context.Context, *Id) (*Location, error)
 	CreateLocation(context.Context, *Location) (*Ok, error)
 	UpdateLocation(context.Context, *Location) (*Ok, error)
 	DeleteLocation(context.Context, *Id) (*Ok, error)
@@ -284,10 +284,10 @@ func (UnimplementedCarrierServiceServer) GetBusinesses(context.Context, *Ids) (*
 func (UnimplementedCarrierServiceServer) CloseBusiness(context.Context, *Id) (*Ok, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CloseBusiness not implemented")
 }
-func (UnimplementedCarrierServiceServer) GetLocations(context.Context, *Empty) (*Location, error) {
+func (UnimplementedCarrierServiceServer) GetLocations(context.Context, *Empty) (*Locations, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetLocations not implemented")
 }
-func (UnimplementedCarrierServiceServer) GetLocation(context.Context, *Empty) (*Locations, error) {
+func (UnimplementedCarrierServiceServer) GetLocation(context.Context, *Id) (*Location, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetLocation not implemented")
 }
 func (UnimplementedCarrierServiceServer) CreateLocation(context.Context, *Location) (*Ok, error) {
@@ -435,7 +435,7 @@ func _CarrierService_GetLocations_Handler(srv interface{}, ctx context.Context, 
 }
 
 func _CarrierService_GetLocation_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(Empty)
+	in := new(Id)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -447,7 +447,7 @@ func _CarrierService_GetLocation_Handler(srv interface{}, ctx context.Context, d
 		FullMethod: "/user.CarrierService/GetLocation",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CarrierServiceServer).GetLocation(ctx, req.(*Empty))
+		return srv.(CarrierServiceServer).GetLocation(ctx, req.(*Id))
 	}
 	return interceptor(ctx, in, info, handler)
 }
