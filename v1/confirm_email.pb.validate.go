@@ -35,22 +35,22 @@ var (
 	_ = sort.Sort
 )
 
-// Validate checks the field values on ConfirmEmailData with the rules defined
-// in the proto definition for this message. If any rules are violated, the
-// first error encountered is returned, or nil if there are no violations.
-func (m *ConfirmEmailData) Validate() error {
+// Validate checks the field values on ConfirmEmail with the rules defined in
+// the proto definition for this message. If any rules are violated, the first
+// error encountered is returned, or nil if there are no violations.
+func (m *ConfirmEmail) Validate() error {
 	return m.validate(false)
 }
 
-// ValidateAll checks the field values on ConfirmEmailData with the rules
-// defined in the proto definition for this message. If any rules are
-// violated, the result is a list of violation errors wrapped in
-// ConfirmEmailDataMultiError, or nil if none found.
-func (m *ConfirmEmailData) ValidateAll() error {
+// ValidateAll checks the field values on ConfirmEmail with the rules defined
+// in the proto definition for this message. If any rules are violated, the
+// result is a list of violation errors wrapped in ConfirmEmailMultiError, or
+// nil if none found.
+func (m *ConfirmEmail) ValidateAll() error {
 	return m.validate(true)
 }
 
-func (m *ConfirmEmailData) validate(all bool) error {
+func (m *ConfirmEmail) validate(all bool) error {
 	if m == nil {
 		return nil
 	}
@@ -66,18 +66,17 @@ func (m *ConfirmEmailData) validate(all bool) error {
 	// no validation rules for Token
 
 	if len(errors) > 0 {
-		return ConfirmEmailDataMultiError(errors)
+		return ConfirmEmailMultiError(errors)
 	}
 	return nil
 }
 
-// ConfirmEmailDataMultiError is an error wrapping multiple validation errors
-// returned by ConfirmEmailData.ValidateAll() if the designated constraints
-// aren't met.
-type ConfirmEmailDataMultiError []error
+// ConfirmEmailMultiError is an error wrapping multiple validation errors
+// returned by ConfirmEmail.ValidateAll() if the designated constraints aren't met.
+type ConfirmEmailMultiError []error
 
 // Error returns a concatenation of all the error messages it wraps.
-func (m ConfirmEmailDataMultiError) Error() string {
+func (m ConfirmEmailMultiError) Error() string {
 	var msgs []string
 	for _, err := range m {
 		msgs = append(msgs, err.Error())
@@ -86,11 +85,11 @@ func (m ConfirmEmailDataMultiError) Error() string {
 }
 
 // AllErrors returns a list of validation violation errors.
-func (m ConfirmEmailDataMultiError) AllErrors() []error { return m }
+func (m ConfirmEmailMultiError) AllErrors() []error { return m }
 
-// ConfirmEmailDataValidationError is the validation error returned by
-// ConfirmEmailData.Validate if the designated constraints aren't met.
-type ConfirmEmailDataValidationError struct {
+// ConfirmEmailValidationError is the validation error returned by
+// ConfirmEmail.Validate if the designated constraints aren't met.
+type ConfirmEmailValidationError struct {
 	field  string
 	reason string
 	cause  error
@@ -98,22 +97,22 @@ type ConfirmEmailDataValidationError struct {
 }
 
 // Field function returns field value.
-func (e ConfirmEmailDataValidationError) Field() string { return e.field }
+func (e ConfirmEmailValidationError) Field() string { return e.field }
 
 // Reason function returns reason value.
-func (e ConfirmEmailDataValidationError) Reason() string { return e.reason }
+func (e ConfirmEmailValidationError) Reason() string { return e.reason }
 
 // Cause function returns cause value.
-func (e ConfirmEmailDataValidationError) Cause() error { return e.cause }
+func (e ConfirmEmailValidationError) Cause() error { return e.cause }
 
 // Key function returns key value.
-func (e ConfirmEmailDataValidationError) Key() bool { return e.key }
+func (e ConfirmEmailValidationError) Key() bool { return e.key }
 
 // ErrorName returns error name.
-func (e ConfirmEmailDataValidationError) ErrorName() string { return "ConfirmEmailDataValidationError" }
+func (e ConfirmEmailValidationError) ErrorName() string { return "ConfirmEmailValidationError" }
 
 // Error satisfies the builtin error interface
-func (e ConfirmEmailDataValidationError) Error() string {
+func (e ConfirmEmailValidationError) Error() string {
 	cause := ""
 	if e.cause != nil {
 		cause = fmt.Sprintf(" | caused by: %v", e.cause)
@@ -125,14 +124,14 @@ func (e ConfirmEmailDataValidationError) Error() string {
 	}
 
 	return fmt.Sprintf(
-		"invalid %sConfirmEmailData.%s: %s%s",
+		"invalid %sConfirmEmail.%s: %s%s",
 		key,
 		e.field,
 		e.reason,
 		cause)
 }
 
-var _ error = ConfirmEmailDataValidationError{}
+var _ error = ConfirmEmailValidationError{}
 
 var _ interface {
 	Field() string
@@ -140,4 +139,4 @@ var _ interface {
 	Key() bool
 	Cause() error
 	ErrorName() string
-} = ConfirmEmailDataValidationError{}
+} = ConfirmEmailValidationError{}

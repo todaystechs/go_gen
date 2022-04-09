@@ -26,21 +26,21 @@ type Contact struct {
 	unknownFields protoimpl.UnknownFields
 
 	// @gotags: dynamodbav:"first_name,omitempty"
-	FirstName string `protobuf:"bytes,1,opt,name=first_name,json=firstName,proto3" json:"first_name,omitempty" dynamodbav:"first_name,omitempty"`
+	FirstName string `protobuf:"bytes,1,opt,name=first_name,json=firstName,proto3" json:"first_name,omitempty"`
 	// @gotags: dynamodbav:"last_name,omitempty"
-	LastName string `protobuf:"bytes,2,opt,name=last_name,json=lastName,proto3" json:"last_name,omitempty" dynamodbav:"last_name,omitempty"`
+	LastName string `protobuf:"bytes,2,opt,name=last_name,json=lastName,proto3" json:"last_name,omitempty"`
 	// @gotags: dynamodbav:"phone_number,omitempty"
-	PhoneNumber string `protobuf:"bytes,3,opt,name=phone_number,json=phoneNumber,proto3" json:"phone_number,omitempty" dynamodbav:"phone_number,omitempty"`
+	PhoneNumber string `protobuf:"bytes,3,opt,name=phone_number,json=phoneNumber,proto3" json:"phone_number,omitempty"`
 	// @gotags: dynamodbav:"phone_number_extension,omitempty"
-	PhoneNumberExtension string `protobuf:"bytes,4,opt,name=phone_number_extension,json=phoneNumberExtension,proto3" json:"phone_number_extension,omitempty" dynamodbav:"phone_number_extension,omitempty"`
+	PhoneNumberExtension string `protobuf:"bytes,4,opt,name=phone_number_extension,json=phoneNumberExtension,proto3" json:"phone_number_extension,omitempty"`
 	// @gotags: dynamodbav:"email_address,omitempty"
-	EmailAddress string `protobuf:"bytes,5,opt,name=email_address,json=emailAddress,proto3" json:"email_address,omitempty" dynamodbav:"email_address,omitempty"`
+	EmailAddress string `protobuf:"bytes,5,opt,name=email_address,json=emailAddress,proto3" json:"email_address,omitempty"`
 	// @gotags: dynamodbav:"phone_number_display,omitempty"
-	PhoneNumberDisplay string `protobuf:"bytes,6,opt,name=phone_number_display,json=phoneNumberDisplay,proto3" json:"phone_number_display,omitempty" dynamodbav:"phone_number_display,omitempty"`
+	PhoneNumberDisplay string `protobuf:"bytes,6,opt,name=phone_number_display,json=phoneNumberDisplay,proto3" json:"phone_number_display,omitempty"`
 	// @gotags: dynamodbav:"roles,omitempty"
-	Roles []Role `protobuf:"varint,7,rep,packed,name=roles,proto3,enum=user.Role" json:"roles,omitempty" dynamodbav:"roles,omitempty"`
+	Roles []Role `protobuf:"varint,7,rep,packed,name=roles,proto3,enum=user.Role" json:"roles,omitempty"`
 	// @gotags: dynamodbav:"preffered_contact_method,omitempty"
-	PrefferedContactMethod string `protobuf:"bytes,8,opt,name=preffered_contact_method,json=prefferedContactMethod,proto3" json:"preffered_contact_method,omitempty" dynamodbav:"preffered_contact_method,omitempty"`
+	PrefferedContactMethod string `protobuf:"bytes,8,opt,name=preffered_contact_method,json=prefferedContactMethod,proto3" json:"preffered_contact_method,omitempty"`
 }
 
 func (x *Contact) Reset() {
@@ -136,7 +136,7 @@ var File_contact_proto protoreflect.FileDescriptor
 var file_contact_proto_rawDesc = []byte{
 	0x0a, 0x0d, 0x63, 0x6f, 0x6e, 0x74, 0x61, 0x63, 0x74, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12,
 	0x04, 0x75, 0x73, 0x65, 0x72, 0x1a, 0x0a, 0x72, 0x6f, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74,
-	0x6f, 0x22, 0xd1, 0x02, 0x0a, 0x07, 0x43, 0x6f, 0x6e, 0x74, 0x61, 0x63, 0x74, 0x12, 0x1d, 0x0a,
+	0x6f, 0x22, 0xd1, 0x02, 0x0a, 0x07, 0x63, 0x6f, 0x6e, 0x74, 0x61, 0x63, 0x74, 0x12, 0x1d, 0x0a,
 	0x0a, 0x66, 0x69, 0x72, 0x73, 0x74, 0x5f, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28,
 	0x09, 0x52, 0x09, 0x66, 0x69, 0x72, 0x73, 0x74, 0x4e, 0x61, 0x6d, 0x65, 0x12, 0x1b, 0x0a, 0x09,
 	0x6c, 0x61, 0x73, 0x74, 0x5f, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52,
@@ -153,7 +153,7 @@ var file_contact_proto_rawDesc = []byte{
 	0x06, 0x20, 0x01, 0x28, 0x09, 0x52, 0x12, 0x70, 0x68, 0x6f, 0x6e, 0x65, 0x4e, 0x75, 0x6d, 0x62,
 	0x65, 0x72, 0x44, 0x69, 0x73, 0x70, 0x6c, 0x61, 0x79, 0x12, 0x20, 0x0a, 0x05, 0x72, 0x6f, 0x6c,
 	0x65, 0x73, 0x18, 0x07, 0x20, 0x03, 0x28, 0x0e, 0x32, 0x0a, 0x2e, 0x75, 0x73, 0x65, 0x72, 0x2e,
-	0x52, 0x6f, 0x6c, 0x65, 0x52, 0x05, 0x72, 0x6f, 0x6c, 0x65, 0x73, 0x12, 0x38, 0x0a, 0x18, 0x70,
+	0x72, 0x6f, 0x6c, 0x65, 0x52, 0x05, 0x72, 0x6f, 0x6c, 0x65, 0x73, 0x12, 0x38, 0x0a, 0x18, 0x70,
 	0x72, 0x65, 0x66, 0x66, 0x65, 0x72, 0x65, 0x64, 0x5f, 0x63, 0x6f, 0x6e, 0x74, 0x61, 0x63, 0x74,
 	0x5f, 0x6d, 0x65, 0x74, 0x68, 0x6f, 0x64, 0x18, 0x08, 0x20, 0x01, 0x28, 0x09, 0x52, 0x16, 0x70,
 	0x72, 0x65, 0x66, 0x66, 0x65, 0x72, 0x65, 0x64, 0x43, 0x6f, 0x6e, 0x74, 0x61, 0x63, 0x74, 0x4d,
@@ -181,11 +181,11 @@ func file_contact_proto_rawDescGZIP() []byte {
 
 var file_contact_proto_msgTypes = make([]protoimpl.MessageInfo, 1)
 var file_contact_proto_goTypes = []interface{}{
-	(*Contact)(nil), // 0: user.Contact
-	(Role)(0),       // 1: user.Role
+	(*Contact)(nil), // 0: user.contact
+	(Role)(0),       // 1: user.role
 }
 var file_contact_proto_depIdxs = []int32{
-	1, // 0: user.Contact.roles:type_name -> user.Role
+	1, // 0: user.contact.roles:type_name -> user.role
 	1, // [1:1] is the sub-list for method output_type
 	1, // [1:1] is the sub-list for method input_type
 	1, // [1:1] is the sub-list for extension type_name

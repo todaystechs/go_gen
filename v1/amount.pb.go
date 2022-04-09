@@ -27,11 +27,11 @@ type Amount struct {
 	unknownFields protoimpl.UnknownFields
 
 	// @gotags: dynamodbav:"full_amount,omitempty"
-	FullAmount float64 `protobuf:"fixed64,1,opt,name=full_amount,json=fullAmount,proto3" json:"full_amount,omitempty" dynamodbav:"full_amount,omitempty"`
+	FullAmount float64 `protobuf:"fixed64,1,opt,name=full_amount,json=fullAmount,proto3" json:"full_amount,omitempty"`
 	// @gotags: dynamodbav:"discount_applied,omitempty"
-	DiscountApplied float64 `protobuf:"fixed64,2,opt,name=discount_applied,json=discountApplied,proto3" json:"discount_applied,omitempty" dynamodbav:"discount_applied,omitempty"`
+	DiscountApplied float64 `protobuf:"fixed64,2,opt,name=discount_applied,json=discountApplied,proto3" json:"discount_applied,omitempty"`
 	// @gotags: dynamodbav:"net_amount,omitempty"
-	NetAmount float64 `protobuf:"fixed64,3,opt,name=net_amount,json=netAmount,proto3" json:"net_amount,omitempty" dynamodbav:"net_amount,omitempty"`
+	NetAmount float64 `protobuf:"fixed64,3,opt,name=net_amount,json=netAmount,proto3" json:"net_amount,omitempty"`
 }
 
 func (x *Amount) Reset() {
@@ -91,7 +91,7 @@ var File_amount_proto protoreflect.FileDescriptor
 
 var file_amount_proto_rawDesc = []byte{
 	0x0a, 0x0c, 0x61, 0x6d, 0x6f, 0x75, 0x6e, 0x74, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12, 0x04,
-	0x75, 0x73, 0x65, 0x72, 0x22, 0x73, 0x0a, 0x06, 0x41, 0x6d, 0x6f, 0x75, 0x6e, 0x74, 0x12, 0x1f,
+	0x75, 0x73, 0x65, 0x72, 0x22, 0x73, 0x0a, 0x06, 0x61, 0x6d, 0x6f, 0x75, 0x6e, 0x74, 0x12, 0x1f,
 	0x0a, 0x0b, 0x66, 0x75, 0x6c, 0x6c, 0x5f, 0x61, 0x6d, 0x6f, 0x75, 0x6e, 0x74, 0x18, 0x01, 0x20,
 	0x01, 0x28, 0x01, 0x52, 0x0a, 0x66, 0x75, 0x6c, 0x6c, 0x41, 0x6d, 0x6f, 0x75, 0x6e, 0x74, 0x12,
 	0x29, 0x0a, 0x10, 0x64, 0x69, 0x73, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x5f, 0x61, 0x70, 0x70, 0x6c,
@@ -122,7 +122,7 @@ func file_amount_proto_rawDescGZIP() []byte {
 
 var file_amount_proto_msgTypes = make([]protoimpl.MessageInfo, 1)
 var file_amount_proto_goTypes = []interface{}{
-	(*Amount)(nil), // 0: user.Amount
+	(*Amount)(nil), // 0: user.amount
 }
 var file_amount_proto_depIdxs = []int32{
 	0, // [0:0] is the sub-list for method output_type

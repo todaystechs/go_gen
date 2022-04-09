@@ -35,22 +35,21 @@ var (
 	_ = sort.Sort
 )
 
-// Validate checks the field values on LoginUserData with the rules defined in
-// the proto definition for this message. If any rules are violated, the first
+// Validate checks the field values on Login with the rules defined in the
+// proto definition for this message. If any rules are violated, the first
 // error encountered is returned, or nil if there are no violations.
-func (m *LoginUserData) Validate() error {
+func (m *Login) Validate() error {
 	return m.validate(false)
 }
 
-// ValidateAll checks the field values on LoginUserData with the rules defined
-// in the proto definition for this message. If any rules are violated, the
-// result is a list of violation errors wrapped in LoginUserDataMultiError, or
-// nil if none found.
-func (m *LoginUserData) ValidateAll() error {
+// ValidateAll checks the field values on Login with the rules defined in the
+// proto definition for this message. If any rules are violated, the result is
+// a list of violation errors wrapped in LoginMultiError, or nil if none found.
+func (m *Login) ValidateAll() error {
 	return m.validate(true)
 }
 
-func (m *LoginUserData) validate(all bool) error {
+func (m *Login) validate(all bool) error {
 	if m == nil {
 		return nil
 	}
@@ -62,18 +61,17 @@ func (m *LoginUserData) validate(all bool) error {
 	// no validation rules for Password
 
 	if len(errors) > 0 {
-		return LoginUserDataMultiError(errors)
+		return LoginMultiError(errors)
 	}
 	return nil
 }
 
-// LoginUserDataMultiError is an error wrapping multiple validation errors
-// returned by LoginUserData.ValidateAll() if the designated constraints
-// aren't met.
-type LoginUserDataMultiError []error
+// LoginMultiError is an error wrapping multiple validation errors returned by
+// Login.ValidateAll() if the designated constraints aren't met.
+type LoginMultiError []error
 
 // Error returns a concatenation of all the error messages it wraps.
-func (m LoginUserDataMultiError) Error() string {
+func (m LoginMultiError) Error() string {
 	var msgs []string
 	for _, err := range m {
 		msgs = append(msgs, err.Error())
@@ -82,11 +80,11 @@ func (m LoginUserDataMultiError) Error() string {
 }
 
 // AllErrors returns a list of validation violation errors.
-func (m LoginUserDataMultiError) AllErrors() []error { return m }
+func (m LoginMultiError) AllErrors() []error { return m }
 
-// LoginUserDataValidationError is the validation error returned by
-// LoginUserData.Validate if the designated constraints aren't met.
-type LoginUserDataValidationError struct {
+// LoginValidationError is the validation error returned by Login.Validate if
+// the designated constraints aren't met.
+type LoginValidationError struct {
 	field  string
 	reason string
 	cause  error
@@ -94,22 +92,22 @@ type LoginUserDataValidationError struct {
 }
 
 // Field function returns field value.
-func (e LoginUserDataValidationError) Field() string { return e.field }
+func (e LoginValidationError) Field() string { return e.field }
 
 // Reason function returns reason value.
-func (e LoginUserDataValidationError) Reason() string { return e.reason }
+func (e LoginValidationError) Reason() string { return e.reason }
 
 // Cause function returns cause value.
-func (e LoginUserDataValidationError) Cause() error { return e.cause }
+func (e LoginValidationError) Cause() error { return e.cause }
 
 // Key function returns key value.
-func (e LoginUserDataValidationError) Key() bool { return e.key }
+func (e LoginValidationError) Key() bool { return e.key }
 
 // ErrorName returns error name.
-func (e LoginUserDataValidationError) ErrorName() string { return "LoginUserDataValidationError" }
+func (e LoginValidationError) ErrorName() string { return "LoginValidationError" }
 
 // Error satisfies the builtin error interface
-func (e LoginUserDataValidationError) Error() string {
+func (e LoginValidationError) Error() string {
 	cause := ""
 	if e.cause != nil {
 		cause = fmt.Sprintf(" | caused by: %v", e.cause)
@@ -121,14 +119,14 @@ func (e LoginUserDataValidationError) Error() string {
 	}
 
 	return fmt.Sprintf(
-		"invalid %sLoginUserData.%s: %s%s",
+		"invalid %sLogin.%s: %s%s",
 		key,
 		e.field,
 		e.reason,
 		cause)
 }
 
-var _ error = LoginUserDataValidationError{}
+var _ error = LoginValidationError{}
 
 var _ interface {
 	Field() string
@@ -136,4 +134,4 @@ var _ interface {
 	Key() bool
 	Cause() error
 	ErrorName() string
-} = LoginUserDataValidationError{}
+} = LoginValidationError{}

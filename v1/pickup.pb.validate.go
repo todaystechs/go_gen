@@ -35,21 +35,21 @@ var (
 	_ = sort.Sort
 )
 
-// Validate checks the field values on Pickup with the rules defined in the
+// Validate checks the field values on PickUp with the rules defined in the
 // proto definition for this message. If any rules are violated, the first
 // error encountered is returned, or nil if there are no violations.
-func (m *Pickup) Validate() error {
+func (m *PickUp) Validate() error {
 	return m.validate(false)
 }
 
-// ValidateAll checks the field values on Pickup with the rules defined in the
+// ValidateAll checks the field values on PickUp with the rules defined in the
 // proto definition for this message. If any rules are violated, the result is
-// a list of violation errors wrapped in PickupMultiError, or nil if none found.
-func (m *Pickup) ValidateAll() error {
+// a list of violation errors wrapped in PickUpMultiError, or nil if none found.
+func (m *PickUp) ValidateAll() error {
 	return m.validate(true)
 }
 
-func (m *Pickup) validate(all bool) error {
+func (m *PickUp) validate(all bool) error {
 	if m == nil {
 		return nil
 	}
@@ -60,7 +60,7 @@ func (m *Pickup) validate(all bool) error {
 		switch v := interface{}(m.GetLocation()).(type) {
 		case interface{ ValidateAll() error }:
 			if err := v.ValidateAll(); err != nil {
-				errors = append(errors, PickupValidationError{
+				errors = append(errors, PickUpValidationError{
 					field:  "Location",
 					reason: "embedded message failed validation",
 					cause:  err,
@@ -68,7 +68,7 @@ func (m *Pickup) validate(all bool) error {
 			}
 		case interface{ Validate() error }:
 			if err := v.Validate(); err != nil {
-				errors = append(errors, PickupValidationError{
+				errors = append(errors, PickUpValidationError{
 					field:  "Location",
 					reason: "embedded message failed validation",
 					cause:  err,
@@ -77,7 +77,7 @@ func (m *Pickup) validate(all bool) error {
 		}
 	} else if v, ok := interface{}(m.GetLocation()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
-			return PickupValidationError{
+			return PickUpValidationError{
 				field:  "Location",
 				reason: "embedded message failed validation",
 				cause:  err,
@@ -90,17 +90,17 @@ func (m *Pickup) validate(all bool) error {
 	// no validation rules for Date
 
 	if len(errors) > 0 {
-		return PickupMultiError(errors)
+		return PickUpMultiError(errors)
 	}
 	return nil
 }
 
-// PickupMultiError is an error wrapping multiple validation errors returned by
-// Pickup.ValidateAll() if the designated constraints aren't met.
-type PickupMultiError []error
+// PickUpMultiError is an error wrapping multiple validation errors returned by
+// PickUp.ValidateAll() if the designated constraints aren't met.
+type PickUpMultiError []error
 
 // Error returns a concatenation of all the error messages it wraps.
-func (m PickupMultiError) Error() string {
+func (m PickUpMultiError) Error() string {
 	var msgs []string
 	for _, err := range m {
 		msgs = append(msgs, err.Error())
@@ -109,11 +109,11 @@ func (m PickupMultiError) Error() string {
 }
 
 // AllErrors returns a list of validation violation errors.
-func (m PickupMultiError) AllErrors() []error { return m }
+func (m PickUpMultiError) AllErrors() []error { return m }
 
-// PickupValidationError is the validation error returned by Pickup.Validate if
+// PickUpValidationError is the validation error returned by PickUp.Validate if
 // the designated constraints aren't met.
-type PickupValidationError struct {
+type PickUpValidationError struct {
 	field  string
 	reason string
 	cause  error
@@ -121,22 +121,22 @@ type PickupValidationError struct {
 }
 
 // Field function returns field value.
-func (e PickupValidationError) Field() string { return e.field }
+func (e PickUpValidationError) Field() string { return e.field }
 
 // Reason function returns reason value.
-func (e PickupValidationError) Reason() string { return e.reason }
+func (e PickUpValidationError) Reason() string { return e.reason }
 
 // Cause function returns cause value.
-func (e PickupValidationError) Cause() error { return e.cause }
+func (e PickUpValidationError) Cause() error { return e.cause }
 
 // Key function returns key value.
-func (e PickupValidationError) Key() bool { return e.key }
+func (e PickUpValidationError) Key() bool { return e.key }
 
 // ErrorName returns error name.
-func (e PickupValidationError) ErrorName() string { return "PickupValidationError" }
+func (e PickUpValidationError) ErrorName() string { return "PickUpValidationError" }
 
 // Error satisfies the builtin error interface
-func (e PickupValidationError) Error() string {
+func (e PickUpValidationError) Error() string {
 	cause := ""
 	if e.cause != nil {
 		cause = fmt.Sprintf(" | caused by: %v", e.cause)
@@ -148,14 +148,14 @@ func (e PickupValidationError) Error() string {
 	}
 
 	return fmt.Sprintf(
-		"invalid %sPickup.%s: %s%s",
+		"invalid %sPickUp.%s: %s%s",
 		key,
 		e.field,
 		e.reason,
 		cause)
 }
 
-var _ error = PickupValidationError{}
+var _ error = PickUpValidationError{}
 
 var _ interface {
 	Field() string
@@ -163,4 +163,4 @@ var _ interface {
 	Key() bool
 	Cause() error
 	ErrorName() string
-} = PickupValidationError{}
+} = PickUpValidationError{}

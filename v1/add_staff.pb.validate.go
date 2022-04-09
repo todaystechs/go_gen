@@ -35,22 +35,22 @@ var (
 	_ = sort.Sort
 )
 
-// Validate checks the field values on AddStaffData with the rules defined in
-// the proto definition for this message. If any rules are violated, the first
+// Validate checks the field values on AddStaff with the rules defined in the
+// proto definition for this message. If any rules are violated, the first
 // error encountered is returned, or nil if there are no violations.
-func (m *AddStaffData) Validate() error {
+func (m *AddStaff) Validate() error {
 	return m.validate(false)
 }
 
-// ValidateAll checks the field values on AddStaffData with the rules defined
-// in the proto definition for this message. If any rules are violated, the
-// result is a list of violation errors wrapped in AddStaffDataMultiError, or
-// nil if none found.
-func (m *AddStaffData) ValidateAll() error {
+// ValidateAll checks the field values on AddStaff with the rules defined in
+// the proto definition for this message. If any rules are violated, the
+// result is a list of violation errors wrapped in AddStaffMultiError, or nil
+// if none found.
+func (m *AddStaff) ValidateAll() error {
 	return m.validate(true)
 }
 
-func (m *AddStaffData) validate(all bool) error {
+func (m *AddStaff) validate(all bool) error {
 	if m == nil {
 		return nil
 	}
@@ -64,17 +64,17 @@ func (m *AddStaffData) validate(all bool) error {
 	// no validation rules for Password
 
 	if len(errors) > 0 {
-		return AddStaffDataMultiError(errors)
+		return AddStaffMultiError(errors)
 	}
 	return nil
 }
 
-// AddStaffDataMultiError is an error wrapping multiple validation errors
-// returned by AddStaffData.ValidateAll() if the designated constraints aren't met.
-type AddStaffDataMultiError []error
+// AddStaffMultiError is an error wrapping multiple validation errors returned
+// by AddStaff.ValidateAll() if the designated constraints aren't met.
+type AddStaffMultiError []error
 
 // Error returns a concatenation of all the error messages it wraps.
-func (m AddStaffDataMultiError) Error() string {
+func (m AddStaffMultiError) Error() string {
 	var msgs []string
 	for _, err := range m {
 		msgs = append(msgs, err.Error())
@@ -83,11 +83,11 @@ func (m AddStaffDataMultiError) Error() string {
 }
 
 // AllErrors returns a list of validation violation errors.
-func (m AddStaffDataMultiError) AllErrors() []error { return m }
+func (m AddStaffMultiError) AllErrors() []error { return m }
 
-// AddStaffDataValidationError is the validation error returned by
-// AddStaffData.Validate if the designated constraints aren't met.
-type AddStaffDataValidationError struct {
+// AddStaffValidationError is the validation error returned by
+// AddStaff.Validate if the designated constraints aren't met.
+type AddStaffValidationError struct {
 	field  string
 	reason string
 	cause  error
@@ -95,22 +95,22 @@ type AddStaffDataValidationError struct {
 }
 
 // Field function returns field value.
-func (e AddStaffDataValidationError) Field() string { return e.field }
+func (e AddStaffValidationError) Field() string { return e.field }
 
 // Reason function returns reason value.
-func (e AddStaffDataValidationError) Reason() string { return e.reason }
+func (e AddStaffValidationError) Reason() string { return e.reason }
 
 // Cause function returns cause value.
-func (e AddStaffDataValidationError) Cause() error { return e.cause }
+func (e AddStaffValidationError) Cause() error { return e.cause }
 
 // Key function returns key value.
-func (e AddStaffDataValidationError) Key() bool { return e.key }
+func (e AddStaffValidationError) Key() bool { return e.key }
 
 // ErrorName returns error name.
-func (e AddStaffDataValidationError) ErrorName() string { return "AddStaffDataValidationError" }
+func (e AddStaffValidationError) ErrorName() string { return "AddStaffValidationError" }
 
 // Error satisfies the builtin error interface
-func (e AddStaffDataValidationError) Error() string {
+func (e AddStaffValidationError) Error() string {
 	cause := ""
 	if e.cause != nil {
 		cause = fmt.Sprintf(" | caused by: %v", e.cause)
@@ -122,14 +122,14 @@ func (e AddStaffDataValidationError) Error() string {
 	}
 
 	return fmt.Sprintf(
-		"invalid %sAddStaffData.%s: %s%s",
+		"invalid %sAddStaff.%s: %s%s",
 		key,
 		e.field,
 		e.reason,
 		cause)
 }
 
-var _ error = AddStaffDataValidationError{}
+var _ error = AddStaffValidationError{}
 
 var _ interface {
 	Field() string
@@ -137,4 +137,4 @@ var _ interface {
 	Key() bool
 	Cause() error
 	ErrorName() string
-} = AddStaffDataValidationError{}
+} = AddStaffValidationError{}

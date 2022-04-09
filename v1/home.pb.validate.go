@@ -35,22 +35,22 @@ var (
 	_ = sort.Sort
 )
 
-// Validate checks the field values on UserHomeData with the rules defined in
-// the proto definition for this message. If any rules are violated, the first
+// Validate checks the field values on UserHome with the rules defined in the
+// proto definition for this message. If any rules are violated, the first
 // error encountered is returned, or nil if there are no violations.
-func (m *UserHomeData) Validate() error {
+func (m *UserHome) Validate() error {
 	return m.validate(false)
 }
 
-// ValidateAll checks the field values on UserHomeData with the rules defined
-// in the proto definition for this message. If any rules are violated, the
-// result is a list of violation errors wrapped in UserHomeDataMultiError, or
-// nil if none found.
-func (m *UserHomeData) ValidateAll() error {
+// ValidateAll checks the field values on UserHome with the rules defined in
+// the proto definition for this message. If any rules are violated, the
+// result is a list of violation errors wrapped in UserHomeMultiError, or nil
+// if none found.
+func (m *UserHome) ValidateAll() error {
 	return m.validate(true)
 }
 
-func (m *UserHomeData) validate(all bool) error {
+func (m *UserHome) validate(all bool) error {
 	if m == nil {
 		return nil
 	}
@@ -60,17 +60,17 @@ func (m *UserHomeData) validate(all bool) error {
 	// no validation rules for UserId
 
 	if len(errors) > 0 {
-		return UserHomeDataMultiError(errors)
+		return UserHomeMultiError(errors)
 	}
 	return nil
 }
 
-// UserHomeDataMultiError is an error wrapping multiple validation errors
-// returned by UserHomeData.ValidateAll() if the designated constraints aren't met.
-type UserHomeDataMultiError []error
+// UserHomeMultiError is an error wrapping multiple validation errors returned
+// by UserHome.ValidateAll() if the designated constraints aren't met.
+type UserHomeMultiError []error
 
 // Error returns a concatenation of all the error messages it wraps.
-func (m UserHomeDataMultiError) Error() string {
+func (m UserHomeMultiError) Error() string {
 	var msgs []string
 	for _, err := range m {
 		msgs = append(msgs, err.Error())
@@ -79,11 +79,11 @@ func (m UserHomeDataMultiError) Error() string {
 }
 
 // AllErrors returns a list of validation violation errors.
-func (m UserHomeDataMultiError) AllErrors() []error { return m }
+func (m UserHomeMultiError) AllErrors() []error { return m }
 
-// UserHomeDataValidationError is the validation error returned by
-// UserHomeData.Validate if the designated constraints aren't met.
-type UserHomeDataValidationError struct {
+// UserHomeValidationError is the validation error returned by
+// UserHome.Validate if the designated constraints aren't met.
+type UserHomeValidationError struct {
 	field  string
 	reason string
 	cause  error
@@ -91,22 +91,22 @@ type UserHomeDataValidationError struct {
 }
 
 // Field function returns field value.
-func (e UserHomeDataValidationError) Field() string { return e.field }
+func (e UserHomeValidationError) Field() string { return e.field }
 
 // Reason function returns reason value.
-func (e UserHomeDataValidationError) Reason() string { return e.reason }
+func (e UserHomeValidationError) Reason() string { return e.reason }
 
 // Cause function returns cause value.
-func (e UserHomeDataValidationError) Cause() error { return e.cause }
+func (e UserHomeValidationError) Cause() error { return e.cause }
 
 // Key function returns key value.
-func (e UserHomeDataValidationError) Key() bool { return e.key }
+func (e UserHomeValidationError) Key() bool { return e.key }
 
 // ErrorName returns error name.
-func (e UserHomeDataValidationError) ErrorName() string { return "UserHomeDataValidationError" }
+func (e UserHomeValidationError) ErrorName() string { return "UserHomeValidationError" }
 
 // Error satisfies the builtin error interface
-func (e UserHomeDataValidationError) Error() string {
+func (e UserHomeValidationError) Error() string {
 	cause := ""
 	if e.cause != nil {
 		cause = fmt.Sprintf(" | caused by: %v", e.cause)
@@ -118,14 +118,14 @@ func (e UserHomeDataValidationError) Error() string {
 	}
 
 	return fmt.Sprintf(
-		"invalid %sUserHomeData.%s: %s%s",
+		"invalid %sUserHome.%s: %s%s",
 		key,
 		e.field,
 		e.reason,
 		cause)
 }
 
-var _ error = UserHomeDataValidationError{}
+var _ error = UserHomeValidationError{}
 
 var _ interface {
 	Field() string
@@ -133,4 +133,4 @@ var _ interface {
 	Key() bool
 	Cause() error
 	ErrorName() string
-} = UserHomeDataValidationError{}
+} = UserHomeValidationError{}

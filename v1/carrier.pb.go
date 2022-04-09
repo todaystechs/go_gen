@@ -26,17 +26,17 @@ type Carrier struct {
 	unknownFields protoimpl.UnknownFields
 
 	// @gotags: dynamodbav:"name,omitempty"
-	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty" dynamodbav:"name,omitempty"`
+	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	// @gotags: dynamodbav:"auth_url,omitempty"
-	AuthUrl string `protobuf:"bytes,2,opt,name=auth_url,json=authUrl,proto3" json:"auth_url,omitempty" dynamodbav:"auth_url,omitempty"`
+	AuthUrl string `protobuf:"bytes,2,opt,name=auth_url,json=authUrl,proto3" json:"auth_url,omitempty"`
 	// @gotags: dynamodbav:"rate_url,omitempty"
-	RateUrl string `protobuf:"bytes,3,opt,name=rate_url,json=rateUrl,proto3" json:"rate_url,omitempty" dynamodbav:"rate_url,omitempty"`
+	RateUrl string `protobuf:"bytes,3,opt,name=rate_url,json=rateUrl,proto3" json:"rate_url,omitempty"`
 	// @gotags: dynamodbav:"add_address_url,omitempty"
-	AddAddressUrl string `protobuf:"bytes,4,opt,name=add_address_url,json=addAddressUrl,proto3" json:"add_address_url,omitempty" dynamodbav:"add_address_url,omitempty"`
+	AddAddressUrl string `protobuf:"bytes,4,opt,name=add_address_url,json=addAddressUrl,proto3" json:"add_address_url,omitempty"`
 	// @gotags: dynamodbav:"get_address_url,omitempty"
-	GetAddressUrl string `protobuf:"bytes,5,opt,name=get_address_url,json=getAddressUrl,proto3" json:"get_address_url,omitempty" dynamodbav:"get_address_url,omitempty"`
+	GetAddressUrl string `protobuf:"bytes,5,opt,name=get_address_url,json=getAddressUrl,proto3" json:"get_address_url,omitempty"`
 	// @gotags: dynamodbav:"quote_history_url,omitempty"
-	QuoteHistoryUrl string `protobuf:"bytes,6,opt,name=quote_history_url,json=quoteHistoryUrl,proto3" json:"quote_history_url,omitempty" dynamodbav:"quote_history_url,omitempty"`
+	QuoteHistoryUrl string `protobuf:"bytes,6,opt,name=quote_history_url,json=quoteHistoryUrl,proto3" json:"quote_history_url,omitempty"`
 }
 
 func (x *Carrier) Reset() {
@@ -118,7 +118,7 @@ var File_carrier_proto protoreflect.FileDescriptor
 var file_carrier_proto_rawDesc = []byte{
 	0x0a, 0x0d, 0x63, 0x61, 0x72, 0x72, 0x69, 0x65, 0x72, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12,
 	0x04, 0x75, 0x73, 0x65, 0x72, 0x1a, 0x0d, 0x61, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x2e, 0x70,
-	0x72, 0x6f, 0x74, 0x6f, 0x22, 0xcf, 0x01, 0x0a, 0x07, 0x43, 0x61, 0x72, 0x72, 0x69, 0x65, 0x72,
+	0x72, 0x6f, 0x74, 0x6f, 0x22, 0xcf, 0x01, 0x0a, 0x07, 0x63, 0x61, 0x72, 0x72, 0x69, 0x65, 0x72,
 	0x12, 0x12, 0x0a, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04,
 	0x6e, 0x61, 0x6d, 0x65, 0x12, 0x19, 0x0a, 0x08, 0x61, 0x75, 0x74, 0x68, 0x5f, 0x75, 0x72, 0x6c,
 	0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x61, 0x75, 0x74, 0x68, 0x55, 0x72, 0x6c, 0x12,
@@ -155,7 +155,7 @@ func file_carrier_proto_rawDescGZIP() []byte {
 
 var file_carrier_proto_msgTypes = make([]protoimpl.MessageInfo, 1)
 var file_carrier_proto_goTypes = []interface{}{
-	(*Carrier)(nil), // 0: user.Carrier
+	(*Carrier)(nil), // 0: user.carrier
 }
 var file_carrier_proto_depIdxs = []int32{
 	0, // [0:0] is the sub-list for method output_type

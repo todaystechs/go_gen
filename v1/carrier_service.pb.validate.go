@@ -35,70 +35,41 @@ var (
 	_ = sort.Sort
 )
 
-// Validate checks the field values on CarrierServicePing with the rules
-// defined in the proto definition for this message. If any rules are
-// violated, the first error encountered is returned, or nil if there are no violations.
-func (m *CarrierServicePing) Validate() error {
+// Validate checks the field values on Ping with the rules defined in the proto
+// definition for this message. If any rules are violated, the first error
+// encountered is returned, or nil if there are no violations.
+func (m *Ping) Validate() error {
 	return m.validate(false)
 }
 
-// ValidateAll checks the field values on CarrierServicePing with the rules
-// defined in the proto definition for this message. If any rules are
-// violated, the result is a list of violation errors wrapped in
-// CarrierServicePingMultiError, or nil if none found.
-func (m *CarrierServicePing) ValidateAll() error {
+// ValidateAll checks the field values on Ping with the rules defined in the
+// proto definition for this message. If any rules are violated, the result is
+// a list of violation errors wrapped in PingMultiError, or nil if none found.
+func (m *Ping) ValidateAll() error {
 	return m.validate(true)
 }
 
-func (m *CarrierServicePing) validate(all bool) error {
+func (m *Ping) validate(all bool) error {
 	if m == nil {
 		return nil
 	}
 
 	var errors []error
 
-	if all {
-		switch v := interface{}(m.GetHi()).(type) {
-		case interface{ ValidateAll() error }:
-			if err := v.ValidateAll(); err != nil {
-				errors = append(errors, CarrierServicePingValidationError{
-					field:  "Hi",
-					reason: "embedded message failed validation",
-					cause:  err,
-				})
-			}
-		case interface{ Validate() error }:
-			if err := v.Validate(); err != nil {
-				errors = append(errors, CarrierServicePingValidationError{
-					field:  "Hi",
-					reason: "embedded message failed validation",
-					cause:  err,
-				})
-			}
-		}
-	} else if v, ok := interface{}(m.GetHi()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return CarrierServicePingValidationError{
-				field:  "Hi",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
+	// no validation rules for Hi
 
 	if len(errors) > 0 {
-		return CarrierServicePingMultiError(errors)
+		return PingMultiError(errors)
 	}
 	return nil
 }
 
-// CarrierServicePingMultiError is an error wrapping multiple validation errors
-// returned by CarrierServicePing.ValidateAll() if the designated constraints
-// aren't met.
-type CarrierServicePingMultiError []error
+// PingMultiError is an error wrapping multiple validation errors returned by
+// Ping.ValidateAll() if the designated constraints aren't met.
+type PingMultiError []error
 
 // Error returns a concatenation of all the error messages it wraps.
-func (m CarrierServicePingMultiError) Error() string {
+func (m PingMultiError) Error() string {
 	var msgs []string
 	for _, err := range m {
 		msgs = append(msgs, err.Error())
@@ -107,11 +78,11 @@ func (m CarrierServicePingMultiError) Error() string {
 }
 
 // AllErrors returns a list of validation violation errors.
-func (m CarrierServicePingMultiError) AllErrors() []error { return m }
+func (m PingMultiError) AllErrors() []error { return m }
 
-// CarrierServicePingValidationError is the validation error returned by
-// CarrierServicePing.Validate if the designated constraints aren't met.
-type CarrierServicePingValidationError struct {
+// PingValidationError is the validation error returned by Ping.Validate if the
+// designated constraints aren't met.
+type PingValidationError struct {
 	field  string
 	reason string
 	cause  error
@@ -119,24 +90,22 @@ type CarrierServicePingValidationError struct {
 }
 
 // Field function returns field value.
-func (e CarrierServicePingValidationError) Field() string { return e.field }
+func (e PingValidationError) Field() string { return e.field }
 
 // Reason function returns reason value.
-func (e CarrierServicePingValidationError) Reason() string { return e.reason }
+func (e PingValidationError) Reason() string { return e.reason }
 
 // Cause function returns cause value.
-func (e CarrierServicePingValidationError) Cause() error { return e.cause }
+func (e PingValidationError) Cause() error { return e.cause }
 
 // Key function returns key value.
-func (e CarrierServicePingValidationError) Key() bool { return e.key }
+func (e PingValidationError) Key() bool { return e.key }
 
 // ErrorName returns error name.
-func (e CarrierServicePingValidationError) ErrorName() string {
-	return "CarrierServicePingValidationError"
-}
+func (e PingValidationError) ErrorName() string { return "PingValidationError" }
 
 // Error satisfies the builtin error interface
-func (e CarrierServicePingValidationError) Error() string {
+func (e PingValidationError) Error() string {
 	cause := ""
 	if e.cause != nil {
 		cause = fmt.Sprintf(" | caused by: %v", e.cause)
@@ -148,14 +117,14 @@ func (e CarrierServicePingValidationError) Error() string {
 	}
 
 	return fmt.Sprintf(
-		"invalid %sCarrierServicePing.%s: %s%s",
+		"invalid %sPing.%s: %s%s",
 		key,
 		e.field,
 		e.reason,
 		cause)
 }
 
-var _ error = CarrierServicePingValidationError{}
+var _ error = PingValidationError{}
 
 var _ interface {
 	Field() string
@@ -163,134 +132,7 @@ var _ interface {
 	Key() bool
 	Cause() error
 	ErrorName() string
-} = CarrierServicePingValidationError{}
-
-// Validate checks the field values on BusinessId with the rules defined in the
-// proto definition for this message. If any rules are violated, the first
-// error encountered is returned, or nil if there are no violations.
-func (m *BusinessId) Validate() error {
-	return m.validate(false)
-}
-
-// ValidateAll checks the field values on BusinessId with the rules defined in
-// the proto definition for this message. If any rules are violated, the
-// result is a list of violation errors wrapped in BusinessIdMultiError, or
-// nil if none found.
-func (m *BusinessId) ValidateAll() error {
-	return m.validate(true)
-}
-
-func (m *BusinessId) validate(all bool) error {
-	if m == nil {
-		return nil
-	}
-
-	var errors []error
-
-	if all {
-		switch v := interface{}(m.GetBusinessId()).(type) {
-		case interface{ ValidateAll() error }:
-			if err := v.ValidateAll(); err != nil {
-				errors = append(errors, BusinessIdValidationError{
-					field:  "BusinessId",
-					reason: "embedded message failed validation",
-					cause:  err,
-				})
-			}
-		case interface{ Validate() error }:
-			if err := v.Validate(); err != nil {
-				errors = append(errors, BusinessIdValidationError{
-					field:  "BusinessId",
-					reason: "embedded message failed validation",
-					cause:  err,
-				})
-			}
-		}
-	} else if v, ok := interface{}(m.GetBusinessId()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return BusinessIdValidationError{
-				field:  "BusinessId",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
-
-	if len(errors) > 0 {
-		return BusinessIdMultiError(errors)
-	}
-	return nil
-}
-
-// BusinessIdMultiError is an error wrapping multiple validation errors
-// returned by BusinessId.ValidateAll() if the designated constraints aren't met.
-type BusinessIdMultiError []error
-
-// Error returns a concatenation of all the error messages it wraps.
-func (m BusinessIdMultiError) Error() string {
-	var msgs []string
-	for _, err := range m {
-		msgs = append(msgs, err.Error())
-	}
-	return strings.Join(msgs, "; ")
-}
-
-// AllErrors returns a list of validation violation errors.
-func (m BusinessIdMultiError) AllErrors() []error { return m }
-
-// BusinessIdValidationError is the validation error returned by
-// BusinessId.Validate if the designated constraints aren't met.
-type BusinessIdValidationError struct {
-	field  string
-	reason string
-	cause  error
-	key    bool
-}
-
-// Field function returns field value.
-func (e BusinessIdValidationError) Field() string { return e.field }
-
-// Reason function returns reason value.
-func (e BusinessIdValidationError) Reason() string { return e.reason }
-
-// Cause function returns cause value.
-func (e BusinessIdValidationError) Cause() error { return e.cause }
-
-// Key function returns key value.
-func (e BusinessIdValidationError) Key() bool { return e.key }
-
-// ErrorName returns error name.
-func (e BusinessIdValidationError) ErrorName() string { return "BusinessIdValidationError" }
-
-// Error satisfies the builtin error interface
-func (e BusinessIdValidationError) Error() string {
-	cause := ""
-	if e.cause != nil {
-		cause = fmt.Sprintf(" | caused by: %v", e.cause)
-	}
-
-	key := ""
-	if e.key {
-		key = "key for "
-	}
-
-	return fmt.Sprintf(
-		"invalid %sBusinessId.%s: %s%s",
-		key,
-		e.field,
-		e.reason,
-		cause)
-}
-
-var _ error = BusinessIdValidationError{}
-
-var _ interface {
-	Field() string
-	Reason() string
-	Key() bool
-	Cause() error
-	ErrorName() string
-} = BusinessIdValidationError{}
+} = PingValidationError{}
 
 // Validate checks the field values on Token with the rules defined in the
 // proto definition for this message. If any rules are violated, the first
@@ -586,100 +428,3 @@ var _ interface {
 	Cause() error
 	ErrorName() string
 } = IdsValidationError{}
-
-// Validate checks the field values on Empty with the rules defined in the
-// proto definition for this message. If any rules are violated, the first
-// error encountered is returned, or nil if there are no violations.
-func (m *Empty) Validate() error {
-	return m.validate(false)
-}
-
-// ValidateAll checks the field values on Empty with the rules defined in the
-// proto definition for this message. If any rules are violated, the result is
-// a list of violation errors wrapped in EmptyMultiError, or nil if none found.
-func (m *Empty) ValidateAll() error {
-	return m.validate(true)
-}
-
-func (m *Empty) validate(all bool) error {
-	if m == nil {
-		return nil
-	}
-
-	var errors []error
-
-	if len(errors) > 0 {
-		return EmptyMultiError(errors)
-	}
-	return nil
-}
-
-// EmptyMultiError is an error wrapping multiple validation errors returned by
-// Empty.ValidateAll() if the designated constraints aren't met.
-type EmptyMultiError []error
-
-// Error returns a concatenation of all the error messages it wraps.
-func (m EmptyMultiError) Error() string {
-	var msgs []string
-	for _, err := range m {
-		msgs = append(msgs, err.Error())
-	}
-	return strings.Join(msgs, "; ")
-}
-
-// AllErrors returns a list of validation violation errors.
-func (m EmptyMultiError) AllErrors() []error { return m }
-
-// EmptyValidationError is the validation error returned by Empty.Validate if
-// the designated constraints aren't met.
-type EmptyValidationError struct {
-	field  string
-	reason string
-	cause  error
-	key    bool
-}
-
-// Field function returns field value.
-func (e EmptyValidationError) Field() string { return e.field }
-
-// Reason function returns reason value.
-func (e EmptyValidationError) Reason() string { return e.reason }
-
-// Cause function returns cause value.
-func (e EmptyValidationError) Cause() error { return e.cause }
-
-// Key function returns key value.
-func (e EmptyValidationError) Key() bool { return e.key }
-
-// ErrorName returns error name.
-func (e EmptyValidationError) ErrorName() string { return "EmptyValidationError" }
-
-// Error satisfies the builtin error interface
-func (e EmptyValidationError) Error() string {
-	cause := ""
-	if e.cause != nil {
-		cause = fmt.Sprintf(" | caused by: %v", e.cause)
-	}
-
-	key := ""
-	if e.key {
-		key = "key for "
-	}
-
-	return fmt.Sprintf(
-		"invalid %sEmpty.%s: %s%s",
-		key,
-		e.field,
-		e.reason,
-		cause)
-}
-
-var _ error = EmptyValidationError{}
-
-var _ interface {
-	Field() string
-	Reason() string
-	Key() bool
-	Cause() error
-	ErrorName() string
-} = EmptyValidationError{}

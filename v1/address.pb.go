@@ -26,29 +26,29 @@ type Address struct {
 	unknownFields protoimpl.UnknownFields
 
 	// @gotags: dynamodbav:"address_line_1,omitempty"
-	AddressLine_1 string `protobuf:"bytes,1,opt,name=address_line_1,json=addressLine1,proto3" json:"address_line_1,omitempty" dynamodbav:"address_line_1,omitempty"`
+	AddressLine_1 string `protobuf:"bytes,1,opt,name=address_line_1,json=addressLine1,proto3" json:"address_line_1,omitempty"`
 	// @gotags: dynamodbav:"address_line_2,omitempty"
-	AddressLine_2 string `protobuf:"bytes,2,opt,name=address_line_2,json=addressLine2,proto3" json:"address_line_2,omitempty" dynamodbav:"address_line_2,omitempty"`
+	AddressLine_2 string `protobuf:"bytes,2,opt,name=address_line_2,json=addressLine2,proto3" json:"address_line_2,omitempty"`
 	// @gotags: dynamodbav:"street_number_1,omitempty"
-	StreetNumber string `protobuf:"bytes,3,opt,name=street_number,json=streetNumber,proto3" json:"street_number,omitempty" dynamodbav:"street_number_1,omitempty"`
+	StreetNumber string `protobuf:"bytes,3,opt,name=street_number,json=streetNumber,proto3" json:"street_number,omitempty"`
 	// @gotags: dynamodbav:"street_name,omitempty"
-	StreetName string `protobuf:"bytes,4,opt,name=street_name,json=streetName,proto3" json:"street_name,omitempty" dynamodbav:"street_name,omitempty"`
+	StreetName string `protobuf:"bytes,4,opt,name=street_name,json=streetName,proto3" json:"street_name,omitempty"`
 	// @gotags: dynamodbav:"city,omitempty"
-	City string `protobuf:"bytes,5,opt,name=city,proto3" json:"city,omitempty" dynamodbav:"city,omitempty"`
+	City string `protobuf:"bytes,5,opt,name=city,proto3" json:"city,omitempty"`
 	// @gotags: dynamodbav:"county,omitempty"
-	County string `protobuf:"bytes,6,opt,name=county,proto3" json:"county,omitempty" dynamodbav:"county,omitempty"`
+	County string `protobuf:"bytes,6,opt,name=county,proto3" json:"county,omitempty"`
 	// @gotags: dynamodbav:"zip_code,omitempty"
-	ZipCode string `protobuf:"bytes,7,opt,name=zip_code,json=zipCode,proto3" json:"zip_code,omitempty" dynamodbav:"zip_code,omitempty"`
+	ZipCode string `protobuf:"bytes,7,opt,name=zip_code,json=zipCode,proto3" json:"zip_code,omitempty"`
 	// @gotags: dynamodbav:"state,omitempty"
-	State string `protobuf:"bytes,8,opt,name=state,proto3" json:"state,omitempty" dynamodbav:"state,omitempty"`
+	State string `protobuf:"bytes,8,opt,name=state,proto3" json:"state,omitempty"`
 	// @gotags: dynamodbav:"extended_zip_code,omitempty"
-	ExtendedZipCode string `protobuf:"bytes,9,opt,name=extended_zip_code,json=extendedZipCode,proto3" json:"extended_zip_code,omitempty" dynamodbav:"extended_zip_code,omitempty"`
+	ExtendedZipCode string `protobuf:"bytes,9,opt,name=extended_zip_code,json=extendedZipCode,proto3" json:"extended_zip_code,omitempty"`
 	// @gotags: dynamodbav:"country,omitempty"
-	Country string `protobuf:"bytes,10,opt,name=country,proto3" json:"country,omitempty" dynamodbav:"country,omitempty"`
+	Country string `protobuf:"bytes,10,opt,name=country,proto3" json:"country,omitempty"`
 	// @gotags: dynamodbav:"free_form_address,omitempty"
-	FreeFormAddress string `protobuf:"bytes,11,opt,name=free_form_address,json=freeFormAddress,proto3" json:"free_form_address,omitempty" dynamodbav:"free_form_address,omitempty"`
+	FreeFormAddress string `protobuf:"bytes,11,opt,name=free_form_address,json=freeFormAddress,proto3" json:"free_form_address,omitempty"`
 	// @gotags: dynamodbav:"local_name,omitempty"
-	LocalName string `protobuf:"bytes,12,opt,name=local_name,json=localName,proto3" json:"local_name,omitempty" dynamodbav:"local_name,omitempty"`
+	LocalName string `protobuf:"bytes,12,opt,name=local_name,json=localName,proto3" json:"local_name,omitempty"`
 }
 
 func (x *Address) Reset() {
@@ -171,7 +171,7 @@ var File_address_proto protoreflect.FileDescriptor
 
 var file_address_proto_rawDesc = []byte{
 	0x0a, 0x0d, 0x61, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12,
-	0x04, 0x75, 0x73, 0x65, 0x72, 0x22, 0x89, 0x03, 0x0a, 0x07, 0x41, 0x64, 0x64, 0x72, 0x65, 0x73,
+	0x04, 0x75, 0x73, 0x65, 0x72, 0x22, 0x89, 0x03, 0x0a, 0x07, 0x61, 0x64, 0x64, 0x72, 0x65, 0x73,
 	0x73, 0x12, 0x24, 0x0a, 0x0e, 0x61, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x5f, 0x6c, 0x69, 0x6e,
 	0x65, 0x5f, 0x31, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0c, 0x61, 0x64, 0x64, 0x72, 0x65,
 	0x73, 0x73, 0x4c, 0x69, 0x6e, 0x65, 0x31, 0x12, 0x24, 0x0a, 0x0e, 0x61, 0x64, 0x64, 0x72, 0x65,
@@ -220,7 +220,7 @@ func file_address_proto_rawDescGZIP() []byte {
 
 var file_address_proto_msgTypes = make([]protoimpl.MessageInfo, 1)
 var file_address_proto_goTypes = []interface{}{
-	(*Address)(nil), // 0: user.Address
+	(*Address)(nil), // 0: user.address
 }
 var file_address_proto_depIdxs = []int32{
 	0, // [0:0] is the sub-list for method output_type
