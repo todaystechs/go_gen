@@ -29,7 +29,7 @@ type UserServiceClient interface {
 	UpdateUser(ctx context.Context, in *User, opts ...grpc.CallOption) (*Ok, error)
 	GetMe(ctx context.Context, in *Token, opts ...grpc.CallOption) (*User, error)
 	ConfirmEmail(ctx context.Context, in *ConfirmEmail, opts ...grpc.CallOption) (*Ok, error)
-	Home(ctx context.Context, in *UserHome, opts ...grpc.CallOption) (*Ok, error)
+	Home(ctx context.Context, in *UserHome, opts ...grpc.CallOption) (*User, error)
 }
 
 type userServiceClient struct {
@@ -139,8 +139,8 @@ func (c *userServiceClient) ConfirmEmail(ctx context.Context, in *ConfirmEmail, 
 	return out, nil
 }
 
-func (c *userServiceClient) Home(ctx context.Context, in *UserHome, opts ...grpc.CallOption) (*Ok, error) {
-	out := new(Ok)
+func (c *userServiceClient) Home(ctx context.Context, in *UserHome, opts ...grpc.CallOption) (*User, error) {
+	out := new(User)
 	err := c.cc.Invoke(ctx, "/user.UserService/Home", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -163,7 +163,7 @@ type UserServiceServer interface {
 	UpdateUser(context.Context, *User) (*Ok, error)
 	GetMe(context.Context, *Token) (*User, error)
 	ConfirmEmail(context.Context, *ConfirmEmail) (*Ok, error)
-	Home(context.Context, *UserHome) (*Ok, error)
+	Home(context.Context, *UserHome) (*User, error)
 }
 
 // UnimplementedUserServiceServer should be embedded to have forward compatible implementations.
@@ -203,7 +203,7 @@ func (UnimplementedUserServiceServer) GetMe(context.Context, *Token) (*User, err
 func (UnimplementedUserServiceServer) ConfirmEmail(context.Context, *ConfirmEmail) (*Ok, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ConfirmEmail not implemented")
 }
-func (UnimplementedUserServiceServer) Home(context.Context, *UserHome) (*Ok, error) {
+func (UnimplementedUserServiceServer) Home(context.Context, *UserHome) (*User, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Home not implemented")
 }
 
