@@ -78,7 +78,7 @@ func (m *User) validate(all bool) error {
 
 	// no validation rules for NewPasswordRequired
 
-	// no validation rules for PasswordChangedAt
+	// no validation rules for PasswordChangedOn
 
 	// no validation rules for CreatedOn
 
@@ -156,6 +156,8 @@ func (m *User) validate(all bool) error {
 			}
 		}
 	}
+
+	// no validation rules for LastLoginOn
 
 	if len(errors) > 0 {
 		return UserMultiError(errors)
