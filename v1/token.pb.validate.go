@@ -62,6 +62,7 @@ func (m *RefreshToken) validate(all bool) error {
 	if len(errors) > 0 {
 		return RefreshTokenMultiError(errors)
 	}
+
 	return nil
 }
 
@@ -161,6 +162,7 @@ func (m *Token) validate(all bool) error {
 	if len(errors) > 0 {
 		return TokenMultiError(errors)
 	}
+
 	return nil
 }
 

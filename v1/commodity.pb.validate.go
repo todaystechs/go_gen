@@ -82,6 +82,7 @@ func (m *Commodity) validate(all bool) error {
 	if len(errors) > 0 {
 		return CommodityMultiError(errors)
 	}
+
 	return nil
 }
 

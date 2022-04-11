@@ -61,6 +61,7 @@ func (m *LogOut) validate(all bool) error {
 	if len(errors) > 0 {
 		return LogOutMultiError(errors)
 	}
+
 	return nil
 }
 

@@ -98,6 +98,7 @@ func (m *HttpBody) validate(all bool) error {
 	if len(errors) > 0 {
 		return HttpBodyMultiError(errors)
 	}
+
 	return nil
 }
 

@@ -61,6 +61,7 @@ func (m *Ping) validate(all bool) error {
 	if len(errors) > 0 {
 		return PingMultiError(errors)
 	}
+
 	return nil
 }
 
@@ -160,6 +161,7 @@ func (m *Id) validate(all bool) error {
 	if len(errors) > 0 {
 		return IdMultiError(errors)
 	}
+
 	return nil
 }
 
@@ -257,6 +259,7 @@ func (m *Ids) validate(all bool) error {
 	if len(errors) > 0 {
 		return IdsMultiError(errors)
 	}
+
 	return nil
 }
 

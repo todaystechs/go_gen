@@ -746,6 +746,7 @@ func (m *FieldRules) validate(all bool) error {
 	if len(errors) > 0 {
 		return FieldRulesMultiError(errors)
 	}
+
 	return nil
 }
 
@@ -854,6 +855,7 @@ func (m *FloatRules) validate(all bool) error {
 	if len(errors) > 0 {
 		return FloatRulesMultiError(errors)
 	}
+
 	return nil
 }
 
@@ -962,6 +964,7 @@ func (m *DoubleRules) validate(all bool) error {
 	if len(errors) > 0 {
 		return DoubleRulesMultiError(errors)
 	}
+
 	return nil
 }
 
@@ -1070,6 +1073,7 @@ func (m *Int32Rules) validate(all bool) error {
 	if len(errors) > 0 {
 		return Int32RulesMultiError(errors)
 	}
+
 	return nil
 }
 
@@ -1178,6 +1182,7 @@ func (m *Int64Rules) validate(all bool) error {
 	if len(errors) > 0 {
 		return Int64RulesMultiError(errors)
 	}
+
 	return nil
 }
 
@@ -1286,6 +1291,7 @@ func (m *UInt32Rules) validate(all bool) error {
 	if len(errors) > 0 {
 		return UInt32RulesMultiError(errors)
 	}
+
 	return nil
 }
 
@@ -1394,6 +1400,7 @@ func (m *UInt64Rules) validate(all bool) error {
 	if len(errors) > 0 {
 		return UInt64RulesMultiError(errors)
 	}
+
 	return nil
 }
 
@@ -1502,6 +1509,7 @@ func (m *SInt32Rules) validate(all bool) error {
 	if len(errors) > 0 {
 		return SInt32RulesMultiError(errors)
 	}
+
 	return nil
 }
 
@@ -1610,6 +1618,7 @@ func (m *SInt64Rules) validate(all bool) error {
 	if len(errors) > 0 {
 		return SInt64RulesMultiError(errors)
 	}
+
 	return nil
 }
 
@@ -1718,6 +1727,7 @@ func (m *Fixed32Rules) validate(all bool) error {
 	if len(errors) > 0 {
 		return Fixed32RulesMultiError(errors)
 	}
+
 	return nil
 }
 
@@ -1826,6 +1836,7 @@ func (m *Fixed64Rules) validate(all bool) error {
 	if len(errors) > 0 {
 		return Fixed64RulesMultiError(errors)
 	}
+
 	return nil
 }
 
@@ -1934,6 +1945,7 @@ func (m *SFixed32Rules) validate(all bool) error {
 	if len(errors) > 0 {
 		return SFixed32RulesMultiError(errors)
 	}
+
 	return nil
 }
 
@@ -2043,6 +2055,7 @@ func (m *SFixed64Rules) validate(all bool) error {
 	if len(errors) > 0 {
 		return SFixed64RulesMultiError(errors)
 	}
+
 	return nil
 }
 
@@ -2144,6 +2157,7 @@ func (m *BoolRules) validate(all bool) error {
 	if len(errors) > 0 {
 		return BoolRulesMultiError(errors)
 	}
+
 	return nil
 }
 
@@ -2292,6 +2306,7 @@ func (m *StringRules) validate(all bool) error {
 	if len(errors) > 0 {
 		return StringRulesMultiError(errors)
 	}
+
 	return nil
 }
 
@@ -2419,6 +2434,7 @@ func (m *BytesRules) validate(all bool) error {
 	if len(errors) > 0 {
 		return BytesRulesMultiError(errors)
 	}
+
 	return nil
 }
 
@@ -2521,6 +2537,7 @@ func (m *EnumRules) validate(all bool) error {
 	if len(errors) > 0 {
 		return EnumRulesMultiError(errors)
 	}
+
 	return nil
 }
 
@@ -2623,6 +2640,7 @@ func (m *MessageRules) validate(all bool) error {
 	if len(errors) > 0 {
 		return MessageRulesMultiError(errors)
 	}
+
 	return nil
 }
 
@@ -2756,6 +2774,7 @@ func (m *RepeatedRules) validate(all bool) error {
 	if len(errors) > 0 {
 		return RepeatedRulesMultiError(errors)
 	}
+
 	return nil
 }
 
@@ -2919,6 +2938,7 @@ func (m *MapRules) validate(all bool) error {
 	if len(errors) > 0 {
 		return MapRulesMultiError(errors)
 	}
+
 	return nil
 }
 
@@ -3019,6 +3039,7 @@ func (m *AnyRules) validate(all bool) error {
 	if len(errors) > 0 {
 		return AnyRulesMultiError(errors)
 	}
+
 	return nil
 }
 
@@ -3332,6 +3353,7 @@ func (m *DurationRules) validate(all bool) error {
 	if len(errors) > 0 {
 		return DurationRulesMultiError(errors)
 	}
+
 	return nil
 }
 
@@ -3611,6 +3633,7 @@ func (m *TimestampRules) validate(all bool) error {
 	if len(errors) > 0 {
 		return TimestampRulesMultiError(errors)
 	}
+
 	return nil
 }
 

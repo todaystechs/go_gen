@@ -62,6 +62,7 @@ func (m *UserHome) validate(all bool) error {
 	if len(errors) > 0 {
 		return UserHomeMultiError(errors)
 	}
+
 	return nil
 }
 

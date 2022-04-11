@@ -93,6 +93,7 @@ func (m *Delivery) validate(all bool) error {
 	if len(errors) > 0 {
 		return DeliveryMultiError(errors)
 	}
+
 	return nil
 }
 

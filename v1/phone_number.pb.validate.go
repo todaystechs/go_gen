@@ -64,6 +64,7 @@ func (m *PhoneNumber) validate(all bool) error {
 	if len(errors) > 0 {
 		return PhoneNumberMultiError(errors)
 	}
+
 	return nil
 }
 

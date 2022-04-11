@@ -64,6 +64,7 @@ func (m *UpdateUserRole) validate(all bool) error {
 	if len(errors) > 0 {
 		return UpdateUserRoleMultiError(errors)
 	}
+
 	return nil
 }
 

@@ -92,6 +92,7 @@ func (m *PickUp) validate(all bool) error {
 	if len(errors) > 0 {
 		return PickUpMultiError(errors)
 	}
+
 	return nil
 }
 

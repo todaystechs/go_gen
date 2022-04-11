@@ -73,6 +73,7 @@ func (m *Contact) validate(all bool) error {
 	if len(errors) > 0 {
 		return ContactMultiError(errors)
 	}
+
 	return nil
 }
 

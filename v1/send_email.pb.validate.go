@@ -72,6 +72,7 @@ func (m *SendEmail) validate(all bool) error {
 	if len(errors) > 0 {
 		return SendEmailMultiError(errors)
 	}
+
 	return nil
 }
 

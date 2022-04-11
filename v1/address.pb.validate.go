@@ -83,6 +83,7 @@ func (m *Address) validate(all bool) error {
 	if len(errors) > 0 {
 		return AddressMultiError(errors)
 	}
+
 	return nil
 }
 

@@ -101,6 +101,7 @@ func (m *AddStaff) validate(all bool) error {
 	if len(errors) > 0 {
 		return AddStaffMultiError(errors)
 	}
+
 	return nil
 }
 

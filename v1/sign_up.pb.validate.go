@@ -73,6 +73,7 @@ func (m *SignUp) validate(all bool) error {
 	if len(errors) > 0 {
 		return SignUpMultiError(errors)
 	}
+
 	return nil
 }
 

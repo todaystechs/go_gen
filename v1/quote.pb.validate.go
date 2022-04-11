@@ -132,6 +132,7 @@ func (m *Quote) validate(all bool) error {
 	if len(errors) > 0 {
 		return QuoteMultiError(errors)
 	}
+
 	return nil
 }
 
@@ -263,6 +264,7 @@ func (m *Quotes) validate(all bool) error {
 	if len(errors) > 0 {
 		return QuotesMultiError(errors)
 	}
+
 	return nil
 }
 
@@ -419,6 +421,7 @@ func (m *QuoteResponse) validate(all bool) error {
 	if len(errors) > 0 {
 		return QuoteResponseMultiError(errors)
 	}
+
 	return nil
 }
 

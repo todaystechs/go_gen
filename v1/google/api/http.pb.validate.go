@@ -95,6 +95,7 @@ func (m *Http) validate(all bool) error {
 	if len(errors) > 0 {
 		return HttpMultiError(errors)
 	}
+
 	return nil
 }
 
@@ -283,6 +284,7 @@ func (m *HttpRule) validate(all bool) error {
 	if len(errors) > 0 {
 		return HttpRuleMultiError(errors)
 	}
+
 	return nil
 }
 
@@ -385,6 +387,7 @@ func (m *CustomHttpPattern) validate(all bool) error {
 	if len(errors) > 0 {
 		return CustomHttpPatternMultiError(errors)
 	}
+
 	return nil
 }
 

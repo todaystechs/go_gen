@@ -71,6 +71,7 @@ func (m *Carrier) validate(all bool) error {
 	if len(errors) > 0 {
 		return CarrierMultiError(errors)
 	}
+
 	return nil
 }
 

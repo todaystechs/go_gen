@@ -68,6 +68,7 @@ func (m *ConfirmEmail) validate(all bool) error {
 	if len(errors) > 0 {
 		return ConfirmEmailMultiError(errors)
 	}
+
 	return nil
 }
 

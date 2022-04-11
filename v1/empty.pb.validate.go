@@ -59,6 +59,7 @@ func (m *Empty) validate(all bool) error {
 	if len(errors) > 0 {
 		return EmptyMultiError(errors)
 	}
+
 	return nil
 }
 

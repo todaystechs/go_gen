@@ -122,6 +122,7 @@ func (m *Business) validate(all bool) error {
 	if len(errors) > 0 {
 		return BusinessMultiError(errors)
 	}
+
 	return nil
 }
 
@@ -254,6 +255,7 @@ func (m *Businesses) validate(all bool) error {
 	if len(errors) > 0 {
 		return BusinessesMultiError(errors)
 	}
+
 	return nil
 }
 

@@ -63,6 +63,7 @@ func (m *Login) validate(all bool) error {
 	if len(errors) > 0 {
 		return LoginMultiError(errors)
 	}
+
 	return nil
 }
 

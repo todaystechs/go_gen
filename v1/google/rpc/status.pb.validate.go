@@ -97,6 +97,7 @@ func (m *Status) validate(all bool) error {
 	if len(errors) > 0 {
 		return StatusMultiError(errors)
 	}
+
 	return nil
 }
 

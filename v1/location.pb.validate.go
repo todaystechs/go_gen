@@ -167,6 +167,7 @@ func (m *Location) validate(all bool) error {
 	if len(errors) > 0 {
 		return LocationMultiError(errors)
 	}
+
 	return nil
 }
 
@@ -299,6 +300,7 @@ func (m *Locations) validate(all bool) error {
 	if len(errors) > 0 {
 		return LocationsMultiError(errors)
 	}
+
 	return nil
 }
 

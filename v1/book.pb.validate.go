@@ -131,6 +131,7 @@ func (m *Booking) validate(all bool) error {
 	if len(errors) > 0 {
 		return BookingMultiError(errors)
 	}
+
 	return nil
 }
 
@@ -263,6 +264,7 @@ func (m *Bookings) validate(all bool) error {
 	if len(errors) > 0 {
 		return BookingsMultiError(errors)
 	}
+
 	return nil
 }
 

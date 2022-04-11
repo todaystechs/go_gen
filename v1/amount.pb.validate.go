@@ -65,6 +65,7 @@ func (m *Amount) validate(all bool) error {
 	if len(errors) > 0 {
 		return AmountMultiError(errors)
 	}
+
 	return nil
 }
 

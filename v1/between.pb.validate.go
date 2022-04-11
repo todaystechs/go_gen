@@ -63,6 +63,7 @@ func (m *Between) validate(all bool) error {
 	if len(errors) > 0 {
 		return BetweenMultiError(errors)
 	}
+
 	return nil
 }
 

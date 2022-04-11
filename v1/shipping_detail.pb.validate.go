@@ -118,6 +118,7 @@ func (m *ShippingDetail) validate(all bool) error {
 	if len(errors) > 0 {
 		return ShippingDetailMultiError(errors)
 	}
+
 	return nil
 }
 

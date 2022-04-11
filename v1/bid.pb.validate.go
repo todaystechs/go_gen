@@ -127,6 +127,7 @@ func (m *Bid) validate(all bool) error {
 	if len(errors) > 0 {
 		return BidMultiError(errors)
 	}
+
 	return nil
 }
 
@@ -258,6 +259,7 @@ func (m *Bids) validate(all bool) error {
 	if len(errors) > 0 {
 		return BidsMultiError(errors)
 	}
+
 	return nil
 }
 

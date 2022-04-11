@@ -62,6 +62,7 @@ func (m *ForgotPassword) validate(all bool) error {
 	if len(errors) > 0 {
 		return ForgotPasswordMultiError(errors)
 	}
+
 	return nil
 }
 
@@ -166,9 +167,12 @@ func (m *ResetPasswordToken) validate(all bool) error {
 
 	// no validation rules for Token
 
+	// no validation rules for BusinessId
+
 	if len(errors) > 0 {
 		return ResetPasswordTokenMultiError(errors)
 	}
+
 	return nil
 }
 
@@ -278,6 +282,7 @@ func (m *ResetPassword) validate(all bool) error {
 	if len(errors) > 0 {
 		return ResetPasswordMultiError(errors)
 	}
+
 	return nil
 }
 
