@@ -59,6 +59,10 @@ func (m *UserHome) validate(all bool) error {
 
 	// no validation rules for UserId
 
+	// no validation rules for UserEmail
+
+	// no validation rules for BusinessId
+
 	if len(errors) > 0 {
 		return UserHomeMultiError(errors)
 	}
