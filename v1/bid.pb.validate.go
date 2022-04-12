@@ -99,6 +99,8 @@ func (m *Bid) validate(all bool) error {
 
 	// no validation rules for CompanyImage
 
+	// no validation rules for DeliveryDate
+
 	if len(errors) > 0 {
 		return BidMultiError(errors)
 	}
