@@ -26,33 +26,33 @@ type Location struct {
 	unknownFields protoimpl.UnknownFields
 
 	// @gotags: dynamodbav:"id,omitempty"
-	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty" dynamodbav:"id,omitempty"`
+	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	// @gotags: dynamodbav:"name,omitempty"
-	Name string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty" dynamodbav:"name,omitempty"`
+	Name string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
 	// @gotags: dynamodbav:"address,omitempty"
-	Address *Address `protobuf:"bytes,3,opt,name=address,proto3" json:"address,omitempty" dynamodbav:"address,omitempty"`
+	Address *Address `protobuf:"bytes,3,opt,name=address,proto3" json:"address,omitempty"`
 	// @gotags: dynamodbav:"contact,omitempty"
-	Contact *Contact `protobuf:"bytes,4,opt,name=contact,proto3" json:"contact,omitempty" dynamodbav:"contact,omitempty"`
+	Contact *Contact `protobuf:"bytes,4,opt,name=contact,proto3" json:"contact,omitempty"`
 	// @gotags: dynamodbav:"location_type,omitempty"
-	LocationType LocationType `protobuf:"varint,5,opt,name=location_type,json=locationType,proto3,enum=user.LocationType" json:"location_type,omitempty" dynamodbav:"location_type,omitempty"`
+	LocationType LocationType `protobuf:"varint,5,opt,name=location_type,json=locationType,proto3,enum=user.LocationType" json:"location_type,omitempty"`
 	// @gotags: dynamodbav:"additional_service,omitempty"
-	AdditionalService []AdditionalService `protobuf:"varint,6,rep,packed,name=additional_service,json=additionalService,proto3,enum=user.AdditionalService" json:"additional_service,omitempty" dynamodbav:"additional_service,omitempty"`
+	AdditionalService []AdditionalService `protobuf:"varint,6,rep,packed,name=additional_service,json=additionalService,proto3,enum=user.AdditionalService" json:"additional_service,omitempty"`
 	// @gotags: dynamodbav:"business_hours,omitempty",
-	BusinessHours *BusinessHours `protobuf:"bytes,7,opt,name=business_hours,json=businessHours,proto3" json:"business_hours,omitempty" dynamodbav:"business_hours,omitempty"`
+	BusinessHours *BusinessHours `protobuf:"bytes,7,opt,name=business_hours,json=businessHours,proto3" json:"business_hours,omitempty"`
 	// @gotags: dynamodbav:"is_default_pick_up,omitempty"
-	IsDefaultPickUp bool `protobuf:"varint,8,opt,name=is_default_pick_up,json=isDefaultPickUp,proto3" json:"is_default_pick_up,omitempty" dynamodbav:"is_default_pick_up,omitempty"`
+	IsDefaultPickUp bool `protobuf:"varint,8,opt,name=is_default_pick_up,json=isDefaultPickUp,proto3" json:"is_default_pick_up,omitempty"`
 	// @gotags: dynamodbav:"is_default_delivery,omitempty"
-	IsDefaultDelivery bool `protobuf:"varint,9,opt,name=is_default_delivery,json=isDefaultDelivery,proto3" json:"is_default_delivery,omitempty" dynamodbav:"is_default_delivery,omitempty"`
+	IsDefaultDelivery bool `protobuf:"varint,9,opt,name=is_default_delivery,json=isDefaultDelivery,proto3" json:"is_default_delivery,omitempty"`
 	// @gotags: dynamodbav:"pk,omitempty"
-	Pk string `protobuf:"bytes,10,opt,name=pk,proto3" json:"pk,omitempty" dynamodbav:"pk,omitempty"`
+	Pk string `protobuf:"bytes,10,opt,name=pk,proto3" json:"pk,omitempty"`
 	// @gotags: dynamodbav:"sk,omitempty"
-	Sk string `protobuf:"bytes,11,opt,name=sk,proto3" json:"sk,omitempty" dynamodbav:"sk,omitempty"`
+	Sk string `protobuf:"bytes,11,opt,name=sk,proto3" json:"sk,omitempty"`
 	// @gotags: dynamodbav:"location_pk,omitempty"
-	LocationPk string `protobuf:"bytes,12,opt,name=location_pk,json=locationPk,proto3" json:"location_pk,omitempty" dynamodbav:"location_pk,omitempty"`
+	LocationPk string `protobuf:"bytes,12,opt,name=location_pk,json=locationPk,proto3" json:"location_pk,omitempty"`
 	// @gotags: dynamodbav:"location_sk,omitempty"
-	LocationSk string `protobuf:"bytes,13,opt,name=location_sk,json=locationSk,proto3" json:"location_sk,omitempty" dynamodbav:"location_sk,omitempty"`
+	LocationSk string `protobuf:"bytes,13,opt,name=location_sk,json=locationSk,proto3" json:"location_sk,omitempty"`
 	// @gotags: dynamodbav:"business_id,omitempty"
-	BusinessId string `protobuf:"bytes,14,opt,name=business_id,json=businessId,proto3" json:"business_id,omitempty" dynamodbav:"business_id,omitempty"`
+	BusinessId string `protobuf:"bytes,14,opt,name=business_id,json=businessId,proto3" json:"business_id,omitempty"`
 }
 
 func (x *Location) Reset() {

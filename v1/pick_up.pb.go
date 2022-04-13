@@ -26,11 +26,11 @@ type PickUp struct {
 	unknownFields protoimpl.UnknownFields
 
 	// @gotags: dynamodbav:"location,omitempty"
-	Location *Location `protobuf:"bytes,1,opt,name=location,proto3" json:"location,omitempty" dynamodbav:"location,omitempty"`
+	Location *Location `protobuf:"bytes,1,opt,name=location,proto3" json:"location,omitempty"`
 	// @gotags: dynamodbav:"location_type,omitempty"
-	LocationType LocationType `protobuf:"varint,2,opt,name=location_type,json=locationType,proto3,enum=user.LocationType" json:"location_type,omitempty" dynamodbav:"location_type,omitempty"`
+	LocationType LocationType `protobuf:"varint,2,opt,name=location_type,json=locationType,proto3,enum=user.LocationType" json:"location_type,omitempty"`
 	// @gotags: dynamodbav:"date,omitempty"
-	Date string `protobuf:"bytes,3,opt,name=date,proto3" json:"date,omitempty" dynamodbav:"date,omitempty"`
+	Date string `protobuf:"bytes,3,opt,name=date,proto3" json:"date,omitempty"`
 }
 
 func (x *PickUp) Reset() {
