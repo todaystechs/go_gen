@@ -154,9 +154,9 @@ func (m *Location) validate(all bool) error {
 
 	// no validation rules for IsDefaultDelivery
 
-	// no validation rules for Pk
+	// no validation rules for BusinessPk
 
-	// no validation rules for Sk
+	// no validation rules for BusinessSk
 
 	// no validation rules for LocationPk
 
