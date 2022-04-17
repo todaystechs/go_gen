@@ -162,8 +162,6 @@ func (m *Location) validate(all bool) error {
 
 	// no validation rules for LocationSk
 
-	// no validation rules for BusinessId
-
 	if len(errors) > 0 {
 		return LocationMultiError(errors)
 	}
