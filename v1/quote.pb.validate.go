@@ -60,7 +60,9 @@ func (m *Quote) validate(all bool) error {
 
 	// no validation rules for RequesterId
 
-	// no validation rules for BusinessId
+	// no validation rules for BusinessPk
+
+	// no validation rules for BusinessSk
 
 	// no validation rules for Mode
 
