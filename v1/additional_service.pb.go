@@ -20,20 +20,20 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-type ShipmentAdditionalService int32
+type LocationAdditionalService int32
 
 const (
-	ShipmentAdditionalService_InsidePickup         ShipmentAdditionalService = 0
-	ShipmentAdditionalService_LiftgatePickup       ShipmentAdditionalService = 1
-	ShipmentAdditionalService_PickupNotification   ShipmentAdditionalService = 2
-	ShipmentAdditionalService_InsideDelivery       ShipmentAdditionalService = 3
-	ShipmentAdditionalService_LiftGateDelivery     ShipmentAdditionalService = 4
-	ShipmentAdditionalService_DeliveryNotification ShipmentAdditionalService = 5
+	LocationAdditionalService_InsidePickup         LocationAdditionalService = 0
+	LocationAdditionalService_LiftgatePickup       LocationAdditionalService = 1
+	LocationAdditionalService_PickupNotification   LocationAdditionalService = 2
+	LocationAdditionalService_InsideDelivery       LocationAdditionalService = 3
+	LocationAdditionalService_LiftGateDelivery     LocationAdditionalService = 4
+	LocationAdditionalService_DeliveryNotification LocationAdditionalService = 5
 )
 
-// Enum value maps for ShipmentAdditionalService.
+// Enum value maps for LocationAdditionalService.
 var (
-	ShipmentAdditionalService_name = map[int32]string{
+	LocationAdditionalService_name = map[int32]string{
 		0: "InsidePickup",
 		1: "LiftgatePickup",
 		2: "PickupNotification",
@@ -41,65 +41,13 @@ var (
 		4: "LiftGateDelivery",
 		5: "DeliveryNotification",
 	}
-	ShipmentAdditionalService_value = map[string]int32{
+	LocationAdditionalService_value = map[string]int32{
 		"InsidePickup":         0,
 		"LiftgatePickup":       1,
 		"PickupNotification":   2,
 		"InsideDelivery":       3,
 		"LiftGateDelivery":     4,
 		"DeliveryNotification": 5,
-	}
-)
-
-func (x ShipmentAdditionalService) Enum() *ShipmentAdditionalService {
-	p := new(ShipmentAdditionalService)
-	*p = x
-	return p
-}
-
-func (x ShipmentAdditionalService) String() string {
-	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
-}
-
-func (ShipmentAdditionalService) Descriptor() protoreflect.EnumDescriptor {
-	return file_additional_service_proto_enumTypes[0].Descriptor()
-}
-
-func (ShipmentAdditionalService) Type() protoreflect.EnumType {
-	return &file_additional_service_proto_enumTypes[0]
-}
-
-func (x ShipmentAdditionalService) Number() protoreflect.EnumNumber {
-	return protoreflect.EnumNumber(x)
-}
-
-// Deprecated: Use ShipmentAdditionalService.Descriptor instead.
-func (ShipmentAdditionalService) EnumDescriptor() ([]byte, []int) {
-	return file_additional_service_proto_rawDescGZIP(), []int{0}
-}
-
-type LocationAdditionalService int32
-
-const (
-	LocationAdditionalService_ProtectFromFreeze        LocationAdditionalService = 0
-	LocationAdditionalService_SortAndSegregateDelivery LocationAdditionalService = 1
-	LocationAdditionalService_GUARANTEE                LocationAdditionalService = 2
-	LocationAdditionalService_HAZARDOUS                LocationAdditionalService = 3
-)
-
-// Enum value maps for LocationAdditionalService.
-var (
-	LocationAdditionalService_name = map[int32]string{
-		0: "ProtectFromFreeze",
-		1: "SortAndSegregateDelivery",
-		2: "GUARANTEE",
-		3: "HAZARDOUS",
-	}
-	LocationAdditionalService_value = map[string]int32{
-		"ProtectFromFreeze":        0,
-		"SortAndSegregateDelivery": 1,
-		"GUARANTEE":                2,
-		"HAZARDOUS":                3,
 	}
 )
 
@@ -114,11 +62,11 @@ func (x LocationAdditionalService) String() string {
 }
 
 func (LocationAdditionalService) Descriptor() protoreflect.EnumDescriptor {
-	return file_additional_service_proto_enumTypes[1].Descriptor()
+	return file_additional_service_proto_enumTypes[0].Descriptor()
 }
 
 func (LocationAdditionalService) Type() protoreflect.EnumType {
-	return &file_additional_service_proto_enumTypes[1]
+	return &file_additional_service_proto_enumTypes[0]
 }
 
 func (x LocationAdditionalService) Number() protoreflect.EnumNumber {
@@ -127,6 +75,58 @@ func (x LocationAdditionalService) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use LocationAdditionalService.Descriptor instead.
 func (LocationAdditionalService) EnumDescriptor() ([]byte, []int) {
+	return file_additional_service_proto_rawDescGZIP(), []int{0}
+}
+
+type ShipmentAdditionalService int32
+
+const (
+	ShipmentAdditionalService_ProtectFromFreeze        ShipmentAdditionalService = 0
+	ShipmentAdditionalService_SortAndSegregateDelivery ShipmentAdditionalService = 1
+	ShipmentAdditionalService_GUARANTEE                ShipmentAdditionalService = 2
+	ShipmentAdditionalService_HAZARDOUS                ShipmentAdditionalService = 3
+)
+
+// Enum value maps for ShipmentAdditionalService.
+var (
+	ShipmentAdditionalService_name = map[int32]string{
+		0: "ProtectFromFreeze",
+		1: "SortAndSegregateDelivery",
+		2: "GUARANTEE",
+		3: "HAZARDOUS",
+	}
+	ShipmentAdditionalService_value = map[string]int32{
+		"ProtectFromFreeze":        0,
+		"SortAndSegregateDelivery": 1,
+		"GUARANTEE":                2,
+		"HAZARDOUS":                3,
+	}
+)
+
+func (x ShipmentAdditionalService) Enum() *ShipmentAdditionalService {
+	p := new(ShipmentAdditionalService)
+	*p = x
+	return p
+}
+
+func (x ShipmentAdditionalService) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (ShipmentAdditionalService) Descriptor() protoreflect.EnumDescriptor {
+	return file_additional_service_proto_enumTypes[1].Descriptor()
+}
+
+func (ShipmentAdditionalService) Type() protoreflect.EnumType {
+	return &file_additional_service_proto_enumTypes[1]
+}
+
+func (x ShipmentAdditionalService) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use ShipmentAdditionalService.Descriptor instead.
+func (ShipmentAdditionalService) EnumDescriptor() ([]byte, []int) {
 	return file_additional_service_proto_rawDescGZIP(), []int{1}
 }
 
@@ -135,7 +135,7 @@ var File_additional_service_proto protoreflect.FileDescriptor
 var file_additional_service_proto_rawDesc = []byte{
 	0x0a, 0x18, 0x61, 0x64, 0x64, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x61, 0x6c, 0x5f, 0x73, 0x65, 0x72,
 	0x76, 0x69, 0x63, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12, 0x04, 0x75, 0x73, 0x65, 0x72,
-	0x2a, 0x9f, 0x01, 0x0a, 0x1b, 0x73, 0x68, 0x69, 0x70, 0x6d, 0x65, 0x6e, 0x74, 0x5f, 0x61, 0x64,
+	0x2a, 0x9f, 0x01, 0x0a, 0x1b, 0x6c, 0x6f, 0x63, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x5f, 0x61, 0x64,
 	0x64, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x61, 0x6c, 0x5f, 0x73, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65,
 	0x12, 0x10, 0x0a, 0x0c, 0x49, 0x6e, 0x73, 0x69, 0x64, 0x65, 0x50, 0x69, 0x63, 0x6b, 0x75, 0x70,
 	0x10, 0x00, 0x12, 0x12, 0x0a, 0x0e, 0x4c, 0x69, 0x66, 0x74, 0x67, 0x61, 0x74, 0x65, 0x50, 0x69,
@@ -145,7 +145,7 @@ var file_additional_service_proto_rawDesc = []byte{
 	0x10, 0x03, 0x12, 0x14, 0x0a, 0x10, 0x4c, 0x69, 0x66, 0x74, 0x47, 0x61, 0x74, 0x65, 0x44, 0x65,
 	0x6c, 0x69, 0x76, 0x65, 0x72, 0x79, 0x10, 0x04, 0x12, 0x18, 0x0a, 0x14, 0x44, 0x65, 0x6c, 0x69,
 	0x76, 0x65, 0x72, 0x79, 0x4e, 0x6f, 0x74, 0x69, 0x66, 0x69, 0x63, 0x61, 0x74, 0x69, 0x6f, 0x6e,
-	0x10, 0x05, 0x2a, 0x70, 0x0a, 0x1b, 0x6c, 0x6f, 0x63, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x5f, 0x61,
+	0x10, 0x05, 0x2a, 0x70, 0x0a, 0x1b, 0x73, 0x68, 0x69, 0x70, 0x6d, 0x65, 0x6e, 0x74, 0x5f, 0x61,
 	0x64, 0x64, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x61, 0x6c, 0x5f, 0x73, 0x65, 0x72, 0x76, 0x69, 0x63,
 	0x65, 0x12, 0x15, 0x0a, 0x11, 0x50, 0x72, 0x6f, 0x74, 0x65, 0x63, 0x74, 0x46, 0x72, 0x6f, 0x6d,
 	0x46, 0x72, 0x65, 0x65, 0x7a, 0x65, 0x10, 0x00, 0x12, 0x1c, 0x0a, 0x18, 0x53, 0x6f, 0x72, 0x74,
@@ -177,8 +177,8 @@ func file_additional_service_proto_rawDescGZIP() []byte {
 
 var file_additional_service_proto_enumTypes = make([]protoimpl.EnumInfo, 2)
 var file_additional_service_proto_goTypes = []interface{}{
-	(ShipmentAdditionalService)(0), // 0: user.shipment_additional_service
-	(LocationAdditionalService)(0), // 1: user.location_additional_service
+	(LocationAdditionalService)(0), // 0: user.location_additional_service
+	(ShipmentAdditionalService)(0), // 1: user.shipment_additional_service
 }
 var file_additional_service_proto_depIdxs = []int32{
 	0, // [0:0] is the sub-list for method output_type
