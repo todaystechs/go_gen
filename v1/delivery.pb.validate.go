@@ -86,8 +86,6 @@ func (m *Delivery) validate(all bool) error {
 		}
 	}
 
-	// no validation rules for LocationType
-
 	// no validation rules for Date
 
 	if len(errors) > 0 {
