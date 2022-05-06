@@ -69,11 +69,11 @@ func (m *Quote) validate(all bool) error {
 	// no validation rules for LiablePartyId
 
 	if all {
-		switch v := interface{}(m.GetShippingDetail()).(type) {
+		switch v := interface{}(m.GetOrigin()).(type) {
 		case interface{ ValidateAll() error }:
 			if err := v.ValidateAll(); err != nil {
 				errors = append(errors, QuoteValidationError{
-					field:  "ShippingDetail",
+					field:  "Origin",
 					reason: "embedded message failed validation",
 					cause:  err,
 				})
@@ -81,16 +81,45 @@ func (m *Quote) validate(all bool) error {
 		case interface{ Validate() error }:
 			if err := v.Validate(); err != nil {
 				errors = append(errors, QuoteValidationError{
-					field:  "ShippingDetail",
+					field:  "Origin",
 					reason: "embedded message failed validation",
 					cause:  err,
 				})
 			}
 		}
-	} else if v, ok := interface{}(m.GetShippingDetail()).(interface{ Validate() error }); ok {
+	} else if v, ok := interface{}(m.GetOrigin()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return QuoteValidationError{
-				field:  "ShippingDetail",
+				field:  "Origin",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	if all {
+		switch v := interface{}(m.GetDelivery()).(type) {
+		case interface{ ValidateAll() error }:
+			if err := v.ValidateAll(); err != nil {
+				errors = append(errors, QuoteValidationError{
+					field:  "Delivery",
+					reason: "embedded message failed validation",
+					cause:  err,
+				})
+			}
+		case interface{ Validate() error }:
+			if err := v.Validate(); err != nil {
+				errors = append(errors, QuoteValidationError{
+					field:  "Delivery",
+					reason: "embedded message failed validation",
+					cause:  err,
+				})
+			}
+		}
+	} else if v, ok := interface{}(m.GetDelivery()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return QuoteValidationError{
+				field:  "Delivery",
 				reason: "embedded message failed validation",
 				cause:  err,
 			}
@@ -130,6 +159,10 @@ func (m *Quote) validate(all bool) error {
 		}
 
 	}
+
+	// no validation rules for PickupDate
+
+	// no validation rules for DeliveryDate
 
 	if all {
 		switch v := interface{}(m.GetBids()).(type) {

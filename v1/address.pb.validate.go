@@ -60,8 +60,6 @@ func (m *Address) validate(all bool) error {
 
 	// no validation rules for AddressLine_2
 
-	// no validation rules for StreetNumber
-
 	// no validation rules for StreetName
 
 	// no validation rules for City
