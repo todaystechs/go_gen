@@ -119,8 +119,6 @@ func (m *Location) validate(all bool) error {
 		}
 	}
 
-	// no validation rules for LocationType
-
 	if all {
 		switch v := interface{}(m.GetBusinessHours()).(type) {
 		case interface{ ValidateAll() error }:
