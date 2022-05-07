@@ -118,29 +118,29 @@ type Commodity struct {
 	unknownFields protoimpl.UnknownFields
 
 	// @gotags: dynamodbav:"density,omitempty"
-	Density float32 `protobuf:"fixed32,1,opt,name=density,proto3" json:"density,omitempty"`
+	Density float32 `protobuf:"fixed32,1,opt,name=density,proto3" json:"density,omitempty" dynamodbav:"density,omitempty"`
 	// @gotags: dynamodbav:"length,omitempty"
-	Length float32 `protobuf:"fixed32,2,opt,name=length,proto3" json:"length,omitempty"`
+	Length float32 `protobuf:"fixed32,2,opt,name=length,proto3" json:"length,omitempty" dynamodbav:"length,omitempty"`
 	// @gotags: dynamodbav:"width,omitempty"
-	Width float32 `protobuf:"fixed32,3,opt,name=width,proto3" json:"width,omitempty"`
+	Width float32 `protobuf:"fixed32,3,opt,name=width,proto3" json:"width,omitempty" dynamodbav:"width,omitempty"`
 	// @gotags: dynamodbav:"height,omitempty"
-	Height float32 `protobuf:"fixed32,4,opt,name=height,proto3" json:"height,omitempty"`
+	Height float32 `protobuf:"fixed32,4,opt,name=height,proto3" json:"height,omitempty" dynamodbav:"height,omitempty"`
 	// @gotags: dynamodbav:"weight,omitempty"
-	Weight float32 `protobuf:"fixed32,5,opt,name=weight,proto3" json:"weight,omitempty"`
+	Weight float32 `protobuf:"fixed32,5,opt,name=weight,proto3" json:"weight,omitempty" dynamodbav:"weight,omitempty"`
 	// @gotags: dynamodbav:"dimension_uom,omitempty"
-	DimensionUom DimensionUom `protobuf:"varint,6,opt,name=dimension_uom,json=dimensionUom,proto3,enum=user.DimensionUom" json:"dimension_uom,omitempty"`
+	DimensionUom DimensionUom `protobuf:"varint,6,opt,name=dimension_uom,json=dimensionUom,proto3,enum=user.DimensionUom" json:"dimension_uom,omitempty" dynamodbav:"dimension_uom,omitempty"`
 	// @gotags: dynamodbav:"weight_uom,omitempty"
-	WeightUom WeightUom `protobuf:"varint,7,opt,name=weight_uom,json=weightUom,proto3,enum=user.WeightUom" json:"weight_uom,omitempty"`
+	WeightUom WeightUom `protobuf:"varint,7,opt,name=weight_uom,json=weightUom,proto3,enum=user.WeightUom" json:"weight_uom,omitempty" dynamodbav:"weight_uom,omitempty"`
 	// @gotags: dynamodbav:"dimension_display,omitempty"
-	DimensionDisplay string `protobuf:"bytes,8,opt,name=dimension_display,json=dimensionDisplay,proto3" json:"dimension_display,omitempty"`
+	DimensionDisplay string `protobuf:"bytes,8,opt,name=dimension_display,json=dimensionDisplay,proto3" json:"dimension_display,omitempty" dynamodbav:"dimension_display,omitempty"`
 	// @gotags: dynamodbav:"package_type,omitempty"
-	PackageType PackageType `protobuf:"varint,9,opt,name=package_type,json=packageType,proto3,enum=user.PackageType" json:"package_type,omitempty"`
+	PackageType PackageType `protobuf:"varint,9,opt,name=package_type,json=packageType,proto3,enum=user.PackageType" json:"package_type,omitempty" dynamodbav:"package_type,omitempty"`
 	// @gotags: dynamodbav:"quantity,omitempty"
-	Quantity int32 `protobuf:"varint,10,opt,name=quantity,proto3" json:"quantity,omitempty"`
+	Quantity int32 `protobuf:"varint,10,opt,name=quantity,proto3" json:"quantity,omitempty" dynamodbav:"quantity,omitempty"`
 	// @gotags: dynamodbav:"freight_class,omitempty"
-	FreightClass FreightClass `protobuf:"varint,11,opt,name=freight_class,json=freightClass,proto3,enum=user.FreightClass" json:"freight_class,omitempty"`
+	FreightClass FreightClass `protobuf:"varint,11,opt,name=freight_class,json=freightClass,proto3,enum=user.FreightClass" json:"freight_class,omitempty" dynamodbav:"freight_class,omitempty"`
 	// @gotags: dynamodbav:"commodity_services,omitempty"
-	CommodityServices []CommodityServices `protobuf:"varint,12,rep,packed,name=commodity_services,json=commodityServices,proto3,enum=user.CommodityServices" json:"commodity_services,omitempty"`
+	CommodityServices []CommodityServices `protobuf:"varint,12,rep,packed,name=commodity_services,json=commodityServices,proto3,enum=user.CommodityServices" json:"commodity_services,omitempty" dynamodbav:"commodity_services,omitempty"`
 }
 
 func (x *Commodity) Reset() {
