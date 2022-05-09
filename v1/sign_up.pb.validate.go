@@ -56,7 +56,7 @@ func (m *SignUp) validate(all bool) error {
 
 	var errors []error
 
-	// no validation rules for First_Name
+	// no validation rules for FirstName
 
 	// no validation rules for MiddleName
 
