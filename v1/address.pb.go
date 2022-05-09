@@ -48,7 +48,6 @@ type Address struct {
 	// @gotags: dynamodbav:"local_name,omitempty"
 	LocalName string `protobuf:"bytes,11,opt,name=local_name,json=localName,proto3" json:"local_name,omitempty" dynamodbav:"local_name,omitempty"`
 }
-
 func (x *Address) Reset() {
 	*x = Address{}
 	if protoimpl.UnsafeEnabled {
