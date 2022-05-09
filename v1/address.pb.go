@@ -25,7 +25,7 @@ type Address struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// @gotags: dynamodbav:"address_line_1,omitempty"
+	// @gotags: dynamodbav:"address_line_1,omitempty" json:"address_line_1,omitempty""
 	AddressLine_1 string `protobuf:"bytes,1,opt,name=address_line_1,json=addressLine1,proto3" json:"address_line_1,omitempty" dynamodbav:"address_line_1,omitempty"`
 	// @gotags: dynamodbav:"address_line_2,omitempty"
 	AddressLine_2 string `protobuf:"bytes,2,opt,name=address_line_2,json=addressLine2,proto3" json:"address_line_2,omitempty" dynamodbav:"address_line_2,omitempty"`
