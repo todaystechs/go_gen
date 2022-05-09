@@ -68,6 +68,8 @@ func (m *SignUp) validate(all bool) error {
 
 	// no validation rules for PhoneNumber
 
+	// no validation rules for TermsAggrement
+
 	// no validation rules for CompanyName
 
 	if len(errors) > 0 {
