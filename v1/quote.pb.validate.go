@@ -164,33 +164,38 @@ func (m *Quote) validate(all bool) error {
 
 	// no validation rules for DeliveryDate
 
-	if all {
-		switch v := interface{}(m.GetBids()).(type) {
-		case interface{ ValidateAll() error }:
-			if err := v.ValidateAll(); err != nil {
-				errors = append(errors, QuoteValidationError{
-					field:  "Bids",
-					reason: "embedded message failed validation",
-					cause:  err,
-				})
+	for idx, item := range m.GetBids() {
+		_, _ = idx, item
+
+		if all {
+			switch v := interface{}(item).(type) {
+			case interface{ ValidateAll() error }:
+				if err := v.ValidateAll(); err != nil {
+					errors = append(errors, QuoteValidationError{
+						field:  fmt.Sprintf("Bids[%v]", idx),
+						reason: "embedded message failed validation",
+						cause:  err,
+					})
+				}
+			case interface{ Validate() error }:
+				if err := v.Validate(); err != nil {
+					errors = append(errors, QuoteValidationError{
+						field:  fmt.Sprintf("Bids[%v]", idx),
+						reason: "embedded message failed validation",
+						cause:  err,
+					})
+				}
 			}
-		case interface{ Validate() error }:
+		} else if v, ok := interface{}(item).(interface{ Validate() error }); ok {
 			if err := v.Validate(); err != nil {
-				errors = append(errors, QuoteValidationError{
-					field:  "Bids",
+				return QuoteValidationError{
+					field:  fmt.Sprintf("Bids[%v]", idx),
 					reason: "embedded message failed validation",
 					cause:  err,
-				})
+				}
 			}
 		}
-	} else if v, ok := interface{}(m.GetBids()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return QuoteValidationError{
-				field:  "Bids",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
+
 	}
 
 	if len(errors) > 0 {
@@ -453,33 +458,38 @@ func (m *QuoteResponse) validate(all bool) error {
 		}
 	}
 
-	if all {
-		switch v := interface{}(m.GetBids()).(type) {
-		case interface{ ValidateAll() error }:
-			if err := v.ValidateAll(); err != nil {
-				errors = append(errors, QuoteResponseValidationError{
-					field:  "Bids",
-					reason: "embedded message failed validation",
-					cause:  err,
-				})
+	for idx, item := range m.GetBids() {
+		_, _ = idx, item
+
+		if all {
+			switch v := interface{}(item).(type) {
+			case interface{ ValidateAll() error }:
+				if err := v.ValidateAll(); err != nil {
+					errors = append(errors, QuoteResponseValidationError{
+						field:  fmt.Sprintf("Bids[%v]", idx),
+						reason: "embedded message failed validation",
+						cause:  err,
+					})
+				}
+			case interface{ Validate() error }:
+				if err := v.Validate(); err != nil {
+					errors = append(errors, QuoteResponseValidationError{
+						field:  fmt.Sprintf("Bids[%v]", idx),
+						reason: "embedded message failed validation",
+						cause:  err,
+					})
+				}
 			}
-		case interface{ Validate() error }:
+		} else if v, ok := interface{}(item).(interface{ Validate() error }); ok {
 			if err := v.Validate(); err != nil {
-				errors = append(errors, QuoteResponseValidationError{
-					field:  "Bids",
+				return QuoteResponseValidationError{
+					field:  fmt.Sprintf("Bids[%v]", idx),
 					reason: "embedded message failed validation",
 					cause:  err,
-				})
+				}
 			}
 		}
-	} else if v, ok := interface{}(m.GetBids()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return QuoteResponseValidationError{
-				field:  "Bids",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
+
 	}
 
 	if len(errors) > 0 {
