@@ -97,7 +97,9 @@ func (m *Bid) validate(all bool) error {
 
 	// no validation rules for BusinessId
 
-	// no validation rules for CompanyLogoUrl
+	// no validation rules for CompanyLargeLogoUrl
+
+	// no validation rules for CompanySmallLogoUrl
 
 	// no validation rules for DeliveryDate
 
