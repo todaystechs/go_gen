@@ -97,9 +97,13 @@ func (m *Bid) validate(all bool) error {
 
 	// no validation rules for BusinessId
 
-	// no validation rules for CompanyImage
+	// no validation rules for CompanyLogoUrl
 
 	// no validation rules for DeliveryDate
+
+	// no validation rules for VendorQuoteId
+
+	// no validation rules for CapacityProviderQuoteId
 
 	if len(errors) > 0 {
 		return BidMultiError(errors)
