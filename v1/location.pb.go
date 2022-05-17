@@ -26,29 +26,29 @@ type Location struct {
 	unknownFields protoimpl.UnknownFields
 
 	// @gotags: dynamodbav:"id,omitempty"
-	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty" dynamodbav:"id,omitempty"`
 	// @gotags: dynamodbav:"name,omitempty"
-	Name string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	Name string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty" dynamodbav:"name,omitempty"`
 	// @gotags: dynamodbav:"address,omitempty"
-	Address *Address `protobuf:"bytes,3,opt,name=address,proto3" json:"address,omitempty"`
+	Address *Address `protobuf:"bytes,3,opt,name=address,proto3" json:"address,omitempty" dynamodbav:"address,omitempty"`
 	// @gotags: dynamodbav:"contact,omitempty"
-	Contact *Contact `protobuf:"bytes,4,opt,name=contact,proto3" json:"contact,omitempty"`
+	Contact *Contact `protobuf:"bytes,4,opt,name=contact,proto3" json:"contact,omitempty" dynamodbav:"contact,omitempty"`
 	// @gotags: dynamodbav:"location_additional_service,omitempty"
-	LocationServices []LocationService `protobuf:"varint,6,rep,packed,name=location_services,json=locationServices,proto3,enum=user.LocationService" json:"location_services,omitempty"`
+	LocationServices []LocationService `protobuf:"varint,6,rep,packed,name=location_services,json=locationServices,proto3,enum=user.LocationService" json:"location_services,omitempty" dynamodbav:"location_additional_service,omitempty"`
 	// @gotags: dynamodbav:"business_hours,omitempty",
-	BusinessHours *BusinessHours `protobuf:"bytes,7,opt,name=business_hours,json=businessHours,proto3" json:"business_hours,omitempty"`
+	BusinessHours *BusinessHours `protobuf:"bytes,7,opt,name=business_hours,json=businessHours,proto3" json:"business_hours,omitempty" dynamodbav:"business_hours,omitempty"`
 	// @gotags: dynamodbav:"is_default_pick_up,omitempty"
-	IsDefaultPickUp bool `protobuf:"varint,8,opt,name=is_default_pick_up,json=isDefaultPickUp,proto3" json:"is_default_pick_up,omitempty"`
+	IsDefaultPickUp bool `protobuf:"varint,8,opt,name=is_default_pick_up,json=isDefaultPickUp,proto3" json:"is_default_pick_up,omitempty" dynamodbav:"is_default_pick_up,omitempty"`
 	// @gotags: dynamodbav:"is_default_delivery,omitempty"
-	IsDefaultDelivery bool `protobuf:"varint,9,opt,name=is_default_delivery,json=isDefaultDelivery,proto3" json:"is_default_delivery,omitempty"`
+	IsDefaultDelivery bool `protobuf:"varint,9,opt,name=is_default_delivery,json=isDefaultDelivery,proto3" json:"is_default_delivery,omitempty" dynamodbav:"is_default_delivery,omitempty"`
 	// @gotags: dynamodbav:"business_pk,omitempty"
-	BusinessPk string `protobuf:"bytes,10,opt,name=business_pk,json=businessPk,proto3" json:"business_pk,omitempty"`
+	BusinessPk string `protobuf:"bytes,10,opt,name=business_pk,json=businessPk,proto3" json:"business_pk,omitempty" dynamodbav:"business_pk,omitempty"`
 	// @gotags: dynamodbav:"business_sk,omitempty"
-	BusinessSk string `protobuf:"bytes,11,opt,name=business_sk,json=businessSk,proto3" json:"business_sk,omitempty"`
+	BusinessSk string `protobuf:"bytes,11,opt,name=business_sk,json=businessSk,proto3" json:"business_sk,omitempty" dynamodbav:"business_sk,omitempty"`
 	// @gotags: dynamodbav:"location_pk,omitempty"
-	LocationPk string `protobuf:"bytes,12,opt,name=location_pk,json=locationPk,proto3" json:"location_pk,omitempty"`
+	LocationPk string `protobuf:"bytes,12,opt,name=location_pk,json=locationPk,proto3" json:"location_pk,omitempty" dynamodbav:"location_pk,omitempty"`
 	// @gotags: dynamodbav:"location_sk,omitempty"
-	LocationSk string `protobuf:"bytes,13,opt,name=location_sk,json=locationSk,proto3" json:"location_sk,omitempty"`
+	LocationSk string `protobuf:"bytes,13,opt,name=location_sk,json=locationSk,proto3" json:"location_sk,omitempty" dynamodbav:"location_sk,omitempty"`
 }
 
 func (x *Location) Reset() {
