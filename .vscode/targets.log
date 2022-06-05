@@ -6,8 +6,11 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # PARTICULAR PURPOSE.
 
 # This program built for i386-apple-darwin11.3.0
+ 
+make: *** No rule to make target `all'.  Stop.
 
-# Make data base, printed on Wed May 11 13:03:40 2022
+
+# Make data base, printed on Sat Jun  4 19:00:22 2022
 
 # Variables
 
@@ -42,23 +45,19 @@ VSCODE_VERBOSE_LOGGING = true
 # environment
 __CFBundleIdentifier = com.microsoft.VSCode
 # environment
-INFOPATH = /opt/homebrew/share/info:
-# environment
-VSCODE_IPC_HOOK_EXTHOST = /var/folders/qt/fmz209rj0zj7qhrl8k_321rh0000gn/T/vscode-ipc-2ba839ff-b11e-4667-bbad-a164b9eb48bf.sock
+VSCODE_IPC_HOOK_EXTHOST = /var/folders/qt/fmz209rj0zj7qhrl8k_321rh0000gn/T/vscode-ipc-4911bedd-e86f-4a23-810e-41e82d3b9fb3.sock
 # environment
 VSCODE_CWD = /
 # environment
 GOPROXY = https://proxy.golang.org,direct
 # environment
-PATH = /Users/surenl/.amplify/bin:/opt/homebrew/opt/php@7.4/sbin:/opt/homebrew/opt/php@7.4/bin:/opt/homebrew/opt/node@14/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/Library/Frameworks/Python.framework/Versions/3.10/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/go/bin:/usr/local/share/dotnet:~/.dotnet/tools:/Library/Apple/usr/bin:/Library/Frameworks/Mono.framework/Versions/Current/Commands:/Applications/Postgres.app/Contents/Versions/latest/bin:/Users/surenl/Library/flutter/bin:/cmdline-tools/latest/bin:/Users/surenl/Library/Android/sdk/tools/emulator:/Users/surenl/go/bin:/Applications/Postgres.app/Contents/Versions/latest/bin:/Users/surenl/Library/node/bin:/usr/local/share/dotnet:/usr/local/bin:/Applications:/Users/surenl/.pub-cache/bin
+PATH = /usr/local/opt/ruby/bin:/Users/surenl/.amplify/bin:/opt/homebrew/opt/php@7.4/sbin:/opt/homebrew/opt/php@7.4/bin:/opt/homebrew/opt/node@14/bin:/Library/Frameworks/Python.framework/Versions/3.10/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/go/bin:/usr/local/share/dotnet:~/.dotnet/tools:/Library/Apple/usr/bin:/Library/Frameworks/Mono.framework/Versions/Current/Commands:/Applications/Postgres.app/Contents/Versions/latest/bin:/Users/surenl/Library/flutter/bin:/cmdline-tools/latest/bin:/Users/surenl/Library/Android/sdk/tools/emulator:/Users/surenl/go/bin:/Applications/Postgres.app/Contents/Versions/latest/bin:/Users/surenl/Library/node/bin:/usr/local/share/dotnet:/usr/local/bin:/Applications:/Users/surenl/.pub-cache/bin
 # environment
 GOLANG_EXECUTABLE = go
 # environment
 THREE_SCALE_USER_TOKEN = 207c527cfc2a6b8dcf4fa43ad7a976da
 # environment
 GOPATH = /Users/surenl/go
-# environment
-LaunchInstanceID = A2B66F94-B7E2-4289-B302-B85523D486A2
 # environment
 VSCODE_LOG_STACK = false
 # environment
@@ -68,7 +67,7 @@ ELECTRON_RUN_AS_NODE = 1
 # environment
 UUID = 44fcfc41-0c73-42cd-b39f-5b924c7812f2
 # environment
-SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.2kwGo3WYA8/Listeners
+SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.DWcXv8BgFs/Listeners
 # automatic
 %F = $(notdir $%)
 # environment
@@ -76,11 +75,7 @@ VSCODE_PIPE_LOGGING = true
 # environment
 PWD = /Users/surenl/projects/go_gen
 # environment
-HOMEBREW_CELLAR = /opt/homebrew/Cellar
-# environment
 ORIGINAL_XDG_CURRENT_DESKTOP = undefined
-# environment
-MANPATH = /opt/homebrew/share/man::
 # environment
 GOMODCACHE = /Users/surenl/go/pkg/mod
 # environment
@@ -88,7 +83,7 @@ HOME = /Users/surenl
 # default
 MAKEFILEPATH := /Applications/Xcode.app/Contents/Developer/Makefiles
 # environment
-VSCODE_CODE_CACHE_PATH = /Users/surenl/Library/Application Support/Code/CachedData/57fd6d0195bb9b9d1b49f6da5db789060795de47
+VSCODE_CODE_CACHE_PATH = /Users/surenl/Library/Application Support/Code/CachedData/c3511e6c69bb39013c4a4b7b9566ec1ca73fc4d5
 # environment
 LOGNAME = surenl
 # environment
@@ -130,7 +125,7 @@ TMPDIR = /var/folders/qt/fmz209rj0zj7qhrl8k_321rh0000gn/T/
 # environment
 GOOS = darwin
 # environment
-VSCODE_IPC_HOOK = /Users/surenl/Library/Application Support/Code/1.67.0-main.sock
+VSCODE_IPC_HOOK = /Users/surenl/Library/Application Support/Code/1.67.2-main.sock
 # makefile
 MAKEFLAGS = Rrqp
 # environment
@@ -139,16 +134,12 @@ MFLAGS = -Rrqp
 *D = $(patsubst %/,%,$(dir $*))
 # environment
 XPC_SERVICE_NAME = application.com.microsoft.VSCode.56906720.56906726
-# environment
-HOMEBREW_PREFIX = /opt/homebrew
 # automatic
 +D = $(patsubst %/,%,$(dir $+))
 # environment
 RECOMMENDER_API_URL = https://gw.api.openshift.io//api/v2
 # automatic
 +F = $(notdir $+)
-# environment
-HOMEBREW_REPOSITORY = /opt/homebrew
 # environment
 __CF_USER_TEXT_ENCODING = 0x1F5:0x0:0x0
 # environment
@@ -161,8 +152,6 @@ MAKEFILES :=
 LC_ALL = C
 # environment
 GOARCH = arm64
-# environment
-SECURITYSESSIONID = 186a5
 # automatic
 ^F = $(notdir $^)
 # default
@@ -176,9 +165,10 @@ MAKELEVEL := 0
 # environment
 LANG = C
 # environment
-VSCODE_PID = 488
+VSCODE_PID = 46313
 # variable set hash-table stats:
-# Load=83/1024=8%, Rehash=0, Collisions=3/104=3%
+ 
+# Load=76/1024=7%, Rehash=0, Collisions=3/97=3%
 
 # Pattern-specific Variable Values
 
@@ -186,7 +176,7 @@ VSCODE_PID = 488
 
 # Directories
 
-# . (device 16777229, inode 43904583): 10 files, no impossibilities.
+# . (device 16777226, inode 43904583): 10 files, no impossibilities.
 
 # 10 files, no impossibilities in 1 directories.
 
@@ -260,8 +250,6 @@ GNUmakefile:
 # strcache size: total = 0 / max = 0 / min = 4096 / avg = 0
 # strcache free: total = 0 / max = 0 / min = 4096 / avg = 0
 
-# Finished Make data base on Wed May 11 13:03:40 2022
+# Finished Make data base on Sat Jun  4 19:00:22 2022
 
  
-make: *** No rule to make target `all'.  Stop.
-
