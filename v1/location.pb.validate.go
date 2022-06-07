@@ -160,6 +160,26 @@ func (m *Location) validate(all bool) error {
 
 	// no validation rules for LocationSk
 
+	// no validation rules for PickupLocationWithDock
+
+	// no validation rules for LiftgatePickup
+
+	// no validation rules for PickupAppointment
+
+	// no validation rules for InsidePickup
+
+	// no validation rules for PickupNotification
+
+	// no validation rules for DeliveryLocationWithDock
+
+	// no validation rules for LiftgateDelivery
+
+	// no validation rules for DeliveryAppointment
+
+	// no validation rules for InsideDelivery
+
+	// no validation rules for DeliveryNotification
+
 	if len(errors) > 0 {
 		return LocationMultiError(errors)
 	}

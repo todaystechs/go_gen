@@ -69,11 +69,11 @@ func (m *Quote) validate(all bool) error {
 	// no validation rules for LiablePartyId
 
 	if all {
-		switch v := interface{}(m.GetOrigin()).(type) {
+		switch v := interface{}(m.GetPickup()).(type) {
 		case interface{ ValidateAll() error }:
 			if err := v.ValidateAll(); err != nil {
 				errors = append(errors, QuoteValidationError{
-					field:  "Origin",
+					field:  "Pickup",
 					reason: "embedded message failed validation",
 					cause:  err,
 				})
@@ -81,16 +81,16 @@ func (m *Quote) validate(all bool) error {
 		case interface{ Validate() error }:
 			if err := v.Validate(); err != nil {
 				errors = append(errors, QuoteValidationError{
-					field:  "Origin",
+					field:  "Pickup",
 					reason: "embedded message failed validation",
 					cause:  err,
 				})
 			}
 		}
-	} else if v, ok := interface{}(m.GetOrigin()).(interface{ Validate() error }); ok {
+	} else if v, ok := interface{}(m.GetPickup()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return QuoteValidationError{
-				field:  "Origin",
+				field:  "Pickup",
 				reason: "embedded message failed validation",
 				cause:  err,
 			}

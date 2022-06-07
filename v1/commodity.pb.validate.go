@@ -79,6 +79,18 @@ func (m *Commodity) validate(all bool) error {
 
 	// no validation rules for FreightClass
 
+	// no validation rules for Stackable
+
+	// no validation rules for ProtectFromFreeze
+
+	// no validation rules for SortAndSegregate
+
+	// no validation rules for Guaranteed
+
+	// no validation rules for Hazardous
+
+	// no validation rules for Instructions
+
 	if len(errors) > 0 {
 		return CommodityMultiError(errors)
 	}
