@@ -180,6 +180,8 @@ func (m *Location) validate(all bool) error {
 
 	// no validation rules for DeliveryNotification
 
+	// no validation rules for PickupReadyBy
+
 	if len(errors) > 0 {
 		return LocationMultiError(errors)
 	}
