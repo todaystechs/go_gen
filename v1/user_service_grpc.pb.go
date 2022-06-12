@@ -4,7 +4,7 @@
 // - protoc             v3.19.4
 // source: user_service.proto
 
-package user
+package v1
 
 import (
 	context "context"
@@ -46,7 +46,7 @@ func NewUserServiceClient(cc grpc.ClientConnInterface) UserServiceClient {
 
 func (c *userServiceClient) Ping(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*Ok, error) {
 	out := new(Ok)
-	err := c.cc.Invoke(ctx, "/user.UserService/Ping", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/v1.UserService/Ping", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -55,7 +55,7 @@ func (c *userServiceClient) Ping(ctx context.Context, in *Empty, opts ...grpc.Ca
 
 func (c *userServiceClient) SignUp(ctx context.Context, in *SignUp, opts ...grpc.CallOption) (*Ok, error) {
 	out := new(Ok)
-	err := c.cc.Invoke(ctx, "/user.UserService/SignUp", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/v1.UserService/SignUp", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -64,7 +64,7 @@ func (c *userServiceClient) SignUp(ctx context.Context, in *SignUp, opts ...grpc
 
 func (c *userServiceClient) LogIn(ctx context.Context, in *Login, opts ...grpc.CallOption) (*Ok, error) {
 	out := new(Ok)
-	err := c.cc.Invoke(ctx, "/user.UserService/LogIn", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/v1.UserService/LogIn", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -73,7 +73,7 @@ func (c *userServiceClient) LogIn(ctx context.Context, in *Login, opts ...grpc.C
 
 func (c *userServiceClient) LogOut(ctx context.Context, in *LogOut, opts ...grpc.CallOption) (*Ok, error) {
 	out := new(Ok)
-	err := c.cc.Invoke(ctx, "/user.UserService/LogOut", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/v1.UserService/LogOut", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -82,7 +82,7 @@ func (c *userServiceClient) LogOut(ctx context.Context, in *LogOut, opts ...grpc
 
 func (c *userServiceClient) ForgotPassword(ctx context.Context, in *ForgotPassword, opts ...grpc.CallOption) (*Ok, error) {
 	out := new(Ok)
-	err := c.cc.Invoke(ctx, "/user.UserService/ForgotPassword", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/v1.UserService/ForgotPassword", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -91,7 +91,7 @@ func (c *userServiceClient) ForgotPassword(ctx context.Context, in *ForgotPasswo
 
 func (c *userServiceClient) ResetPassword(ctx context.Context, in *ResetPassword, opts ...grpc.CallOption) (*Ok, error) {
 	out := new(Ok)
-	err := c.cc.Invoke(ctx, "/user.UserService/ResetPassword", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/v1.UserService/ResetPassword", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -100,7 +100,7 @@ func (c *userServiceClient) ResetPassword(ctx context.Context, in *ResetPassword
 
 func (c *userServiceClient) UpdateStaffRole(ctx context.Context, in *UpdateUserRole, opts ...grpc.CallOption) (*Ok, error) {
 	out := new(Ok)
-	err := c.cc.Invoke(ctx, "/user.UserService/UpdateStaffRole", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/v1.UserService/UpdateStaffRole", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -109,7 +109,7 @@ func (c *userServiceClient) UpdateStaffRole(ctx context.Context, in *UpdateUserR
 
 func (c *userServiceClient) AddStaff(ctx context.Context, in *AddStaff, opts ...grpc.CallOption) (*Ok, error) {
 	out := new(Ok)
-	err := c.cc.Invoke(ctx, "/user.UserService/AddStaff", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/v1.UserService/AddStaff", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -118,7 +118,7 @@ func (c *userServiceClient) AddStaff(ctx context.Context, in *AddStaff, opts ...
 
 func (c *userServiceClient) UpdateUser(ctx context.Context, in *User, opts ...grpc.CallOption) (*Ok, error) {
 	out := new(Ok)
-	err := c.cc.Invoke(ctx, "/user.UserService/UpdateUser", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/v1.UserService/UpdateUser", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -127,7 +127,7 @@ func (c *userServiceClient) UpdateUser(ctx context.Context, in *User, opts ...gr
 
 func (c *userServiceClient) GetMe(ctx context.Context, in *Token, opts ...grpc.CallOption) (*User, error) {
 	out := new(User)
-	err := c.cc.Invoke(ctx, "/user.UserService/GetMe", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/v1.UserService/GetMe", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -136,7 +136,7 @@ func (c *userServiceClient) GetMe(ctx context.Context, in *Token, opts ...grpc.C
 
 func (c *userServiceClient) ConfirmEmail(ctx context.Context, in *ConfirmEmail, opts ...grpc.CallOption) (*Ok, error) {
 	out := new(Ok)
-	err := c.cc.Invoke(ctx, "/user.UserService/ConfirmEmail", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/v1.UserService/ConfirmEmail", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -145,7 +145,7 @@ func (c *userServiceClient) ConfirmEmail(ctx context.Context, in *ConfirmEmail, 
 
 func (c *userServiceClient) Home(ctx context.Context, in *UserHome, opts ...grpc.CallOption) (*User, error) {
 	out := new(User)
-	err := c.cc.Invoke(ctx, "/user.UserService/Home", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/v1.UserService/Home", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -234,7 +234,7 @@ func _UserService_Ping_Handler(srv interface{}, ctx context.Context, dec func(in
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/user.UserService/Ping",
+		FullMethod: "/v1.UserService/Ping",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(UserServiceServer).Ping(ctx, req.(*Empty))
@@ -252,7 +252,7 @@ func _UserService_SignUp_Handler(srv interface{}, ctx context.Context, dec func(
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/user.UserService/SignUp",
+		FullMethod: "/v1.UserService/SignUp",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(UserServiceServer).SignUp(ctx, req.(*SignUp))
@@ -270,7 +270,7 @@ func _UserService_LogIn_Handler(srv interface{}, ctx context.Context, dec func(i
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/user.UserService/LogIn",
+		FullMethod: "/v1.UserService/LogIn",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(UserServiceServer).LogIn(ctx, req.(*Login))
@@ -288,7 +288,7 @@ func _UserService_LogOut_Handler(srv interface{}, ctx context.Context, dec func(
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/user.UserService/LogOut",
+		FullMethod: "/v1.UserService/LogOut",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(UserServiceServer).LogOut(ctx, req.(*LogOut))
@@ -306,7 +306,7 @@ func _UserService_ForgotPassword_Handler(srv interface{}, ctx context.Context, d
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/user.UserService/ForgotPassword",
+		FullMethod: "/v1.UserService/ForgotPassword",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(UserServiceServer).ForgotPassword(ctx, req.(*ForgotPassword))
@@ -324,7 +324,7 @@ func _UserService_ResetPassword_Handler(srv interface{}, ctx context.Context, de
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/user.UserService/ResetPassword",
+		FullMethod: "/v1.UserService/ResetPassword",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(UserServiceServer).ResetPassword(ctx, req.(*ResetPassword))
@@ -342,7 +342,7 @@ func _UserService_UpdateStaffRole_Handler(srv interface{}, ctx context.Context, 
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/user.UserService/UpdateStaffRole",
+		FullMethod: "/v1.UserService/UpdateStaffRole",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(UserServiceServer).UpdateStaffRole(ctx, req.(*UpdateUserRole))
@@ -360,7 +360,7 @@ func _UserService_AddStaff_Handler(srv interface{}, ctx context.Context, dec fun
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/user.UserService/AddStaff",
+		FullMethod: "/v1.UserService/AddStaff",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(UserServiceServer).AddStaff(ctx, req.(*AddStaff))
@@ -378,7 +378,7 @@ func _UserService_UpdateUser_Handler(srv interface{}, ctx context.Context, dec f
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/user.UserService/UpdateUser",
+		FullMethod: "/v1.UserService/UpdateUser",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(UserServiceServer).UpdateUser(ctx, req.(*User))
@@ -396,7 +396,7 @@ func _UserService_GetMe_Handler(srv interface{}, ctx context.Context, dec func(i
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/user.UserService/GetMe",
+		FullMethod: "/v1.UserService/GetMe",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(UserServiceServer).GetMe(ctx, req.(*Token))
@@ -414,7 +414,7 @@ func _UserService_ConfirmEmail_Handler(srv interface{}, ctx context.Context, dec
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/user.UserService/ConfirmEmail",
+		FullMethod: "/v1.UserService/ConfirmEmail",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(UserServiceServer).ConfirmEmail(ctx, req.(*ConfirmEmail))
@@ -432,7 +432,7 @@ func _UserService_Home_Handler(srv interface{}, ctx context.Context, dec func(in
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/user.UserService/Home",
+		FullMethod: "/v1.UserService/Home",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(UserServiceServer).Home(ctx, req.(*UserHome))
@@ -444,7 +444,7 @@ func _UserService_Home_Handler(srv interface{}, ctx context.Context, dec func(in
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var UserService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "user.UserService",
+	ServiceName: "v1.UserService",
 	HandlerType: (*UserServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
