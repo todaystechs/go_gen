@@ -186,8 +186,6 @@ func (m *Location) validate(all bool) error {
 
 	// no validation rules for DeliveryInstructions
 
-	// no validation rules for LocationServices
-
 	if len(errors) > 0 {
 		return LocationMultiError(errors)
 	}
