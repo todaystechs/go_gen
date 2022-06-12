@@ -29,35 +29,35 @@ type Business struct {
 	unknownFields protoimpl.UnknownFields
 
 	// @gotags: dynamodbav:"type,omitempty"
-	Type string `protobuf:"bytes,1,opt,name=type,proto3" json:"type,omitempty" dynamodbav:"type,omitempty"`
+	Type string `protobuf:"bytes,1,opt,name=type,proto3" json:"type,omitempty"`
 	// @gotags: dynamodbav:"business_name,omitempty"
-	BusinessName string `protobuf:"bytes,2,opt,name=business_name,json=businessName,proto3" json:"business_name,omitempty" dynamodbav:"business_name,omitempty"`
+	BusinessName string `protobuf:"bytes,2,opt,name=business_name,json=businessName,proto3" json:"business_name,omitempty"`
 	// @gotags: dynamodbav:"business_id,omitempty"
-	BusinessId string `protobuf:"bytes,3,opt,name=business_id,json=businessId,proto3" json:"business_id,omitempty" dynamodbav:"business_id,omitempty"`
+	BusinessId string `protobuf:"bytes,3,opt,name=business_id,json=businessId,proto3" json:"business_id,omitempty"`
 	// @gotags: dynamodbav:"business_email,omitempty"
-	BusinessEmail string `protobuf:"bytes,4,opt,name=business_email,json=businessEmail,proto3" json:"business_email,omitempty" dynamodbav:"business_email,omitempty"`
+	BusinessEmail string `protobuf:"bytes,4,opt,name=business_email,json=businessEmail,proto3" json:"business_email,omitempty"`
 	// @gotags: dynamodbav:"accounting_email,omitempty"
-	AccountingEmail string `protobuf:"bytes,5,opt,name=accounting_email,json=accountingEmail,proto3" json:"accounting_email,omitempty" dynamodbav:"accounting_email,omitempty"`
+	AccountingEmail string `protobuf:"bytes,5,opt,name=accounting_email,json=accountingEmail,proto3" json:"accounting_email,omitempty"`
 	// @gotags: dynamodbav:"customer_service_email,omitempty"
-	CustomerServiceEmail string `protobuf:"bytes,6,opt,name=customer_service_email,json=customerServiceEmail,proto3" json:"customer_service_email,omitempty" dynamodbav:"customer_service_email,omitempty"`
+	CustomerServiceEmail string `protobuf:"bytes,6,opt,name=customer_service_email,json=customerServiceEmail,proto3" json:"customer_service_email,omitempty"`
 	// @gotags: dynamodbav:"high_priority_email,omitempty"
-	HighPriorityEmail string `protobuf:"bytes,7,opt,name=high_priority_email,json=highPriorityEmail,proto3" json:"high_priority_email,omitempty" dynamodbav:"high_priority_email,omitempty"`
+	HighPriorityEmail string `protobuf:"bytes,7,opt,name=high_priority_email,json=highPriorityEmail,proto3" json:"high_priority_email,omitempty"`
 	// @gotags: dynamodbav:"avatar_url,omitempty"
-	AvatarUrl string `protobuf:"bytes,8,opt,name=avatar_url,json=avatarUrl,proto3" json:"avatar_url,omitempty" dynamodbav:"avatar_url,omitempty"`
+	AvatarUrl string `protobuf:"bytes,8,opt,name=avatar_url,json=avatarUrl,proto3" json:"avatar_url,omitempty"`
 	// @gotags: dynamodbav:"admin_email,omitempty"
-	AdminEmail string `protobuf:"bytes,9,opt,name=admin_email,json=adminEmail,proto3" json:"admin_email,omitempty" dynamodbav:"admin_email,omitempty"`
+	AdminEmail string `protobuf:"bytes,9,opt,name=admin_email,json=adminEmail,proto3" json:"admin_email,omitempty"`
 	// @gotags: dynamodbav:"created_on,omitempty"
-	CreatedOn string `protobuf:"bytes,10,opt,name=created_on,json=createdOn,proto3" json:"created_on,omitempty" dynamodbav:"created_on,omitempty"`
+	CreatedOn string `protobuf:"bytes,10,opt,name=created_on,json=createdOn,proto3" json:"created_on,omitempty"`
 	// @gotags: dynamodbav:"updated_on,omitempty"
-	UpdatedOn string `protobuf:"bytes,11,opt,name=updated_on,json=updatedOn,proto3" json:"updated_on,omitempty" dynamodbav:"updated_on,omitempty"`
+	UpdatedOn string `protobuf:"bytes,11,opt,name=updated_on,json=updatedOn,proto3" json:"updated_on,omitempty"`
 	// @gotags: dynamodbav:"deleted_on,omitempty"
-	DeletedOn string `protobuf:"bytes,12,opt,name=deleted_on,json=deletedOn,proto3" json:"deleted_on,omitempty" dynamodbav:"deleted_on,omitempty"`
+	DeletedOn string `protobuf:"bytes,12,opt,name=deleted_on,json=deletedOn,proto3" json:"deleted_on,omitempty"`
 	// @gotags: dynamodbav:"phone_numbers,omitempty"
-	PhoneNumbers []*PhoneNumber `protobuf:"bytes,13,rep,name=phone_numbers,json=phoneNumbers,proto3" json:"phone_numbers,omitempty" dynamodbav:"phone_numbers,omitempty"`
+	PhoneNumbers []*PhoneNumber `protobuf:"bytes,13,rep,name=phone_numbers,json=phoneNumbers,proto3" json:"phone_numbers,omitempty"`
 	// @gotags: dynamodbav:"sk,omitempty"
-	Sk string `protobuf:"bytes,14,opt,name=sk,proto3" json:"sk,omitempty" dynamodbav:"sk,omitempty"`
+	Sk string `protobuf:"bytes,14,opt,name=sk,proto3" json:"sk,omitempty"`
 	// @gotags: dynamodbav:"pk,omitempty"
-	Pk string `protobuf:"bytes,15,opt,name=pk,proto3" json:"pk,omitempty" dynamodbav:"pk,omitempty"`
+	Pk string `protobuf:"bytes,15,opt,name=pk,proto3" json:"pk,omitempty"`
 }
 
 func (x *Business) Reset() {
@@ -203,7 +203,7 @@ type Businesses struct {
 	unknownFields protoimpl.UnknownFields
 
 	// @gotags: dynamodbav:"businesses,omitempty"
-	Businesses []*Business `protobuf:"bytes,1,rep,name=businesses,proto3" json:"businesses,omitempty" dynamodbav:"businesses,omitempty"`
+	Businesses []*Business `protobuf:"bytes,1,rep,name=businesses,proto3" json:"businesses,omitempty"`
 }
 
 func (x *Businesses) Reset() {
