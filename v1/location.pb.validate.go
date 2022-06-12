@@ -59,7 +59,7 @@ func (m *Location) validate(all bool) error {
 
 	// no validation rules for Id
 
-	// no validation rules for Name
+	// no validation rules for CompanyName
 
 	if all {
 		switch v := interface{}(m.GetAddress()).(type) {
@@ -181,6 +181,12 @@ func (m *Location) validate(all bool) error {
 	// no validation rules for DeliveryNotification
 
 	// no validation rules for PickupReadyBy
+
+	// no validation rules for PickupInstructions
+
+	// no validation rules for DeliveryInstructions
+
+	// no validation rules for LocationServices
 
 	if len(errors) > 0 {
 		return LocationMultiError(errors)

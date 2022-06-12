@@ -162,6 +162,8 @@ func (m *Quote) validate(all bool) error {
 
 	// no validation rules for PickupDate
 
+	// no validation rules for DisplayDate
+
 	// no validation rules for DeliveryDate
 
 	for idx, item := range m.GetBids() {

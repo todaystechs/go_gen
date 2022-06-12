@@ -89,7 +89,9 @@ func (m *Commodity) validate(all bool) error {
 
 	// no validation rules for Hazardous
 
-	// no validation rules for Instructions
+	// no validation rules for CommodityInstructions
+
+	// no validation rules for CommodityServices
 
 	if len(errors) > 0 {
 		return CommodityMultiError(errors)
