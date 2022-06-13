@@ -93,6 +93,8 @@ func (m *Commodity) validate(all bool) error {
 
 	// no validation rules for Index
 
+	// no validation rules for ShipmentDescription
+
 	if len(errors) > 0 {
 		return CommodityMultiError(errors)
 	}
