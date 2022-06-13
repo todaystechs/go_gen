@@ -27,23 +27,23 @@ type Booking struct {
 	unknownFields protoimpl.UnknownFields
 
 	// @gotags: dynamodbav:"booking_id,omitempty"
-	BookingId string `protobuf:"bytes,1,opt,name=booking_id,json=bookingId,proto3" json:"booking_id,omitempty"`
+	BookingId string `protobuf:"bytes,1,opt,name=booking_id,json=bookingId,proto3" json:"booking_id,omitempty" dynamodbav:"booking_id,omitempty"`
 	// @gotags: dynamodbav:"bol_url,omitempty"
-	BolUrl string `protobuf:"bytes,2,opt,name=bol_url,json=bolUrl,proto3" json:"bol_url,omitempty"`
+	BolUrl string `protobuf:"bytes,2,opt,name=bol_url,json=bolUrl,proto3" json:"bol_url,omitempty" dynamodbav:"bol_url,omitempty"`
 	// @gotags: dynamodbav:"invoice_url,omitempty"
-	InvoiceUrl string `protobuf:"bytes,3,opt,name=invoice_url,json=invoiceUrl,proto3" json:"invoice_url,omitempty"`
+	InvoiceUrl string `protobuf:"bytes,3,opt,name=invoice_url,json=invoiceUrl,proto3" json:"invoice_url,omitempty" dynamodbav:"invoice_url,omitempty"`
 	// @gotags: dynamodbav:"invoice_due_date,omitempty"
-	InvoiceDueDate string `protobuf:"bytes,4,opt,name=invoice_due_date,json=invoiceDueDate,proto3" json:"invoice_due_date,omitempty"`
+	InvoiceDueDate string `protobuf:"bytes,4,opt,name=invoice_due_date,json=invoiceDueDate,proto3" json:"invoice_due_date,omitempty" dynamodbav:"invoice_due_date,omitempty"`
 	// @gotags: dynamodbav:"pick_up_start,omitempty"
-	PickUpStart string `protobuf:"bytes,5,opt,name=pick_up_start,json=pickUpStart,proto3" json:"pick_up_start,omitempty"`
+	PickUpStart string `protobuf:"bytes,5,opt,name=pick_up_start,json=pickUpStart,proto3" json:"pick_up_start,omitempty" dynamodbav:"pick_up_start,omitempty"`
 	// @gotags: dynamodbav:"pick_up_end,omitempty"
-	PickUpEnd string `protobuf:"bytes,6,opt,name=pick_up_end,json=pickUpEnd,proto3" json:"pick_up_end,omitempty"`
+	PickUpEnd string `protobuf:"bytes,6,opt,name=pick_up_end,json=pickUpEnd,proto3" json:"pick_up_end,omitempty" dynamodbav:"pick_up_end,omitempty"`
 	// @gotags: dynamodbav:"booked_quote,omitempty"
-	Quote *Quote `protobuf:"bytes,7,opt,name=quote,json=quote,omitempty,proto3" json:"quote,omitempty"`
+	Quote *Quote `protobuf:"bytes,7,opt,name=quote,json=quote,omitempty,proto3" json:"quote,omitempty" dynamodbav:"booked_quote,omitempty"`
 	// @gotags: dynamodbav:"business_id,omitempty"
-	BusinessId string `protobuf:"bytes,8,opt,name=business_id,json=businessId,proto3" json:"business_id,omitempty"`
+	BusinessId string `protobuf:"bytes,8,opt,name=business_id,json=businessId,proto3" json:"business_id,omitempty" dynamodbav:"business_id,omitempty"`
 	// @gotags: dynamodbav:"bid_data,omitempty"
-	Bid *Bid `protobuf:"bytes,9,opt,name=bid,proto3" json:"bid,omitempty"`
+	Bid *Bid `protobuf:"bytes,9,opt,name=bid,proto3" json:"bid,omitempty" dynamodbav:"bid_data,omitempty"`
 }
 
 func (x *Booking) Reset() {
@@ -147,7 +147,7 @@ type Bookings struct {
 	unknownFields protoimpl.UnknownFields
 
 	// @gotags: dynamodbav:"bookings,omitempty"
-	Bookings []*Booking `protobuf:"bytes,1,rep,name=bookings,proto3" json:"bookings,omitempty"`
+	Bookings []*Booking `protobuf:"bytes,1,rep,name=bookings,proto3" json:"bookings,omitempty" dynamodbav:"bookings,omitempty"`
 }
 
 func (x *Bookings) Reset() {

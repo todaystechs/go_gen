@@ -28,13 +28,13 @@ type Ok struct {
 	unknownFields protoimpl.UnknownFields
 
 	// @gotags: dynamodbav:"success,omitempty"
-	Success bool `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
+	Success bool `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty" dynamodbav:"success,omitempty"`
 	// @gotags: dynamodbav:"status_code,omitempty"
-	StatusCode int32 `protobuf:"varint,2,opt,name=status_code,json=statusCode,proto3" json:"status_code,omitempty"`
+	StatusCode int32 `protobuf:"varint,2,opt,name=status_code,json=statusCode,proto3" json:"status_code,omitempty" dynamodbav:"status_code,omitempty"`
 	// @gotags: dynamodbav:"message,omitempty"
-	Message string `protobuf:"bytes,3,opt,name=message,proto3" json:"message,omitempty"`
+	Message string `protobuf:"bytes,3,opt,name=message,proto3" json:"message,omitempty" dynamodbav:"message,omitempty"`
 	// @gotags: dynamodbav:"body,omitempty"
-	Body string `protobuf:"bytes,4,opt,name=body,proto3" json:"body,omitempty"`
+	Body string `protobuf:"bytes,4,opt,name=body,proto3" json:"body,omitempty" dynamodbav:"body,omitempty"`
 }
 
 func (x *Ok) Reset() {
