@@ -3,7 +3,6 @@ module github.com/todaystechs/go_gen
 go 1.17
 
 require (
-	github.com/envoyproxy/protoc-gen-validate v0.6.7
 	google.golang.org/grpc v1.47.0
 	google.golang.org/protobuf v1.28.0
 )
