@@ -175,7 +175,6 @@ func file_add_staff_proto_rawDescGZIP() []byte {
 	})
 	return file_add_staff_proto_rawDescData
 }
-
 var file_add_staff_proto_msgTypes = make([]protoimpl.MessageInfo, 1)
 var file_add_staff_proto_goTypes = []interface{}{
 	(*AddStaff)(nil),    // 0: v1.addStaff
