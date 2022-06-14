@@ -246,6 +246,10 @@ func (m *Quote) validate(all bool) error {
 		}
 	}
 
+	// no validation rules for TotalItems
+
+	// no validation rules for TotalWeight
+
 	if len(errors) > 0 {
 		return QuoteMultiError(errors)
 	}
