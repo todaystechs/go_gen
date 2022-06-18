@@ -109,6 +109,10 @@ func (m *Bid) validate(all bool) error {
 
 	// no validation rules for VendorName
 
+	// no validation rules for CarrierName
+
+	// no validation rules for CarrierCode
+
 	if len(errors) > 0 {
 		return BidMultiError(errors)
 	}
