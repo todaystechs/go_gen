@@ -70,9 +70,13 @@ func (m *Address) validate(all bool) error {
 
 	// no validation rules for State
 
+	// no validation rules for StateCode
+
 	// no validation rules for ExtendedZipCode
 
 	// no validation rules for Country
+
+	// no validation rules for CountryCode
 
 	// no validation rules for FreeFormAddress
 
