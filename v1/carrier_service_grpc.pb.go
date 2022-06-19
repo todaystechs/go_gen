@@ -38,7 +38,7 @@ type CarrierServiceClient interface {
 	// health
 	PingCarrierService(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*Ok, error)
 	// booking
-	BookAQuote(ctx context.Context, in *Quote, opts ...grpc.CallOption) (*Booking, error)
+	BookAQuote(ctx context.Context, in *Booking, opts ...grpc.CallOption) (*Booking, error)
 	BookQuotes(ctx context.Context, in *Bids, opts ...grpc.CallOption) (*Bookings, error)
 	GetBookingHistory(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*Bookings, error)
 	GetBookingById(ctx context.Context, in *Id, opts ...grpc.CallOption) (*Booking, error)
@@ -166,7 +166,7 @@ func (c *carrierServiceClient) PingCarrierService(ctx context.Context, in *Empty
 	return out, nil
 }
 
-func (c *carrierServiceClient) BookAQuote(ctx context.Context, in *Quote, opts ...grpc.CallOption) (*Booking, error) {
+func (c *carrierServiceClient) BookAQuote(ctx context.Context, in *Booking, opts ...grpc.CallOption) (*Booking, error) {
 	out := new(Booking)
 	err := c.cc.Invoke(ctx, "/v1.CarrierService/BookAQuote", in, out, opts...)
 	if err != nil {
@@ -267,7 +267,7 @@ type CarrierServiceServer interface {
 	// health
 	PingCarrierService(context.Context, *Empty) (*Ok, error)
 	// booking
-	BookAQuote(context.Context, *Quote) (*Booking, error)
+	BookAQuote(context.Context, *Booking) (*Booking, error)
 	BookQuotes(context.Context, *Bids) (*Bookings, error)
 	GetBookingHistory(context.Context, *Empty) (*Bookings, error)
 	GetBookingById(context.Context, *Id) (*Booking, error)
@@ -319,7 +319,7 @@ func (UnimplementedCarrierServiceServer) DeleteLocations(context.Context, *Ids) 
 func (UnimplementedCarrierServiceServer) PingCarrierService(context.Context, *Empty) (*Ok, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PingCarrierService not implemented")
 }
-func (UnimplementedCarrierServiceServer) BookAQuote(context.Context, *Quote) (*Booking, error) {
+func (UnimplementedCarrierServiceServer) BookAQuote(context.Context, *Booking) (*Booking, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method BookAQuote not implemented")
 }
 func (UnimplementedCarrierServiceServer) BookQuotes(context.Context, *Bids) (*Bookings, error) {
@@ -575,7 +575,7 @@ func _CarrierService_PingCarrierService_Handler(srv interface{}, ctx context.Con
 }
 
 func _CarrierService_BookAQuote_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(Quote)
+	in := new(Booking)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -587,7 +587,7 @@ func _CarrierService_BookAQuote_Handler(srv interface{}, ctx context.Context, de
 		FullMethod: "/v1.CarrierService/BookAQuote",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CarrierServiceServer).BookAQuote(ctx, req.(*Quote))
+		return srv.(CarrierServiceServer).BookAQuote(ctx, req.(*Booking))
 	}
 	return interceptor(ctx, in, info, handler)
 }
