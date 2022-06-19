@@ -82,6 +82,10 @@ func (m *Address) validate(all bool) error {
 
 	// no validation rules for LocalName
 
+	// no validation rules for Lat
+
+	// no validation rules for Long
+
 	if len(errors) > 0 {
 		return AddressMultiError(errors)
 	}
