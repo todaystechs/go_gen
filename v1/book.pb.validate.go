@@ -35,6 +35,112 @@ var (
 	_ = sort.Sort
 )
 
+// Validate checks the field values on Result with the rules defined in the
+// proto definition for this message. If any rules are violated, the first
+// error encountered is returned, or nil if there are no violations.
+func (m *Result) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on Result with the rules defined in the
+// proto definition for this message. If any rules are violated, the result is
+// a list of violation errors wrapped in ResultMultiError, or nil if none found.
+func (m *Result) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *Result) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	// no validation rules for CapacityProviderBolURL
+
+	// no validation rules for ShipmentIdentifier
+
+	// no validation rules for PickupNote
+
+	// no validation rules for PickupDateTime
+
+	if len(errors) > 0 {
+		return ResultMultiError(errors)
+	}
+
+	return nil
+}
+
+// ResultMultiError is an error wrapping multiple validation errors returned by
+// Result.ValidateAll() if the designated constraints aren't met.
+type ResultMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m ResultMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m ResultMultiError) AllErrors() []error { return m }
+
+// ResultValidationError is the validation error returned by Result.Validate if
+// the designated constraints aren't met.
+type ResultValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e ResultValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e ResultValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e ResultValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e ResultValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e ResultValidationError) ErrorName() string { return "ResultValidationError" }
+
+// Error satisfies the builtin error interface
+func (e ResultValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sResult.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = ResultValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = ResultValidationError{}
+
 // Validate checks the field values on Booking with the rules defined in the
 // proto definition for this message. If any rules are violated, the first
 // error encountered is returned, or nil if there are no violations.
@@ -122,6 +228,63 @@ func (m *Booking) validate(all bool) error {
 		if err := v.Validate(); err != nil {
 			return BookingValidationError{
 				field:  "Bid",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	// no validation rules for ShipmentId
+
+	// no validation rules for SecuirityKey
+
+	// no validation rules for PickupNumber
+
+	// no validation rules for CarrierName
+
+	// no validation rules for CarrierProNumber
+
+	// no validation rules for HandelingUnitTotal
+
+	// no validation rules for IsShipmentEdit
+
+	// no validation rules for IsShipmentManual
+
+	// no validation rules for ServiceType
+
+	// no validation rules for IsTrackingEmailSend
+
+	// no validation rules for IsTracking_APIEnabled
+
+	// no validation rules for Customer_BOLNumber
+
+	// no validation rules for ShipperEmail
+
+	// no validation rules for ConsigneeEmail
+
+	if all {
+		switch v := interface{}(m.GetResult()).(type) {
+		case interface{ ValidateAll() error }:
+			if err := v.ValidateAll(); err != nil {
+				errors = append(errors, BookingValidationError{
+					field:  "Result",
+					reason: "embedded message failed validation",
+					cause:  err,
+				})
+			}
+		case interface{ Validate() error }:
+			if err := v.Validate(); err != nil {
+				errors = append(errors, BookingValidationError{
+					field:  "Result",
+					reason: "embedded message failed validation",
+					cause:  err,
+				})
+			}
+		}
+	} else if v, ok := interface{}(m.GetResult()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return BookingValidationError{
+				field:  "Result",
 				reason: "embedded message failed validation",
 				cause:  err,
 			}
