@@ -262,6 +262,8 @@ func (m *Booking) validate(all bool) error {
 
 	// no validation rules for ConsigneeEmail
 
+	// no validation rules for LogoIcon
+
 	if all {
 		switch v := interface{}(m.GetResult()).(type) {
 		case interface{ ValidateAll() error }:
