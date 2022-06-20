@@ -56,7 +56,7 @@ func (m *Result) validate(all bool) error {
 
 	var errors []error
 
-	// no validation rules for CapacityProviderBolURL
+	// no validation rules for CapacityProviderBolUrl
 
 	// no validation rules for ShipmentIdentifier
 
@@ -254,9 +254,9 @@ func (m *Booking) validate(all bool) error {
 
 	// no validation rules for IsTrackingEmailSend
 
-	// no validation rules for IsTracking_APIEnabled
+	// no validation rules for IsTrackingApiEnabled
 
-	// no validation rules for Customer_BOLNumber
+	// no validation rules for CustomerBolNumber
 
 	// no validation rules for ShipperEmail
 
