@@ -162,35 +162,6 @@ func (m *Booking) validate(all bool) error {
 
 	var errors []error
 
-	if all {
-		switch v := interface{}(m.GetQuote()).(type) {
-		case interface{ ValidateAll() error }:
-			if err := v.ValidateAll(); err != nil {
-				errors = append(errors, BookingValidationError{
-					field:  "Quote",
-					reason: "embedded message failed validation",
-					cause:  err,
-				})
-			}
-		case interface{ Validate() error }:
-			if err := v.Validate(); err != nil {
-				errors = append(errors, BookingValidationError{
-					field:  "Quote",
-					reason: "embedded message failed validation",
-					cause:  err,
-				})
-			}
-		}
-	} else if v, ok := interface{}(m.GetQuote()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return BookingValidationError{
-				field:  "Quote",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
-
 	// no validation rules for BookingId
 
 	// no validation rules for BolUrl
@@ -205,34 +176,7 @@ func (m *Booking) validate(all bool) error {
 
 	// no validation rules for BusinessId
 
-	if all {
-		switch v := interface{}(m.GetBid()).(type) {
-		case interface{ ValidateAll() error }:
-			if err := v.ValidateAll(); err != nil {
-				errors = append(errors, BookingValidationError{
-					field:  "Bid",
-					reason: "embedded message failed validation",
-					cause:  err,
-				})
-			}
-		case interface{ Validate() error }:
-			if err := v.Validate(); err != nil {
-				errors = append(errors, BookingValidationError{
-					field:  "Bid",
-					reason: "embedded message failed validation",
-					cause:  err,
-				})
-			}
-		}
-	} else if v, ok := interface{}(m.GetBid()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return BookingValidationError{
-				field:  "Bid",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
+	// no validation rules for BidId
 
 	// no validation rules for ShipmentId
 
