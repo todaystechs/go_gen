@@ -264,6 +264,12 @@ func (m *Booking) validate(all bool) error {
 
 	// no validation rules for LogoIcon
 
+	// no validation rules for CustomerRefNumber
+
+	// no validation rules for CustomerPoNumber
+
+	// no validation rules for QuoteNumber
+
 	if all {
 		switch v := interface{}(m.GetResult()).(type) {
 		case interface{ ValidateAll() error }:
