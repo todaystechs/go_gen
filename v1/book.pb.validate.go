@@ -162,18 +162,6 @@ func (m *Booking) validate(all bool) error {
 
 	var errors []error
 
-	// no validation rules for BookingId
-
-	// no validation rules for BolUrl
-
-	// no validation rules for InvoiceUrl
-
-	// no validation rules for InvoiceDueDate
-
-	// no validation rules for PickUpStart
-
-	// no validation rules for PickUpEnd
-
 	if all {
 		switch v := interface{}(m.GetQuote()).(type) {
 		case interface{ ValidateAll() error }:
@@ -202,6 +190,18 @@ func (m *Booking) validate(all bool) error {
 			}
 		}
 	}
+
+	// no validation rules for BookingId
+
+	// no validation rules for BolUrl
+
+	// no validation rules for InvoiceUrl
+
+	// no validation rules for InvoiceDueDate
+
+	// no validation rules for PickUpStart
+
+	// no validation rules for PickUpEnd
 
 	// no validation rules for BusinessId
 
@@ -268,7 +268,7 @@ func (m *Booking) validate(all bool) error {
 
 	// no validation rules for CustomerPoNumber
 
-	// no validation rules for QuoteNumber
+	// no validation rules for QuoteId
 
 	if all {
 		switch v := interface{}(m.GetResult()).(type) {
