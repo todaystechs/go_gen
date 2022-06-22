@@ -44,8 +44,8 @@ type CarrierServiceClient interface {
 	GetBookingById(ctx context.Context, in *Id, opts ...grpc.CallOption) (*Booking, error)
 	// quote
 	GetAllQuotes(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*Quotes, error)
-	GetNewQuotes(ctx context.Context, in *Quote, opts ...grpc.CallOption) (*QuoteResponse, error)
-	UpdateQuote(ctx context.Context, in *Quote, opts ...grpc.CallOption) (*QuoteResponse, error)
+	GetNewQuotes(ctx context.Context, in *Quote, opts ...grpc.CallOption) (*Bids, error)
+	UpdateQuote(ctx context.Context, in *Quote, opts ...grpc.CallOption) (*Bids, error)
 	DeleteQuote(ctx context.Context, in *Id, opts ...grpc.CallOption) (*Ok, error)
 	DeleteQuotes(ctx context.Context, in *Ids, opts ...grpc.CallOption) (*Ok, error)
 }
@@ -211,8 +211,8 @@ func (c *carrierServiceClient) GetAllQuotes(ctx context.Context, in *Empty, opts
 	return out, nil
 }
 
-func (c *carrierServiceClient) GetNewQuotes(ctx context.Context, in *Quote, opts ...grpc.CallOption) (*QuoteResponse, error) {
-	out := new(QuoteResponse)
+func (c *carrierServiceClient) GetNewQuotes(ctx context.Context, in *Quote, opts ...grpc.CallOption) (*Bids, error) {
+	out := new(Bids)
 	err := c.cc.Invoke(ctx, "/v1.CarrierService/GetNewQuotes", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -220,8 +220,8 @@ func (c *carrierServiceClient) GetNewQuotes(ctx context.Context, in *Quote, opts
 	return out, nil
 }
 
-func (c *carrierServiceClient) UpdateQuote(ctx context.Context, in *Quote, opts ...grpc.CallOption) (*QuoteResponse, error) {
-	out := new(QuoteResponse)
+func (c *carrierServiceClient) UpdateQuote(ctx context.Context, in *Quote, opts ...grpc.CallOption) (*Bids, error) {
+	out := new(Bids)
 	err := c.cc.Invoke(ctx, "/v1.CarrierService/UpdateQuote", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -273,8 +273,8 @@ type CarrierServiceServer interface {
 	GetBookingById(context.Context, *Id) (*Booking, error)
 	// quote
 	GetAllQuotes(context.Context, *Empty) (*Quotes, error)
-	GetNewQuotes(context.Context, *Quote) (*QuoteResponse, error)
-	UpdateQuote(context.Context, *Quote) (*QuoteResponse, error)
+	GetNewQuotes(context.Context, *Quote) (*Bids, error)
+	UpdateQuote(context.Context, *Quote) (*Bids, error)
 	DeleteQuote(context.Context, *Id) (*Ok, error)
 	DeleteQuotes(context.Context, *Ids) (*Ok, error)
 }
@@ -334,10 +334,10 @@ func (UnimplementedCarrierServiceServer) GetBookingById(context.Context, *Id) (*
 func (UnimplementedCarrierServiceServer) GetAllQuotes(context.Context, *Empty) (*Quotes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetAllQuotes not implemented")
 }
-func (UnimplementedCarrierServiceServer) GetNewQuotes(context.Context, *Quote) (*QuoteResponse, error) {
+func (UnimplementedCarrierServiceServer) GetNewQuotes(context.Context, *Quote) (*Bids, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetNewQuotes not implemented")
 }
-func (UnimplementedCarrierServiceServer) UpdateQuote(context.Context, *Quote) (*QuoteResponse, error) {
+func (UnimplementedCarrierServiceServer) UpdateQuote(context.Context, *Quote) (*Bids, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateQuote not implemented")
 }
 func (UnimplementedCarrierServiceServer) DeleteQuote(context.Context, *Id) (*Ok, error) {
