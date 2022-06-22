@@ -322,6 +322,164 @@ var _ interface {
 	ErrorName() string
 } = BookingValidationError{}
 
+// Validate checks the field values on BookingRequest with the rules defined in
+// the proto definition for this message. If any rules are violated, the first
+// error encountered is returned, or nil if there are no violations.
+func (m *BookingRequest) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on BookingRequest with the rules defined
+// in the proto definition for this message. If any rules are violated, the
+// result is a list of violation errors wrapped in BookingRequestMultiError,
+// or nil if none found.
+func (m *BookingRequest) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *BookingRequest) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	if all {
+		switch v := interface{}(m.GetBooking()).(type) {
+		case interface{ ValidateAll() error }:
+			if err := v.ValidateAll(); err != nil {
+				errors = append(errors, BookingRequestValidationError{
+					field:  "Booking",
+					reason: "embedded message failed validation",
+					cause:  err,
+				})
+			}
+		case interface{ Validate() error }:
+			if err := v.Validate(); err != nil {
+				errors = append(errors, BookingRequestValidationError{
+					field:  "Booking",
+					reason: "embedded message failed validation",
+					cause:  err,
+				})
+			}
+		}
+	} else if v, ok := interface{}(m.GetBooking()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return BookingRequestValidationError{
+				field:  "Booking",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	if all {
+		switch v := interface{}(m.GetQuote()).(type) {
+		case interface{ ValidateAll() error }:
+			if err := v.ValidateAll(); err != nil {
+				errors = append(errors, BookingRequestValidationError{
+					field:  "Quote",
+					reason: "embedded message failed validation",
+					cause:  err,
+				})
+			}
+		case interface{ Validate() error }:
+			if err := v.Validate(); err != nil {
+				errors = append(errors, BookingRequestValidationError{
+					field:  "Quote",
+					reason: "embedded message failed validation",
+					cause:  err,
+				})
+			}
+		}
+	} else if v, ok := interface{}(m.GetQuote()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return BookingRequestValidationError{
+				field:  "Quote",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	if len(errors) > 0 {
+		return BookingRequestMultiError(errors)
+	}
+
+	return nil
+}
+
+// BookingRequestMultiError is an error wrapping multiple validation errors
+// returned by BookingRequest.ValidateAll() if the designated constraints
+// aren't met.
+type BookingRequestMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m BookingRequestMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m BookingRequestMultiError) AllErrors() []error { return m }
+
+// BookingRequestValidationError is the validation error returned by
+// BookingRequest.Validate if the designated constraints aren't met.
+type BookingRequestValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e BookingRequestValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e BookingRequestValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e BookingRequestValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e BookingRequestValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e BookingRequestValidationError) ErrorName() string { return "BookingRequestValidationError" }
+
+// Error satisfies the builtin error interface
+func (e BookingRequestValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sBookingRequest.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = BookingRequestValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = BookingRequestValidationError{}
+
 // Validate checks the field values on Bookings with the rules defined in the
 // proto definition for this message. If any rules are violated, the first
 // error encountered is returned, or nil if there are no violations.
