@@ -95,6 +95,14 @@ func (m *Commodity) validate(all bool) error {
 
 	// no validation rules for ShipmentDescription
 
+	// no validation rules for FrontendDimensionUom
+
+	// no validation rules for FrontendWeightUom
+
+	// no validation rules for FrontendPackageType
+
+	// no validation rules for FrontendFreightClass
+
 	if len(errors) > 0 {
 		return CommodityMultiError(errors)
 	}
