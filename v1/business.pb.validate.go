@@ -119,7 +119,7 @@ func (m *Business) validate(all bool) error {
 
 	// no validation rules for Pk
 
-	// no validation rules for NeedsAddressUpdated
+	// no validation rules for NeedsAddressUpdate
 
 	if len(errors) > 0 {
 		return BusinessMultiError(errors)
