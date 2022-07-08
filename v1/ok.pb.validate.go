@@ -62,8 +62,6 @@ func (m *Ok) validate(all bool) error {
 
 	// no validation rules for Message
 
-	// no validation rules for Body
-
 	if len(errors) > 0 {
 		return OkMultiError(errors)
 	}

@@ -24,7 +24,7 @@ const _ = grpc.SupportPackageIsVersion7
 type UserServiceClient interface {
 	Ping(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*Ok, error)
 	SignUp(ctx context.Context, in *SignUp, opts ...grpc.CallOption) (*Ok, error)
-	LogIn(ctx context.Context, in *Login, opts ...grpc.CallOption) (*Ok, error)
+	LogIn(ctx context.Context, in *Login, opts ...grpc.CallOption) (*ValidateLogin, error)
 	LogOut(ctx context.Context, in *LogOut, opts ...grpc.CallOption) (*Ok, error)
 	ForgotPassword(ctx context.Context, in *ForgotPassword, opts ...grpc.CallOption) (*Ok, error)
 	ResetPassword(ctx context.Context, in *ResetPassword, opts ...grpc.CallOption) (*Ok, error)
@@ -62,8 +62,8 @@ func (c *userServiceClient) SignUp(ctx context.Context, in *SignUp, opts ...grpc
 	return out, nil
 }
 
-func (c *userServiceClient) LogIn(ctx context.Context, in *Login, opts ...grpc.CallOption) (*Ok, error) {
-	out := new(Ok)
+func (c *userServiceClient) LogIn(ctx context.Context, in *Login, opts ...grpc.CallOption) (*ValidateLogin, error) {
+	out := new(ValidateLogin)
 	err := c.cc.Invoke(ctx, "/v1.UserService/LogIn", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -158,7 +158,7 @@ func (c *userServiceClient) Home(ctx context.Context, in *UserHome, opts ...grpc
 type UserServiceServer interface {
 	Ping(context.Context, *Empty) (*Ok, error)
 	SignUp(context.Context, *SignUp) (*Ok, error)
-	LogIn(context.Context, *Login) (*Ok, error)
+	LogIn(context.Context, *Login) (*ValidateLogin, error)
 	LogOut(context.Context, *LogOut) (*Ok, error)
 	ForgotPassword(context.Context, *ForgotPassword) (*Ok, error)
 	ResetPassword(context.Context, *ResetPassword) (*Ok, error)
@@ -180,7 +180,7 @@ func (UnimplementedUserServiceServer) Ping(context.Context, *Empty) (*Ok, error)
 func (UnimplementedUserServiceServer) SignUp(context.Context, *SignUp) (*Ok, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SignUp not implemented")
 }
-func (UnimplementedUserServiceServer) LogIn(context.Context, *Login) (*Ok, error) {
+func (UnimplementedUserServiceServer) LogIn(context.Context, *Login) (*ValidateLogin, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method LogIn not implemented")
 }
 func (UnimplementedUserServiceServer) LogOut(context.Context, *LogOut) (*Ok, error) {
