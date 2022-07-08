@@ -23,7 +23,7 @@ const _ = grpc.SupportPackageIsVersion7
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type UserServiceClient interface {
 	Ping(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*Ok, error)
-	SignUp(ctx context.Context, in *SignUp, opts ...grpc.CallOption) (*Ok, error)
+	SignUp(ctx context.Context, in *SignUp, opts ...grpc.CallOption) (*ValidateLogin, error)
 	LogIn(ctx context.Context, in *Login, opts ...grpc.CallOption) (*ValidateLogin, error)
 	LogOut(ctx context.Context, in *LogOut, opts ...grpc.CallOption) (*Ok, error)
 	ForgotPassword(ctx context.Context, in *ForgotPassword, opts ...grpc.CallOption) (*Ok, error)
@@ -53,8 +53,8 @@ func (c *userServiceClient) Ping(ctx context.Context, in *Empty, opts ...grpc.Ca
 	return out, nil
 }
 
-func (c *userServiceClient) SignUp(ctx context.Context, in *SignUp, opts ...grpc.CallOption) (*Ok, error) {
-	out := new(Ok)
+func (c *userServiceClient) SignUp(ctx context.Context, in *SignUp, opts ...grpc.CallOption) (*ValidateLogin, error) {
+	out := new(ValidateLogin)
 	err := c.cc.Invoke(ctx, "/v1.UserService/SignUp", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -157,7 +157,7 @@ func (c *userServiceClient) Home(ctx context.Context, in *UserHome, opts ...grpc
 // for forward compatibility
 type UserServiceServer interface {
 	Ping(context.Context, *Empty) (*Ok, error)
-	SignUp(context.Context, *SignUp) (*Ok, error)
+	SignUp(context.Context, *SignUp) (*ValidateLogin, error)
 	LogIn(context.Context, *Login) (*ValidateLogin, error)
 	LogOut(context.Context, *LogOut) (*Ok, error)
 	ForgotPassword(context.Context, *ForgotPassword) (*Ok, error)
@@ -177,7 +177,7 @@ type UnimplementedUserServiceServer struct {
 func (UnimplementedUserServiceServer) Ping(context.Context, *Empty) (*Ok, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Ping not implemented")
 }
-func (UnimplementedUserServiceServer) SignUp(context.Context, *SignUp) (*Ok, error) {
+func (UnimplementedUserServiceServer) SignUp(context.Context, *SignUp) (*ValidateLogin, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SignUp not implemented")
 }
 func (UnimplementedUserServiceServer) LogIn(context.Context, *Login) (*ValidateLogin, error) {
