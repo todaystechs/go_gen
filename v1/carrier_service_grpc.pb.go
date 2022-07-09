@@ -27,6 +27,9 @@ type CarrierServiceClient interface {
 	GetBusinessById(ctx context.Context, in *Id, opts ...grpc.CallOption) (*Business, error)
 	GetBusinesses(ctx context.Context, in *Ids, opts ...grpc.CallOption) (*Businesses, error)
 	CloseBusiness(ctx context.Context, in *Id, opts ...grpc.CallOption) (*Ok, error)
+	// get tracking
+	TrackAShipment(ctx context.Context, in *Id, opts ...grpc.CallOption) (*ShipmentStatus, error)
+	UpdateShipmentTracking(ctx context.Context, in *ShipmentStatus, opts ...grpc.CallOption) (*Ok, error)
 	// location
 	GetLocations(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*Locations, error)
 	GetLocation(ctx context.Context, in *Id, opts ...grpc.CallOption) (*Location, error)
@@ -88,6 +91,24 @@ func (c *carrierServiceClient) GetBusinesses(ctx context.Context, in *Ids, opts 
 func (c *carrierServiceClient) CloseBusiness(ctx context.Context, in *Id, opts ...grpc.CallOption) (*Ok, error) {
 	out := new(Ok)
 	err := c.cc.Invoke(ctx, "/v1.CarrierService/CloseBusiness", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *carrierServiceClient) TrackAShipment(ctx context.Context, in *Id, opts ...grpc.CallOption) (*ShipmentStatus, error) {
+	out := new(ShipmentStatus)
+	err := c.cc.Invoke(ctx, "/v1.CarrierService/TrackAShipment", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *carrierServiceClient) UpdateShipmentTracking(ctx context.Context, in *ShipmentStatus, opts ...grpc.CallOption) (*Ok, error) {
+	out := new(Ok)
+	err := c.cc.Invoke(ctx, "/v1.CarrierService/UpdateShipmentTracking", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -256,6 +277,9 @@ type CarrierServiceServer interface {
 	GetBusinessById(context.Context, *Id) (*Business, error)
 	GetBusinesses(context.Context, *Ids) (*Businesses, error)
 	CloseBusiness(context.Context, *Id) (*Ok, error)
+	// get tracking
+	TrackAShipment(context.Context, *Id) (*ShipmentStatus, error)
+	UpdateShipmentTracking(context.Context, *ShipmentStatus) (*Ok, error)
 	// location
 	GetLocations(context.Context, *Empty) (*Locations, error)
 	GetLocation(context.Context, *Id) (*Location, error)
@@ -294,6 +318,12 @@ func (UnimplementedCarrierServiceServer) GetBusinesses(context.Context, *Ids) (*
 }
 func (UnimplementedCarrierServiceServer) CloseBusiness(context.Context, *Id) (*Ok, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CloseBusiness not implemented")
+}
+func (UnimplementedCarrierServiceServer) TrackAShipment(context.Context, *Id) (*ShipmentStatus, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method TrackAShipment not implemented")
+}
+func (UnimplementedCarrierServiceServer) UpdateShipmentTracking(context.Context, *ShipmentStatus) (*Ok, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateShipmentTracking not implemented")
 }
 func (UnimplementedCarrierServiceServer) GetLocations(context.Context, *Empty) (*Locations, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetLocations not implemented")
@@ -426,6 +456,42 @@ func _CarrierService_CloseBusiness_Handler(srv interface{}, ctx context.Context,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(CarrierServiceServer).CloseBusiness(ctx, req.(*Id))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _CarrierService_TrackAShipment_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Id)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CarrierServiceServer).TrackAShipment(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/v1.CarrierService/TrackAShipment",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CarrierServiceServer).TrackAShipment(ctx, req.(*Id))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _CarrierService_UpdateShipmentTracking_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ShipmentStatus)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CarrierServiceServer).UpdateShipmentTracking(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/v1.CarrierService/UpdateShipmentTracking",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CarrierServiceServer).UpdateShipmentTracking(ctx, req.(*ShipmentStatus))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -758,6 +824,14 @@ var CarrierService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "CloseBusiness",
 			Handler:    _CarrierService_CloseBusiness_Handler,
+		},
+		{
+			MethodName: "TrackAShipment",
+			Handler:    _CarrierService_TrackAShipment_Handler,
+		},
+		{
+			MethodName: "UpdateShipmentTracking",
+			Handler:    _CarrierService_UpdateShipmentTracking_Handler,
 		},
 		{
 			MethodName: "GetLocations",
