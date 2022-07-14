@@ -250,6 +250,8 @@ func (m *Quote) validate(all bool) error {
 
 	// no validation rules for TotalWeight
 
+	// no validation rules for ValidUntil
+
 	if len(errors) > 0 {
 		return QuoteMultiError(errors)
 	}
