@@ -168,6 +168,39 @@ func (m *Booking) validate(all bool) error {
 
 	// no validation rules for PickupDate
 
+	// no validation rules for BidId
+
+	// no validation rules for BusinessId
+
+	if all {
+		switch v := interface{}(m.GetBid()).(type) {
+		case interface{ ValidateAll() error }:
+			if err := v.ValidateAll(); err != nil {
+				errors = append(errors, BookingValidationError{
+					field:  "Bid",
+					reason: "embedded message failed validation",
+					cause:  err,
+				})
+			}
+		case interface{ Validate() error }:
+			if err := v.Validate(); err != nil {
+				errors = append(errors, BookingValidationError{
+					field:  "Bid",
+					reason: "embedded message failed validation",
+					cause:  err,
+				})
+			}
+		}
+	} else if v, ok := interface{}(m.GetBid()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return BookingValidationError{
+				field:  "Bid",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
 	// no validation rules for DiscountPercentage
 
 	// no validation rules for FreightChargeTerm
