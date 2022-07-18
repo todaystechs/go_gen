@@ -162,60 +162,22 @@ func (m *Booking) validate(all bool) error {
 
 	var errors []error
 
-	// no validation rules for BookingId
+	// no validation rules for BolId
 
 	// no validation rules for BolUrl
 
-	// no validation rules for InvoiceUrl
+	// no validation rules for PickupDate
 
-	// no validation rules for InvoiceDueDate
+	// no validation rules for DiscountPercentage
 
-	// no validation rules for BusinessId
-
-	// no validation rules for BidId
-
-	// no validation rules for ShipmentId
-
-	// no validation rules for SecuirityKey
-
-	// no validation rules for PickupNumber
-
-	// no validation rules for CarrierName
-
-	// no validation rules for CarrierProNumber
-
-	// no validation rules for HandelingUnitTotal
-
-	// no validation rules for IsShipmentEdit
-
-	// no validation rules for IsShipmentManual
-
-	// no validation rules for ServiceType
-
-	// no validation rules for IsTrackingEmailSend
-
-	// no validation rules for IsTrackingApiEnabled
-
-	// no validation rules for CustomerBolNumber
-
-	// no validation rules for ShipperEmail
-
-	// no validation rules for ConsigneeEmail
-
-	// no validation rules for LogoIcon
-
-	// no validation rules for CustomerRefNumber
-
-	// no validation rules for CustomerPoNumber
-
-	// no validation rules for QuoteId
+	// no validation rules for FreightChargeTerm
 
 	if all {
-		switch v := interface{}(m.GetResult()).(type) {
+		switch v := interface{}(m.GetQuote()).(type) {
 		case interface{ ValidateAll() error }:
 			if err := v.ValidateAll(); err != nil {
 				errors = append(errors, BookingValidationError{
-					field:  "Result",
+					field:  "Quote",
 					reason: "embedded message failed validation",
 					cause:  err,
 				})
@@ -223,23 +185,21 @@ func (m *Booking) validate(all bool) error {
 		case interface{ Validate() error }:
 			if err := v.Validate(); err != nil {
 				errors = append(errors, BookingValidationError{
-					field:  "Result",
+					field:  "Quote",
 					reason: "embedded message failed validation",
 					cause:  err,
 				})
 			}
 		}
-	} else if v, ok := interface{}(m.GetResult()).(interface{ Validate() error }); ok {
+	} else if v, ok := interface{}(m.GetQuote()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return BookingValidationError{
-				field:  "Result",
+				field:  "Quote",
 				reason: "embedded message failed validation",
 				cause:  err,
 			}
 		}
 	}
-
-	// no validation rules for VendorName
 
 	if len(errors) > 0 {
 		return BookingMultiError(errors)
