@@ -168,8 +168,6 @@ func (m *Booking) validate(all bool) error {
 
 	// no validation rules for PickupDate
 
-	// no validation rules for BidId
-
 	// no validation rules for BusinessId
 
 	if all {
