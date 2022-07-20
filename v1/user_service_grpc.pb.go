@@ -23,8 +23,9 @@ const _ = grpc.SupportPackageIsVersion7
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type UserServiceClient interface {
 	Ping(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*Ok, error)
-	SignUp(ctx context.Context, in *SignUp, opts ...grpc.CallOption) (*ValidateLogin, error)
-	LogIn(ctx context.Context, in *Login, opts ...grpc.CallOption) (*ValidateLogin, error)
+	SignUp(ctx context.Context, in *SignUp, opts ...grpc.CallOption) (*LoginResponse, error)
+	LogIn(ctx context.Context, in *Login, opts ...grpc.CallOption) (*LoginResponse, error)
+	ValidateLogin(ctx context.Context, in *ValidateToken, opts ...grpc.CallOption) (*ValidateToken, error)
 	LogOut(ctx context.Context, in *LogOut, opts ...grpc.CallOption) (*Ok, error)
 	ForgotPassword(ctx context.Context, in *ForgotPassword, opts ...grpc.CallOption) (*Ok, error)
 	ResetPassword(ctx context.Context, in *ResetPassword, opts ...grpc.CallOption) (*Ok, error)
@@ -53,8 +54,8 @@ func (c *userServiceClient) Ping(ctx context.Context, in *Empty, opts ...grpc.Ca
 	return out, nil
 }
 
-func (c *userServiceClient) SignUp(ctx context.Context, in *SignUp, opts ...grpc.CallOption) (*ValidateLogin, error) {
-	out := new(ValidateLogin)
+func (c *userServiceClient) SignUp(ctx context.Context, in *SignUp, opts ...grpc.CallOption) (*LoginResponse, error) {
+	out := new(LoginResponse)
 	err := c.cc.Invoke(ctx, "/v1.UserService/SignUp", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -62,9 +63,18 @@ func (c *userServiceClient) SignUp(ctx context.Context, in *SignUp, opts ...grpc
 	return out, nil
 }
 
-func (c *userServiceClient) LogIn(ctx context.Context, in *Login, opts ...grpc.CallOption) (*ValidateLogin, error) {
-	out := new(ValidateLogin)
+func (c *userServiceClient) LogIn(ctx context.Context, in *Login, opts ...grpc.CallOption) (*LoginResponse, error) {
+	out := new(LoginResponse)
 	err := c.cc.Invoke(ctx, "/v1.UserService/LogIn", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *userServiceClient) ValidateLogin(ctx context.Context, in *ValidateToken, opts ...grpc.CallOption) (*ValidateToken, error) {
+	out := new(ValidateToken)
+	err := c.cc.Invoke(ctx, "/v1.UserService/ValidateLogin", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -157,8 +167,9 @@ func (c *userServiceClient) Home(ctx context.Context, in *UserHome, opts ...grpc
 // for forward compatibility
 type UserServiceServer interface {
 	Ping(context.Context, *Empty) (*Ok, error)
-	SignUp(context.Context, *SignUp) (*ValidateLogin, error)
-	LogIn(context.Context, *Login) (*ValidateLogin, error)
+	SignUp(context.Context, *SignUp) (*LoginResponse, error)
+	LogIn(context.Context, *Login) (*LoginResponse, error)
+	ValidateLogin(context.Context, *ValidateToken) (*ValidateToken, error)
 	LogOut(context.Context, *LogOut) (*Ok, error)
 	ForgotPassword(context.Context, *ForgotPassword) (*Ok, error)
 	ResetPassword(context.Context, *ResetPassword) (*Ok, error)
@@ -177,11 +188,14 @@ type UnimplementedUserServiceServer struct {
 func (UnimplementedUserServiceServer) Ping(context.Context, *Empty) (*Ok, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Ping not implemented")
 }
-func (UnimplementedUserServiceServer) SignUp(context.Context, *SignUp) (*ValidateLogin, error) {
+func (UnimplementedUserServiceServer) SignUp(context.Context, *SignUp) (*LoginResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SignUp not implemented")
 }
-func (UnimplementedUserServiceServer) LogIn(context.Context, *Login) (*ValidateLogin, error) {
+func (UnimplementedUserServiceServer) LogIn(context.Context, *Login) (*LoginResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method LogIn not implemented")
+}
+func (UnimplementedUserServiceServer) ValidateLogin(context.Context, *ValidateToken) (*ValidateToken, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ValidateLogin not implemented")
 }
 func (UnimplementedUserServiceServer) LogOut(context.Context, *LogOut) (*Ok, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method LogOut not implemented")
@@ -272,6 +286,24 @@ func _UserService_LogIn_Handler(srv interface{}, ctx context.Context, dec func(i
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(UserServiceServer).LogIn(ctx, req.(*Login))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _UserService_ValidateLogin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ValidateToken)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServiceServer).ValidateLogin(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/v1.UserService/ValidateLogin",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServiceServer).ValidateLogin(ctx, req.(*ValidateToken))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -456,6 +488,10 @@ var UserService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "LogIn",
 			Handler:    _UserService_LogIn_Handler,
+		},
+		{
+			MethodName: "ValidateLogin",
+			Handler:    _UserService_ValidateLogin_Handler,
 		},
 		{
 			MethodName: "LogOut",
