@@ -57,15 +57,9 @@ func (m *ValidateLogin) validate(all bool) error {
 
 	var errors []error
 
-	// no validation rules for Success
-
-	// no validation rules for StatusCode
-
-	// no validation rules for Message
-
 	// no validation rules for LoginGuard
 
-	// no validation rules for BusinessId
+	// no validation rules for Business
 
 	if len(errors) > 0 {
 		return ValidateLoginMultiError(errors)
