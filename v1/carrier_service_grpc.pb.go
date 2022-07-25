@@ -47,7 +47,7 @@ type CarrierServiceClient interface {
 	GetBookingById(ctx context.Context, in *Id, opts ...grpc.CallOption) (*Booking, error)
 	// quote
 	GetAllQuotes(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*Quotes, error)
-	GetNewQuotes(ctx context.Context, in *Quote, opts ...grpc.CallOption) (*Bids, error)
+	GetNewQuotes(ctx context.Context, in *Quote, opts ...grpc.CallOption) (*Quote, error)
 	UpdateQuote(ctx context.Context, in *Quote, opts ...grpc.CallOption) (*Bids, error)
 	DeleteQuote(ctx context.Context, in *Id, opts ...grpc.CallOption) (*Ok, error)
 	DeleteQuotes(ctx context.Context, in *Ids, opts ...grpc.CallOption) (*Ok, error)
@@ -232,8 +232,8 @@ func (c *carrierServiceClient) GetAllQuotes(ctx context.Context, in *Empty, opts
 	return out, nil
 }
 
-func (c *carrierServiceClient) GetNewQuotes(ctx context.Context, in *Quote, opts ...grpc.CallOption) (*Bids, error) {
-	out := new(Bids)
+func (c *carrierServiceClient) GetNewQuotes(ctx context.Context, in *Quote, opts ...grpc.CallOption) (*Quote, error) {
+	out := new(Quote)
 	err := c.cc.Invoke(ctx, "/v1.CarrierService/GetNewQuotes", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -297,7 +297,7 @@ type CarrierServiceServer interface {
 	GetBookingById(context.Context, *Id) (*Booking, error)
 	// quote
 	GetAllQuotes(context.Context, *Empty) (*Quotes, error)
-	GetNewQuotes(context.Context, *Quote) (*Bids, error)
+	GetNewQuotes(context.Context, *Quote) (*Quote, error)
 	UpdateQuote(context.Context, *Quote) (*Bids, error)
 	DeleteQuote(context.Context, *Id) (*Ok, error)
 	DeleteQuotes(context.Context, *Ids) (*Ok, error)
@@ -364,7 +364,7 @@ func (UnimplementedCarrierServiceServer) GetBookingById(context.Context, *Id) (*
 func (UnimplementedCarrierServiceServer) GetAllQuotes(context.Context, *Empty) (*Quotes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetAllQuotes not implemented")
 }
-func (UnimplementedCarrierServiceServer) GetNewQuotes(context.Context, *Quote) (*Bids, error) {
+func (UnimplementedCarrierServiceServer) GetNewQuotes(context.Context, *Quote) (*Quote, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetNewQuotes not implemented")
 }
 func (UnimplementedCarrierServiceServer) UpdateQuote(context.Context, *Quote) (*Bids, error) {
